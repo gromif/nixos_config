@@ -9,13 +9,13 @@
   # 5555 - ADB TCPIP
   # 2234 - Nicotine+
   # 27508 - Qbittorrent
-  networking.firewall.allowedTCPPorts = [ 27508 2234 5555 ];
+  #networking.firewall.allowedTCPPorts = [ 27508 2234 5555 ];
   
   # 1716 - KDE Connect port
   # 27508 - Qbittorrent
-  networking.firewall.allowedUDPPorts = [ 27508 1716 ];
+  #networking.firewall.allowedUDPPorts = [ 27508 1716 ];
   # Or disable the firewall altogether.
-  # networking.firewall.enable = false;
+  networking.firewall.enable = false;
   
   # Lock Kernel Modules
   # security.lockKernelModules = true;
