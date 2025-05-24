@@ -9,6 +9,7 @@
 		./zram.nix
   		./sound.nix
   		./fonts.nix
+  		./zsh.nix
   ];
   
   environment.systemPackages = with pkgs; [

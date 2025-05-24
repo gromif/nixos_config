@@ -9,6 +9,7 @@
     isNormalUser = true;
     description = "Alex";
     extraGroups = [ "networkmanager" "wheel" "kvm" ];
+    shell = pkgs.zsh;
     packages = with pkgs; [
 			android-studio
       alsa-utils
@@ -17,7 +18,6 @@
       fastfetch
       ffmpeg
       gimp3
-      git
       grsync
       inkscape
       lact
@@ -30,6 +30,8 @@
     ];
   };
   
+  programs.git.enable = true; # Install git.
+  programs.thefuck.enable = true; # Install thefuck (correction tool).
   programs.firefox.enable = true; # Install firefox.
   programs.steam.enable = true; # Install steam.
   programs.htop = { # Setup htop.
