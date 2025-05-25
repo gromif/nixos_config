@@ -11,7 +11,7 @@
     extraGroups = [ "networkmanager" "wheel" "kvm" ];
     shell = pkgs.zsh;
     packages = with pkgs; [
-    	  android-studio
+			android-studio
       alsa-utils
       distrobox
       dconf-editor
