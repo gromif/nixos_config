@@ -23,6 +23,7 @@
       lact
       mission-center
       mpv
+      openrgb-with-all-plugins
       smplayer
       nicotine-plus
       qbittorrent
@@ -42,10 +43,13 @@
 		};
   };
   
-  # OpenRGB
-  services.hardware.openrgb = {
-    enable = true;
-    package = pkgs.openrgb-with-all-plugins;
+  # Set up OpenRGB udev rules
+  services.udev.packages = [ pkgs.openrgb-with-all-plugins ];
+  boot.kernelModules = [ "i2c-dev" "i2c-piix4" ];
+  systemd.user.services.openrgb-boot = {
+    path = [ pkgs.openrgb-with-all-plugins ];
+    script = "openrgb --profile Ruby";
+    wantedBy = [ "default.target" "reboot.target" ];
   };
   
   # Waydroid
