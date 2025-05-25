@@ -19,7 +19,7 @@
       # edit = "sudo -e"; # sudo-rs: not yet implemented
       nix-apply = "sudo nixos-rebuild switch";
       nix-upgrade = "sudo nixos-rebuild boot --upgrade";
-      nix-dry = "sudo nixos-rebuild dryrun";
+      nix-dry = "sudo nixos-rebuild dry-run";
       nix-test = "sudo nixos-rebuild test";
       nix-void = "sudo nix-collect-garbage -d";
     };
