@@ -15,6 +15,9 @@
     ];
 
   nixpkgs.config.allowUnfree = true;
+  
+  # Enable the Flakes feature and the accompanying new nix command-line tool
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   networking.hostName = "apollo"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
