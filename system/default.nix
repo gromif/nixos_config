@@ -12,9 +12,12 @@
   		./zsh.nix
   ];
   
+  programs.git.enable = true; # Install git.
+  
   environment.systemPackages = with pkgs; [
     ddcutil
     unrar
+    unixtools.ping
     
 		# Video/Audio data composition framework tools like "gst-inspect", "gst-launch" ...
 		gst_all_1.gstreamer
@@ -32,13 +35,6 @@
   
   # Enable Flatpak Support
   services.flatpak.enable = true;
-  systemd.services.flathub-repo = { # Set-up Flathub by default
-    wantedBy = [ "multi-user.target" ];
-    after = [ "network-online.target" ];
-    wants = [ "network-online.target" ];
-    path = [ pkgs.flatpak ];
-    script = "flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo";
-  };
   
   # Enable AppImage Support
   programs.appimage.enable = true;

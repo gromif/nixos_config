@@ -31,7 +31,6 @@
     ];
   };
   
-  programs.git.enable = true; # Install git.
   programs.thefuck.enable = true; # Install thefuck (correction tool).
   programs.firefox.enable = true; # Install firefox.
   programs.steam.enable = true; # Install steam.
