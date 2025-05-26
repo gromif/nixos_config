@@ -56,5 +56,46 @@
   
   systemd.packages = with pkgs; [ lact ];
 	systemd.services.lactd.wantedBy = ["multi-user.target"];
+	
+	# Flatpak
+	services.flatpak.update.auto.enable = true;
+  services.flatpak.uninstallUnmanaged = true;
+  
+  services.flatpak.packages = [
+    "com.usebottles.bottles"
+    "dev.vencord.Vesktop"
+    "com.ranfdev.DistroShelf"
+    "com.rafaelmardojai.Blanket"
+    "org.onlyoffice.desktopeditors"
+    "io.github.kukuruzka165.materialgram"
+    "com.github.finefindus.eyedropper"
+    "md.obsidian.Obsidian"
+    "org.gnome.gitlab.YaLTeR.Identity"
+    "io.gitlab.theevilskeleton.Upscaler"
+    "io.freetubeapp.FreeTube"
+    "org.localsend.localsend_app"
+    "app.drey.EarTag"
+    "com.github.neithern.g4music"
+    "me.dusansimic.DynamicWallpaper"
+    "com.mattjakeman.ExtensionManager"
+    "com.github.tchx84.Flatseal"
+    "io.github.realmazharhussain.GdmSettings"
+    "com.toolstack.Folio"
+    "io.github.flattool.Ignition"
+    "page.tesk.Refine"
+  ];
+  
+  services.flatpak.overrides = {
+    global = {
+      Context.filesystems = [ 
+        "xdg-config/MangoHud:ro" # Allow reading the MangoHUD config
+      ];
+    };
+    "com.usebottles.bottles".Context.filesystems = [ 
+      "xdg-data/applications" # Allow creating desktop shortcuts
+    ];
+    
+    "org.onlyoffice.desktopeditors".Context.share = [ "ipc" ]; # Turn off the network for OnlyOffice
+  };
   
 }
