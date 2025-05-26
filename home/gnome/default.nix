@@ -93,7 +93,7 @@
     file-roller
     geary
     epiphany
-    #gnome-music
+    gnome-music
     gnome-software
     gnome-system-monitor
     gnome-connections
