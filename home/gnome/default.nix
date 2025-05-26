@@ -94,6 +94,7 @@
     geary
     epiphany
     #gnome-music
+    gnome-software
     gnome-system-monitor
     gnome-connections
     yelp
