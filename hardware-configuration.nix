@@ -12,15 +12,21 @@
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-amd" ];
   boot.extraModulePackages = [ ];
-
+  
+  environment.etc."crypttab".text = ''
+    luks-drive-a UUID=f7cc99d3-8e18-40ac-a3c0-8532042c055e /nix/persist/luks/drive_a nofail,noauto
+    luks-drive-movies UUID=25516f06-b154-4c9f-8b47-abe539d1b9a7 /nix/persist/luks/movies nofail,noauto
+  '';
+  
   fileSystems."/" =
-    { device = "/dev/disk/by-uuid/a4baeae0-1f8d-42b6-8407-48fe18037b8f";
-      fsType = "btrfs";
-      options = [ "subvol=@" "compress=zstd:1" "relatime" ];
+    { device = "none";
+      neededForBoot = true;
+      fsType = "tmpfs";
+      options = [ "size=3G" "mode=755" ]; # mode=755 so only root can write to those files
     };
 
   fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/3EB7-6406";
+    { device = "/dev/disk/by-uuid/9F46-D9BD";
       fsType = "vfat";
       options = [ "nodev" "nosuid" "noexec" "relatime"
       	"fmask=0077" "dmask=0077"
@@ -28,13 +34,18 @@
     };
 
   fileSystems."/home" =
-    { device = "/dev/disk/by-uuid/e784c030-0e7f-4e04-ab75-50184cb0105f";
-      fsType = "btrfs";
-      options = [ "compress=zstd:1" "relatime" ];
+    { device = "/dev/disk/by-uuid/937a1e9a-5dd2-4564-a803-270af5d300eb";
+      fsType = "xfs";
+      options = [ "relatime" ];
+    };
+  
+  fileSystems."/nix" =
+    { device = "/dev/disk/by-uuid/a8e5b593-9bf0-47ac-9afe-711b80883052";
+      fsType = "xfs";
     };
 
   fileSystems."/mnt/drive_a" =
-    { device = "/dev/mapper/luks-f7cc99d3-8e18-40ac-a3c0-8532042c055e";
+    { device = "/dev/mapper/luks-drive-a";
       fsType = "btrfs";
       options = [ "nodev" "nosuid" "noexec" "relatime"
       		"x-gvfs-name=Drive%20A" "x-gvfs-show" "x-systemd.automount" 
@@ -42,7 +53,7 @@
       		];
     };
   fileSystems."/mnt/movies" =
-    { device = "/dev/mapper/luks-25516f06-b154-4c9f-8b47-abe539d1b9a7";
+    { device = "/dev/mapper/luks-drive-movies";
       fsType = "xfs";
       options = [ "nodev" "nosuid" "noexec" "relatime"
       		"ro" # Make it read-only
@@ -61,4 +72,5 @@
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   hardware.enableRedistributableFirmware = true;
   hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
+  hardware.bluetooth.powerOnBoot = false;
 }

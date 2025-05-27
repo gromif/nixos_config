@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 
 {
   imports =
@@ -11,10 +11,15 @@
       ./security.nix
       ./system
       ./home
+      ./user/root.nix
       ./user/alex.nix
     ];
 
   nixpkgs.config.allowUnfree = true;
+  
+  nix.settings = {
+    build-dir = "/var/tmp";
+  };
   
   # Enable the Flakes feature and the accompanying new nix command-line tool
   nix.settings.experimental-features = [ "nix-command" "flakes" ];

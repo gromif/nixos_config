@@ -6,6 +6,7 @@
 {
 	imports = [
 		./boot.nix
+		./impermanence.nix
 		./zram.nix
   		./sound.nix
   		./fonts.nix
