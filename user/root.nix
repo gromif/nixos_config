@@ -5,6 +5,6 @@
 
 {
   users.users.root = {
-    hashedPasswordFile = "/nix/persist/user/alex/passwd_hash";
+    hashedPasswordFile = "/persist/user/alex/passwd_hash";
   };
 }

@@ -4,7 +4,7 @@
 { config, pkgs, ... }:
 
 {
-  environment.persistence."/nix/persist/system" = {
+  environment.persistence."/persist/sys" = {
     hideMounts = true;
     directories = [
       "/etc/NetworkManager/system-connections"

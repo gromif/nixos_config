@@ -14,8 +14,8 @@
   boot.extraModulePackages = [ ];
   
   environment.etc."crypttab".text = ''
-    luks-drive-a UUID=f7cc99d3-8e18-40ac-a3c0-8532042c055e /nix/persist/luks/drive_a nofail,noauto
-    luks-drive-movies UUID=25516f06-b154-4c9f-8b47-abe539d1b9a7 /nix/persist/luks/movies nofail,noauto
+    luks-drive-a UUID=3e36ef9b-21f1-46fe-bf1c-b6dfe8cf8e5d /persist/luks/drive_a nofail,noauto
+    luks-drive-movies UUID=25516f06-b154-4c9f-8b47-abe539d1b9a7 /persist/luks/movies nofail,noauto
   '';
   
   fileSystems."/" =
@@ -26,7 +26,7 @@
     };
 
   fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/9F46-D9BD";
+    { device = "/dev/disk/by-uuid/9ED1-117E";
       fsType = "vfat";
       options = [ "nodev" "nosuid" "noexec" "relatime"
       	"fmask=0077" "dmask=0077"
@@ -34,23 +34,29 @@
     };
 
   fileSystems."/home" =
-    { device = "/dev/disk/by-uuid/937a1e9a-5dd2-4564-a803-270af5d300eb";
+    { device = "/dev/disk/by-uuid/dd7eb714-107b-449a-9d4e-d6085eb6cf39";
       fsType = "xfs";
       options = [ "relatime" ];
     };
   
   fileSystems."/nix" =
-    { device = "/dev/disk/by-uuid/a8e5b593-9bf0-47ac-9afe-711b80883052";
+    { device = "/dev/disk/by-uuid/afa3b6a2-e67c-4365-b930-a95ca283f1a0";
+      fsType = "xfs";
+    };
+    
+  fileSystems."/persist" =
+    { device = "/dev/disk/by-uuid/66f017e2-31aa-4a04-abe5-33539dd6e22e";
+      neededForBoot = true;
       fsType = "xfs";
     };
 
   fileSystems."/mnt/drive_a" =
     { device = "/dev/mapper/luks-drive-a";
-      fsType = "btrfs";
+      fsType = "xfs";
       options = [ "nodev" "nosuid" "noexec" "relatime"
       		"x-gvfs-name=Drive%20A" "x-gvfs-show" "x-systemd.automount" 
-      		"noauto" "autodefrag" "compress=zstd:5"
-      		];
+      		"noauto"
+      ];
     };
   fileSystems."/mnt/movies" =
     { device = "/dev/mapper/luks-drive-movies";
