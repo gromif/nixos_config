@@ -5,7 +5,7 @@
 
 {
   # Kernel
-  boot.kernelPackages = pkgs.linuxKernel.packages.linux_6_14;
+  boot.kernelPackages = pkgs.linuxKernel.packages.linux_6_15;
   boot.kernelParams = [
     # Main display overdrive
     "video=HDMI-A-2:1920x1080@83"
