@@ -14,8 +14,8 @@
   boot.extraModulePackages = [ ];
   
   environment.etc."crypttab".text = ''
-    luks-drive-a UUID=3e36ef9b-21f1-46fe-bf1c-b6dfe8cf8e5d /persist/luks/drive_a nofail,noauto
-    luks-drive-movies UUID=25516f06-b154-4c9f-8b47-abe539d1b9a7 /persist/luks/movies nofail,noauto
+    luks-drive-a UUID=92736e4a-598a-4f69-a3f1-9a87b1c56e02 /persist/luks/drive_a nofail,noauto
+    luks-drive-m UUID=f22a3f60-8201-4859-a74e-83a390a8e9ca /persist/luks/drive_m nofail,noauto
   '';
   
   fileSystems."/" =
@@ -53,17 +53,17 @@
   fileSystems."/mnt/drive_a" =
     { device = "/dev/mapper/luks-drive-a";
       fsType = "xfs";
-      options = [ "nodev" "nosuid" "noexec" "relatime"
+      options = [ "nodev" "nosuid" "noexec" "noatime"
       		"x-gvfs-name=Drive%20A" "x-gvfs-show" "x-systemd.automount" 
       		"noauto"
       ];
     };
-  fileSystems."/mnt/movies" =
-    { device = "/dev/mapper/luks-drive-movies";
+  fileSystems."/mnt/drive_m" =
+    { device = "/dev/mapper/luks-drive-m";
       fsType = "xfs";
-      options = [ "nodev" "nosuid" "noexec" "relatime"
-      		"ro" # Make it read-only
-      		"x-gvfs-name=Movies" "x-gvfs-show" "x-systemd.automount" "noauto"
+      options = [ "nodev" "nosuid" "noexec" "noatime"
+      		#"ro" # Make it read-only
+      		"x-gvfs-name=Drive%20M" "x-gvfs-show" "x-systemd.automount" "noauto"
       ];
     };
 
