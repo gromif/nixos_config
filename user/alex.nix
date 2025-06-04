@@ -1,7 +1,7 @@
 # User - Alex
 
 
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 
 {
   # Define a user account. Don't forget to set a password with ‘passwd’.
@@ -11,28 +11,42 @@
     hashedPasswordFile = "/persist/user/alex/passwd_hash";
     extraGroups = [ "networkmanager" "wheel" "kvm" ];
     shell = pkgs.zsh;
-    packages = with pkgs; [
-			android-studio
-      alsa-utils
-      distrobox
-      dconf-editor
-      fastfetch
-      ffmpeg
-      gimp3
-      grsync
-      inkscape
-      lact
-      mission-center
-      mpv
-      openrgb-with-all-plugins
-      smplayer
-      nicotine-plus
-      qbittorrent
-	  		tldr
-    ];
   };
   
-  programs.thefuck.enable = true; # Install thefuck (correction tool).
+  # Enable the GNOME Desktop Environment.
+  services.displayManager.gdm.enable = true;
+  services.desktopManager.gnome.enable = true;
+  
+  # Install GNOME Essentials
+  environment.systemPackages = with pkgs; [
+    #Theming
+    kdePackages.ocean-sound-theme
+    adw-gtk3
+    tela-icon-theme
+  ];
+  
+  # Exclude
+  environment.gnome.excludePackages = with pkgs; [
+    orca
+    evince
+    file-roller
+    geary
+    epiphany
+    gnome-music
+    gnome-software
+    gnome-system-monitor
+    gnome-connections
+    yelp
+  ];
+  
+  # Fix for Nautilus media details page
+  environment.sessionVariables.GST_PLUGIN_SYSTEM_PATH_1_0 = lib.makeSearchPathOutput "lib" "lib/gstreamer-1.0" (with pkgs.gst_all_1; [
+    gst-plugins-good
+    gst-plugins-bad
+    gst-plugins-ugly
+    gst-libav
+  ]);
+  
   programs.firefox.enable = true; # Install firefox.
   programs.steam.enable = true; # Install steam.
   programs.htop = { # Setup htop.

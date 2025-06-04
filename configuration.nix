@@ -10,7 +10,6 @@
       ./hardware-configuration.nix
       ./security.nix
       ./system
-      ./home
       ./user/root.nix
       ./user/alex.nix
     ];
@@ -19,6 +18,11 @@
   
   nix.settings = {
     build-dir = "/var/tmp";
+  };
+  
+  xdg.portal = {
+    enable = true;
+    extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
   };
   
   # Enable the Flakes feature and the accompanying new nix command-line tool

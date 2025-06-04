@@ -16,6 +16,7 @@
   programs.git.enable = true; # Install git.
   
   environment.systemPackages = with pkgs; [
+    alsa-utils
     ddcutil
     unrar
     

@@ -18,6 +18,15 @@
     luks-drive-m UUID=f22a3f60-8201-4859-a74e-83a390a8e9ca /persist/luks/drive_m nofail,noauto
   '';
   
+  services.udisks2.settings = {
+    "WDC-WD10EZEX-75WN4A1-WD-WCC6Y3LUAL99.conf" = {
+      ATA = {
+        StandbyTimeout = 60;
+        WriteCacheEnabled = true;
+      };
+    };
+  };
+  
   fileSystems."/" =
     { device = "none";
       neededForBoot = true;
@@ -62,7 +71,7 @@
     { device = "/dev/mapper/luks-drive-m";
       fsType = "xfs";
       options = [ "nodev" "nosuid" "noexec" "noatime"
-      		#"ro" # Make it read-only
+      		"ro" # Make it read-only
       		"x-gvfs-name=Drive%20M" "x-gvfs-show" "x-systemd.automount" "noauto"
       ];
     };
