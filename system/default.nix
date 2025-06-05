@@ -19,6 +19,7 @@
     alsa-utils
     ddcutil
     unrar
+    psmisc # Set of small useful utilities that use the proc filesystem (such as fuser, killall and pstree)
     
 		# Video/Audio data composition framework tools like "gst-inspect", "gst-launch" ...
 		gst_all_1.gstreamer
