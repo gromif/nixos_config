@@ -19,6 +19,7 @@
     alsa-utils
     ddcutil
     unrar
+    util-linux # Set of system utilities for Linux
     psmisc # Set of small useful utilities that use the proc filesystem (such as fuser, killall and pstree)
     
 		# Video/Audio data composition framework tools like "gst-inspect", "gst-launch" ...
