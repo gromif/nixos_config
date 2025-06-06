@@ -27,7 +27,6 @@ with lib.hm.gvariant;
       experimental-features = [
         "autoclose-xwayland"
         "variable-refresh-rate" # VRR Support
-        "xwayland-native-scaling" # Xwayland Native Scaling Support
       ];
     };
 

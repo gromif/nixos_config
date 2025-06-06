@@ -7,6 +7,7 @@
   imports = [
 		./gnome
 		./qt
+		./systemd-tmpfiles
 		./cleanup.nix
 		./theme-changer.nix
   ];
