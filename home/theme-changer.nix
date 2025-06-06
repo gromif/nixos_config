@@ -45,7 +45,7 @@ in
   	};
   
   	# Set up automatic [dark] theme changer timer
-  systemd.user.timers."theme-changer@dark" = {
+  systemd.user.timers."theme-changer-dark" = {
     Unit.Description = "Dark theme change";
     Timer = {
       OnCalendar = "20:00";
@@ -56,7 +56,7 @@ in
   };
   
   	# Set up automatic [light] theme changer timer
-  systemd.user.timers."theme-changer@light" = {
+  systemd.user.timers."theme-changer-light" = {
     Unit.Description = "Light theme change";
     Timer = {
       OnCalendar = "07:00";

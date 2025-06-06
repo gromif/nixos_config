@@ -7,6 +7,7 @@
   imports = [
 		./gnome
 		./qt
+		./cleanup.nix
 		./theme-changer.nix
   ];
   
