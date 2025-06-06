@@ -63,7 +63,7 @@
   boot.kernelModules = [ "i2c-dev" "i2c-piix4" ];
   systemd.user.services.openrgb-boot = {
     path = [ pkgs.openrgb-with-all-plugins ];
-    script = "openrgb --profile Ruby";
+    script = "openrgb --profile Sky";
     wantedBy = [ "default.target" "reboot.target" ];
   };
   
