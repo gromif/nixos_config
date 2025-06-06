@@ -10,6 +10,7 @@
     "R %h/.java - - - - -"
     "R %h/.local/share/kotlin - - - - -"
     "R %h/.m2 - - - - -"
+    "R %h/.parallel - - - - -"
     "R %h/.gradle/daemon - - - - -"
     "R %h/.gradle/.tmp - - - - -"
   ];
