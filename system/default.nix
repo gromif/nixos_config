@@ -19,10 +19,14 @@
     alsa-utils
     ddcutil
     libjxl
-    unrar
     util-linux # Set of system utilities for Linux
     parallel
     psmisc # Set of small useful utilities that use the proc filesystem (such as fuser, killall and pstree)
+    
+    # Compression
+    p7zip
+    unrar
+    zpaq
     
 		# Video/Audio data composition framework tools like "gst-inspect", "gst-launch" ...
 		gst_all_1.gstreamer
