@@ -28,14 +28,18 @@
   # Exclude
   environment.gnome.excludePackages = with pkgs; [
     orca
+    decibels
     evince
     file-roller
     geary
     epiphany
+    gnome-contacts
     gnome-music
     gnome-software
     gnome-system-monitor
     gnome-connections
+    gnome-tour
+    simple-scan
     yelp
   ];
   programs.xwayland.enable = false;
