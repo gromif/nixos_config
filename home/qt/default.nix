@@ -3,6 +3,12 @@
 { config, pkgs, ... }:
 
 {
+  # Set up cursor
+  home.pointerCursor = {
+    name = "Adwaita";
+    package = pkgs.adwaita-icon-theme;
+    size = 32;
+  };
   # Install Kvantum
   home.packages = with pkgs; [
     kdePackages.qtstyleplugin-kvantum
