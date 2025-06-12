@@ -95,6 +95,7 @@
     "io.freetubeapp.FreeTube"
     "org.localsend.localsend_app"
     "app.drey.EarTag"
+    "io.github.dvlv.boxbuddyrs"
     "com.github.neithern.g4music"
     "me.dusansimic.DynamicWallpaper"
     "com.mattjakeman.ExtensionManager"
