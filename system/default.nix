@@ -34,6 +34,7 @@
     
 		# Video/Audio data composition framework tools like "gst-inspect", "gst-launch" ...
 		gst_all_1.gstreamer
+		gst_all_1.gst-plugins-rs # Rust implementation
 		# Common plugins like "filesrc" to combine within e.g. gst-launch
 		gst_all_1.gst-plugins-base
 		# Specialized plugins separated by quality
