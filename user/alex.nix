@@ -8,6 +8,8 @@
   users.users.alex = {
     isNormalUser = true;
     description = "Alex";
+    home = "/home/alex";
+    createHome = true;
     hashedPasswordFile = "/persist/user/alex/passwd_hash";
     extraGroups = [ "networkmanager" "wheel" "kvm" ];
     shell = pkgs.zsh;
