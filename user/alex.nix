@@ -43,7 +43,6 @@
     simple-scan
     yelp
   ];
-  programs.xwayland.enable = false;
   
   # Fix for Nautilus media details page
   environment.sessionVariables.GST_PLUGIN_SYSTEM_PATH_1_0 = lib.makeSearchPathOutput "lib" "lib/gstreamer-1.0" (with pkgs.gst_all_1; [
