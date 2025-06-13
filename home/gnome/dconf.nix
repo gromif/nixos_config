@@ -41,6 +41,13 @@ with lib.hm.gvariant;
     "org/gnome/desktop/peripherals/keyboard" = {
       numlock-state = true;
     };
+    # Privacy
+    "org/gnome/desktop/privacy" = {
+      old-files-age = mkUint32 7;
+      recent-files-max-age = mkInt32 14;
+      remove-old-temp-files = true;
+      remove-old-trash-files = true;
+    };
     # Sound
     "org/gnome/desktop/sound".theme-name = "ocean";
 
