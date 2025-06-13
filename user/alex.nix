@@ -23,7 +23,6 @@
     #Theming
     kdePackages.ocean-sound-theme
     adw-gtk3
-    tela-icon-theme
   ];
   
   # Exclude
