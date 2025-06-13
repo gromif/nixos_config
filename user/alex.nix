@@ -19,7 +19,6 @@
   
   # Install GNOME Essentials
   environment.systemPackages = with pkgs; [
-    podman
     #Theming
     kdePackages.ocean-sound-theme
     adw-gtk3
