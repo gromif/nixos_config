@@ -86,7 +86,6 @@
     "dev.vencord.Vesktop"
     "com.ranfdev.DistroShelf"
     "com.rafaelmardojai.Blanket"
-    "org.onlyoffice.desktopeditors"
     "io.github.kukuruzka165.materialgram"
     "com.github.finefindus.eyedropper"
     "md.obsidian.Obsidian"
@@ -115,8 +114,6 @@
     "com.usebottles.bottles".Context.filesystems = [ 
       "xdg-data/applications" # Allow creating desktop shortcuts
     ];
-    
-    "org.onlyoffice.desktopeditors".Context.share = [ "ipc" ]; # Turn off the network for OnlyOffice
   };
   
 }

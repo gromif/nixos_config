@@ -17,6 +17,16 @@ with lib.hm.gvariant;
         gsconnect.extensionUuid
         control-monitor-brightness-and-volume-with-ddcutil.extensionUuid
       ];
+      favorite-apps = [
+        "org.gnome.Nautilus.desktop"
+        "firefox.desktop"
+        "org.gnome.Console.desktop"
+        "com.github.neithern.g4music.desktop"
+        "android-studio.desktop"
+        "io.github.kukuruzka165.materialgram.desktop"
+        "com.usebottles.bottles.desktop"
+        "org.gnome.TextEditor.desktop"
+      ];
     };
     "org/gnome/settings-daemon/plugins/media-keys" = {
       volume-step = 2;

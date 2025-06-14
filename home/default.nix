@@ -37,6 +37,7 @@
     # Media
     gimp3
     inkscape
+    libreoffice-fresh
     nicotine-plus
     smplayer
     qbittorrent
