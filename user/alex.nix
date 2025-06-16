@@ -84,25 +84,18 @@
   services.flatpak.packages = [
     "com.usebottles.bottles"
     "dev.vencord.Vesktop"
-    "com.ranfdev.DistroShelf"
     "com.rafaelmardojai.Blanket"
     "io.github.kukuruzka165.materialgram"
-    "com.github.finefindus.eyedropper"
-    "md.obsidian.Obsidian"
     "org.gnome.gitlab.YaLTeR.Identity"
     "io.gitlab.theevilskeleton.Upscaler"
     "io.freetubeapp.FreeTube"
-    "org.localsend.localsend_app"
-    "app.drey.EarTag"
     "io.github.dvlv.boxbuddyrs"
     "com.github.neithern.g4music"
-    "me.dusansimic.DynamicWallpaper"
     "com.mattjakeman.ExtensionManager"
     "com.github.tchx84.Flatseal"
     "io.github.realmazharhussain.GdmSettings"
     "com.toolstack.Folio"
     "io.github.flattool.Ignition"
-    "page.tesk.Refine"
   ];
   
   services.flatpak.overrides = {

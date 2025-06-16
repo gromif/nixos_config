@@ -30,6 +30,7 @@
     # Web
 
     # Communication
+    localsend
 
     # Development
     android-studio
@@ -38,6 +39,7 @@
     gimp3
     inkscape
     libreoffice-fresh
+    eartag
     nicotine-plus
     smplayer
     qbittorrent
@@ -47,12 +49,14 @@
     lact
 
     # Desktop
+    refine
     gnome-tweaks
     openrgb-with-all-plugins
     dconf-editor
     
     # Tools
     mission-center
+    eyedropper
   ];
 
   # This value determines the Home Manager release that your
@@ -63,7 +67,7 @@
   # You can update Home Manager without changing this value. See
   # the Home Manager release notes for a list of state version
   # changes in each release.
-  home.stateVersion = "23.05";
+  home.stateVersion = "25.05";
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
