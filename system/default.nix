@@ -57,8 +57,11 @@
   services.fstrim.enable = true; # Enable FSTrim (weekly)
   
   # Garbage Collector
-  nix.gc.automatic = true;
-  nix.gc.dates = "09:00";
+  nix.gc = {
+    automatic = true;
+    dates = "weekly";
+    options = "--delete-older-than 14d";
+  };
   
   # Optimiser
   nix.optimise.automatic = true;
