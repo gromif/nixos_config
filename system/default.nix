@@ -18,10 +18,10 @@
   environment.systemPackages = with pkgs; [
     alsa-utils
     ddcutil
+    dwarfs
     libjxl
     util-linux # Set of system utilities for Linux
     parallel
-    podman
     psmisc # Set of small useful utilities that use the proc filesystem (such as fuser, killall and pstree)
     
     # Compression
