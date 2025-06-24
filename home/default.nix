@@ -5,6 +5,7 @@
 
 {
   imports = [
+    ./config
 		./gnome
 		./qt
 		./systemd-tmpfiles
@@ -58,6 +59,12 @@
     mission-center
     eyedropper
   ];
+  
+  # MangoHud [Session-Wide]
+  programs.mangohud = {
+    enable = true;
+    enableSessionWide = true;
+  };
 
   # This value determines the Home Manager release that your
   # configuration is compatible with. This helps avoid breakage
