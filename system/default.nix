@@ -17,6 +17,7 @@
   
   environment.systemPackages = with pkgs; [
     alsa-utils
+    android-tools
     ddcutil
     dwarfs
     libjxl

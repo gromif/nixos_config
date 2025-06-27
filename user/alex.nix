@@ -18,7 +18,7 @@
   # Enable the GNOME Desktop Environment.
   services.displayManager.gdm.enable = true;
   services.desktopManager.gnome.enable = true;
-  
+
   # Install GNOME Essentials
   environment.systemPackages = with pkgs; [
     #Theming
@@ -62,8 +62,11 @@
 		};
   };
   
-  # Set up OpenRGB udev rules
-  services.udev.packages = [ pkgs.openrgb-with-all-plugins ];
+  # Set up UDEV rules
+  services.udev.packages = with pkgs; [ 
+    openrgb-with-all-plugins # Openrgb
+    android-udev-rules # Android
+  ];
   boot.kernelModules = [ "i2c-dev" "i2c-piix4" ];
   systemd.user.services.openrgb-boot = {
     path = [ pkgs.openrgb-with-all-plugins ];
