@@ -22,6 +22,14 @@
     };
   };
   
+  # Fastfetch
+  home.file = {
+    ".config/fastfetch/config.jsonc" = {
+      force = true;
+      source = ../config/fastfetch/config.jsonc;
+    };
+  };
+  
   # MangoHud
   home.file = {
     ".config/MangoHud/MangoHud.conf" = {
