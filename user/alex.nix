@@ -92,11 +92,9 @@
     "org.gnome.gitlab.YaLTeR.Identity"
     "io.gitlab.theevilskeleton.Upscaler"
     "io.freetubeapp.FreeTube"
-    "io.github.dvlv.boxbuddyrs"
     "com.github.neithern.g4music"
     "com.mattjakeman.ExtensionManager"
     "com.github.tchx84.Flatseal"
-    "io.github.realmazharhussain.GdmSettings"
     "com.toolstack.Folio"
     "io.github.flattool.Ignition"
   ];
