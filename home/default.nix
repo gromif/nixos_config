@@ -8,11 +8,8 @@
     ./config
 		./gnome
 		./qt
+		./services
 		./systemd-tmpfiles
-		./cleanup.nix
-		./random-background.nix
-		./screenshot-optimiser.nix
-		./theme-changer.nix
   ];
   
   # Home Manager needs a bit of information about you and the
