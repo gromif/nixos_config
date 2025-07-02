@@ -54,6 +54,7 @@
     gnome-tweaks
     openrgb-with-all-plugins
     dconf-editor
+    papers
     
     # Tools
     mission-center

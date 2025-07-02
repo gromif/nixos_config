@@ -20,6 +20,7 @@
     android-tools
     ddcutil
     dwarfs
+    iw
     libjxl
     util-linux # Set of system utilities for Linux
     parallel
@@ -60,8 +61,8 @@
   # Garbage Collector
   nix.gc = {
     automatic = true;
-    dates = "weekly";
-    options = "--delete-older-than 14d";
+    dates = "daily";
+    options = "--delete-older-than 3d";
   };
   
   # Optimiser

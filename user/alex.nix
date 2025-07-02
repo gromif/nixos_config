@@ -112,4 +112,11 @@
     ];
   };
   
+  # Enable numlock in gdm.
+  programs.dconf.profiles.gdm.databases = [{
+    settings."org/gnome/desktop/peripherals/keyboard" = {
+      numlock-state = true;
+    };
+  }];
+  
 }
