@@ -4,7 +4,9 @@
 { config, pkgs, ... }:
 
 {
-  imports = [];
+  imports = [
+    ./autostart
+  ];
   
   # PipeWire
   home.file = {
