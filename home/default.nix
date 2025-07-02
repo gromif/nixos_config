@@ -10,6 +10,7 @@
 		./qt
 		./systemd-tmpfiles
 		./cleanup.nix
+		./random-background.nix
 		./screenshot-optimiser.nix
 		./theme-changer.nix
   ];
