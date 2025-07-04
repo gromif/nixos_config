@@ -26,19 +26,22 @@
     ffmpeg
     tldr
 
-    # Web
+    # Misc
+    blanket
 
     # Communication
+    vesktop
     localsend
 
     # Development
     android-studio
     
     # Media
+    gapless
     gimp3
     inkscape
     libreoffice-fresh
-    eartag
+    folio
     nicotine-plus
     smplayer
     qbittorrent
@@ -48,6 +51,7 @@
     lact
 
     # Desktop
+    gnome-extension-manager
     refine
     gnome-tweaks
     openrgb-with-all-plugins
@@ -55,6 +59,10 @@
     papers
     
     # Tools
+    bottles
+    upscaler
+    identity
+    eartag
     mission-center
     eyedropper
   ];

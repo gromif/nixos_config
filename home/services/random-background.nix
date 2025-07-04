@@ -4,6 +4,7 @@
 
 let
   wallpapersFolder = "${config.home.homeDirectory}/Pictures/wallpapers";
+  bootInterval = "1m";
   interval = "1h";
   randomWallpaperPkg = pkgs.writeShellApplication {
   	  name = "random-wallpaper";
@@ -30,7 +31,7 @@ in
   systemd.user.timers.random-wallpaper = {
     Unit.Description = "Set random wallpaper [Timer]";
     Timer = {
-      OnBootSec = "${interval}";
+      OnBootSec = "${bootInterval}";
       OnUnitActiveSec = "${interval}";
       Unit = "random-wallpaper.service";
     };

@@ -85,18 +85,9 @@
   services.flatpak.uninstallUnmanaged = true;
   
   services.flatpak.packages = [
-    "com.usebottles.bottles"
-    "dev.vencord.Vesktop"
-    "com.rafaelmardojai.Blanket"
     "io.github.kukuruzka165.materialgram"
-    "org.gnome.gitlab.YaLTeR.Identity"
-    "io.gitlab.theevilskeleton.Upscaler"
     "io.freetubeapp.FreeTube"
-    "com.github.neithern.g4music"
-    "com.mattjakeman.ExtensionManager"
     "com.github.tchx84.Flatseal"
-    "com.toolstack.Folio"
-    "io.github.flattool.Ignition"
   ];
   
   services.flatpak.overrides = {

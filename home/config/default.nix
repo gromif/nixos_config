@@ -6,6 +6,7 @@
 {
   imports = [
     ./autostart
+    ./qt
   ];
   
   # PipeWire
