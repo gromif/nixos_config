@@ -35,19 +35,19 @@
     # Look & Feel
     tela-icon-theme
     
-		# Video/Audio data composition framework tools like "gst-inspect", "gst-launch" ...
-		gst_all_1.gstreamer
-		gst_all_1.gst-plugins-rs # Rust implementation
-		# Common plugins like "filesrc" to combine within e.g. gst-launch
-		gst_all_1.gst-plugins-base
-		# Specialized plugins separated by quality
-		gst_all_1.gst-plugins-good
-		gst_all_1.gst-plugins-bad
-		gst_all_1.gst-plugins-ugly
-		# Plugins to reuse ffmpeg to play almost every video format
-		gst_all_1.gst-libav
-		# Support the Video Audio (Hardware) Acceleration API
-		gst_all_1.gst-vaapi
+    # Video/Audio data composition framework tools like "gst-inspect", "gst-launch" ...
+    gst_all_1.gstreamer
+    gst_all_1.gst-plugins-rs # Rust implementation
+    # Common plugins like "filesrc" to combine within e.g. gst-launch
+    gst_all_1.gst-plugins-base
+    # Specialized plugins separated by quality
+    gst_all_1.gst-plugins-good
+    gst_all_1.gst-plugins-bad
+    gst_all_1.gst-plugins-ugly
+    # Plugins to reuse ffmpeg to play almost every video format
+    gst_all_1.gst-libav
+    # Support the Video Audio (Hardware) Acceleration API
+    gst_all_1.gst-vaapi
   ];
   
   # Enable Flatpak Support
@@ -56,19 +56,6 @@
   # Enable AppImage Support
   programs.appimage.enable = true;
   programs.appimage.binfmt = true;
-  
-  services.fstrim.enable = true; # Enable FSTrim (weekly)
-  
-  # Garbage Collector
-  nix.gc = {
-    automatic = true;
-    dates = "daily";
-    options = "--delete-older-than 3d";
-  };
-  
-  # Optimiser
-  nix.optimise.automatic = true;
-  nix.optimise.dates = [ "11:00" ];
   
   # Set your time zone.
   time.timeZone = "Europe/Kyiv";
@@ -87,5 +74,4 @@
     LC_TELEPHONE = "en_GB.UTF-8";
     LC_TIME = "en_GB.UTF-8";
   };
-  
 }
