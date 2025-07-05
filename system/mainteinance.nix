@@ -19,7 +19,7 @@
   
   system.autoUpgrade = {
     enable = true;
-    flake = "github.com:gromif/nixos_config";
+    flake = "github:gromif/nixos_config";
     flags = [
       "--update-input"
       "nixpkgs"
