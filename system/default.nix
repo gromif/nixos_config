@@ -10,6 +10,7 @@
 		./zram.nix
   		./sound.nix
   		./fonts.nix
+  		./mainteinance.nix
   		./zsh.nix
   ];
   
