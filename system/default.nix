@@ -21,6 +21,7 @@
     android-tools
     ddcutil
     dwarfs
+    imagemagick # Software suite to create, edit, compose, or convert bitmap images
     iw
     libjxl
     util-linux # Set of system utilities for Linux

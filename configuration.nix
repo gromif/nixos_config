@@ -11,7 +11,7 @@
       ./security.nix
       ./system
       ./user/root.nix
-      ./user/alex.nix
+      ./user/alex
     ];
 
   nixpkgs.config.allowUnfree = true;

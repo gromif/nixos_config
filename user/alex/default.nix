@@ -4,6 +4,10 @@
 { config, pkgs, lib, ... }:
 
 {
+  imports = [
+    ./config
+  ];
+  
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.alex = {
     isNormalUser = true;
@@ -64,15 +68,8 @@
   
   # Set up UDEV rules
   services.udev.packages = with pkgs; [ 
-    openrgb-with-all-plugins # Openrgb
     android-udev-rules # Android
   ];
-  boot.kernelModules = [ "i2c-dev" "i2c-piix4" ];
-  systemd.user.services.openrgb-boot = {
-    path = [ pkgs.openrgb-with-all-plugins ];
-    script = "openrgb --profile Uranium";
-    wantedBy = [ "default.target" "reboot.target" ];
-  };
   
   # Waydroid
   virtualisation.waydroid.enable = true;
