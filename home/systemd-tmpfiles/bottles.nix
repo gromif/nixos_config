@@ -4,43 +4,35 @@
 { config, pkgs, ... }:
 
 let
-  bottlesRoot = ".var/app/com.usebottles.bottles/data/bottles/bottles/";
-  bottles = [ "Games" "Izotope-Rx-Studio" ];
-  users = [ "steamuser" "alex" ];
-  files = [
-    "/drive_c/ProgramData/Package Cache"
+  bottlesRoot = ".local/share/bottles/bottles";
+  relativePaths = [
+    "ProgramData/Package Cache/*"
     
-    "/drive_c/Program Files/Internet Explorer"
-    "/drive_c/Program Files/Windows NT"
-    "/drive_c/Program Files/Windows Media Player"
-    "/drive_c/Program Files (x86)/Internet Explorer"
-    "/drive_c/Program Files (x86)/Windows NT"
-    "/drive_c/Program Files (x86)/Windows Media Player"
+    "Program Files/Internet Explorer/*"
+    "Program Files/Windows NT/*"
+    "Program Files/Windows Media Player/*"
+    "Program Files (x86)/Internet Explorer/*"
+    "Program Files (x86)/Windows NT/*"
+    "Program Files (x86)/Windows Media Player/*"
     
-    "/drive_c/windows/Installer"
-    "/drive_c/windows/logs"
-    "/drive_c/windows/temp"
-  ];
-  userFiles = [
-    "/Temp"
-    "/AppData/Local/CEF"
-    "/AppData/Local/CrashReportClient"
-    "/AppData/Local/Microsoft"
-    "/AppData/Local/NVIDIA Corporation"
-    "/AppData/Local/Telemetry"
-    "/AppData/Local/Temp"
+    "windows/Installer/*"
+    "windows/logs/*"
+    "windows/temp/*"
     
-    "/AppData/LocalLow/Microsoft"
+    "users/*/Temp/*"
+    "users/*/AppData/Local/CEF/*"
+    "users/*/AppData/Local/CrashReportClient/*"
+    "users/*/AppData/Local/Microsoft/*"
+    "users/*/AppData/Local/NVIDIA Corporation/*"
+    "users/*/AppData/Local/Telemetry/*"
+    "users/*/AppData/Local/Temp/*"
+    
+    "users/*/AppData/LocalLow/Microsoft/*"
   ];
   
-  rules = builtins.concatMap (b:
-    let
-      systemPaths = map (f: "R \"%h/${bottlesRoot}${b}${f}\" - - - - -") files;
-      userPaths = builtins.concatMap (u:
-        map (f: "R \"%h/${bottlesRoot}${b}/drive_c/users/${u}${f}\" - - - - -") userFiles
-      ) users;
-    in systemPaths ++ userPaths
-  ) bottles;
+  rules = map (f: 
+    "R \"%h/${bottlesRoot}/*/drive_c/${f}\" - - - - -"
+  ) relativePaths;
 in
 {
   systemd.user.tmpfiles.rules = rules;
