@@ -8,6 +8,7 @@
     ./config
 		./gnome
 		./qt
+		./redroid
 		./services
 		./systemd-tmpfiles
   ];

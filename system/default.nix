@@ -27,6 +27,7 @@
     util-linux # Set of system utilities for Linux
     parallel
     psmisc # Set of small useful utilities that use the proc filesystem (such as fuser, killall and pstree)
+    scrcpy
     
     # Compression
     p7zip

@@ -15,7 +15,7 @@
     home = "/home/alex";
     createHome = true;
     hashedPasswordFile = "/persist/user/alex/passwd_hash";
-    extraGroups = [ "networkmanager" "wheel" "kvm" ];
+    extraGroups = [ "networkmanager" "wheel" "kvm" "docker" ];
     shell = pkgs.zsh;
   };
   
@@ -73,6 +73,9 @@
   
   # Waydroid
   virtualisation.waydroid.enable = true;
+  virtualisation.docker = {
+    enable = true;
+  };
   
   systemd.packages = with pkgs; [ lact ];
 	systemd.services.lactd.wantedBy = ["multi-user.target"];

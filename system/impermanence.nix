@@ -15,8 +15,10 @@
       "/var/log"
        { directory = "/var/lib/AccountsService"; user = "colord"; group = "colord"; mode = "u=rwx,g=rx,o="; } # User settings
       "/var/lib/bluetooth"
+      "/var/lib/docker"
       "/var/lib/flatpak"
       "/var/lib/nixos"
+      "/var/lib/lxc"
       #"/var/lib/systemd/coredump"
       "/var/lib/power-profiles-daemon"
       "/var/lib/waydroid"
