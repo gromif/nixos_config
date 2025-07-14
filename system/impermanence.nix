@@ -12,8 +12,9 @@
       "/etc/nixos"
       "/root/.nix-defexpr"
       "/root/.cache/nix"
+      { directory = "/root/.config/sops"; mode = "u=rwx,g=rx,o="; } # Sops keys
       "/var/log"
-       { directory = "/var/lib/AccountsService"; user = "colord"; group = "colord"; mode = "u=rwx,g=rx,o="; } # User settings
+      { directory = "/var/lib/AccountsService"; user = "colord"; group = "colord"; mode = "u=rwx,g=rx,o="; } # User settings
       "/var/lib/bluetooth"
       "/var/lib/docker"
       "/var/lib/flatpak"

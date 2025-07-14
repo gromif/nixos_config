@@ -72,7 +72,6 @@
   ];
   
   # Waydroid
-  virtualisation.waydroid.enable = true;
   virtualisation.docker = {
     enable = true;
   };

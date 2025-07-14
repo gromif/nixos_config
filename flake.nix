@@ -9,12 +9,18 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    
+    sops-nix = {
+      url = "github:Mic92/sops-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
-  outputs = inputs@{ self, nixpkgs, impermanence, home-manager, flatpaks, ... }: {
+  outputs = inputs@{ self, nixpkgs, impermanence, sops-nix, home-manager, flatpaks, ... }: {
     nixosConfigurations.apollo = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       modules = [
         impermanence.nixosModules.impermanence
+        sops-nix.nixosModules.sops
         flatpaks.nixosModules.nix-flatpak
         
         ./configuration.nix

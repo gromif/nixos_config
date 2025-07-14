@@ -8,6 +8,7 @@
   imports =
     [
       ./hardware-configuration.nix
+      ./sops.nix
       ./security.nix
       ./system
       ./user/root.nix
