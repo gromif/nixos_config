@@ -6,11 +6,12 @@
 {
 	imports = [
 		./boot.nix
+		./fonts.nix
 		./impermanence.nix
-		./zram.nix
-  		./sound.nix
-  		./fonts.nix
   		./mainteinance.nix
+  		./network.nix
+  		./sound.nix
+  		./zram.nix
   		./zsh.nix
   ];
   
