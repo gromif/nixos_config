@@ -11,4 +11,7 @@
       "net.core.default_qdisc" = "fq";
       "net.ipv4.tcp_congestion_control" = "bbr";
   };
+  
+  # Disable NetworkManager-wait-online service
+  systemd.services.NetworkManager-wait-online.enable = false;
 }
