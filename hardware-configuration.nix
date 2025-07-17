@@ -58,14 +58,14 @@
       fsType = "btrfs";
       options = [ #"nodev" "nosuid" "noexec" 
         "noatime" "compress=zstd:5" "autodefrag"
-      		"x-gvfs-name=Drive%20A" "x-gvfs-show" "x-systemd.automount" 
+      		"x-gvfs-name=Drive%20A" "x-gvfs-show" "x-systemd.automount"
       		"noauto"
       ];
     };
   fileSystems."/mnt/drive_m" =
     { device = "/dev/mapper/luks-drive-m";
       fsType = "btrfs";
-      options = [ #"nodev" "nosuid" "noexec" 
+      options = [ #"nodev" "nosuid" "noexec"
         "noatime" "compress=zstd:5" "autodefrag"
       		#"ro" # Make it read-only
       		"x-gvfs-name=Drive%20M" "x-gvfs-show" "x-systemd.automount"

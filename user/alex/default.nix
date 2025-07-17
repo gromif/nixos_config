@@ -58,13 +58,6 @@
   
   programs.firefox.enable = true; # Install firefox.
   programs.steam.enable = true; # Install steam.
-  programs.htop = { # Setup htop.
-		enable = true;
-		settings = {
-			hide_kernel_threads = true;
-			hide_userland_threads = true;
-		};
-  };
   
   # Set up UDEV rules
   services.udev.packages = with pkgs; [ 
