@@ -16,5 +16,10 @@
     "luks/usb1" = {};
     "luks/sd1" = {};
     "luks/sd2" = {};
+    
+    user_root_passwordHash = {
+      neededForUsers = true;
+      sopsFile = ./secrets/users.yaml;
+    };
   };
 }

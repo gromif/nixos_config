@@ -14,7 +14,7 @@
     description = "Alex";
     home = "/home/alex";
     createHome = true;
-    hashedPasswordFile = "/persist/user/alex/passwd_hash";
+    hashedPasswordFile = config.sops.secrets.user_root_passwordHash.path;
     extraGroups = [ "networkmanager" "wheel" "kvm" "docker" ];
     shell = pkgs.zsh;
   };

@@ -1,7 +1,7 @@
 # User - Root
 
 
-{ config, pkgs, ... }:
+{ config, ... }:
 
 {
   imports = [
@@ -9,6 +9,6 @@
   ];
   
   users.users.root = {
-    hashedPasswordFile = "/persist/user/alex/passwd_hash";
+    hashedPasswordFile = config.sops.secrets.user_root_passwordHash.path;
   };
 }
