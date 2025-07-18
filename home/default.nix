@@ -60,7 +60,9 @@
     papers
     
     # Tools
-    bottles
+    (bottles.override {
+      removeWarningPopup = true;
+    })
     upscaler
     identity
     eartag
