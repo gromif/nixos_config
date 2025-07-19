@@ -9,7 +9,7 @@
     [
       ./hardware-configuration.nix
       ./sops.nix
-      ./security.nix
+      ./security
       ./system
       ./user
     ];
