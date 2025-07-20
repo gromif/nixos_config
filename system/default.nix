@@ -25,6 +25,7 @@
     imagemagick # Software suite to create, edit, compose, or convert bitmap images
     iw
     libjxl
+    usbutils # Tools for working with USB devices, such as lsusb
     util-linux # Set of system utilities for Linux
     parallel
     psmisc # Set of small useful utilities that use the proc filesystem (such as fuser, killall and pstree)

@@ -21,5 +21,9 @@
       neededForUsers = true;
       sopsFile = ./secrets/users.yaml;
     };
+    
+    usbguard-rules = {
+      sopsFile = ./secrets/usbguard.yaml;
+    };
   };
 }

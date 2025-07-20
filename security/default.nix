@@ -6,6 +6,7 @@
 {
   imports = [
     ./luks.nix
+    ./usbguard.nix
   ];
   
   # Open ports in the firewall.
