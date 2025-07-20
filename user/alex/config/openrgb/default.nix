@@ -19,4 +19,9 @@ in
       wantedBy = [ "default.target" "reboot.target" ];
     };
   };
+  
+  # Temp files cleanup
+  systemd.user.tmpfiles.rules = [
+    "R %h/.config/OpenRGB/logs/* - - - - -"
+  ];
 }
