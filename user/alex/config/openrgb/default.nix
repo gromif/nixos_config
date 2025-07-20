@@ -1,4 +1,4 @@
-# User - Alex - Config - OpenRGB
+# User - Alex - Config - OpenRGB - Profiles
 
 
 { pkgs, lib, ... }:
