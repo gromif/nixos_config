@@ -28,9 +28,11 @@
     tldr
 
     # Misc
+    freetube
     blanket
 
     # Communication
+    materialgram
     vesktop
     localsend
 

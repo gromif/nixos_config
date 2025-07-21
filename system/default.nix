@@ -56,7 +56,7 @@
   ];
   
   # Enable Flatpak Support
-  services.flatpak.enable = true;
+  #services.flatpak.enable = true;
   
   # Enable AppImage Support
   programs.appimage.enable = true;

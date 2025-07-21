@@ -73,25 +73,9 @@
 	systemd.services.lactd.wantedBy = ["multi-user.target"];
 	
 	# Flatpak
-	services.flatpak.update.auto.enable = true;
-  services.flatpak.uninstallUnmanaged = true;
-  
-  services.flatpak.packages = [
-    "io.github.kukuruzka165.materialgram"
-    "io.freetubeapp.FreeTube"
-    "com.github.tchx84.Flatseal"
-  ];
-  
-  services.flatpak.overrides = {
-    global = {
-      Context.filesystems = [ 
-        "xdg-config/MangoHud:ro" # Allow reading the MangoHUD config
-      ];
-    };
-    "com.usebottles.bottles".Context.filesystems = [ 
-      "xdg-data/applications" # Allow creating desktop shortcuts
-    ];
-  };
+	#services.flatpak.update.auto.enable = true;
+  #services.flatpak.uninstallUnmanaged = true;
+  #services.flatpak.packages = [];
   
   # Enable numlock in gdm.
   programs.dconf.profiles.gdm.databases = [{
