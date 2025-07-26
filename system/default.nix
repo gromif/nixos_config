@@ -11,6 +11,7 @@
   		./mainteinance.nix
   		./network.nix
   		./sound.nix
+  		./scripts
   		./zram.nix
   		./zsh.nix
   ];
@@ -25,6 +26,7 @@
     imagemagick # Software suite to create, edit, compose, or convert bitmap images
     iw
     libjxl
+    virtiofsd
     usbutils # Tools for working with USB devices, such as lsusb
     util-linux # Set of system utilities for Linux
     parallel

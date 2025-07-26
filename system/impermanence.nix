@@ -19,6 +19,7 @@
       "/var/lib/docker"
       "/var/lib/flatpak"
       "/var/lib/nixos"
+      "/var/lib/libvirt"
       "/var/lib/lxc"
       #"/var/lib/systemd/coredump"
       "/var/lib/power-profiles-daemon"
