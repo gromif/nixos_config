@@ -7,6 +7,7 @@
   imports = [
     ./config
 		./gnome
+		./mangohud.nix
 		./qt
 		./redroid
 		./services
@@ -40,6 +41,7 @@
     android-studio
     
     # Media
+    euphonica
     gapless
     gimp3
     inkscape

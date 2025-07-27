@@ -6,6 +6,7 @@
 {
   imports = [
     ./config
+    ./steam.nix
   ];
   
   # Define a user account. Don't forget to set a password with ‘passwd’.
@@ -57,7 +58,6 @@
   ]);
   
   programs.firefox.enable = true; # Install firefox.
-  programs.steam.enable = true; # Install steam.
   
   # Set up UDEV rules
   services.udev.packages = with pkgs; [ 
