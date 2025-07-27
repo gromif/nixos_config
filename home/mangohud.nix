@@ -15,56 +15,32 @@ in
     enableSessionWide = true;
     
     settings = {
-      # GPU
-      gpu_temp = true;
+      preset = 3;
       
+      # GPU
       gpu_load_change = load_enabled;
       gpu_load_value = load_values;
       gpu_load_color = load_colors;
-
-      gpu_core_clock = true;
-      gpu_mem_clock = true;
-      gpu_power = true;
-      gpu_voltage = true;
-      
-      gpu_fan = true;
       throttling_status = true;
       
       # CPU
-      cpu_temp = true;
-      cpu_mhz = true;
-      
       cpu_load_change = load_enabled;
       cpu_load_value = load_values;
       cpu_load_color = load_colors;
       
-      # Sensors
-      vram = true;
-      ram = true;
-      fps = true;
-      
       # Limit
       fps_limit = [ 90 ];
-      toggle_fps_limit = "F1";
       show_fps_limit = true;
-      blacklist = [
-        "lact"
-        "nautilus"
-        "kgx"
-      ];
       
       # Other
       no_display = true; # Disable / hide the hud by default
-      vulkan_driver = true;
-      wine = true;
-      frame_timing = true;
-      position = "top-right";
-      font_size = 24;
+      #vulkan_driver = true;
+      #wine = true;
+      #frame_timing = true;
       
       # Background
       background_alpha = "0.6";
       round_corners = 5;
-      background_color = "000000";
     };
   };
 }
