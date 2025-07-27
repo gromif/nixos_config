@@ -54,6 +54,7 @@ in
       ];
       
       # Other
+      no_display = true; # Disable / hide the hud by default
       vulkan_driver = true;
       wine = true;
       frame_timing = true;
