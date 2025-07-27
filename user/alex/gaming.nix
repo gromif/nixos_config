@@ -14,7 +14,10 @@
         MANGOHUD = true;
       };
     };
-    extraPackages = with pkgs; [ mangohud ];
+    extraPackages = with pkgs; [ 
+      mangohud
+      config.services.lsfg-vk.package
+    ];
   };
   
   # Custom lsfg-vk flake setup
