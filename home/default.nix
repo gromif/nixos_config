@@ -7,11 +7,13 @@
   imports = [
     ./config
 		./gnome
-		./mangohud.nix
 		./qt
 		./redroid
 		./services
 		./systemd-tmpfiles
+		
+		./euphonica.nix
+		./mangohud.nix
   ];
   
   # Home Manager needs a bit of information about you and the
@@ -41,7 +43,6 @@
     android-studio
     
     # Media
-    euphonica
     gapless
     gimp3
     inkscape
@@ -73,12 +74,6 @@
     mission-center
     eyedropper
   ];
-  
-  # MangoHud [Session-Wide]
-  programs.mangohud = {
-    enable = true;
-    enableSessionWide = true;
-  };
 
   # This value determines the Home Manager release that your
   # configuration is compatible with. This helps avoid breakage
