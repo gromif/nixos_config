@@ -21,6 +21,12 @@ in
         type "alsa"
         name "alsa-pipe"
       }
+      audio_output {
+        type      "fifo"
+        name      "visualiser"
+        path      "/tmp/mpd.fifo"
+        format    "44100:16:2"
+      }
     '';
   };
 }
