@@ -9,7 +9,7 @@ let
 
   profileFileAttrs = builtins.listToAttrs (
     map (p: {
-      name = ".config/OpenRGB/${p}";
+      name = "OpenRGB/${p}";
       value = {
         source = "${profileDir}/${p}";
         force = true;
@@ -18,5 +18,5 @@ let
   );
 in
 {
-  home.file = profileFileAttrs;
+  xdg.configFile = profileFileAttrs;
 }
