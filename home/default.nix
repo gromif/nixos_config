@@ -13,6 +13,7 @@
 		./systemd-tmpfiles
 		
 		./euphonica.nix
+		./gapless.nix
 		./mangohud.nix
   ];
   
@@ -43,7 +44,6 @@
     android-studio
     
     # Media
-    gapless
     gimp3
     inkscape
     libreoffice-fresh
