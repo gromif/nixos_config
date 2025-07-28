@@ -18,10 +18,6 @@ in
         name "pipewire"
       }
       audio_output {
-        type "alsa"
-        name "alsa-pipe"
-      }
-      audio_output {
         type      "fifo"
         name      "visualiser"
         path      "/tmp/mpd.fifo"
