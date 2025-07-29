@@ -5,6 +5,7 @@
 
 {
   imports = [
+    ./programs
     ./dconf.nix
   ];
   
