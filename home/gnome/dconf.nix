@@ -21,7 +21,7 @@ with lib.hm.gvariant;
         "org.gnome.Nautilus.desktop"
         "firefox.desktop"
         "org.gnome.Console.desktop"
-        "com.github.neithern.g4music.desktop"
+        "io.github.htkhiem.Euphonica.desktop"
         "android-studio.desktop"
         "io.github.kukuruzka165.materialgram.desktop"
         "com.usebottles.bottles.desktop"
