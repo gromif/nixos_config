@@ -23,6 +23,7 @@
     android-tools
     ddcutil
     dwarfs
+    exiftool # ExifTool is a platform-independent Perl library plus a command-line application for reading, writing and editing meta information in a wide variety of files
     imagemagick # Software suite to create, edit, compose, or convert bitmap images
     iw
     libjxl
