@@ -17,11 +17,6 @@
     shellAliases = { # List common aliases
       ll = "ls -l";
       # edit = "sudo -e"; # sudo-rs: not yet implemented
-      nix-apply = "sudo nixos-rebuild switch";
-      nix-upgrade = "sudo nix flake update --flake /etc/nixos ; sudo nixos-rebuild";
-      nix-dry = "sudo nixos-rebuild dry-run";
-      nix-test = "sudo nixos-rebuild test";
-      nix-void = "sudo nix-collect-garbage -d";
     };
     
 		histFile = "$HOME/.zsh_history"; # History file path
