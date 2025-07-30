@@ -2,7 +2,7 @@
 
 
 # Generated via dconf2nix: https://github.com/gvolpe/dconf2nix
-{ lib, pkgs, ... }:
+{ lib, pkgs, pkgs-master, ... }:
 
 with lib.hm.gvariant;
 
@@ -10,7 +10,7 @@ let
   root = "io/github/htkhiem/Euphonica";
 in
 {
-  home.packages = [ pkgs.euphonica ];
+  home.packages = [ pkgs-master.euphonica ];
   dconf.settings = {
     "${root}/client" = {
       mpd-fifo-format = "44100:16:2";
