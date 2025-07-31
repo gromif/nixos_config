@@ -7,7 +7,6 @@
   imports = [
     ./autostart
     ./git
-    ./OpenRGB
     ./qt
   ];
   
