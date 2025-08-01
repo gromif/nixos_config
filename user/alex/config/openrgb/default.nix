@@ -80,7 +80,7 @@ in
       path = [ rgb-next ];
       preStart = "sleep 2s";
       script = "rgb-next";
-      postStart = "rm -R /tmp/logs; rm -R ${openrgbRoot}/logs/*";
+      postStart = "rm -Rf /tmp/logs; rm -Rf ${openrgbRoot}/logs/*";
       serviceConfig = {
         Type = "oneshot";
         WorkingDirectory = "/tmp";
