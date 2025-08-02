@@ -4,6 +4,9 @@
 { config, pkgs, lib, ... }:
 
 {
+  # Automatically load the NTSYNC module
+  boot.kernelModules = [ "ntsync" ];
+  
   # Set up Steam
   programs.steam = {
     enable = true;
