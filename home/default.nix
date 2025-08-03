@@ -11,6 +11,7 @@
 		./redroid
 		./services
 		./systemd-tmpfiles
+		./virtualisation
 		
 		./euphonica.nix
 		./gapless.nix
@@ -26,7 +27,6 @@
 
   home.packages = with pkgs; [
     # Terminal
-    distrobox
     fastfetch
     ffmpeg
     tldr
