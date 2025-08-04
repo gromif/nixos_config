@@ -27,6 +27,7 @@
   # Install GNOME Essentials
   environment.systemPackages = with pkgs; [
     #Theming
+    rtorrent
     kdePackages.ocean-sound-theme
     adw-gtk3
   ];

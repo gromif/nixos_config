@@ -28,7 +28,8 @@ let
     runtimeInputs = [ config.services.hardware.openrgb.package ];
     text = ''
       echo "The target profile is $1"
-      openrgb --very-verbose --nodetect --loglevel 0 -p "$1" &> /dev/null
+      openrgb --very-verbose --nodetect --loglevel 0 -p "$1" 
+      #&> /dev/null
     '';
   };
   rgb-next = pkgs.writeShellApplication {
