@@ -5,10 +5,11 @@
 
 {
 	imports = [
+	  ./mainteinance
+	  
 		./boot.nix
 		./fonts.nix
 		./impermanence.nix
-  		./mainteinance.nix
   		./network.nix
   		./sound.nix
   		./scripts
@@ -26,6 +27,7 @@
     exiftool # ExifTool is a platform-independent Perl library plus a command-line application for reading, writing and editing meta information in a wide variety of files
     imagemagick # Software suite to create, edit, compose, or convert bitmap images
     iw
+    ncdu
     libjxl
     virtiofsd
     usbutils # Tools for working with USB devices, such as lsusb
