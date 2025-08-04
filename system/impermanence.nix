@@ -10,7 +10,6 @@
       "/etc/lact" # LACT config folder
       "/etc/NetworkManager/system-connections" # Manual network configs
       "/etc/nixos"
-      "/root/.nix-defexpr"
       "/root/.cache/nix"
       { directory = "/root/.config/sops"; mode = "u=rwx,g=rx,o="; } # Sops keys
       "/var/log"
