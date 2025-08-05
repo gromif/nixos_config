@@ -16,7 +16,7 @@ let
       
       cd "${git_config_path}"
       cp -f "${system_config_path}/flake.lock" "flake.lock"
-      setsid -f bash -c "git add flake.lock && git commit -m "update flake.lock" && git push" &> /dev/null
+      setsid -f bash -c "git add flake.lock && git commit -m \"update flake.lock\" && git push" &> /dev/null
     '';
   };
   
@@ -31,7 +31,7 @@ let
       cd "${git_config_path}"
       rsync -r --del "$secretsDir/" "./secrets/"
       
-      setsid -f bash -c "git add ./secrets/* && git commit -m "update secrets" && git push" &> /dev/null
+      setsid -f bash -c "git add ./secrets/* && git commit -m \"update secrets\" && git push" &> /dev/null
     '';
   };
   
