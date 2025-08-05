@@ -20,9 +20,24 @@ let
     '';
   };
   
+  nix-rotate-secrets = pkgs.writeShellApplication {
+    name = "nix-rotate-secrets";
+    runtimeInputs = sharedRuntimes ++ [ pkgs.rsync ];
+    text = ''
+      secretsDir="${system_config_path}/secrets"
+      cd "$secretsDir"
+      sudo parallel 'sops rotate -i {}' ::: *.yaml
+      
+      cd "${git_config_path}"
+      rsync -r --del "$secretsDir/" "./secrets/"
+      
+      setsid -f bash -c "git add ./secrets/* && git commit -m "update secrets" && git push" &> /dev/null
+    '';
+  };
+  
   nix-upload = pkgs.writeShellApplication {
     name = "nix-upload";
-    runtimeInputs = sharedRuntimes ++  [ pkgs.rsync ];
+    runtimeInputs = sharedRuntimes ++ [ pkgs.rsync ];
     text = ''
       cd "${git_config_path}"
       
@@ -74,6 +89,7 @@ in
 {
   environment.systemPackages = with pkgs; [
     flake-update
+    nix-rotate-secrets
     
     nix-switch
     nix-dry
