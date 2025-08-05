@@ -7,7 +7,7 @@
     defaultSopsFile = ./secrets/secrets.yaml;
     defaultSopsFormat = "yaml";
     
-    age.keyFile = "/persist/sys/root/.config/sops/age/keys.txt";
+    age.keyFile = "/persist/root/.config/sops/age/keys.txt";
   };
 
   sops.secrets = {

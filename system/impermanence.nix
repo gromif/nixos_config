@@ -4,7 +4,7 @@
 { config, pkgs, ... }:
 
 {
-  environment.persistence."/persist/sys" = {
+  environment.persistence."/persist" = {
     hideMounts = true;
     directories = [
       "/etc/lact" # LACT config folder
