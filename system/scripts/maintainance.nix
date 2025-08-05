@@ -16,7 +16,10 @@ let
       
       cd "${git_config_path}"
       cp -f "${system_config_path}/flake.lock" "flake.lock"
-      setsid -f bash -c "git add flake.lock && git commit -m \"update flake.lock\" && git push" &> /dev/null
+      
+      git add -- flake.lock
+      git commit -m "update \`flake.lock\`"
+      setsid -f bash -c "git push" &> /dev/null
     '';
   };
   
@@ -26,12 +29,14 @@ let
     text = ''
       secretsDir="${system_config_path}/secrets"
       cd "$secretsDir"
-      sudo parallel 'sops rotate -i {}' ::: *.yaml
+      sudo parallel 'sops rotate -i {}' ::: *.yaml &> /dev/null
       
       cd "${git_config_path}"
       rsync -r --del "$secretsDir/" "./secrets/"
       
-      setsid -f bash -c "git add ./secrets/* && git commit -m \"update secrets\" && git push" &> /dev/null
+      git add -- ./secrets/*
+      git commit -m "update secrets"
+      setsid -f bash -c "git push" &> /dev/null
     '';
   };
   
@@ -48,7 +53,10 @@ let
       
       echo "Commit message:"
       read -r msg
-      setsid -f bash -c "git add * && git commit -m \"$msg\" && git push" &> /dev/null
+      
+      git add -- *
+      git commit -m "$msg"
+      setsid -f bash -c "git push" &> /dev/null
     '';
   };
   
