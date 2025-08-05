@@ -34,7 +34,7 @@ let
       cd "${git_config_path}"
       rsync -r --del "$secretsDir/" "./secrets/"
       
-      git add -- ./secrets/*
+      git add -A -- ./secrets/*
       git commit -m "update secrets"
       setsid -f bash -c "git push" &> /dev/null
     '';
@@ -54,7 +54,7 @@ let
       echo "Commit message:"
       read -r msg
       
-      git add -- *
+      git add -A
       git commit -m "$msg"
       setsid -f bash -c "git push" &> /dev/null
     '';
