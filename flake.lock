@@ -35,26 +35,6 @@
         "type": "github"
       }
     },
-    "lsfg-vk-flake": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1753938292,
-        "narHash": "sha256-akeUWgvIIi163s/femzvTOuqqOiOB/8US5ioHsNqhYY=",
-        "owner": "pabloaul",
-        "repo": "lsfg-vk-flake",
-        "rev": "081cd66b1369188777ea146a759d35e99ea6b031",
-        "type": "github"
-      },
-      "original": {
-        "owner": "pabloaul",
-        "repo": "lsfg-vk-flake",
-        "type": "github"
-      }
-    },
     "nixpkgs": {
       "locked": {
         "lastModified": 1754498491,
@@ -91,7 +71,6 @@
       "inputs": {
         "home-manager": "home-manager",
         "impermanence": "impermanence",
-        "lsfg-vk-flake": "lsfg-vk-flake",
         "nixpkgs": "nixpkgs",
         "nixpkgs-master": "nixpkgs-master",
         "sops-nix": "sops-nix"

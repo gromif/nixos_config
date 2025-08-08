@@ -15,13 +15,8 @@
       url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    
-    lsfg-vk-flake = {
-      url = "github:pabloaul/lsfg-vk-flake";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
   };
-  outputs = inputs@{ self, nixpkgs, nixpkgs-master, impermanence, sops-nix, home-manager, lsfg-vk-flake,
+  outputs = inputs@{ self, nixpkgs, nixpkgs-master, impermanence, sops-nix, home-manager,
     #flatpaks,
     ... 
   }: let
@@ -37,7 +32,6 @@
       modules = [
         impermanence.nixosModules.impermanence
         sops-nix.nixosModules.sops
-        lsfg-vk-flake.nixosModules.default
         #flatpaks.nixosModules.nix-flatpak
         
         ./configuration.nix

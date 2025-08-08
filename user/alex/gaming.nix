@@ -19,13 +19,11 @@
     };
     extraPackages = with pkgs; [ 
       mangohud
-      config.services.lsfg-vk.package
+      lsfg-vk
     ];
   };
   
-  # Custom lsfg-vk flake setup
-  services.lsfg-vk = {
-    enable = true;
-    ui.enable = true; # installs gui for configuring lsfg-vk
-  };
+  environment.systemPackages = with pkgs; [
+    lsfg-vk
+  ];
 }
