@@ -17,7 +17,7 @@
     home = "/home/alex";
     createHome = true;
     hashedPasswordFile = config.sops.secrets.user_root_passwordHash.path;
-    extraGroups = [ "networkmanager" "wheel" "kvm" "docker" ];
+    extraGroups = [ "networkmanager" "wheel" "kvm" ];
     shell = pkgs.zsh;
   };
   
