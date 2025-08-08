@@ -65,9 +65,6 @@
   services.udev.packages = with pkgs; [ 
     android-udev-rules # Android
   ];
-  
-  systemd.packages = with pkgs; [ lact ];
-	systemd.services.lactd.wantedBy = ["multi-user.target"];
 	
 	# Flatpak
 	#services.flatpak.update.auto.enable = true;
@@ -80,5 +77,4 @@
       numlock-state = true;
     };
   }];
-  
 }

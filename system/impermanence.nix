@@ -7,7 +7,6 @@
   environment.persistence."/persist" = {
     hideMounts = true;
     directories = [
-      "/etc/lact" # LACT config folder
       "/etc/NetworkManager/system-connections" # Manual network configs
       "/etc/nixos"
       "/root/.cache/nix"

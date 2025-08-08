@@ -52,9 +52,6 @@
     smplayer
     qbittorrent
     mpv
-    
-    # Games
-    lact
 
     # Desktop
     gnome-extension-manager
