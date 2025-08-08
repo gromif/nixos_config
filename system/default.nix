@@ -5,9 +5,9 @@
 
 {
 	imports = [
+	  ./boot
 	  ./mainteinance
 	  
-		./boot.nix
 		./fonts.nix
 		./impermanence.nix
   		./network.nix
