@@ -8,7 +8,7 @@
     hideMounts = true;
     directories = [
       "/etc/NetworkManager/system-connections" # Manual network configs
-      "/etc/nixos"
+      { directory = "/etc/nixos"; mode = "u=rwx,g=rx,o="; }
       "/root/.cache/nix"
       { directory = "/root/.config/sops"; mode = "u=rwx,g=rx,o="; } # Sops keys
       "/var/log"

@@ -32,7 +32,7 @@ let
       sudo parallel 'sops rotate -i {}' ::: *.yaml &> /dev/null
       
       cd "${git_config_path}"
-      rsync -r --del "$secretsDir/" "./secrets/"
+      sudo rsync -r --del "$secretsDir/" "./secrets/"
       
       git add -A -- ./secrets/*
       git commit -m "update secrets"
@@ -46,7 +46,7 @@ let
     text = ''
       cd "${git_config_path}"
       
-      rsync -r \
+      sudo rsync -r \
         --exclude "/.git" \
         --exclude "/README.md" \
         --del "${system_config_path}/" "./"
