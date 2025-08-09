@@ -60,6 +60,12 @@
     gst_all_1.gst-vaapi
   ];
   
+  # tty setup
+  console = {
+    packages = [ pkgs.terminus_font ];
+    font = "ter-128b";
+  };
+  
   # Enable Flatpak Support
   #services.flatpak.enable = true;
   
