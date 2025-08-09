@@ -1,14 +1,24 @@
-# Home
+# Home - Config
 
 
 { config, pkgs, ... }:
 
+let
+  autostartsList = builtins.attrNames (builtins.readDir ./autostart);
+  autostarts = builtins.map (c:
+    ./autostart + "/${c}"
+  ) autostartsList;
+in
 {
-  imports = [
-    ./autostart
+  imports = autostarts ++ [
     ./git
     ./qt
   ];
+  
+  xdg.autostart = {
+    enable = true;
+    readOnly = true; # Make a symlink to a readonly directory so programs cannot install arbitrary services.
+  };
   
   # PipeWire
   xdg.configFile = {
