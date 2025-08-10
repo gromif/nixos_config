@@ -38,6 +38,7 @@
     # Communication
     materialgram
     vesktop
+    hexchat
     localsend
 
     # Development
