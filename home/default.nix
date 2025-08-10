@@ -39,6 +39,7 @@
     materialgram
     vesktop
     hexchat
+    #megasync
     localsend
 
     # Development

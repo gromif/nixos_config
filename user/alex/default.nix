@@ -6,6 +6,7 @@
 {
   imports = [
     ./config
+    ./firejail
     ./gaming.nix
     ./mimetypes.nix
   ];
@@ -27,6 +28,8 @@
 
   # Install GNOME Essentials
   environment.systemPackages = with pkgs; [
+    megasync
+    
     #Theming
     kdePackages.ocean-sound-theme
     adw-gtk3
