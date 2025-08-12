@@ -4,19 +4,18 @@
 { config, pkgs, lib, ... }:
 
 let
-  openrgbRoot = "/var/lib/OpenRGB";
+  pkg = pkgs.openrgb-with-all-plugins; # The main OpenRGB package
   profilesDir = "OpenRGB/profiles"; # /etc...
-  activeProfile = "/etc/OpenRGB/active";
-  systemdServiceName = "rgb-next";
+  activeProfile = "/etc/OpenRGB/active"; # Preserve an active profile
   
   # Set up profiles
-  configProfilesDir = builtins.toPath ./profiles;
-  profileNames = builtins.attrNames (builtins.readDir configProfilesDir);
+  conf_profilesDir = ./profiles;
+  profileNames = builtins.attrNames (builtins.readDir conf_profilesDir);
   profileFileAttrs = builtins.listToAttrs (
     map (p: {
       name = "${p}";
       value = {
-        source = "${configProfilesDir}/${p}";
+        source = "${conf_profilesDir}/${p}";
         target = "${profilesDir}/${p}";
       };
     }) profileNames
@@ -25,50 +24,40 @@ let
   # Set up common commands
   rgb-load = pkgs.writeShellApplication {
     name = "rgb-load";
-    runtimeInputs = [ config.services.hardware.openrgb.package ];
+    runtimeInputs = [ pkg ];
     text = ''
       echo "The target profile is $1"
-      openrgb --very-verbose --nodetect --loglevel 0 -p "$1" 
-      #&> /dev/null
+      openrgb --very-verbose --nodetect --loglevel 0 -p "$1" &> /dev/null
     '';
   };
-  rgb-next = pkgs.writeShellApplication {
-    name = "rgb-next";
-    runtimeInputs = [ 
-      rgb-load
-      pkgs.findutils
-      pkgs.coreutils
-    ];
+  openrgb-service-wrapper = pkgs.writeShellApplication {
+    name = "openrgb-service-wrapper";
+    runtimeInputs = [ pkg ];
     text = ''
       targetProfile=$(find "/etc/${profilesDir}/" -type l -name "*.orp" | shuf -n 1)
       ln -sf "$targetProfile" "${activeProfile}"
-      rgb-load "$targetProfile"
-    '';
-  };
-  rgb-restore = pkgs.writeShellApplication {
-    name = "rgb-restore";
-    runtimeInputs = [ rgb-load ];
-    text = ''
-      rgb-load "${activeProfile}"
+      openrgb --server --server-port ${toString config.services.hardware.openrgb.server.port} -p "$targetProfile"
     '';
   };
 in
 {
   services.hardware.openrgb = {
     enable = true;
-    package = pkgs.openrgb-with-all-plugins;
+    package = pkg;
   };
   environment = {
-    systemPackages = [ rgb-load rgb-next rgb-restore ];
-    etc = profileFileAttrs;
+    systemPackages = [ rgb-load openrgb-service-wrapper ]; # Install additional scripts
+    etc = profileFileAttrs; # Symlink profiles
   };
   
   systemd.services = {
     # Restore the last active profile on resume
-    "${systemdServiceName}-onResume" = {
+    "openrgb-onResume" = {
       after = [ "sleep.target" ];
-      path = [ rgb-restore ];
-      script = "rgb-restore";
+      path = [ rgb-load ];
+      script = ''
+        rgb-load "${activeProfile}"
+      '';
       serviceConfig = {
         Type = "oneshot";
         WorkingDirectory = config.systemd.services.openrgb.serviceConfig.WorkingDirectory;
@@ -77,17 +66,6 @@ in
       wantedBy = [ "sleep.target" ];
     };
     # Modify the default openrgb service
-    "${systemdServiceName}" = {
-      path = [ rgb-next ];
-      preStart = "sleep 2s";
-      script = "rgb-next";
-      postStart = "rm -Rf /tmp/logs; rm -Rf ${openrgbRoot}/logs/*";
-      serviceConfig = {
-        Type = "oneshot";
-        WorkingDirectory = "/tmp";
-      };
-      requires = [ "openrgb.service" ];
-      wantedBy = [ "multi-user.target" ];
-    };
+    openrgb.serviceConfig.ExecStart = lib.mkForce "${lib.getExe openrgb-service-wrapper}";
   };
 }
