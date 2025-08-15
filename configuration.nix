@@ -17,11 +17,14 @@
   nixpkgs.config.allowUnfree = true;
   
   nix.settings = {
+    # Enable the Flakes feature and the accompanying new nix command-line tool
+    experimental-features = [
+      "nix-command"
+      "flakes"
+    ];
+    download-buffer-size = 1073741824;
     build-dir = "/var/tmp";
   };
-  
-  # Enable the Flakes feature and the accompanying new nix command-line tool
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   # Set up Network
   networking.hostName = "apollo"; # Define your hostname
