@@ -33,7 +33,10 @@ let
   rules = map (f: 
     "R \"%h/${bottlesRoot}/*/drive_c/${f}\" - - - - -"
   ) relativePaths;
+  additionalRules = [ 
+    "R \"%h/.local/share/bottles/temp/*\" - - - - -"
+  ];
 in
 {
-  systemd.user.tmpfiles.rules = rules;
+  systemd.user.tmpfiles.rules = rules ++ additionalRules;
 }
