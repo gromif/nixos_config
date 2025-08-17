@@ -5,6 +5,8 @@
 
 {
   imports = [
+    ./sops.nix
+    
     ./config
 		./gnome
 		./qt

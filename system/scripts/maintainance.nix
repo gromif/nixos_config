@@ -31,10 +31,15 @@ let
       cd "$secretsDir"
       sudo parallel 'sops rotate -i {}' ::: *.yaml &> /dev/null
       
+      homeSecretsDir="${system_config_path}/home/secrets"
+      cd "$homeSecretsDir"
+      sudo parallel 'sops rotate -i {}' ::: *.yaml &> /dev/null
+      
       cd "${git_config_path}"
       rsync -r --del "$secretsDir/" "./secrets/"
+      rsync -r --del "$homeSecretsDir/" "./home/secrets/"
       
-      git add -A -- ./secrets/*
+      git add -A -- ./secrets/* ./home/secrets/*
       git commit -m "update secrets"
       setsid -f bash -c "git push" &> /dev/null
     '';

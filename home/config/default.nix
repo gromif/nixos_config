@@ -11,6 +11,7 @@ let
 in
 {
   imports = autostarts ++ [
+    ./nicotine-plus.nix
     ./git
     ./qt
   ];
