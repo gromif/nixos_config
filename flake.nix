@@ -40,9 +40,6 @@
             useGlobalPkgs = true;
             useUserPackages = true;
             users.alex = ./home;
-            sharedModules = [
-              inputs.sops-nix.homeManagerModules.sops
-            ];
             extraSpecialArgs = {
               inherit pkgs-master;
             };
