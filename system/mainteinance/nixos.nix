@@ -16,16 +16,4 @@
   # Optimiser
   nix.optimise.automatic = true;
   nix.optimise.dates = [ "11:00" ];
-  
-  system.autoUpgrade = {
-    enable = true;
-    flake = "github:gromif/nixos_config";
-    flags = [
-      "--update-input"
-      "nixpkgs"
-      "-L" # print build logs
-    ];
-    dates = "10:00";
-    randomizedDelaySec = "30min";
-  };
 }

@@ -3,15 +3,20 @@
 
 { config, pkgs, lib, ... }:
 
+let
+  nix_programs_lst = builtins.attrNames (builtins.readDir ./programs);
+  nix_programs = map (c: ./programs + "/${c}") nix_programs_lst;
+in
 {
-  imports = [
-    ./config
-    ./firejail
+  imports = nix_programs ++ [
     ./gaming.nix
     ./mimetypes.nix
+    ./virtualisation.nix
   ];
   
-  # Define a user account. Don't forget to set a password with ‘passwd’.
+  # ============================================================================================================
+  # User
+  # ============================================================================================================
   users.users.alex = {
     isNormalUser = true;
     description = "Alex";
@@ -22,11 +27,11 @@
     shell = pkgs.zsh;
   };
   
-  # Enable the GNOME Desktop Environment.
+  # ============================================================================================================
+  # Desktop Environment
+  # ============================================================================================================
   services.displayManager.gdm.enable = true;
   services.desktopManager.gnome.enable = true;
-
-  # Install GNOME Essentials
   environment.systemPackages = with pkgs; [
     megasync
     
@@ -35,7 +40,9 @@
     adw-gtk3
   ];
   
-  # Exclude
+  # ============================================================================================================
+  # Desktop Environment [Exclude]
+  # ============================================================================================================
   environment.gnome.excludePackages = with pkgs; [
     orca
     decibels
@@ -53,6 +60,9 @@
     yelp
   ];
   
+  # ============================================================================================================
+  # Desktop Environment [Fixes]
+  # ============================================================================================================
   # Fix for Nautilus media details page
   environment.sessionVariables.GST_PLUGIN_SYSTEM_PATH_1_0 = lib.makeSearchPathOutput "lib" "lib/gstreamer-1.0" (with pkgs.gst_all_1; [
     gst-plugins-good
@@ -60,6 +70,12 @@
     gst-plugins-ugly
     gst-libav
   ]);
+  # Enable numlock in gdm.
+  programs.dconf.profiles.gdm.databases = [{
+    settings."org/gnome/desktop/peripherals/keyboard" = {
+      numlock-state = true;
+    };
+  }];
   
   programs.firefox.enable = true; # Install firefox.
   
@@ -67,16 +83,4 @@
   services.udev.packages = with pkgs; [ 
     android-udev-rules # Android
   ];
-	
-	# Flatpak
-	#services.flatpak.update.auto.enable = true;
-  #services.flatpak.uninstallUnmanaged = true;
-  #services.flatpak.packages = [];
-  
-  # Enable numlock in gdm.
-  programs.dconf.profiles.gdm.databases = [{
-    settings."org/gnome/desktop/peripherals/keyboard" = {
-      numlock-state = true;
-    };
-  }];
 }

@@ -3,19 +3,15 @@
 
 { config, pkgs, ... }:
 
+let
+  nix_programs_lst = builtins.attrNames (builtins.readDir ./programs);
+  nix_programs = map (c: ./programs + "/${c}") nix_programs_lst;
+in
 {
-  imports = [
+  imports = nix_programs ++ [
     ./config
 		./gnome
-		./qt
-		./redroid
 		./services
-		./systemd-tmpfiles
-		./virtualisation
-		
-		./euphonica.nix
-		./gapless.nix
-		./mangohud.nix
   ];
   
   # Home Manager needs a bit of information about you and the
@@ -38,12 +34,7 @@
     # Communication
     materialgram
     vesktop
-    hexchat
-    #megasync
     localsend
-
-    # Development
-    android-studio
     
     # Media
     gimp3
@@ -64,9 +55,6 @@
     papers
     
     # Tools
-    (bottles.override {
-      removeWarningPopup = true;
-    })
     upscaler
     identity
     eartag

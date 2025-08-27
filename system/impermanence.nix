@@ -14,6 +14,7 @@
       "/var/log"
       { directory = "/var/lib/AccountsService"; user = "colord"; group = "colord"; mode = "u=rwx,g=rx,o="; } # User settings
       "/var/lib/bluetooth"
+      "/var/lib/docker"
       "/var/lib/nixos"
       "/var/lib/libvirt"
       "/var/lib/lxc"

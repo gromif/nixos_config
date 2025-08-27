@@ -16,6 +16,5 @@ in
     show-peak = false;
     volume = 1.0;
     width = 1269;
-
   };
 }

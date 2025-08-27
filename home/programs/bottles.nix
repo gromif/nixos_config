@@ -1,4 +1,4 @@
-# SystemD Tmpfiles - Bottles
+# Home - Programs - Bottles
 
 
 { config, pkgs, ... }:
@@ -33,10 +33,19 @@ let
   rules = map (f: 
     "R \"%h/${bottlesRoot}/*/drive_c/${f}\" - - - - -"
   ) relativePaths;
-  additionalRules = [ 
+  
+  extraRules = [ 
     "R \"%h/.local/share/bottles/temp/*\" - - - - -"
   ];
 in
 {
-  systemd.user.tmpfiles.rules = rules ++ additionalRules;
+  # Set up the package
+  home.packages = with pkgs; [
+    (bottles.override {
+      removeWarningPopup = true;
+    })
+  ];
+  
+  # Set up Tmpfiles rules
+  systemd.user.tmpfiles.rules = rules ++ extraRules;
 }

@@ -25,11 +25,6 @@
     download-buffer-size = 1073741824;
     build-dir = "/var/tmp";
   };
-
-  # Set up Network
-  networking.hostName = "apollo"; # Define your hostname
-  networking.networkmanager.enable = true;
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant
 	
 	hardware.graphics = {
   		enable = true;
