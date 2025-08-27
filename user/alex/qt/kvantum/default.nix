@@ -4,7 +4,7 @@
 { config, pkgs, ... }:
 
 let
-  theme = "KvLibadwaitaDark";
+  theme = "KvLibadwaita";
 in
 {
   # Set up basic packages
