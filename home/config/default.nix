@@ -12,6 +12,7 @@ in
 {
   imports = autostarts ++ [
     ./git
+    ./qt
   ];
   
   xdg.autostart = {
