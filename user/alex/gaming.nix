@@ -45,8 +45,8 @@
             fan_control_enabled: false
             power_cap: 120.0
             performance_level: high
-            max_core_clock: 2700
-            max_memory_clock: 940
+            max_core_clock: 2690
+            max_memory_clock: 935
             voltage_offset: -10
     current_profile: OC
     auto_switch_profiles: false
