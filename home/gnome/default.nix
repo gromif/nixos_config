@@ -6,6 +6,8 @@
 {
   imports = [
     ./programs
+    
+    ./app-folders.nix
     ./dconf.nix
   ];
   
