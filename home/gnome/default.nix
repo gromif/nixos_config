@@ -3,10 +3,12 @@
 
 { config, pkgs, ... }:
 
+let
+	programsList = builtins.attrNames (builtins.readDir ./programs);
+	programs = map (c: ./programs + "/${c}") programsList;
+in
 {
-  imports = [
-    ./programs
-    
+  imports = programs ++ [
     ./app-folders.nix
     ./dconf.nix
   ];
