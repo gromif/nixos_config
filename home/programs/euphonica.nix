@@ -39,6 +39,7 @@ in
 
     "${root}/ui" = {
       bg-opacity = 0.36;
+      max-columns = 9;
       use-album-art-as-bg = true;
       use-visualizer = true;
       visualizer-blend-mode = mkUint32 6;
