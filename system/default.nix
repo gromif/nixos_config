@@ -22,6 +22,7 @@
   environment.systemPackages = with pkgs; [
     alsa-utils
     android-tools
+    base91 # Implementation of the base91 utility, providing efficient binary-to-text encoding with better space utilization than Base64
     ddcutil
     dwarfs
     exiftool # ExifTool is a platform-independent Perl library plus a command-line application for reading, writing and editing meta information in a wide variety of files
