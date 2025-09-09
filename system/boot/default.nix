@@ -22,6 +22,7 @@ in
     "video=HDMI-A-2:1920x1080@83"
     # AMDGPU Overclock Support
     "amdgpu.ppfeaturemask=0xffffffff"
+    "net.core.bpf_jit_harden=2" # Enables hardening for the BPF Just-In-Time (JIT) compiler
   ];
   
   # Bootloader
