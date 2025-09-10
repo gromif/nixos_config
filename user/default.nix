@@ -5,6 +5,7 @@
 
 {
   imports = [ ./alex ];
+  users.mutableUsers = false; # the contents of the user and group files will be replaced on system activation
   
   # ============================================================================================================
   # Root user
