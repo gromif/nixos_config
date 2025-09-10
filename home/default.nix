@@ -4,15 +4,17 @@
 { config, pkgs, ... }:
 
 let
-  nix_programs_lst = builtins.attrNames (builtins.readDir ./programs);
-  nix_programs = map (c: ./programs + "/${c}") nix_programs_lst;
+  programsList = builtins.attrNames (builtins.readDir ./programs);
+  programs = map (c: ./programs + "/${c}") programsList;
+  gamesList = builtins.attrNames (builtins.readDir ./games);
+  games = map (c: ./games + "/${c}") gamesList;
 in
 {
-  imports = nix_programs ++ [
+  imports = [
     ./config
 		./gnome
 		./services
-  ];
+  ] ++ games ++ programs;
   
   # Home Manager needs a bit of information about you and the
   # paths it should manage.
