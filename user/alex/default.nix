@@ -4,15 +4,17 @@
 { config, pkgs, lib, ... }:
 
 let
-  nix_programs_lst = builtins.attrNames (builtins.readDir ./programs);
-  nix_programs = map (c: ./programs + "/${c}") nix_programs_lst;
+  programsList = builtins.attrNames (builtins.readDir ./programs);
+  programs = map (c: ./programs + "/${c}") programsList;
+  servicesList = builtins.attrNames (builtins.readDir ./services);
+  services = map (c: ./services + "/${c}") servicesList;
 in
 {
-  imports = nix_programs ++ [
+  imports = [
     ./gaming.nix
     ./mimetypes.nix
     ./virtualisation.nix
-  ];
+  ] ++ programs ++ services;
   
   # ============================================================================================================
   # User
