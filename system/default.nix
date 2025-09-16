@@ -41,6 +41,7 @@
     # Compression
     p7zip
     unrar
+    unzip
     zpaq
     
     # Look & Feel
