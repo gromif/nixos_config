@@ -30,8 +30,49 @@ in
     shell = pkgs.zsh;
   };
   
+  # ============================================================================================================
+  # Packages
+  # ============================================================================================================
   environment.systemPackages = with pkgs; [
+    # Terminal
+    fastfetch
+    ffmpeg
+    tldr
+
+    # Misc
+    freetube
+    blanket
     megasync
+
+    # Communication
+    materialgram
+    vesktop
+    localsend
+    
+    # Media
+    gimp3
+    inkscape
+    libreoffice-fresh
+    folio
+    nicotine-plus
+    smplayer
+    qbittorrent
+    mpv
+
+    # Desktop
+    gnome-extension-manager
+    refine
+    gnome-tweaks
+    openrgb-with-all-plugins
+    dconf-editor
+    papers
+    
+    # Tools
+    upscaler
+    identity
+    eartag
+    mission-center
+    eyedropper
   ];
   
   programs.firefox.enable = true; # Install firefox.
