@@ -1,4 +1,4 @@
-# Home - Programs - Bottles
+# User - Programs - Bottles
 
 
 { config, pkgs, ... }:
@@ -40,7 +40,7 @@ let
 in
 {
   # Set up the package
-  home.packages = with pkgs; [
+  environment.systemPackages = with pkgs; [
     (bottles.override {
       removeWarningPopup = true;
     })
