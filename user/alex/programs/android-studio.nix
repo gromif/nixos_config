@@ -1,4 +1,4 @@
-# Home - Programs - Android Studio
+# User - Programs - Android Studio
 
 
 { config, pkgs, ... }:
@@ -11,11 +11,12 @@ let
     ".m2"
     ".gradle/daemon/"
     ".gradle/.tmp/"
+    ".skiko"
   ];
 in
 {
   # Set up the package
-  home.packages = with pkgs; [
+  environment.systemPackages = with pkgs; [
     android-studio
   ];
   
