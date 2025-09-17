@@ -1,23 +1,19 @@
-# Home - Euphonica
+# User - Programs - Euphonica
 
 
-# Generated via dconf2nix: https://github.com/gvolpe/dconf2nix
 { lib, pkgs, pkgs-master, ... }:
 
-with lib.hm.gvariant;
+with lib.gvariant;
 
 let
   root = "io/github/htkhiem/Euphonica";
-in
-{
-  home.packages = [ pkgs-master.euphonica ];
-  dconf.settings = {
+  dconfSettings = {
     "${root}/client" = {
       mpd-fifo-format = "44100:16:2";
       mpd-fifo-path = "/tmp/mpd.fifo";
       mpd-visualizer-pcm-source = "fifo";
     };
-
+    
     "${root}/player" = {
       visualizer-fft-samples = mkUint32 4096;
       visualizer-fps = mkUint32 30;
@@ -27,7 +23,7 @@ in
       visualizer-spectrum-min-hz = mkUint32 30;
       visualizer-spectrum-use-log-bins = true;
     };
-
+    
     "${root}/state" = {
       autostart = false;
       run-in-background = false;
@@ -39,7 +35,7 @@ in
 
     "${root}/ui" = {
       bg-opacity = 0.36;
-      max-columns = 9;
+      max-columns = mkInt32 9;
       use-album-art-as-bg = true;
       use-visualizer = true;
       visualizer-blend-mode = mkUint32 6;
@@ -49,6 +45,9 @@ in
       visualizer-top-opacity = 0.8999999999999999;
       visualizer-use-splines = true;
     };
-
   };
+in
+{
+  environment.systemPackages = [ pkgs-master.euphonica ];
+  programs.dconf.profiles.user.databases = [ { settings = dconfSettings; } ];
 }
