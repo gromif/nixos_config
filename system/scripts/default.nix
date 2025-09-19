@@ -8,13 +8,8 @@ let
     name = "scriptsMkOutput";
     text = ''
       prefix="$1"
-      dir="''${prefix}_1"
-      i=2
-
-      while [[ -e "$dir" ]]; do
-        dir="''${prefix}_$i"
-        ((i++))
-      done
+      targetDate="$(date "+%a %d - %X - %b %Y")"
+      dir="''${prefix} — ''${targetDate}"
 
       mkdir "$dir"
       echo "$dir"
