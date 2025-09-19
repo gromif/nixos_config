@@ -47,6 +47,9 @@
     # Look & Feel
     tela-icon-theme
     
+    # Media
+    flac # Library and tools for encoding and decoding the FLAC lossless audio file format
+    
     # Video/Audio data composition framework tools like "gst-inspect", "gst-launch" ...
     gst_all_1.gstreamer
     gst_all_1.gst-plugins-rs # Rust implementation
