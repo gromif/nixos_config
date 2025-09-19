@@ -15,14 +15,15 @@ let
       echo "$dir"
     '';
   };
+  
+  audioList = builtins.attrNames (builtins.readDir ./audio);
+  audio = map (c: ./audio + "/${c}") audioList;
 in
 {
 	imports = [
-		./audio
-		
 		./impermanence.nix
 		./maintainance.nix
-  ];
+  ] ++ audio;
   
   environment.systemPackages = with pkgs; [
     parallel
