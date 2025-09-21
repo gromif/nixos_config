@@ -8,7 +8,6 @@
 		./cleanup.nix
 		./mpd.nix
 		./random-background.nix
-		./theme-changer.nix
   ];
   
   

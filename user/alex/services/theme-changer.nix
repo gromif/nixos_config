@@ -32,12 +32,12 @@ let
 in
 {
   # Install `theme-changer` binary
-  home.packages = [ themeChanger ];
+  environment.systemPackages = [ themeChanger ];
   	
   	# Set up automatic theme changer
   	systemd.user.services."theme-changer@" = {
-  	  Unit.Description = "Change System Theme";
-  	  Service = {
+  	  description = "Change System Theme";
+  	  serviceConfig = {
   	    ExecStartPre = "${pkgs.coreutils}/bin/sleep 10s";
       ExecStart = "${themeChanger}/bin/theme-changer %i";
       KillMode = "process";
@@ -46,24 +46,24 @@ in
   
   	# Set up automatic [dark] theme changer timer
   systemd.user.timers."theme-changer-dark" = {
-    Unit.Description = "Dark theme change";
-    Timer = {
-      OnCalendar = "20:00";
+    description = "Dark theme change";
+    timerConfig = {
+      OnCalendar = "19:00";
       Unit = "theme-changer@dark.service";
       Persistent = true;
     };
-    Install.WantedBy = ["timers.target"];
+    wantedBy = ["timers.target"];
   };
   
   	# Set up automatic [light] theme changer timer
   systemd.user.timers."theme-changer-light" = {
-    Unit.Description = "Light theme change";
-    Timer = {
-      OnCalendar = "07:00";
+    description = "Light theme change";
+    timerConfig = {
+      OnCalendar = "08:00";
       Unit = "theme-changer@light.service";
       Persistent = true;
     };
-    Install.WantedBy = ["timers.target"];
+    wantedBy = ["timers.target"];
   };
   
 }
