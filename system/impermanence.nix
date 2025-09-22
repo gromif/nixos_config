@@ -3,8 +3,11 @@
 
 { config, pkgs, ... }:
 
+let
+  persistencePath = "/persist";
+in
 {
-  environment.persistence."/persist" = {
+  environment.persistence."${persistencePath}" = {
     hideMounts = true;
     directories = [
       "/home"
@@ -32,4 +35,9 @@
       { file = "/var/keys/secret_file"; parentDirectory = { mode = "u=rwx,g=,o="; }; }
     ];
   };
+  
+  # adjust `persist` mode at runtime
+  systemd.tmpfiles.rules = [
+    "z ${persistencePath} 0750 root root - -"
+  ];
 }
