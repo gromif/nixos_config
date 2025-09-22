@@ -1,18 +1,11 @@
-let
-  sharedMountOptions = [
-    "compress=zstd:1" "relatime"
-  ];
-in
 {
   disko.devices = {
     nodev."/" = {
       fsType = "tmpfs";
       mountOptions = [
         "defaults"
-        # set mode to 755, otherwise systemd will set it to 777, which cause problems.
-        # relatime: Update inode access times relative to modify or change time.
         "mode=755"
-        "size=3G"
+        "size=25%"
       ];
     };
     disk = {
@@ -24,7 +17,7 @@ in
           partitions = {
             ESP = {
               type = "EF00";
-              size = "300M";
+              size = "200M";
               content = {
                 type = "filesystem";
                 format = "vfat";
@@ -32,25 +25,18 @@ in
                 mountOptions = [ "nodev" "nosuid" "noexec" "relatime" "umask=0077" ];
               };
             };
-            NixOS = {
-              label = "NixOS";
+            luks = {
+              label = "NixOS (Encrypted)";
               size = "100%";
               content = {
-                type = "btrfs";
-                extraArgs = [ "-f" ];
-                subvolumes = {
-                  "@persist" = {
-                    mountpoint = "/persist";
-                    mountOptions = sharedMountOptions;
-                  };
-                  "@nix" = {
-                    mountpoint = "/nix";
-                    mountOptions = sharedMountOptions;
-                  };
-                  "@home" = {
-                    mountpoint = "/home";
-                    mountOptions = sharedMountOptions;
-                  };
+                type = "luks";
+                name = "crypted";
+                settings.allowDiscards = true;
+                passwordFile = "/tmp/secret.key";
+                content = {
+                  type = "filesystem";
+                  format = "ext4";
+                  mountpoint = "/persist";
                 };
               };
             };

@@ -26,31 +26,19 @@
     { device = "none";
       fsType = "tmpfs";
       neededForBoot = true;
+      options = [ "defaults" "size=25%" "mode=755" ];
     };
-
+    
   fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/96A5-302B";
+    { device = "/dev/disk/by-uuid/46A7-6AD6";
       fsType = "vfat";
-      options = [ "fmask=0077" "dmask=0077" ];
-    };
-
-  fileSystems."/home" =
-    { device = "/dev/disk/by-uuid/645f8701-0f14-4732-95b4-64fb39977b27";
-      fsType = "btrfs";
-      options = [ "subvol=@home" "compress=zstd:1" "relatime" ];
-    };
-
-  fileSystems."/nix" =
-    { device = "/dev/disk/by-uuid/645f8701-0f14-4732-95b4-64fb39977b27";
-      fsType = "btrfs";
-      options = [ "subvol=@nix" "compress=zstd:1" "relatime" ];
+      options = [ "nodev" "nosuid" "noexec" "relatime" "umask=0077" ];
     };
 
   fileSystems."/persist" =
-    { device = "/dev/disk/by-uuid/645f8701-0f14-4732-95b4-64fb39977b27";
-      fsType = "btrfs";
+    { device = "/dev/disk/by-uuid/9a2d897f-fafa-47e1-bade-7378758f059d";
+      fsType = "ext4";
       neededForBoot = true;
-      options = [ "subvol=@persist" "compress=zstd:1" "relatime" ];
     };
     
   fileSystems."/mnt/drive_a" =
@@ -68,10 +56,12 @@
       options = [ #"nodev" "nosuid" "noexec"
         "noatime" "compress=zstd:5" "autodefrag"
       		#"ro" # Make it read-only
-      		"x-gvfs-name=Drive%20M" "x-gvfs-show" "x-systemd.automount"
+      		"x-gvfs-name=Drive%20M" "x-systemd.automount"
       		"noauto"
       ];
     };
+
+  boot.initrd.luks.devices."crypted".device = "/dev/disk/by-uuid/17ac96a6-12ae-4b84-a859-51c863a38f0f";
 
   swapDevices = [ ];
 

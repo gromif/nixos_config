@@ -15,7 +15,6 @@
   # Docker
   virtualisation.docker = {
     enable = true;
-    storageDriver = "btrfs";
   };
 
   users.users.alex.extraGroups = [ "docker" ];

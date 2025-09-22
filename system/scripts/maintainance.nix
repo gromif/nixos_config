@@ -46,7 +46,7 @@ let
     text = ''
       cd "${git_config_path}"
       
-      rsync -r \
+      sudo rsync --chown=alex:users --chmod=750 -ar \
         --exclude "/.git" \
         --exclude "/README.md" \
         --del "${system_config_path}/" "./"

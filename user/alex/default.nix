@@ -4,8 +4,12 @@
 { config, pkgs, lib, ... }:
 
 let
+  gamesList = builtins.attrNames (builtins.readDir ./games);
+  games = map (c: ./games + "/${c}") gamesList;
+  
   programsList = builtins.attrNames (builtins.readDir ./programs);
   programs = map (c: ./programs + "/${c}") programsList;
+  
   servicesList = builtins.attrNames (builtins.readDir ./services);
   services = map (c: ./services + "/${c}") servicesList;
 in
@@ -15,7 +19,7 @@ in
     ./gaming.nix
     ./mimetypes.nix
     ./virtualisation.nix
-  ] ++ programs ++ services;
+  ] ++ games ++ programs ++ services;
   
   # ============================================================================================================
   # User

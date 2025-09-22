@@ -7,6 +7,8 @@
   environment.persistence."/persist" = {
     hideMounts = true;
     directories = [
+      "/home"
+      "/nix"
       "/etc/NetworkManager/system-connections" # Manual network configs
       { directory = "/etc/nixos"; mode = "u=rwx,g=rx,o="; }
       "/root/.cache/nix"
