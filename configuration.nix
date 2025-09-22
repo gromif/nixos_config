@@ -7,6 +7,7 @@
 {
   imports =
     [
+      ./hardware.nix
       ./hardware-configuration.nix
       ./sops.nix
       ./security

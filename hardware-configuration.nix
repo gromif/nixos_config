@@ -12,15 +12,6 @@
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-amd" ];
   boot.extraModulePackages = [ ];
-  
-  services.udisks2.settings = {
-    "WDC-WD10EZEX-75WN4A1-WD-WCC6Y3LUAL99.conf" = {
-      ATA = {
-        StandbyTimeout = 60;
-        WriteCacheEnabled = true;
-      };
-    };
-  };
 
   fileSystems."/" =
     { device = "none";
@@ -74,7 +65,5 @@
   # networking.interfaces.wlp9s0.useDHCP = lib.mkDefault true;
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
-  hardware.enableRedistributableFirmware = true;
   hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
-  hardware.bluetooth.powerOnBoot = false;
 }
