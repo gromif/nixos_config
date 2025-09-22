@@ -15,7 +15,7 @@ let
       sudo nix flake update --flake "${system_config_path}"
       
       cd "${git_config_path}"
-      cp -f "${system_config_path}/flake.lock" "flake.lock"
+      sudo rsync --chown=alex:users --chmod=750 --force "${system_config_path}/flake.lock" "flake.lock"
       
       git add -- flake.lock
       git commit -m "update \`flake.lock\`"
@@ -28,11 +28,12 @@ let
     runtimeInputs = sharedRuntimes ++ [ pkgs.rsync ];
     text = ''
       secretsDir="${system_config_path}/secrets"
-      cd "$secretsDir"
-      sudo parallel 'sops rotate -i {}' ::: *.yaml &> /dev/null
+      sudo find "$secretsDir" -type f -name "*.yaml" | 
+        sudo parallel 'sops rotate -i {}' &> /dev/null
       
       cd "${git_config_path}"
-      rsync -r --del "$secretsDir/" "./secrets/"
+      sudo rsync --chown=alex:users --chmod=750 -ar \
+        --del "$secretsDir/" "./secrets/"
       
       git add -A -- ./secrets/*
       git commit -m "update secrets"
