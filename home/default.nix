@@ -3,16 +3,13 @@
 
 { config, pkgs, ... }:
 
-let
-  programsList = builtins.attrNames (builtins.readDir ./programs);
-  programs = map (c: ./programs + "/${c}") programsList;
-in
 {
   imports = [
     ./config
 		./gnome
+		./mangohud.nix
 		./mpd.nix
-  ] ++ programs;
+  ];
   
   # Home Manager needs a bit of information about you and the
   # paths it should manage.
