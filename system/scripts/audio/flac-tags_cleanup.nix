@@ -38,7 +38,7 @@ let
   	  runtimeInputs = runtimes;
   	  text = ''
   	    find "$(pwd)" -type f -name "*.flac" \
-  	      | parallel "metaflac --remove-all-tags-except${args} {}"
+  	      | parallel "metaflac --preserve-modtime --remove-all-tags-except${args} {}"
   	  '';
   	};
 in
