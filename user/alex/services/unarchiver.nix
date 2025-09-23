@@ -15,6 +15,7 @@ in
   	  script = ''
       ${findBase} "*.zip" | parallel 'mkdir {.} && unzip -o -d {.} {} && rm {}'
       ${findBase} "*.rar" | parallel 'unrar x -o -y {} {.}/ && rm {}'
+      ${findBase} "*.7z" | parallel '7z x -y {} && rm {}'
   	  '';
   	};
   
@@ -22,7 +23,7 @@ in
   	systemd.user.paths."unarchiver" = {
   	  description = "Watches for any supported archives in ${downloadsFolder}";
   	  pathConfig.PathExistsGlob = map (f: "${downloadsFolder}/*." + f) [
-  	    "zip" "rar"
+  	    "zip" "rar" "7z"
   	  ];
   	  wantedBy = [ "paths.target" ];
   	};
