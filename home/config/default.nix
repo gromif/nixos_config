@@ -11,7 +11,6 @@ let
 in
 {
   imports = autostarts ++ [
-    ./git
     ./qt
   ];
   

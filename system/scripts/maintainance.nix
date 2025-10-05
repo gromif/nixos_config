@@ -101,6 +101,9 @@ let
   };
 in
 {
+  # Mark the /etc/nixos folder as safe for Git
+  programs.git.config.safe.directory = "/etc/nixos";
+  
   environment.systemPackages = with pkgs; [
     flake-update
     nix-rotate-secrets
