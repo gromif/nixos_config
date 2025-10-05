@@ -52,6 +52,11 @@ let
         --exclude "/README.md" \
         --del "${system_config_path}/" "./"
       
+      echo "The repository status:"
+      git status
+      echo "Is everything all right? [ENTER to continue]"
+      read -r
+      
       echo "Commit message:"
       read -r msg
       
