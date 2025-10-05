@@ -4,6 +4,23 @@
 { config, pkgs, ... }:
 
 let
+  android = pkgs.androidenv.composeAndroidPackages {
+    includeNDK = true;
+    buildToolsVersions = [
+      "35.0.0"
+      "35.0.1"
+      "36.0.0"
+      "latest"
+    ];
+    platformVersions = [
+      "35"
+      "36"
+    ];
+    includeSystemImages = true;
+    systemImageTypes = [ "google_apis" ];
+    abiVersions = [ "x86_64" ];
+    includeEmulator = true;
+  };
   tmpFilesRules = map (f: "R \"%h/${f}\" - - - - -") [
     ".cache/Google/*/tmp/"
     ".java"
@@ -15,9 +32,14 @@ let
   ];
 in
 {
+  # Accept the license
+  nixpkgs.config.android_sdk.accept_license = true;
+  
   # Set up the package
   environment.systemPackages = with pkgs; [
-    android-studio
+    (pkgs.android-studio.withSdk android.androidsdk)
+    # (pkgs.androidStudioPackages.canary.withSdk android.androidsdk)
+    android.androidsdk
   ];
   
   # Set up Tmpfiles rules
