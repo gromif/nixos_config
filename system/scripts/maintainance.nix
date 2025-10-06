@@ -5,17 +5,14 @@
 
 let
   system_config_path = "/etc/nixos";
-  git_config_path = "${config.users.users.alex.home}/.config/nixos_config";
   sharedRuntimes = with pkgs; [ bash git ];
   
   flake-update = pkgs.writeShellApplication {
     name = "flake-update";
     runtimeInputs = sharedRuntimes;
     text = ''
-      sudo nix flake update --flake "${system_config_path}"
-      
-      cd "${git_config_path}"
-      sudo rsync --chown=alex:users --chmod=750 --force "${system_config_path}/flake.lock" "flake.lock"
+      cd "${system_config_path}"
+      nix flake update --flake .
       
       git add -- flake.lock
       git commit -m "update \`flake.lock\`"
@@ -27,13 +24,10 @@ let
     name = "nix-rotate-secrets";
     runtimeInputs = sharedRuntimes ++ [ pkgs.rsync ];
     text = ''
-      secretsDir="${system_config_path}/secrets"
-      sudo find "$secretsDir" -type f -name "*.yaml" | 
-        sudo parallel 'sops rotate -i {}' &> /dev/null
+      cd "${system_config_path}"
       
-      cd "${git_config_path}"
-      sudo rsync --chown=alex:users --chmod=750 -ar \
-        --del "$secretsDir/" "./secrets/"
+      find ./secrets -type f -name "*.yaml" | 
+        parallel 'sops rotate -i {}' &> /dev/null
       
       git add -A -- ./secrets/*
       git commit -m "update secrets"
@@ -45,12 +39,7 @@ let
     name = "nix-upload";
     runtimeInputs = sharedRuntimes ++ [ pkgs.rsync ];
     text = ''
-      cd "${git_config_path}"
-      
-      sudo rsync --chown=alex:users --chmod=750 -ar \
-        --exclude "/.git" \
-        --exclude "/README.md" \
-        --del "${system_config_path}/" "./"
+      cd "${system_config_path}"
       
       echo "The repository status:"
       git status
