@@ -4,14 +4,19 @@
 { config, pkgs, ... }:
 
 let
-  system_config_path = "/etc/nixos";
+  nix_conf = "/etc/nixos";
   sharedRuntimes = with pkgs; [ bash git ];
   
-  flake-update = pkgs.writeShellApplication {
-    name = "flake-update";
+  programs.zsh.shellAliases = {
+    nix-rebuild = "sudo nixos-rebuild --flake ${nix_conf}";
+    nix-void = "sudo nix-collect-garbage -d";
+  };
+  
+  nix-update = pkgs.writeShellApplication {
+    name = "nix-update";
     runtimeInputs = sharedRuntimes;
     text = ''
-      cd "${system_config_path}"
+      cd "${nix_conf}"
       nix flake update --flake .
       
       git add -- flake.lock
@@ -24,7 +29,7 @@ let
     name = "nix-rotate-secrets";
     runtimeInputs = sharedRuntimes ++ [ pkgs.rsync ];
     text = ''
-      cd "${system_config_path}"
+      cd "${nix_conf}"
       
       find ./secrets -type f -name "*.yaml" | 
         parallel 'sops rotate -i {}' &> /dev/null
@@ -39,7 +44,7 @@ let
     name = "nix-upload";
     runtimeInputs = sharedRuntimes ++ [ pkgs.rsync ];
     text = ''
-      cd "${system_config_path}"
+      cd "${nix_conf}"
       
       echo "The repository status:"
       git status
@@ -54,54 +59,14 @@ let
       setsid -f bash -c "git push" &> /dev/null
     '';
   };
-  
-  nix-switch = pkgs.writeShellApplication {
-    name = "nix-switch";
-    runtimeInputs = sharedRuntimes;
-    text = ''
-      sudo nixos-rebuild --flake "${system_config_path}" switch
-    '';
-  };
-  nix-dry = pkgs.writeShellApplication {
-    name = "nix-dry";
-    runtimeInputs = sharedRuntimes;
-    text = ''
-      sudo nixos-rebuild --flake "${system_config_path}" dry-run
-    '';
-  };
-  nix-test = pkgs.writeShellApplication {
-    name = "nix-test";
-    runtimeInputs = sharedRuntimes;
-    text = ''
-      sudo nixos-rebuild --flake "${system_config_path}" test
-    '';
-  };
-  nix-rollback = pkgs.writeShellApplication {
-    name = "nix-rollback";
-    runtimeInputs = sharedRuntimes;
-    text = ''
-      sudo nixos-rebuild --flake "${system_config_path}" --rollback
-    '';
-  };
-  nix-void = pkgs.writeShellApplication {
-    name = "nix-void";
-    runtimeInputs = sharedRuntimes;
-    text = "sudo nix-collect-garbage -d";
-  };
 in
 {
   # Mark the /etc/nixos folder as safe for Git
   programs.git.config.safe.directory = "/etc/nixos";
   
   environment.systemPackages = with pkgs; [
-    flake-update
     nix-rotate-secrets
-    
-    nix-switch
-    nix-dry
-    nix-test
-    nix-rollback
+    nix-update
     nix-upload
-    nix-void
   ];
 }
