@@ -3,8 +3,12 @@
 
 { config, pkgs, ... }:
 
+let
+  servicesList = builtins.attrNames (builtins.readDir ./services);
+  services = map (c: ./services + "/${c}") servicesList;
+in
 {
-  imports = [
+  imports = services ++ [
     ./config
 		./gnome
 		./mangohud.nix
