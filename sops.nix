@@ -11,6 +11,16 @@
   };
 
   sops.secrets = {
+    "ssh/root/known_hosts" = {
+      sopsFile = ./secrets/ssh.yaml;
+    };
+    "ssh/root/id_ed25519" = {
+      sopsFile = ./secrets/ssh.yaml;
+    };
+    "ssh/root/id_ed25519_pub" = {
+      sopsFile = ./secrets/ssh.yaml;
+    };
+    
     "luks/drive_a" = {};
     "luks/drive_m" = {};
     "luks/usb1" = {};
