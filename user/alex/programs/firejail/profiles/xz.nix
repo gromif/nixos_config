@@ -19,7 +19,7 @@ let
       --new-session \
       --proc /proc \
       --tmpfs /tmp \
-      --hostname "${pkg_name}"
+      --hostname "${pkg_name}" \
       --bind "$(pwd)" /sandbox \
       --chdir /sandbox -- ${pkg}/bin/xz "$@"
     '';
