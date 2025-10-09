@@ -1,20 +1,30 @@
-# User - Alex - Firejail - tar
+# Sandbox - gnutar
 
 
-{ pkgs, lib, ... }:
+{ config, pkgs, lib, ... }:
 
 let
-  pkg = pkgs.tar;
-  isInstalled = builtins.hasAttr "tar" pkgs;
+  pkg_name = "gnutar";
+  pkg = pkgs."${pkg_name}";
+  isInstalled = builtins.hasAttr pkg_name pkgs;
+  
+  pkg-wrapper = pkgs.writeShellApplication {
+    name = "tar";
+    runtimeInputs = [ pkg ];
+    text = ''
+      bwrap \
+      --unshare-ipc --unshare-pid --unshare-net --unshare-uts --unshare-cgroup-try \
+      --ro-bind /nix/store /nix/store \
+      --die-with-parent \
+      --new-session \
+      --proc /proc \
+      --tmpfs /tmp \
+      --hostname "${pkg_name}" \
+      --bind "$(pwd)" /sandbox \
+      --chdir /sandbox -- ${pkg}/bin/tar "$@"
+    '';
+  };
 in
 {
-  programs.firejail.wrappedBinaries = lib.mkIf isInstalled {
-    tar = {
-      executable = "${pkg}/bin/tar";
-      profile = "${pkgs.firejail}/etc/firejail/tar.profile";
-      extraArgs = [
-        "--net=none"
-      ];
-    };
-  };
+  environment.systemPackages = [ pkg-wrapper ];
 }

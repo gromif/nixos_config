@@ -9,7 +9,7 @@ with lib.hm.gvariant;
     indent-style = "space";
     restore-session = false;
     show-line-numbers = true;
-    style-scheme = "peninsula";
+    style-scheme = "builder-dark";
     tab-width = mkUint32 2;
     use-system-font = false;
   };

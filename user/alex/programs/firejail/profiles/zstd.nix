@@ -1,20 +1,30 @@
-# User - Alex - Firejail - zstd
+# Sandbox - zstd
 
 
-{ pkgs, lib, ... }:
+{ config, pkgs, lib, ... }:
 
 let
   pkg = pkgs.zstd;
-  isInstalled = builtins.hasAttr "zstd" pkgs;
+  pkg_name = "zstd";
+  isInstalled = builtins.hasAttr pkg_name pkgs;
+  
+  pkg-wrapper = pkgs.writeShellApplication {
+    name = pkg_name;
+    runtimeInputs = [ pkg ];
+    text = ''
+      bwrap \
+      --unshare-ipc --unshare-pid --unshare-net --unshare-uts --unshare-cgroup-try \
+      --ro-bind /nix/store /nix/store \
+      --die-with-parent \
+      --new-session \
+      --proc /proc \
+      --tmpfs /tmp \
+      --hostname "${pkg_name}" \
+      --bind "$(pwd)" /sandbox \
+      --chdir /sandbox -- ${pkg}/bin/zstd "$@"
+    '';
+  };
 in
 {
-  programs.firejail.wrappedBinaries = lib.mkIf isInstalled {
-    zstd = {
-      executable = "${pkg}/bin/zstd";
-      profile = "${pkgs.firejail}/etc/firejail/zstd.profile";
-      extraArgs = [
-        "--net=none"
-      ];
-    };
-  };
+  environment.systemPackages = [ pkg-wrapper ];
 }
