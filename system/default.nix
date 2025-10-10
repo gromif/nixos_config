@@ -66,11 +66,6 @@
     gst_all_1.gst-vaapi
   ];
   
-  # Firejail
-  programs.firejail = {
-    enable = true;
-  };
-  
   # tty setup
   console = {
     packages = [ pkgs.terminus_font ];
