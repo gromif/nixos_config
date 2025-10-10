@@ -1,4 +1,4 @@
-# User - Alex - Firejail
+# User - Alex - Sandbox
 
 
 { config, lib, ... }:

@@ -18,6 +18,7 @@ in
     ./desktop_environment.nix
     ./gaming.nix
     ./mimetypes.nix
+    ./sandbox
     ./virtualisation.nix
   ] ++ games ++ programs ++ services;
   
