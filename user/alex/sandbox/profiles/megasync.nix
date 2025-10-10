@@ -15,8 +15,6 @@ let
     text = ''
       mkdir -p "${home}/.local/share/data" &> /dev/null
       mkdir -p "${home}/MEGA downloads" &> /dev/null
-      mkdir -p "${home}/MEGA" &> /dev/null
-      mkdir -p "${home}/Downloads" &> /dev/null
       bwrap \
       --unshare-all \
       --die-with-parent \
@@ -39,9 +37,7 @@ let
       --share-net \
       --tmpfs ~ \
       --bind "${home}/.local/share/data" "$HOME/.local/share/data" \
-      --bind "${home}/MEGA downloads" "$HOME/MEGA downloads" \
-      --bind "${home}/MEGA" "$HOME/MEGA" \
-      --bind "${home}/Downloads" "$HOME/Downloads" -- ${lib.getExe pkg} "$@"
+      --bind "${home}/MEGA downloads" "$HOME/MEGA downloads" -- ${lib.getExe pkg} "$@"
     '';
   };
 in
