@@ -43,7 +43,6 @@
     p7zip
     unrar
     unzip
-    zpaq
     
     # Look & Feel
     tela-icon-theme
@@ -65,12 +64,6 @@
     # Support the Video Audio (Hardware) Acceleration API
     gst_all_1.gst-vaapi
   ];
-  
-  # tty setup
-  console = {
-    packages = [ pkgs.terminus_font ];
-    font = "ter-128b";
-  };
   
   # Enable Flatpak Support
   #services.flatpak.enable = true;
