@@ -33,6 +33,7 @@
     psmisc # Set of small useful utilities that use the proc filesystem (such as fuser, killall and pstree)
     scrcpy
     sops
+    virtiofsd # VMs
     
     # Compression
     dwarfs
