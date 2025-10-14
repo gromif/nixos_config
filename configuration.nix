@@ -17,14 +17,17 @@
 
   nixpkgs.config.allowUnfree = true;
   
-  nix.settings = {
-    # Enable the Flakes feature and the accompanying new nix command-line tool
-    experimental-features = [
-      "nix-command"
-      "flakes"
-    ];
-    download-buffer-size = 1073741824;
-    build-dir = "/var/tmp";
+  nix = {
+    channel.enable = false; # Disable usage of nix channels
+    settings = {
+      # Enable the Flakes feature and the accompanying new nix command-line tool
+      experimental-features = [
+        "nix-command"
+        "flakes"
+      ];
+      download-buffer-size = 1073741824;
+      build-dir = "/var/tmp";
+    };
   };
 	
 	hardware.graphics = {
