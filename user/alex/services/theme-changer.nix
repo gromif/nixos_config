@@ -1,15 +1,16 @@
 # Global Theme Changer
 
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 
 let
   themeChanger = pkgs.writeShellApplication {
   	  name = "theme-changer";
   	  runtimeInputs = with pkgs; [
+  	    glib
   	    psmisc
     	  kdePackages.qtstyleplugin-kvantum
-    	  openrgb-with-all-plugins
     	  qbittorrent
+    	  util-linux
   	  ];
   	  text = ''
   	    case $1 in
@@ -25,7 +26,6 @@ let
           ;;
       esac
 
-      killall -qwr openrgb && setsid -f openrgb --startminimized
       killall -qwr qbittorrent && setsid -f qbittorrent
   	  '';
   	};
@@ -39,7 +39,7 @@ in
   	  description = "Change System Theme";
   	  serviceConfig = {
   	    ExecStartPre = "${pkgs.coreutils}/bin/sleep 10s";
-      ExecStart = "${themeChanger}/bin/theme-changer %i";
+      ExecStart = "${lib.getExe themeChanger} %i";
       KillMode = "process";
   	  };
   	};
@@ -48,7 +48,7 @@ in
   systemd.user.timers."theme-changer-dark" = {
     description = "Dark theme change";
     timerConfig = {
-      OnCalendar = "19:00";
+      OnCalendar = "17:00";
       Unit = "theme-changer@dark.service";
       Persistent = true;
     };
