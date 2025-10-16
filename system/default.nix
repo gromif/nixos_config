@@ -45,6 +45,7 @@
     tela-icon-theme
     
     # Media
+    yt-dlp
     exiftool # ExifTool is a platform-independent Perl library plus a command-line application for reading, writing and editing meta information in a wide variety of files
     flac # Library and tools for encoding and decoding the FLAC lossless audio file format
     imagemagick # Software suite to create, edit, compose, or convert bitmap images
