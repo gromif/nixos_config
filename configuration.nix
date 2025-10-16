@@ -26,7 +26,7 @@
         "flakes"
       ];
       download-buffer-size = 1073741824;
-      build-dir = "/var/tmp";
+      build-dir = "/nix/build";
     };
   };
 	

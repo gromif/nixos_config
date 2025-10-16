@@ -25,8 +25,8 @@ in
       "/var/lib/lxc"
       #"/var/lib/systemd/coredump"
       "/var/lib/power-profiles-daemon"
-      { directory = "/var/tmp"; mode = "u=rwx,g=rx,o="; }
       { directory = "/var/lib/colord"; user = "colord"; group = "colord"; mode = "u=rwx,g=rx,o="; }
+      "/var/tmp"
     ];
     files = [
       "/etc/machine-id"
