@@ -25,12 +25,12 @@
     base91 # Implementation of the base91 utility, providing efficient binary-to-text encoding with better space utilization than Base64
     bubblewrap
     ddcutil
-    iw
     ncdu
     usbutils # Tools for working with USB devices, such as lsusb
     util-linux # Set of system utilities for Linux
     parallel
     psmisc # Set of small useful utilities that use the proc filesystem (such as fuser, killall and pstree)
+    pwgen # Password generator which creates passwords which can be easily memorized by a human
     scrcpy
     sops
     virtiofsd # VMs
