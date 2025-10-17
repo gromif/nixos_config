@@ -13,9 +13,9 @@ in
       "/home"
       "/nix"
       "/etc/NetworkManager/system-connections" # Manual network configs
-      { directory = "/etc/nixos"; mode = "u=rwx,g=rx,o="; }
+      { directory = "/etc/nixos"; mode = "u=rwx,g=,o="; }
       "/root/.cache/nix"
-      { directory = "/root/.config/sops"; mode = "u=rwx,g=rx,o="; } # Sops keys
+      { directory = "/root/.config/sops/age"; mode = "u=rwx,g=,o="; } # Sops keys
       "/var/log"
       { directory = "/var/lib/AccountsService"; user = "colord"; group = "colord"; mode = "u=rwx,g=rx,o="; } # User settings
       "/var/lib/bluetooth"
@@ -35,6 +35,9 @@ in
       { file = "/var/keys/secret_file"; parentDirectory = { mode = "u=rwx,g=,o="; }; }
     ];
   };
+  
+  # set the persisted SOPS AGE key-file path
+  sops.age.keyFile = "${persistencePath}/root/.config/sops/age/keys.txt";
   
   # adjust `persist` mode at runtime
   systemd.tmpfiles.rules = [
