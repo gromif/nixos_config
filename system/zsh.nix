@@ -7,6 +7,8 @@
 	users.defaultUserShell = pkgs.zsh;
 	environment.shells = with pkgs; [ zsh ];
 	
+	environment.variables.ZDOTDIR = "$HOME/.config/zsh";
+	
 	# Setup ZSH
 	programs.zsh = {
 		enable = true;
@@ -19,7 +21,8 @@
       # edit = "sudo -e"; # sudo-rs: not yet implemented
     };
     
-		histFile = "$HOME/.zsh_history"; # History file path
+		histFile = "$HOME/.config/zsh/history"; # History file path
+		histSize = 10000;
 	};
 	
 	programs.zsh.ohMyZsh = { # OhMyZsh setup
