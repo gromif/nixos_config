@@ -1,4 +1,4 @@
-# System - Scripts - Audio - Flac-Tags - Cleanup
+# System - Scripts - Audio - Flac - Tags - Cleanup
 #
 
 { pkgs, lib, ... }:

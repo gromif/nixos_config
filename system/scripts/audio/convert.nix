@@ -4,7 +4,7 @@
 { pkgs, ... }:
 
 let
-  sharedRuntimes = with pkgs; [ parallel ffmpeg ];
+  sharedRuntimes = with pkgs; [ parallel ffmpeg glib ];
   base_ffmpeg = "ffmpeg -hide_banner -y -i {}";
   base_trash = "gio trash -f {}";
   pattern = "*.*";
