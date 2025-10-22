@@ -5,8 +5,9 @@
 
 let
   sharedRuntimes = with pkgs; [ parallel ffmpeg glib ];
-  base_ffmpeg = "ffmpeg -hide_banner -y -i {}";
-  base_trash = "gio trash -f {}";
+  _parallel = "parallel --will-cite";
+  _ffmpeg = "ffmpeg -hide_banner -y -i {}";
+  _trash = "gio trash -f {}";
   pattern = "*.*";
   
   
@@ -16,7 +17,7 @@ let
     	  name = "aud-to-wav";
     	  runtimeInputs = sharedRuntimes;
     	  text = ''
-    	    parallel "${base_ffmpeg} -- {.}.wav && ${base_trash}" ::: ${pattern}
+    	    ${_parallel} "${_ffmpeg} -- {.}.wav && ${_trash}" ::: ${pattern}
     	  '';
     	})
     	# FLAC
@@ -24,7 +25,7 @@ let
     	  name = "aud-to-flac";
     	  runtimeInputs = sharedRuntimes;
     	  text = ''
-    	    parallel "${base_ffmpeg} -- {.}.flac && ${base_trash}" ::: ${pattern}
+    	    ${_parallel} "${_ffmpeg} -- {.}.flac && ${_trash}" ::: ${pattern}
     	  '';
     	})
   ];
@@ -39,7 +40,7 @@ let
     	  name = "aud-to-opus_${b}";
     	  runtimeInputs = sharedRuntimes;
     	  text = ''
-    	    parallel "${base_ffmpeg} -vn -c:a ${codec} -b:a ${b}k -vbr on -- {.}.${type} && ${base_trash}" ::: ${pattern}
+    	    ${_parallel} "${_ffmpeg} -vn -c:a ${codec} -b:a ${b}k -vbr on -- {.}.${type} && ${_trash}" ::: ${pattern}
     	  '';
     	})
   ) bitrate;
