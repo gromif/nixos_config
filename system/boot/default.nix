@@ -18,8 +18,6 @@ in
   boot.kernelPackages = pkgs.linuxPackages_latest;
   
   boot.kernelParams = [
-    # Main display overdrive
-    "video=HDMI-A-2:1920x1080@83"
     "net.core.bpf_jit_harden=2" # Enables hardening for the BPF Just-In-Time (JIT) compiler
   ];
   

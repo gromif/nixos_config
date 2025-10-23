@@ -2,10 +2,6 @@
 
 {
   hardware = {
-    amdgpu.overdrive = {
-      enable = true;
-      ppfeaturemask = "0xffffffff";
-    };
     bluetooth.powerOnBoot = false;
     enableRedistributableFirmware = true;
   };
