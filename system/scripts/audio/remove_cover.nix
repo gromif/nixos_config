@@ -21,7 +21,7 @@ let
   	  name = scriptName;
   	  runtimeInputs = runtimes;
   	  text = ''
-  	    metaflac --preserve-modtime --remove --block-type=PICTURE {}
+  	    metaflac --preserve-modtime --remove --block-type=PICTURE "$1"
   	  '';
   	};
 in
