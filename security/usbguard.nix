@@ -5,7 +5,7 @@
 
 {
   services.usbguard = {
-    enable = true;
+    enable = false;
     # Dbus integration
     # dbus.enable = true;
     ruleFile = config.sops.secrets.usbguard-rules.path;
