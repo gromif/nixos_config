@@ -81,9 +81,4 @@ in
   ];
   
   programs.firefox.enable = true; # Install firefox.
-  
-  # Set up UDEV rules
-  services.udev.packages = with pkgs; [ 
-    android-udev-rules # Android
-  ];
 }

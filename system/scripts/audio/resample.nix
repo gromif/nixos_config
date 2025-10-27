@@ -34,7 +34,7 @@ let
         
         mv "$filePath" "$tempFile"
 
-    	    (sox "$tempFile" -b ${toString b} "$filePath" && gio trash "$tempFile") ||
+    	    (sox "$tempFile" -G -b ${toString b} "$filePath" && gio trash "$tempFile") ||
     	      mv -f "$tempFile" "$filePath"
     	  '';
     	})
