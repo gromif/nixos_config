@@ -42,6 +42,9 @@ in
     android.androidsdk
   ];
   
+  # Set up ANDROID_HOME variable (IDE uses it to find AndroidSDK)
+  environment.variables.ANDROID_HOME = "${android.androidsdk}/libexec/android-sdk";
+  
   # Set up Tmpfiles rules
   systemd.user.tmpfiles.rules = tmpFilesRules;
 }
