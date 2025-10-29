@@ -1,4 +1,9 @@
 {
+  filesystems = {
+    "/".neededForBoot = true;
+    "/persist".neededForBoot = true;
+  };
+  
   disko.devices = {
     nodev."/" = {
       fsType = "tmpfs";
@@ -11,7 +16,7 @@
     disk = {
       nvme = {
         type = "disk";
-        device = "/dev/disk/by-id/nvme-eui.0026b728269d4f55";
+        device = "/dev/nvme0n1";
         content = {
           type = "gpt";
           partitions = {
@@ -35,7 +40,7 @@
                 passwordFile = "/tmp/secret.key";
                 content = {
                   type = "filesystem";
-                  format = "ext4";
+                  format = "xfs";
                   mountpoint = "/persist";
                 };
               };
