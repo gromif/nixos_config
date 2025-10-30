@@ -20,8 +20,7 @@ let
       --die-with-parent \
       --new-session \
       --ro-bind /nix/store /nix/store \
-      --dev /dev \
-      --dev-bind /dev/dri /dev/dri \
+      --dev-bind /dev /dev \
       --ro-bind /etc /etc \
       --tmpfs /tmp \
       --proc /proc \
