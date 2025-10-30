@@ -2,6 +2,10 @@
 
 {
   hardware = {
+    graphics = {
+	    enable = true;
+	    enable32Bit = true;
+    };
     bluetooth.powerOnBoot = false;
     enableRedistributableFirmware = true;
   };

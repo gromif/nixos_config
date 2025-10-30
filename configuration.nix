@@ -29,11 +29,6 @@
       build-dir = "/nix/build";
     };
   };
-	
-	hardware.graphics = {
-  		enable = true;
-  		enable32Bit = true;
-	};
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
