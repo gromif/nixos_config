@@ -25,7 +25,7 @@ let
     	  name = "aud-to-flac";
     	  runtimeInputs = sharedRuntimes;
     	  text = ''
-    	    ${_parallel} "${_ffmpeg} -- {.}.flac && ${_trash}" ::: ${pattern}
+    	    ${_parallel} "${_ffmpeg} -compression_level 12 -- {.}.flac && ${_trash}" ::: ${pattern}
     	  '';
     	})
   ];
