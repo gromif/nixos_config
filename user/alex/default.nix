@@ -15,7 +15,6 @@ let
 in
 {
   imports = [
-    ./desktop_environment.nix
     ./gaming.nix
     ./mimetypes.nix
     ./sandbox
@@ -38,11 +37,12 @@ in
   # ============================================================================================================
   # Packages
   # ============================================================================================================
-  environment.systemPackages = with pkgs; [
+  users.users.alex.packages = with pkgs; [
     # Terminal
     fastfetch
     ffmpeg
     tldr
+    helix
 
     # Misc
     freetube

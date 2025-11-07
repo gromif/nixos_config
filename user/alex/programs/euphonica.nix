@@ -1,7 +1,7 @@
 # User - Programs - Euphonica
 
 
-{ lib, pkgs, pkgs-master, ... }:
+{ lib, pkgs, ... }:
 
 with lib.gvariant;
 
@@ -48,6 +48,6 @@ let
   };
 in
 {
-  environment.systemPackages = [ pkgs-master.euphonica ];
+  environment.systemPackages = [ pkgs.euphonica ];
   programs.dconf.profiles.user.databases = [ { settings = dconfSettings; } ];
 }

@@ -17,23 +17,23 @@ let
   	};
 in
 {
-  home.packages = [ autostartQbittorrent ];
+  # home.packages = [ autostartQbittorrent ];
   
-  xdg.autostart.entries = [
-    (
-      (pkgs.makeDesktopItem {
-        name = "qBittorrent";
-        destination = "/";
-        desktopName = "qBittorrent";
-        icon = "qbittorrent";
-        startupNotify = false;
-        startupWMClass = "qbittorrent";
-        terminal = false;
-        exec = "${lib.getExe autostartQbittorrent}";
-        extraConfig = {
-          X-GNOME-Autostart-Delay = "60";
-        };
-      }) + /qBittorrent.desktop
-    )
-  ];
+  # xdg.autostart.entries = [
+  #   (
+  #     (pkgs.makeDesktopItem {
+  #       name = "qBittorrent";
+  #       destination = "/";
+  #       desktopName = "qBittorrent";
+  #       icon = "qbittorrent";
+  #       startupNotify = false;
+  #       startupWMClass = "qbittorrent";
+  #       terminal = false;
+  #       exec = "${lib.getExe autostartQbittorrent}";
+  #       extraConfig = {
+  #         X-GNOME-Autostart-Delay = "60";
+  #       };
+  #     }) + /qBittorrent.desktop
+  #   )
+  # ];
 }

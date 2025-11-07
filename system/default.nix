@@ -7,14 +7,14 @@
 	imports = [
 	  ./boot
 	  ./mainteinance
-	  
+	  ./desktop_environment.nix
 		./fonts.nix
 		./impermanence.nix
-  		./network.nix
-  		./sound.nix
-  		./scripts
-  		./zram.nix
-  		./zsh.nix
+  	./network.nix
+  	./sound.nix
+  	./scripts
+  	./zram.nix
+  	./zsh.nix
   ];
   
   programs.git.enable = true; # Install git.
