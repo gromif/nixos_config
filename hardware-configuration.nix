@@ -31,17 +31,6 @@
       fsType = "ext4";
       neededForBoot = true;
     };
-    
-  fileSystems."/mnt/drive_m" =
-    { device = "/dev/mapper/luks-drive-m";
-      fsType = "btrfs";
-      options = [ #"nodev" "nosuid" "noexec"
-        "noatime" "compress=zstd:5" "autodefrag"
-      		#"ro" # Make it read-only
-      		"x-gvfs-name=Drive%20M" "x-systemd.automount"
-      		"noauto"
-      ];
-    };
 
   boot.initrd.luks.devices."crypted".device = "/dev/disk/by-uuid/17ac96a6-12ae-4b84-a859-51c863a38f0f";
 
