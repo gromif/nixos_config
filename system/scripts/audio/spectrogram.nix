@@ -17,6 +17,7 @@ let
         -name "*.flac" \
         -o -name "*.wav" \
         -o -name "*.alac" \
+        -o -name "*.opus" \
       | parallel --will-cite '${scriptName} {}'
     '';
   };
