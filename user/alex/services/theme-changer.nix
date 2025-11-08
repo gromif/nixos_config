@@ -48,7 +48,7 @@ in
   systemd.user.timers."theme-changer-dark" = {
     description = "Dark theme change";
     timerConfig = {
-      OnCalendar = "17:00";
+      OnCalendar = "16:00";
       Unit = "theme-changer@dark.service";
       Persistent = true;
     };
