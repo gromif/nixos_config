@@ -42,7 +42,6 @@ in
     fastfetch
     ffmpeg
     tldr
-    helix
 
     # Misc
     freetube

@@ -25,6 +25,7 @@
     base91 # Implementation of the base91 utility, providing efficient binary-to-text encoding with better space utilization than Base64
     bubblewrap
     ddcutil
+    helix # Post-modern modal text editor
     ncdu
     usbutils # Tools for working with USB devices, such as lsusb
     util-linux # Set of system utilities for Linux
