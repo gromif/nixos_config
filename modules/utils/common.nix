@@ -8,7 +8,7 @@
 		EDITOR = "hx";
 	};
 	environment.systemPackages = with pkgs; [
-    base91 # Implementation of the base91 utility, providing efficient binary-to-text encoding with better space utilization than Base64
+    # base91 # Implementation of the base91 utility, providing efficient binary-to-text encoding with better space utilization than Base64
     ddcutil
     helix # Post-modern modal text editor
     ncdu
