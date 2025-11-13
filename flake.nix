@@ -2,28 +2,46 @@
 {
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-25.05";
     impermanence.url = "github:nix-community/impermanence";
     
-    home-manager = {
+    home-manager-unstable = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    home-manager-stable = {
+      url = "github:nix-community/home-manager";
+      inputs.nixpkgs.follows = "nixpkgs-stable";
+    };
     
-    sops-nix = {
+    sops-nix-unstable = {
       url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    sops-nix-stable = {
+      url = "github:Mic92/sops-nix";
+      inputs.nixpkgs.follows = "nixpkgs-stable";
+    };
   };
-  outputs = inputs@{ self, nixpkgs, impermanence, sops-nix, home-manager }: let
+  outputs = inputs@{ self,
+    nixpkgs, nixpkgs-stable,
+    impermanence,
+    sops-nix-stable,
+    sops-nix-unstable,
+    home-manager-stable,
+    home-manager-unstable
+  }:
+  let
     system = "x86_64-linux";
-    pkgs = nixpkgs.legacyPackages.${system};
   in {
     nixosConfigurations = {
-      apollo = nixpkgs.lib.nixosSystem {
+      apollo = let
+        pkgs = nixpkgs.legacyPackages.${system};
+      in nixpkgs.lib.nixosSystem {
         inherit system;
         modules = [
           impermanence.nixosModules.impermanence
-          sops-nix.nixosModules.sops
+          sops-nix-unstable.nixosModules.sops
 
           {
             system.stateVersion = "25.11";
@@ -77,7 +95,7 @@
           ./modules/programs/openrgb
           ./modules/sops.nix
           ./secrets/primary
-          home-manager.nixosModules.home-manager {
+          home-manager-unstable.nixosModules.home-manager {
             home-manager = {
               useGlobalPkgs = true;
               useUserPackages = true;
@@ -86,11 +104,13 @@
           }
         ];
       };
-      mercury = nixpkgs.lib.nixosSystem {
+      mercury = let
+        pkgs = nixpkgs-stable.legacyPackages.${system};
+      in nixpkgs.lib.nixosSystem {
         inherit system;
         modules = [
           impermanence.nixosModules.impermanence
-          sops-nix.nixosModules.sops
+          sops-nix-stable.nixosModules.sops
 
           {
             system.stateVersion = "25.05";
