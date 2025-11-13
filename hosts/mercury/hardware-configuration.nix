@@ -21,7 +21,7 @@
   };
 
   fileSystems."${config.environment.impermanence.persistentStoragePath}" = {
-    device = "/dev/disk/by-uuid/8f9c3ad3-5d40-48b2-a4ff-eabde474f830";
+    device = "/dev/disk/by-uuid/5e9d9387-3697-474a-ab00-416e07ac66a3";
     neededForBoot = true;
     fsType = "xfs";
     options = [ "defaults" ];
