@@ -5,7 +5,7 @@ with lib.hm.gvariant;
 
 {
   dconf.settings."org/gnome/Console" = {
-    custom-font = "FiraCode Nerd Font 14";
+    custom-font = "Monocraft Nerd Font Book 15";
     use-system-font = false;
   };
 }
