@@ -9,7 +9,7 @@ let
   pkg_name = "android-studio";
   pkg = pkgs."${pkg_name}";
   isInstalled = builtins.hasAttr pkg_name pkgs;
-  home = "${config.users.users.alex.home}/.sandbox/${pkg_name}";
+  home = "~/.sandbox/${pkg_name}";
   
   pkg-wrapper = pkgs.writeShellApplication {
     name = pkg_name;
