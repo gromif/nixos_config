@@ -4,6 +4,9 @@
 { config, lib, pkgs, ... }:
 
 {
+  imports = [
+    ./hardware-configuration.nix
+  ];
   # Auto-login the first tty console
   services.getty.autologinUser = "warden";
 
