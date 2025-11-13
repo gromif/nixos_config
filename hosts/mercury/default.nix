@@ -15,7 +15,7 @@
   users.users.warden = {
     isNormalUser = true;
     extraGroups = [ "wheel" ];
-    hashedPassword = config.sops.secrets."users/warden/hashedPassword".path;
+    hashedPasswordFile = config.sops.secrets."users/warden/hashedPassword".path;
     # Set up SSH allowed public keys per/user
     openssh.authorizedKeys.keyFiles = [
       config.sops.secrets."ssh/apollo/public_key".path
@@ -24,7 +24,7 @@
     ];    
   };
   users.users.root = {
-    hashedPassword = config.sops.secrets."users/root/hashedPassword".path;
+    hashedPasswordFile = config.sops.secrets."users/root/hashedPassword".path;
     # Set up SSH allowed public keys per/user
     openssh.authorizedKeys.keyFiles = [
       config.sops.secrets."ssh/apollo/public_key".path
