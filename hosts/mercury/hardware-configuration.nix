@@ -13,10 +13,19 @@
   boot.kernelModules = [ "kvm-intel" ];
   boot.extraModulePackages = [ ];
 
-  fileSystems."/" =
-    { device = "/dev/disk/by-uuid/8f9c3ad3-5d40-48b2-a4ff-eabde474f830";
-      fsType = "xfs";
-    };
+  fileSystems."/" = {
+    device = "none";
+    neededForBoot = true;
+    fsType = "tmpfs";
+    options = [ "default" "size=25%" "mode=755" ];
+  };
+
+  fileSystems."${config.environment.impermanence.persistentStoragePath}" = {
+    device = "/dev/disk/by-uuid/8f9c3ad3-5d40-48b2-a4ff-eabde474f830";
+    neededForBoot = true;
+    fsType = "xfs";
+    options = [ "defaults" ];
+  };
 
   fileSystems."/mnt/drive_m" = {
     device = "/dev/disk/by-uuid/2ce60b58-9fe4-44ab-a96d-8be33658da8e";
