@@ -106,7 +106,7 @@
           ./modules/impermanence.nix
           ./modules/zsh.nix
           ./modules/security/common.nix
-          ./modules/security/sandbox
+          # ./modules/security/sandbox
           ./modules/hardware/common.nix
           ./modules/network.nix
           ./modules/services/openssh.nix
