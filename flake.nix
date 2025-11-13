@@ -106,7 +106,7 @@
       };
       mercury = let
         pkgs = nixpkgs-stable.legacyPackages.${system};
-      in nixpkgs.lib.nixosSystem {
+      in nixpkgs-stable.lib.nixosSystem {
         inherit system;
         modules = [
           impermanence.nixosModules.impermanence
