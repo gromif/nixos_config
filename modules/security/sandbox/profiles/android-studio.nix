@@ -9,7 +9,7 @@ let
   pkg_name = "android-studio";
   pkg = pkgs."${pkg_name}";
   isInstalled = builtins.hasAttr pkg_name pkgs;
-  home = "~/.sandbox/${pkg_name}";
+  home = "$HOME/.sandbox/${pkg_name}";
   
   pkg-wrapper = pkgs.writeShellApplication {
     name = pkg_name;
@@ -28,7 +28,7 @@ let
       --proc /proc \
       --ro-bind /sys /sys \
       --bind /run /run \
-      --bind ${home} ~ \
+      --bind "${home}" ~ \
       --ro-bind ~/.ssh ~/.ssh \
       --bind ~/Projects/Android ~/Projects/Android -- ${lib.getExe pkg} "$@"
     '';

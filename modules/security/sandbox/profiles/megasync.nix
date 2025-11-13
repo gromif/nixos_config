@@ -9,7 +9,7 @@ let
   pkg_name = "megasync";
   pkg = pkgs."${pkg_name}";
   isInstalled = builtins.hasAttr pkg_name pkgs;
-  home = "~/.sandbox/${pkg_name}";
+  home = "$HOME/.sandbox/${pkg_name}";
   
   pkg-wrapper = pkgs.writeShellApplication {
     name = pkg_name;
