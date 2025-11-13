@@ -17,7 +17,7 @@
     device = "none";
     neededForBoot = true;
     fsType = "tmpfs";
-    options = [ "default" "size=25%" "mode=755" ];
+    options = [ "defaults" "size=25%" "mode=755" ];
   };
 
   fileSystems."${config.environment.impermanence.persistentStoragePath}" = {
