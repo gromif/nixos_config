@@ -12,4 +12,9 @@
       device = "/dev/sda";
     };
   };
+
+  # Whitelist /boot folder if using Impermanence
+  environment.impermanence.directories = [
+    { directory = "/boot"; mode = "u=rwx,g=,o="; }
+  ];
 }
