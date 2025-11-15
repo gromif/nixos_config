@@ -22,6 +22,6 @@
 
   # Persist data
   environment.impermanence.directories = [
-    "/var/lib/qbittorrent"
+    "/var/lib/qBittorrent"
   ];
 }
