@@ -31,4 +31,9 @@
     ];
     theme = "robbyrussell"; # preferred shell theme
 	};
+
+	# Persist data
+	environment.impermanence.directories = [
+		"/root/.config/zsh"
+	];
 }
