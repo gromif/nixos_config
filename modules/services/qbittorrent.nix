@@ -19,4 +19,9 @@
     torrentingPort = 47540;
     group = "users";
   };
+
+  # Persist data
+  environment.impermanence.directories = [
+    "/var/lib/qbittorrent""
+  ];
 }
