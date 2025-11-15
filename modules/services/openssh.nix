@@ -25,4 +25,9 @@
       openFirewall = true;
     };
   };
+
+  # Persist data
+  environment.impermanence.directories = [
+    "/var/lib/fail2ban"
+  ];
 }
