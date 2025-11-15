@@ -3,6 +3,9 @@
 
 { ... }:
 
+let
+  build-dir = "/nix/build";
+in
 {
   nixpkgs.config.allowUnfree = true;
   
@@ -15,7 +18,7 @@
         "flakes"
       ];
       download-buffer-size = 1073741824;
-      build-dir = "/nix/build";
+      inherit build-dir;
     };
     gc = {
       automatic = true;
@@ -27,6 +30,11 @@
       dates = [ "11:00"  ];
     };
   };
+
+  # Automatically create & clean the build dir
+  systemd.tmpfiles.rules = [
+    "d ${build-dir} 0750 root root 7d -"
+  ];
   
   users.mutableUsers = false; # the contents of the user and group files will be replaced on system activation
 }

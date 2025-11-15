@@ -20,8 +20,8 @@
     options = [ "defaults" "size=25%" "mode=755" ];
   };
 
-  fileSystems."${config.environment.impermanence.persistentStoragePath}" = {
-    device = "/dev/disk/by-uuid/5e9d9387-3697-474a-ab00-416e07ac66a3";
+  fileSystems."/nix" = {
+    device = "/dev/disk/by-uuid/eb6025c9-5a77-4f67-9101-d69662fce63e";
     neededForBoot = true;
     fsType = "xfs";
     options = [ "defaults" ];

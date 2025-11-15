@@ -7,7 +7,7 @@ with lib;
 
 let
   cfg = config.environment.impermanence;
-  persistencePath = "/persist";
+  persistencePath = "/nix/state";
   inAliases = [ "environment" "impermanence" ];
   toAliases = [ "environment" "persistence" persistencePath ];
   aliases = map (option:
@@ -34,7 +34,6 @@ in
     environment.persistence."${persistencePath}" = mkIf (cfg.enable) {
       directories = [
         "/home"
-        "/nix"
         "/etc/NetworkManager/system-connections" # Manual network configs
         { directory = "/etc/nixos"; mode = "u=rwx,g=,o="; }
         "/root/.cache/nix"
