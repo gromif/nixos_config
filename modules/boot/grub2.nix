@@ -16,7 +16,7 @@ in
     grub = {
       enable = true;
       device = mkIf (!isImpermanent) "/dev/sda";
-      mirroredBoots = mkif (isImpermanent) [
+      mirroredBoots = mkIf (isImpermanent) [
         {
           path = "${cfg_imperm.persistentStoragePath}/boot";
           devices = [ "/dev/sda" ];
