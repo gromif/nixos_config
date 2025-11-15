@@ -18,4 +18,9 @@
   environment.systemPackages = with pkgs; [
     virtiofsd
   ];
+
+  # Persist data
+  environment.impermanence.directories = [
+    "/var/lib/libvirt"
+  ];
 }
