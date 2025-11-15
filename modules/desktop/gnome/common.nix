@@ -21,7 +21,6 @@
   environment.gnome.excludePackages = with pkgs; [
     orca
     decibels
-    evince
     file-roller
     geary
     epiphany
