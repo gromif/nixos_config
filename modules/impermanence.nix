@@ -53,7 +53,6 @@ in
       files = [
         "/etc/machine-id"
         "/var/lib/NetworkManager/NetworkManager.state"
-        "/var/lib/OpenRGB/OpenRGB.json"
         { file = "/var/keys/secret_file"; parentDirectory = { mode = "u=rwx,g=,o="; }; }
       ];
     };

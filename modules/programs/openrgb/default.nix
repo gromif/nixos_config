@@ -68,4 +68,9 @@ in
     # Modify the default openrgb service
     openrgb.serviceConfig.ExecStart = lib.mkForce "${lib.getExe openrgb-service-wrapper}";
   };
+
+  # Persist data
+  environment.impermanence.files = [
+    "/var/lib/OpenRGB/OpenRGB.json"
+  ];
 }
