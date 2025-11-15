@@ -1,7 +1,7 @@
 # User - Alex
 
 
-{ config, pkgs, lib, ... }:
+{ preferences, config, pkgs, lib, ... }:
 
 {
   imports = [
@@ -65,4 +65,15 @@
   programs.firefox.enable = true; # Install firefox.
 
   xdg.mime.predefined.enable = true;
+
+  # Security
+  networking.firewall.enable = false;
+
+  # Hardware
+  prefs.hardware.graphics.gpuVendor = "amd";
+  
+  # Common preferences
+  system.stateVersion = preferences.system.stateVersion;
+  time.timeZone = preferences.time.timeZone;
+  networking.hostName = preferences.hostName;
 }

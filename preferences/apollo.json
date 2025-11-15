@@ -1,0 +1,18 @@
+{
+  "hostName": "apollo",
+  "system": {
+    "persistentStoragePath": "/persist",
+    "stateVersion": "25.11"
+  },
+  "time": {
+    "timeZone": "Europe/Kyiv"
+  },
+  "virtualisation": {
+    "libvirtd": {
+      "members": [ "alex" ]
+    },
+    "docker": {
+      "members": [ "alex" ]
+    }
+  }
+}

@@ -36,18 +36,14 @@
   in {
     nixosConfigurations = {
       apollo = let
-        pkgs = nixpkgs.legacyPackages.${system};
+        preferences = builtins.fromJSON (builtins.readFile ./preferences/apollo.json);
       in nixpkgs.lib.nixosSystem {
         inherit system;
+        specialArgs = { inherit preferences; };
         modules = [
           impermanence.nixosModules.impermanence
           sops-nix-unstable.nixosModules.sops
-
-          {
-            system.stateVersion = "25.11";
-            time.timeZone = "Europe/Kyiv";
-            networking.hostName = "apollo";
-          }
+          
           ./hosts/apollo
           ./modules/boot/systemd.nix
           ./modules/kernel/latest.nix
@@ -58,12 +54,9 @@
           ./modules/impermanence.nix
           ./modules/zsh.nix
           ./modules/security/common.nix
-          ./modules/security/disable_firewall.nix
           ./modules/security/luks.nix
           ./modules/security/sandbox
           ./modules/hardware/common.nix
-          ./modules/hardware/fstrim.nix
-          ./modules/hardware/mesa.nix
           # ./modules/appimage.nix
           ./modules/network.nix
           ./modules/sound/common.nix
@@ -105,18 +98,14 @@
         ];
       };
       mercury = let
-        pkgs = nixpkgs-stable.legacyPackages.${system};
+        preferences = builtins.fromJSON (builtins.readFile ./preferences/mercury.json);
       in nixpkgs-stable.lib.nixosSystem {
         inherit system;
+        specialArgs = { inherit preferences; };
         modules = [
           impermanence.nixosModules.impermanence
           sops-nix-stable.nixosModules.sops
-
-          {
-            system.stateVersion = "25.05";
-            time.timeZone = "Europe/Kyiv";
-            networking.hostName = "mercury";
-          }
+          
           ./hosts/mercury
           ./modules/boot/grub2.nix
           ./modules/kernel/lts.nix

@@ -1,7 +1,7 @@
 # Hosts - Mercury
 
 
-{ config, lib, pkgs, ... }:
+{ preferences, config, lib, pkgs, ... }:
 
 {
   imports = [
@@ -31,4 +31,12 @@
       tcpdump
     ];
   };
+
+  # Hardware
+  services.fstrim.enable = lib.mkDefault false; # Pointless on HDDs
+
+  # Common preferences
+  system.stateVersion = preferences.system.stateVersion;
+  time.timeZone = preferences.time.timeZone;
+  networking.hostName = preferences.hostName;
 }

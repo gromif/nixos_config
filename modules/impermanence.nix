@@ -1,15 +1,15 @@
 # Impermanence
 
 
-{ config, lib, ... }:
+{ preferences, config, lib, ... }:
 
 with lib;
 
 let
   cfg = config.environment.impermanence;
-  persistencePath = "/nix/state";
+  persistentStoragePath = preferences.system.persistentStoragePath;
   inAliases = [ "environment" "impermanence" ];
-  toAliases = [ "environment" "persistence" persistencePath ];
+  toAliases = [ "environment" "persistence" persistentStoragePath ];
   aliases = map (option:
     mkAliasOptionModule (inAliases ++ [ option ]) (toAliases ++ [ option ])
   ) [
@@ -31,7 +31,7 @@ in
 
   config = {
     environment.impermanence.enable = true; # Enable by default
-    environment.persistence."${persistencePath}" = mkIf (cfg.enable) {
+    environment.persistence."${persistentStoragePath}" = mkIf (cfg.enable) {
       directories = [
         "/home"
         "/etc/NetworkManager/system-connections" # Manual network configs
@@ -56,7 +56,7 @@ in
     
     # adjust `persist` mode at runtime
     systemd.tmpfiles.rules = [
-      "z ${persistencePath} 0750 root root - -"
+      "z ${persistentStoragePath} 0750 root root - -"
     ];
   };
 }

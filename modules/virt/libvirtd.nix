@@ -1,13 +1,13 @@
 # Virtualisation - libvirtd
 
 
-{ pkgs, ... }:
+{ preferences, pkgs, ... }:
 
 {
   # Virt Manager
   programs.virt-manager.enable = true;
 
-  # users.groups.libvirtd.members = [ "joe" ];
+  users.groups.libvirtd.members = preferences.virtualisation.libvirtd.members;
 
   virtualisation = {
     libvirtd.enable = true;

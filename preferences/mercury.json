@@ -1,0 +1,10 @@
+{
+  "hostName": "mercury",
+  "system": {
+    "persistentStoragePath": "/nix/state",
+    "stateVersion": "25.05"
+  },
+  "time": {
+    "timeZone": "Europe/Kyiv"
+  }
+}

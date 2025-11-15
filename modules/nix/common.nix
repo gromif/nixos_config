@@ -1,10 +1,10 @@
 # Nix - Common
 
 
-{ ... }:
+{ preferences, ... }:
 
 let
-  build-dir = "/nix/build";
+  build-dir = preferences.nix.build-dir or "/nix/build";
 in
 {
   nixpkgs.config.allowUnfree = true;

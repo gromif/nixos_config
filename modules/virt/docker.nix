@@ -1,14 +1,24 @@
 # Virtualisation - Docker
 
 
-{ pkgs, ... }:
+{ preferences, pkgs, ... }:
 
+let
+  members = builtins.listToAttrs (
+    map (u: {
+      name = u;
+      value = {
+        extraGroups = [ "docker" ];
+      };
+    }) preferences.virtualisation.docker.members
+  );
+in
 {
   virtualisation.docker = {
     enable = true;
   };
 
-  # users.users.joe.extraGroups = [ "docker" ];
+  users.users = members;
 
   # Persist data
   environment.impermanence.directories = [
