@@ -33,6 +33,19 @@
   }:
   let
     system = "x86_64-linux";
+    sharedModules = [
+      impermanence.nixosModules.impermanence
+      sops-nix-unstable.nixosModules.sops
+
+      ./modules/impermanence
+      ./modules/console.nix
+      ./modules/zram.nix
+      ./modules/nix/common.nix
+      ./modules/zsh.nix
+      ./modules/security/common.nix
+      ./modules/fonts/common.nix
+      ./modules/utils/common.nix
+    ];
   in {
     nixosConfigurations = {
       apollo = let
@@ -40,24 +53,16 @@
       in nixpkgs.lib.nixosSystem {
         inherit system;
         specialArgs = { inherit preferences; };
-        modules = [
-          impermanence.nixosModules.impermanence
-          sops-nix-unstable.nixosModules.sops
-          
+        modules = sharedModules ++ [
           ./hosts/apollo
+          ./secrets/primary
+          ./modules/sops.nix
           ./modules/boot/systemd.nix
           ./modules/kernel/latest.nix
           ./modules/kernel/modules/v4l2loopback.nix
-          ./modules/console.nix
-          ./modules/zram.nix
-          ./modules/nix/common.nix
-          ./modules/impermanence
-          ./modules/zsh.nix
-          ./modules/security/common.nix
           ./modules/security/luks.nix
           ./modules/security/sandbox
           ./modules/hardware/common.nix
-          # ./modules/appimage.nix
           ./modules/network.nix
           ./modules/sound/common.nix
           ./modules/sound/pipewire.nix
@@ -68,10 +73,8 @@
           ./modules/desktop/gnome/services/theme-changer.nix
           ./modules/desktop/gnome/services/random-background.nix
           ./modules/mimetypes.nix
-          ./modules/fonts/common.nix
           ./modules/virt/libvirtd.nix
           ./modules/virt/docker.nix
-          ./modules/utils/common.nix
           ./modules/utils/compression.nix
           ./modules/utils/media.nix
           ./modules/games/common.nix
@@ -86,8 +89,6 @@
           ./modules/programs/git.nix
           ./modules/programs/redroid.nix
           ./modules/programs/openrgb
-          ./modules/sops.nix
-          ./secrets/primary
           home-manager-unstable.nixosModules.home-manager {
             home-manager = {
               useGlobalPkgs = true;
@@ -102,31 +103,20 @@
       in nixpkgs-stable.lib.nixosSystem {
         inherit system;
         specialArgs = { inherit preferences; };
-        modules = [
-          impermanence.nixosModules.impermanence
-          sops-nix-stable.nixosModules.sops
-          
+        modules = sharedModules ++ [
           ./hosts/mercury
+          ./secrets/mercury
+          ./modules/sops.nix
           ./modules/boot/grub2.nix
           ./modules/kernel/lts.nix
-          ./modules/console.nix
-          ./modules/zram.nix
-          ./modules/nix/common.nix
-          ./modules/impermanence
-          ./modules/zsh.nix
-          ./modules/security/common.nix
           # ./modules/security/sandbox
           ./modules/hardware/common.nix
           ./modules/network.nix
           ./modules/services/openssh.nix
           ./modules/locale/en_GB.nix
-          ./modules/fonts/common.nix
-          ./modules/utils/common.nix
           ./modules/scripts/maintainance.nix
           ./modules/programs/git.nix
           ./modules/services/qbittorrent.nix
-          ./modules/sops.nix
-          ./secrets/mercury
         ];
       };
     };
