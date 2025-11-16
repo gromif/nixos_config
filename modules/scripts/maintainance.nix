@@ -24,22 +24,6 @@ let
       setsid -f bash -c "git push" &> /dev/null
     '';
   };
-  
-  nix-rotate-secrets = pkgs.writeShellApplication {
-    name = "nix-rotate-secrets";
-    runtimeInputs = sharedRuntimes ++ [ pkgs.rsync ];
-    text = ''
-      cd "${nix_conf}"
-      
-      find ./secrets -type f -name "*.yaml" | 
-        parallel 'sops rotate -i {}' &> /dev/null
-      
-      git add -A -- ./secrets/*
-      git commit -m "update secrets"
-      setsid -f bash -c "git push" &> /dev/null
-    '';
-  };
-  
   nix-upload = pkgs.writeShellApplication {
     name = "nix-upload";
     runtimeInputs = sharedRuntimes ++ [ pkgs.rsync ];
@@ -65,7 +49,6 @@ in
   programs.git.config.safe.directory = "/etc/nixos";
   
   environment.systemPackages = with pkgs; [
-    nix-rotate-secrets
     nix-update
     nix-upload
   ];
