@@ -14,13 +14,12 @@ let
     name = "nix-rotate-secrets";
     runtimeInputs = sharedRuntimes ++ [ pkgs.rsync ];
     text = ''
-      cd "${cfgDir}"
-      targetSecrets=./secrets/${host}
+      cd "${cfgDir}/secrets/${host}"
       
-      find "$targetSecrets" -type f -name "*.yaml" | 
+      find . -type f -name "*.yaml" | 
         parallel 'sops rotate -i {}' &> /dev/null
       
-      git add -A -- "$targetSecrets/*"
+      git add -A -- /*
       git commit -m "update secrets for \`${host}\`"
       setsid -f bash -c "git push" &> /dev/null
     '';

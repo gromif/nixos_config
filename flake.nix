@@ -56,7 +56,7 @@
         specialArgs = { inherit preferences; };
         modules = sharedModules ++ [
           ./hosts/apollo
-          ./secrets/primary
+          ./secrets/apollo
           ./modules/sops.nix
           ./modules/boot/systemd.nix
           ./modules/kernel/latest.nix
