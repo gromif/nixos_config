@@ -51,7 +51,7 @@
           ./modules/console.nix
           ./modules/zram.nix
           ./modules/nix/common.nix
-          ./modules/impermanence.nix
+          ./modules/impermanence
           ./modules/zsh.nix
           ./modules/security/common.nix
           ./modules/security/luks.nix
@@ -112,7 +112,7 @@
           ./modules/console.nix
           ./modules/zram.nix
           ./modules/nix/common.nix
-          ./modules/impermanence.nix
+          ./modules/impermanence
           ./modules/zsh.nix
           ./modules/security/common.nix
           # ./modules/security/sandbox
@@ -122,7 +122,6 @@
           ./modules/locale/en_GB.nix
           ./modules/fonts/common.nix
           ./modules/utils/common.nix
-          ./modules/scripts/impermanence.nix
           ./modules/scripts/maintainance.nix
           ./modules/programs/git.nix
           ./modules/services/qbittorrent.nix

@@ -21,7 +21,6 @@ let
 in
 {
 	imports = [
-		./impermanence.nix
 		./maintainance.nix
   ] ++ audio;
   

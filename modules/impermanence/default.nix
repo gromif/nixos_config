@@ -23,7 +23,7 @@ let
   ];
 in
 {
-  imports = aliases;
+  imports = aliases ++ [ ./scripts.nix  ];
    
   options.environment.impermanence = {
     enable = mkEnableOption "enable the Impermanence module";
