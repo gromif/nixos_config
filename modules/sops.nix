@@ -8,19 +8,19 @@ let
   ageKeyFilePath = "/root/.config/sops/age/keys.txt";
 
   cfgDir = "/etc/nixos";
-  sharedRuntimes = with pkgs; [ bash git ];
+  sharedRuntimes = with pkgs; [ bash git sops ];
   
   nix-rotate-secrets = pkgs.writeShellApplication {
     name = "nix-rotate-secrets";
-    runtimeInputs = sharedRuntimes ++ [ pkgs.rsync ];
+    runtimeInputs = sharedRuntimes;
     text = ''
       cd "${cfgDir}/secrets/${host}"
       
       find . -type f -name "*.yaml" | 
         parallel 'sops rotate -i {}' &> /dev/null
       
-      git add -A -- /*
-      git commit -m "update secrets for \`${host}\`"
+      git add -A -- ./*
+      git commit -m "update secrets for ${host}"
       setsid -f bash -c "git push" &> /dev/null
     '';
   };
