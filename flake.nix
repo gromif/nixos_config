@@ -45,6 +45,7 @@
       ./modules/security/common.nix
       ./modules/fonts/common.nix
       ./modules/utils/common.nix
+      ./modules/programs/git.nix
     ];
   in {
     nixosConfigurations = {
@@ -86,7 +87,6 @@
           ./modules/programs/gapless.nix
           ./modules/programs/euphonica.nix
           ./modules/programs/bottles.nix
-          ./modules/programs/git.nix
           ./modules/programs/redroid.nix
           ./modules/programs/openrgb
           home-manager-unstable.nixosModules.home-manager {
@@ -115,7 +115,6 @@
           ./modules/services/openssh.nix
           ./modules/locale/en_GB.nix
           ./modules/scripts/maintainance.nix
-          ./modules/programs/git.nix
           ./modules/services/qbittorrent.nix
         ];
       };
