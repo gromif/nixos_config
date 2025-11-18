@@ -65,6 +65,9 @@
 
   xdg.mime.predefined.enable = true;
 
+  # DE
+  services.displayManager.autoLogin.user = "alex";
+
   # Security
   networking.firewall.enable = false;
 
