@@ -75,9 +75,6 @@
   # DE
   services.displayManager.autoLogin.user = "alex";
 
-  # Security
-  networking.firewall.enable = false;
-
   # Hardware
   prefs.hardware.graphics.gpuVendor = "amd";
   
