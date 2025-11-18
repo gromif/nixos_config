@@ -1,7 +1,7 @@
 {
   "hostName": "apollo",
   "system": {
-    "persistentStoragePath": "/persist",
+    "persistentStoragePath": "/nix/state",
     "stateVersion": "25.11"
   },
   "time": {

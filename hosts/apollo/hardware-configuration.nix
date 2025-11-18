@@ -21,18 +21,16 @@
     };
     
   fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/46A7-6AD6";
+    { device = "/dev/disk/by-uuid/0100-5517";
       fsType = "vfat";
       options = [ "nodev" "nosuid" "noexec" "relatime" "umask=0077" ];
     };
 
-  fileSystems."/persist" =
-    { device = "/dev/disk/by-uuid/9a2d897f-fafa-47e1-bade-7378758f059d";
-      fsType = "ext4";
+  fileSystems."/nix" =
+    { device = "/dev/disk/by-uuid/4f28fff8-caa5-471f-b52b-7daf1b255cff";
+      fsType = "xfs";
       neededForBoot = true;
     };
-
-  boot.initrd.luks.devices."crypted".device = "/dev/disk/by-uuid/17ac96a6-12ae-4b84-a859-51c863a38f0f";
 
   swapDevices = [ ];
 

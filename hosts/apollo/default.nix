@@ -29,7 +29,7 @@
     # Misc
     freetube
     blanket
-    megasync
+    # megasync
 
     # Communication
     materialgram
@@ -64,9 +64,6 @@
   programs.firefox.enable = true; # Install firefox.
 
   xdg.mime.predefined.enable = true;
-
-  # Impermanence
-  environment.impermanence.directories = [ "/nix" ];
 
   # Security
   networking.firewall.enable = false;
