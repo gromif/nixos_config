@@ -34,6 +34,7 @@ in
   # Automatically create & clean the build dir
   systemd.tmpfiles.rules = [
     "d ${build-dir} 0750 root root 7d -"
+    "R /nix/var/nix/profiles/per-user - - - - -"
   ];
   
   users.mutableUsers = false; # the contents of the user and group files will be replaced on system activation
