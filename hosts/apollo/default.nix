@@ -3,6 +3,8 @@
 
 { preferences, config, pkgs, lib, ... }:
 
+with lib;
+
 {
   imports = [
     ./hardware-configuration.nix
@@ -79,7 +81,10 @@
   prefs.hardware.graphics.gpuVendor = "amd";
   
   # services
-  services.getty.autologinUser = config.users.users.alex.name;
+  services = {
+    getty.autologinUser = config.users.users.alex.name;
+    openssh.ports = mkForce [ 24942 ];
+  };
   
   # Common preferences
   system.stateVersion = preferences.system.stateVersion;
