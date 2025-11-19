@@ -89,7 +89,6 @@
           ./modules/programs/euphonica.nix
           ./modules/programs/bottles.nix
           ./modules/programs/redroid.nix
-          ./modules/programs/openrgb
           home-manager-unstable.nixosModules.home-manager {
             home-manager = {
               useGlobalPkgs = true;
