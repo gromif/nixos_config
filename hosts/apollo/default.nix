@@ -73,10 +73,13 @@
   xdg.mime.predefined.enable = true;
 
   # DE
-  services.displayManager.autoLogin.user = "alex";
+  services.displayManager.autoLogin.user = config.users.users.alex.name;
 
   # Hardware
   prefs.hardware.graphics.gpuVendor = "amd";
+  
+  # services
+  services.getty.autologinUser = config.users.users.alex.name;
   
   # Common preferences
   system.stateVersion = preferences.system.stateVersion;
