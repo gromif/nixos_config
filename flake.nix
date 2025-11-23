@@ -22,6 +22,11 @@
       url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs-stable";
     };
+
+    nix-on-droid {
+      url = "github:nix-community/nix-on-droid/release-24.05";
+      inputs.nixpkgs.follows = "nixpkgs-stable";
+    };
   };
   outputs = inputs@{ self,
     nixpkgs, nixpkgs-stable,
@@ -119,5 +124,11 @@
         ];
       };
     };
+  };
+  nixOnDroidConfigurations.default = nix-on-droid.lib.nixOnDroidConfiguration {
+    pkgs = import nixpkgs { system = "aarch64-linux"; };
+    modules = [
+      ./hosts/polaris
+    ];
   };
 }
