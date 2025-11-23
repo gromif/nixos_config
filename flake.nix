@@ -34,7 +34,8 @@
     sops-nix-stable,
     sops-nix-unstable,
     home-manager-stable,
-    home-manager-unstable
+    home-manager-unstable,
+    nix-on-droid
   }:
   let
     system = "x86_64-linux";
