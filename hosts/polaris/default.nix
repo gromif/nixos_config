@@ -4,7 +4,7 @@
 { config, lib, pkgs, ... }:
 
 {
-  environment.systemPackages = with pkgs; [
+  environment.packages = with pkgs; [
     dwarfs
     nano
   ];
