@@ -130,7 +130,6 @@
       modules = [
         ./hosts/polaris
         ./modules/nix/common.nix
-        ./modules/utils/common.nix
         ./modules/programs/git.nix
       ];
     };
