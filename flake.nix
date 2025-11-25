@@ -129,7 +129,6 @@
       pkgs = import nixpkgs { system = "aarch64-linux"; };
       modules = [
         ./hosts/polaris
-        ./modules/zram.nix
         ./modules/nix/common.nix
         ./modules/zsh.nix
         ./modules/utils/common.nix
