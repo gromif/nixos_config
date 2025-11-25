@@ -6,6 +6,7 @@
 {
   environment.packages = with pkgs; [
     dwarfs
+    git
     nano
     yt-dlp
   ];
