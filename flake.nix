@@ -127,8 +127,13 @@
     };
     nixOnDroidConfigurations.polaris = nix-on-droid.lib.nixOnDroidConfiguration {
       pkgs = import nixpkgs { system = "aarch64-linux"; };
-      modules = sharedModules ++ [
+      modules = [
         ./hosts/polaris
+        ./modules/zram.nix
+        ./modules/nix/common.nix
+        ./modules/zsh.nix
+        ./modules/utils/common.nix
+        ./modules/programs/git.nix
       ];
     };
   };
