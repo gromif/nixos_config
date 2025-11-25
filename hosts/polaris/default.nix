@@ -7,6 +7,7 @@
   environment.packages = with pkgs; [
     dwarfs
     nano
+    yt-dlp
   ];
 
   # Backup etc flakes instead of failing to activate generation if a file already exists in /etc
