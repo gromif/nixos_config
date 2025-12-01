@@ -11,6 +11,10 @@
     yt-dlp
   ];
 
+  android-integration = {
+    termux-setup-storage.enable = true;
+  };
+
   # Backup etc flakes instead of failing to activate generation if a file already exists in /etc
   environment.etcBackupExtension = ".bak";
   
