@@ -38,9 +38,9 @@ in
 	};
 
 	# Persist data
-	config = mkIf (impermanent) {
-      environment.impermanence.directories = [
-		"/root/.config/zsh"
-	  ];
-    };
+	#config = mkIf (impermanent) {
+    #  environment.impermanence.directories = [
+	#	"/root/.config/zsh"
+	#  ];
+    #};
 }
