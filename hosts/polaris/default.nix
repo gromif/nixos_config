@@ -9,6 +9,7 @@
     git
     nano
     yt-dlp
+    wol
   ];
 
   android-integration = {
