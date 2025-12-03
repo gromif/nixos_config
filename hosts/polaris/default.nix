@@ -5,6 +5,7 @@
 
 {
   environment.packages = with pkgs; [
+    busybox
     dwarfs
     git
     nano
