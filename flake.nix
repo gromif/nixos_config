@@ -129,6 +129,7 @@
       pkgs = import nixpkgs { system = "aarch64-linux"; };
       modules = [
         ./hosts/polaris
+        ./hosts/polaris/scripts.nix
       ];
     };
   };
