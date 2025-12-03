@@ -8,6 +8,7 @@
     dwarfs
     git
     nano
+    openssh
     yt-dlp
     wol
     zsh
