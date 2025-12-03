@@ -43,7 +43,7 @@ let
   };
 in
 {
-  environment.systemPackages = [
+  environment.packages = [
     polaris-wake
     polaris-ssh
     polaris-ssh-root
