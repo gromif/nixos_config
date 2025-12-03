@@ -10,14 +10,15 @@
     nano
     yt-dlp
     wol
+    zsh
   ];
 
   android-integration = {
     termux-setup-storage.enable = true;
   };
 
-  users.users.nix-on-droid = {
-    shell = pkgs.zsh;
+  user = {
+    shell = "${lib.getExe pkgs.zsh}";
   };
 
   # Backup etc flakes instead of failing to activate generation if a file already exists in /etc
