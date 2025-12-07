@@ -4,5 +4,5 @@
 { config, pkgs, ... }:
 
 {
-  boot.kernelPackages = pkgs.linuxKernel.packages.linux_6_12;
+  boot.kernelPackages = pkgs.linuxKernel.packages.linux_6_18;
 }
