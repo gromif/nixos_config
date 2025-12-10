@@ -65,7 +65,7 @@
           ./secrets/apollo
           ./modules/sops.nix
           ./modules/boot/systemd.nix
-          ./modules/kernel/latest.nix
+          ./modules/kernel/lts.nix
           ./modules/kernel/modules/v4l2loopback.nix
           ./modules/security/luks.nix
           ./modules/security/sandbox
