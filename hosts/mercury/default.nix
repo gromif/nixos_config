@@ -25,7 +25,7 @@
     openssh.authorizedKeys.keys = [
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILCHwV0zA22QHV1DLpaoJusNjg7xO+COQ2QOZ7EBkMSI alexander.kobrys@proton.me"
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPfs0HEb2cuq00UCYgXGJ3U9jaQ4gmNa7vpTw8DgCXV4 u0_a229@localhost"
-      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIKKLMwjIS7/ZR83zk5q3taxnnGdRbc8dUBIR5N3gWBe u0_a135@localhost"
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIItp6Vb/vq72smtPuMdL9Iwvp5wIDxJujYagHjeCoBAI u0_a284@localhost"
     ];
     packages = with pkgs; [
       tcpdump
