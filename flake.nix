@@ -51,6 +51,7 @@
       ./modules/security/common.nix
       ./modules/fonts/common.nix
       ./modules/utils/common.nix
+      ./modules/utils/compression.nix
       ./modules/programs/git.nix
     ];
   in {
@@ -83,7 +84,6 @@
           ./modules/mimetypes.nix
           ./modules/virt/libvirtd.nix
           ./modules/virt/docker.nix
-          ./modules/utils/compression.nix
           ./modules/utils/media.nix
           ./modules/games/common.nix
           ./modules/services/wallpapers-optimiser.nix
