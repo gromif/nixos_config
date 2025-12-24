@@ -130,6 +130,7 @@
       modules = [
         ./hosts/polaris
         ./hosts/polaris/scripts.nix
+        ./modules/scripts/audio/convert.nix
       ];
     };
   };
