@@ -8,6 +8,7 @@
     busybox
     curlMinimal
     dwarfs
+    ffmpeg
     git
     nano
     openssh
