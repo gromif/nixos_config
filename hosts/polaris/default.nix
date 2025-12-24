@@ -6,6 +6,7 @@
 {
   environment.packages = with pkgs; [
     busybox
+    curlMinimal
     dwarfs
     git
     nano
