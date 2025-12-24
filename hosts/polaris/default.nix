@@ -12,6 +12,7 @@
     git
     nano
     openssh
+    parallel
     yt-dlp
     wol
     zsh
