@@ -11,6 +11,7 @@
     ffmpeg
     git
     nano
+    ncdu
     openssh
     parallel
     yt-dlp
