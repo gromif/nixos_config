@@ -33,7 +33,10 @@
       sopsFile = ./ssh.yaml;
       path = "/root/.ssh/id_ed25519.pub";
     };
-    
+
+    "luks/drive_a" = {};
+    "luks/drive_m" = {};
+    "luks/drive_x" = {};
     "luks/usb1" = {};
     "luks/sd1" = {};
     "luks/sd2" = {};
