@@ -32,6 +32,23 @@
       neededForBoot = true;
     };
 
+  fileSystems."/mnt/drive_a" = {
+    device = "/dev/mapper/crypto-drive-a";
+    fsType = "btrfs";
+    options = [ "nofail" "relatime"
+      "compress=zstd"
+       "noauto" "x-systemd.automount" ];
+  };
+
+  fileSystems."/mnt/drive_f" = {
+    device = "/dev/mapper/crypto-drive-f";
+    fsType = "xfs";
+    options = [
+      "nofail" "relatime"
+      "noauto" "x-systemd.automount"
+    ];
+  };
+
   swapDevices = [ ];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking

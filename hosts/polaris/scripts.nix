@@ -4,7 +4,15 @@
 { config, lib, pkgs, ... }:
 
 let
-  endpoint = "134.249.111.37";
+  endpoint = "celestial-warden.tplinkdns.com";
+  hosts = [ "mercury" "apollo" ];
+  ports = [ "31472" "24942" ];
+  machines = lib.zip hosts ports;
+  packages = builtins.listToAttr (
+    map (host, port: {
+      
+    }) machines
+  );
   port = "31472";
   polaris-wake = pkgs.writeShellApplication {
     name = "polaris-wake";

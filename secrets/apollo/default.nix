@@ -36,7 +36,7 @@
 
     "luks/drive_a" = {};
     "luks/drive_m" = {};
-    "luks/drive_x" = {};
+    "luks/drive_f" = {};
     "luks/usb1" = {};
     "luks/sd1" = {};
     "luks/sd2" = {};

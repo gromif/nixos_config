@@ -8,6 +8,7 @@ with lib;
 {
   imports = [
     ./hardware-configuration.nix
+    ./crypttab.nix
   ];
 
   users.users.alex = {

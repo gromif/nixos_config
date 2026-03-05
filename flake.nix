@@ -68,7 +68,7 @@
           ./modules/boot/systemd.nix
           ./modules/kernel/lts.nix
           ./modules/kernel/modules/v4l2loopback.nix
-          ./modules/security/luks.nix
+          # ./modules/security/luks.nix
           ./modules/security/sandbox
           ./modules/hardware/common.nix
           ./modules/network.nix
