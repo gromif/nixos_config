@@ -7,7 +7,6 @@
   environment.packages = with pkgs; [
     busybox
     curlMinimal
-    dwarfs
     ffmpeg
     git
     nano
