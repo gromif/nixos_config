@@ -8,11 +8,11 @@ let
   hosts = [ "mercury" "apollo" ];
   ports = [ "31472" "24942" ];
   machines = lib.zip hosts ports;
-  packages = builtins.listToAttr (
-    map (host, port: {
-      
-    }) machines
-  );
+  # packages = builtins.listToAttr (
+    # map (host, port: {
+     
+    # }) machines
+  # );
   port = "31472";
   polaris-wake = pkgs.writeShellApplication {
     name = "polaris-wake";
