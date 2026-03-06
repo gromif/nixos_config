@@ -14,6 +14,7 @@
     ncdu
     openssh
     parallel
+    rsync
     yt-dlp
     wol
     zsh
