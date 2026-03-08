@@ -1,13 +1,13 @@
 # ZRAM
 
-{ config, ... }:
+{ config, lib, ... }:
 
-{
+with lib; {
   # Setup ZRAM.
   zramSwap = {
     enable = true;
     algorithm = "zstd";
-    memoryPercent = 50;
+    memoryPercent = mkForce 50;
   };
   
   # Optimise ZRAM

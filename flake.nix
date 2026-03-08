@@ -23,6 +23,11 @@
       inputs.nixpkgs.follows = "nixpkgs-stable";
     };
 
+    nixos-avf = {
+      url = "github:nix-community/nixos-avf";
+      inputs.nixpkgs.follows = "nixpkgs-stable";
+    };
+
     nix-on-droid = {
       url = "github:nix-community/nix-on-droid/release-24.05";
       inputs.nixpkgs.follows = "nixpkgs-stable";
@@ -35,6 +40,7 @@
     sops-nix-unstable,
     home-manager-stable,
     home-manager-unstable,
+    nixos-avf,
     nix-on-droid
   }:
   let
@@ -122,6 +128,32 @@
           ./modules/locale/en_GB.nix
           ./modules/scripts/maintainance.nix
           ./modules/services/qbittorrent.nix
+        ];
+      };
+      moon = let
+        preferences = builtins.fromJSON (builtins.readFile ./preferences/moon.json);
+      in nixpkgs-stable.lib.nixosSystem {
+        system = "aarch64-linux";
+        specialArgs = { inherit preferences; };
+        modules = [
+          impermanence.nixosModules.impermanence
+          # sops-nix-unstable.nixosModules.sops
+
+          ./modules/impermanence
+          # ./modules/console.nix
+          ./modules/nix/common.nix
+          ./modules/zsh.nix
+          # ./modules/security/common.nix
+          ./modules/fonts/common.nix
+          ./modules/utils/common.nix
+          ./modules/utils/compression.nix
+          ./modules/programs/git.nix
+        ] ++ [
+          nixos-avf.nixosModules.avf
+          ./hosts/moon
+          ./hosts/polaris/scripts.nix
+
+          ./modules/scripts
         ];
       };
     };

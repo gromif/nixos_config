@@ -1,0 +1,10 @@
+{
+  "hostName": "moon",
+  "system": {
+    "persistentStoragePath": "/nix/state",
+    "stateVersion": "25.11"
+  },
+  "time": {
+    "timeZone": "Europe/Berlin"
+  }
+}
