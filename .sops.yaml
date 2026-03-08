@@ -3,6 +3,7 @@
 keys:
   - &user_alex age1zuqn8tq3sqwulv4szyjh53ytfrznpj59whzslcqfjlyvhudqqe2q6y5jr8
   - &mercury_root age16uv00hxnmkf2pqkldezs8ym3f2nrm6s0x7xhkpnxvu329c6srscsqr4jj3
+  - &moon_root age13vrgu0hz08c9792qwhsm07sdsp0wenvjjf03z6csecswxsddyqds5f0agk
 creation_rules:
   - path_regex: secrets/apollo/[^/]+\.yaml
     key_groups:
@@ -12,3 +13,7 @@ creation_rules:
     key_groups:
     - age:
       - *mercury_root
+  - path_regex: secrets/moon/[^/]+\.yaml
+    key_groups:
+    - age:
+      - *moon_root
