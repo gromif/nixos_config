@@ -13,7 +13,7 @@ creation_rules:
     key_groups:
     - age:
       - *mercury_root
-  - path_regex: secrets/moon/[^/]+\.yaml
+  - path_regex: secrets/moon/[^/]+\.*
     key_groups:
     - age:
       - *moon_root
