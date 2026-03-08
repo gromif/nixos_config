@@ -137,7 +137,7 @@
         specialArgs = { inherit preferences; };
         modules = [
           impermanence.nixosModules.impermanence
-          # sops-nix-unstable.nixosModules.sops
+          sops-nix-unstable.nixosModules.sops
 
           ./modules/impermanence
           # ./modules/console.nix
@@ -145,12 +145,14 @@
           ./modules/zsh.nix
           # ./modules/security/common.nix
           ./modules/fonts/common.nix
+          ./modules/sops.nix
           ./modules/utils/common.nix
           ./modules/utils/compression.nix
           ./modules/programs/git.nix
         ] ++ [
           nixos-avf.nixosModules.avf
           ./hosts/moon
+          ./secrets/moon
           ./hosts/polaris/scripts.nix
 
           ./modules/scripts
