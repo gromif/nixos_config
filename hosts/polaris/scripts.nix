@@ -5,34 +5,12 @@
 
 let
   endpoint = "celestial-warden.tplinkdns.com";
-  hosts = [ "mercury" "apollo" ];
-  ports = [ "31472" "24942" ];
-  machines = lib.zip hosts ports;
-  # packages = builtins.listToAttr (
-    # map (host, port: {
-     
-    # }) machines
-  # );
   port = "31472";
   polaris-wake = pkgs.writeShellApplication {
     name = "polaris-wake";
     runtimeInputs = with pkgs; [ wol ];
     text = ''
       wol -v -h ${endpoint} -p 9 00:25:B3:0C:A5:27
-    '';
-  };
-  polaris-ssh = pkgs.writeShellApplication {
-    name = "polaris-ssh";
-    runtimeInputs = with pkgs; [ openssh ];
-    text = ''
-      ssh -p ${port} warden@${endpoint}
-    '';
-  };
-  polaris-ssh-root = pkgs.writeShellApplication {
-    name = "polaris-ssh-root";
-    runtimeInputs = with pkgs; [ openssh ];
-    text = ''
-      ssh -p ${port} root@${endpoint}
     '';
   };
   polaris-ssh-torrent = pkgs.writeShellApplication {
@@ -51,10 +29,29 @@ let
   };
 in
 {
+  programs.ssh.extraConfig = ''
+    Host apollo-root
+      Hostname ${endpoint}
+      Port 24942
+      User root
+      
+    Host apollo-alex
+      Hostname ${endpoint}
+      Port 24942
+      User alex
+      
+    Host mercury-root
+      Hostname ${endpoint}
+      Port 31472
+      User root
+      
+    Host mercury-warden
+      Hostname ${endpoint}
+      Port 31472
+      User warden
+  '';
   environment.systemPackages = [
     polaris-wake
-    polaris-ssh
-    polaris-ssh-root
     polaris-ssh-torrent
     polaris-ssh-router
   ];
