@@ -32,6 +32,14 @@ in
       LocalForward 8080 localhost:8080
       RequestTTY no
 
+    Host apollo-torrent
+      Hostname ${endpoint}
+      Port 24942
+      User alex
+      ${ukIdFile}
+      LocalForward 8080 localhost:8080
+      RequestTTY no
+
     Host apollo-root
       Hostname ${endpoint}
       Port 24942
