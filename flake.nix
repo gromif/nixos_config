@@ -49,6 +49,7 @@
       impermanence.nixosModules.impermanence
       sops-nix-unstable.nixosModules.sops
 
+      ./secrets/shared
       ./modules/impermanence
       ./modules/console.nix
       ./modules/zram.nix
@@ -140,6 +141,7 @@
           impermanence.nixosModules.impermanence
           sops-nix-unstable.nixosModules.sops
 
+          ./secrets/shared
           ./modules/impermanence
           # ./modules/console.nix
           ./modules/nix/common.nix
