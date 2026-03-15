@@ -27,11 +27,6 @@
       url = "github:nix-community/nixos-avf";
       inputs.nixpkgs.follows = "nixpkgs-stable";
     };
-
-    nix-on-droid = {
-      url = "github:nix-community/nix-on-droid/release-24.05";
-      inputs.nixpkgs.follows = "nixpkgs-stable";
-    };
   };
   outputs = inputs@{ self,
     nixpkgs, nixpkgs-stable,
@@ -40,8 +35,7 @@
     sops-nix-unstable,
     home-manager-stable,
     home-manager-unstable,
-    nixos-avf,
-    nix-on-droid
+    nixos-avf
   }:
   let
     system = "x86_64-linux";
@@ -157,18 +151,10 @@
           nixos-avf.nixosModules.avf
           ./hosts/moon
           ./secrets/moon
-          ./hosts/polaris/scripts.nix
 
           ./modules/scripts
         ];
       };
-    };
-    nixOnDroidConfigurations.polaris = nix-on-droid.lib.nixOnDroidConfiguration {
-      pkgs = import nixpkgs { system = "aarch64-linux"; };
-      modules = [
-        ./hosts/polaris
-        ./hosts/polaris/scripts.nix
-      ];
     };
   };
 }

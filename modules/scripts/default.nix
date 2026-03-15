@@ -22,6 +22,7 @@ in
 {
 	imports = [
 		./maintainance.nix
+		./ssh.nix
   ] ++ audio;
   
   environment.systemPackages = with pkgs; [
