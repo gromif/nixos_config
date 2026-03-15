@@ -1,16 +1,18 @@
 # shared - SOPS configuration
 
-{ config, ... }:
+{ config, lib, ... }:
 
 {
   sops.secrets = {
     "ssh/endpoint" = {
-      sopsFile = ./ssh.yaml;
+      format = "binary";
+      sopsFile = ./ssh/endpoint_uk.bin;
     };
     "ssh/extraConfig" = {
-      sopsFile = ./ssh.yaml;
+      format = "binary";
+      sopsFile = ./ssh/ssh_config.bin;
     };
-    "services/slskd_env" = {
+    "services/slskd_env" = lib.mkIf config.services.slskd.enable {
       sopsFile = ./slskd.yaml;
       owner = config.services.slskd.user;
       group = config.services.slskd.group;
