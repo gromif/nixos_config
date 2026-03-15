@@ -3,7 +3,6 @@
 { ... }:
 
 {
-  sops.defaultSopsFile = ./secrets.yaml;
   sops.secrets = {
     "ssh/endpoint" = {
       sopsFile = ./ssh.yaml;
