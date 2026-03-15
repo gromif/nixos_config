@@ -34,6 +34,15 @@
     ];
   };
 
+  # Services
+  services.slskd = {
+    settings = {
+      shares.directories = [
+        "/mnt/drive_m"
+      ];
+    };
+  };
+
   # Hardware
   services.fstrim.enable = lib.mkDefault false; # Pointless on HDDs
 

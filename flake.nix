@@ -130,6 +130,7 @@
           ./modules/locale/en_GB.nix
           ./modules/scripts/maintainance.nix
           ./modules/services/qbittorrent.nix
+          ./modules/services/slskd.nix
         ];
       };
       moon = let
