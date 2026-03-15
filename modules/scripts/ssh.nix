@@ -4,8 +4,8 @@
 { config, lib, pkgs, ... }:
 
 let
-  polaris-wake = pkgs.writeShellApplication {
-    name = "polaris-wake";
+  wake-mercury = pkgs.writeShellApplication {
+    name = "wake-mercury";
     runtimeInputs = with pkgs; [ wol ];
     text = ''
       endpoint=$(cat ${config.sops.secrets."ssh/endpoint".path})
@@ -18,6 +18,6 @@ in
     Include ${config.sops.secrets."ssh/extraConfig".path}    
   '';
   environment.systemPackages = [
-    polaris-wake
+    wake-mercury
   ];
 }
