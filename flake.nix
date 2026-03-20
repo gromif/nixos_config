@@ -101,6 +101,7 @@
             home-manager = {
               useGlobalPkgs = true;
               useUserPackages = true;
+              extraSpecialArgs = { inherit preferences; }; 
               users.alex = { ... }: {
                 imports = [
                   ./hosts/apollo/home-manager/alex.nix
