@@ -48,7 +48,6 @@
       ./modules/zram.nix
       ./modules/nix/common.nix
       ./modules/zsh.nix
-      ./modules/fonts/common.nix
       ./modules/utils/common.nix
       ./modules/utils/compression.nix
       ./modules/programs/git.nix
@@ -78,6 +77,7 @@
           ./modules/sound/pipewire.nix
           ./modules/locale/en_GB.nix
           ./modules/codecs.nix
+          ./modules/fonts.nix
           ./modules/desktop/common.nix
           ./modules/desktop/gnome/common.nix
           ./modules/desktop/gnome/services/theme-changer.nix
