@@ -4,13 +4,12 @@
 { config, pkgs, ... }:
 
 let
-	programsList = builtins.attrNames (builtins.readDir ./programs);
-	programs = map (c: ./programs + "/${c}") programsList;
+	dconfConfigsList = builtins.attrNames (builtins.readDir ./dconf);
+	dconfConfigs = map (c: ./dconf + "/${c}") dconfConfigsList;
 in
 {
-  imports = programs ++ [
-    ./app-folders.nix
-    ./dconf.nix
+  imports = dconfConfigs ++ [
+    ./qt
   ];
   
   home.packages = with pkgs; [
@@ -24,5 +23,6 @@ in
     dconf2nix
   ];
 
+  dconf.enable = true;
   services.gnome-keyring.enable = true;
 }

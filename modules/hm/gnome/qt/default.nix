@@ -19,7 +19,7 @@
   
   # Set up QT theming
   qt = {
-  		enable = true;
-  		platformTheme.name = "qtct";
-  	};
+  	enable = true;
+  	platformTheme.name = "qtct";
+  };
 }

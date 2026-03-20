@@ -101,7 +101,16 @@
             home-manager = {
               useGlobalPkgs = true;
               useUserPackages = true;
-              users.alex = ./home;
+              users.alex = { ... }: {
+                imports = [
+                  ./hosts/apollo/home-manager/alex.nix
+                  ./modules/hm
+                  ./modules/hm/config/pipewire
+                  ./modules/hm/gnome/config_basic.nix
+                  ./modules/hm/programs/mangohud.nix
+                  ./modules/hm/services/mpd.nix
+                ];               
+              };
             };
           }
         ];

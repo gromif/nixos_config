@@ -1,9 +1,11 @@
-# Generated via dconf2nix: https://github.com/gvolpe/dconf2nix
-{ lib, ... }:
+{ config, lib, pkgs, ... }:
 
 with lib.hm.gvariant;
 
 {
+  home.username = "alex";
+
+  # Start menu folders
   dconf.settings = {
     "org/gnome/desktop/app-folders".folder-children = [ "System" "Utilities" "debc1815-8f93-41f6-8252-8a22e5f522dc" "9da94c53-050d-44e4-9210-cf797dceba74" "d578561a-14ef-4860-8ce3-c918b19e2f6a" ];
 

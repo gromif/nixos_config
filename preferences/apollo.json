@@ -2,7 +2,10 @@
   "hostName": "apollo",
   "system": {
     "persistentStoragePath": "/nix/state",
-    "stateVersion": "25.11"
+    "stateVersion": "25.11",
+    "home": {
+      "stateVersion": "25.11"
+    }
   },
   "time": {
     "timeZone": "Europe/Kyiv"
