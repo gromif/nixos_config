@@ -45,11 +45,9 @@
 
       ./secrets/shared
       ./modules/impermanence
-      ./modules/console.nix
       ./modules/zram.nix
       ./modules/nix/common.nix
       ./modules/zsh.nix
-      ./modules/security/common.nix
       ./modules/fonts/common.nix
       ./modules/utils/common.nix
       ./modules/utils/compression.nix
@@ -70,8 +68,10 @@
           ./modules/kernel/lts.nix
           ./modules/kernel/modules/v4l2loopback.nix
           # ./modules/security/luks.nix
+          ./modules/security/common.nix
           ./modules/security/sandbox
           ./modules/hardware/common.nix
+          ./modules/console.nix
           ./modules/network.nix
           ./modules/services/openssh.nix
           ./modules/sound/common.nix
@@ -128,6 +128,7 @@
           ./modules/boot/grub2.nix
           ./modules/kernel/lts.nix
           # ./modules/security/sandbox
+          ./modules/security/common.nix
           ./modules/hardware/common.nix
           ./modules/network.nix
           ./modules/services/openssh.nix
@@ -142,22 +143,7 @@
       in nixpkgs-stable.lib.nixosSystem {
         system = "aarch64-linux";
         specialArgs = { inherit preferences; };
-        modules = [
-          impermanence.nixosModules.impermanence
-          sops-nix-unstable.nixosModules.sops
-
-          ./secrets/shared
-          ./modules/impermanence
-          # ./modules/console.nix
-          ./modules/nix/common.nix
-          ./modules/zsh.nix
-          # ./modules/security/common.nix
-          ./modules/fonts/common.nix
-          ./modules/sops.nix
-          ./modules/utils/common.nix
-          ./modules/utils/compression.nix
-          ./modules/programs/git.nix
-        ] ++ [
+        modules = sharedModules ++ [
           nixos-avf.nixosModules.avf
           ./hosts/moon
           ./secrets/moon
