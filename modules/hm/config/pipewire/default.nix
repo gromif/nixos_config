@@ -1,7 +1,7 @@
 { config, pkgs, ... }:
 
 let
-  path = ../modules/hm/config/pipewire/default;
+  path = ../pipewire;
 in
 {
   xdg.configFile = {
