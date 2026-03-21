@@ -12,8 +12,12 @@ with lib;
   ];
 
   nixfiles = {
+    system = {
+      stateVersion = "25.11";
+    };
     sound.backend = "pipewire";
   };
+  
   users.users.alex = {
     isNormalUser = true;
     description = "Alex";
@@ -91,7 +95,6 @@ with lib;
   };
   
   # Common preferences
-  system.stateVersion = preferences.system.stateVersion;
   time.timeZone = preferences.time.timeZone;
   networking.hostName = preferences.hostName;
 }

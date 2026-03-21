@@ -7,6 +7,13 @@
   imports = [
     ./hardware-configuration.nix
   ];
+
+  nixfiles = {
+    system = {
+      stateVersion = "25.05";
+    };
+  };
+  
   # Auto-login the first tty console
   services.getty.autologinUser = "warden";
 
@@ -47,7 +54,6 @@
   services.fstrim.enable = lib.mkDefault false; # Pointless on HDDs
 
   # Common preferences
-  system.stateVersion = preferences.system.stateVersion;
   time.timeZone = preferences.time.timeZone;
   networking.hostName = preferences.hostName;
 }
