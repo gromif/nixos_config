@@ -63,7 +63,6 @@
           ./secrets/apollo
           ./modules/sops.nix
           ./modules/boot/systemd.nix
-          ./modules/kernel/lts.nix
           ./modules/kernel/modules/v4l2loopback.nix
           # ./modules/security/luks.nix
           ./modules/security/common.nix
@@ -122,7 +121,6 @@
           ./secrets/mercury
           ./modules/sops.nix
           ./modules/boot/grub2.nix
-          ./modules/kernel/lts.nix
           # ./modules/security/sandbox
           ./modules/security/common.nix
           ./modules/hardware/common.nix
