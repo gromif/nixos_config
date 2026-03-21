@@ -71,7 +71,6 @@
           ./modules/security/sandbox
           ./modules/hardware/common.nix
           ./modules/console.nix
-          ./modules/network.nix
           ./modules/services/openssh.nix
           ./modules/sound/common.nix
           ./modules/sound/pipewire.nix
@@ -130,7 +129,6 @@
           # ./modules/security/sandbox
           ./modules/security/common.nix
           ./modules/hardware/common.nix
-          ./modules/network.nix
           ./modules/services/openssh.nix
           ./modules/locale/en_GB.nix
           ./modules/scripts/maintainance.nix
