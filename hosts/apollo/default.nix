@@ -11,6 +11,9 @@ with lib;
     ./crypttab.nix
   ];
 
+  nixfiles = {
+    sound.backend = "pipewire";
+  };
   users.users.alex = {
     isNormalUser = true;
     description = "Alex";

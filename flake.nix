@@ -72,8 +72,6 @@
           ./modules/hardware/common.nix
           ./modules/console.nix
           ./modules/services/openssh.nix
-          ./modules/sound/common.nix
-          ./modules/sound/pipewire.nix
           ./modules/locale/en_GB.nix
           ./modules/codecs.nix
           ./modules/fonts.nix
