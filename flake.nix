@@ -50,7 +50,6 @@
       ./modules/zsh.nix
       ./modules/utils/common.nix
       ./modules/utils/compression.nix
-      ./modules/programs/git.nix
     ];
   in {
     nixosConfigurations = {
