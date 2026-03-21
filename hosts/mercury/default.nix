@@ -12,6 +12,9 @@
     system = {
       stateVersion = "25.05";
     };
+    network = {
+      hostName = builtins.baseNameOf ./.;
+    };
   };
   
   # Auto-login the first tty console
@@ -55,5 +58,4 @@
 
   # Common preferences
   time.timeZone = preferences.time.timeZone;
-  networking.hostName = preferences.hostName;
 }

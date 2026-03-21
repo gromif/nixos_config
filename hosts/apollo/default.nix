@@ -15,6 +15,9 @@ with lib;
     system = {
       stateVersion = "25.11";
     };
+    network = {
+      hostName = builtins.baseNameOf ./.;
+    };
     sound.backend = "pipewire";
   };
   
@@ -96,5 +99,4 @@ with lib;
   
   # Common preferences
   time.timeZone = preferences.time.timeZone;
-  networking.hostName = preferences.hostName;
 }

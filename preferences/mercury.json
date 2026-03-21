@@ -1,5 +1,4 @@
 {
-  "hostName": "mercury",
   "system": {
     "persistentStoragePath": "/nix/state"
   },

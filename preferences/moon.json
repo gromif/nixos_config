@@ -1,5 +1,4 @@
 {
-  "hostName": "moon",
   "system": {
     "persistentStoragePath": "/nix/state"
   },

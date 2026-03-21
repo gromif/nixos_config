@@ -2,8 +2,14 @@
 
 let
   cfg = config.nixfiles.network;
+  aliases = [
+    (lib.mkAliasOptionModule [ "nixfiles" "network" "hostName"] [ "networking" "hostName"])
+  ];
+  isAvf = config.nixfiles.system.type == "avf";
 in with lib;
 {
+  imports = aliases;
+  
   options.nixfiles.network = {
     enable = mkOption {
       type = types.bool;
@@ -21,7 +27,7 @@ in with lib;
   };
 
   config = mkIf cfg.enable {  
-    networking.networkmanager.enable = true;
+    networking.networkmanager.enable = mkIf (!isAvf) true;
     # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant
 
     boot = mkIf cfg.useBBR {

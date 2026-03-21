@@ -17,14 +17,15 @@
       type = "avf";
       stateVersion = "25.11";
     };
-    network.enable = false;
+    network = {
+      hostName = builtins.baseNameOf ./.;
+    };
   };
   
   users.users.root.password = "1111";
   users.users.droid = {
     createHome = true;
   };
-  networking.hostName = preferences.hostName;
   # Change default user
   # avf.defaultUser = "droid";
 

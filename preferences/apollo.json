@@ -1,5 +1,4 @@
 {
-  "hostName": "apollo",
   "system": {
     "persistentStoragePath": "/nix/state",
     "home": {
