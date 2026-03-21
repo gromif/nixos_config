@@ -43,10 +43,10 @@
       impermanence.nixosModules.impermanence
       sops-nix-unstable.nixosModules.sops
 
+      ./nixfiles.nix
       ./secrets/shared
+      ./modules/sops.nix
       ./modules/impermanence
-      ./modules/zram.nix
-      ./modules/nix/common.nix
       ./modules/zsh.nix
       ./modules/utils/common.nix
       ./modules/utils/compression.nix

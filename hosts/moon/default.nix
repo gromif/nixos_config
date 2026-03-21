@@ -12,6 +12,7 @@
     # include nixos-avf modules
     # <nixos-avf/avf>
   ];
+  nixfiles.system.type = "avf";
   
   users.users.root.password = "1111";
   users.users.droid = {
