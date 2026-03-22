@@ -7,7 +7,7 @@ with lib;
     enable = mkOption {
       type = types.bool;
       default = false;
-      descrption = "Whether to enable the v4l2loopback module.";
+      description = "Whether to enable the v4l2loopback module.";
     };
   };
 
