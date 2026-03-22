@@ -16,7 +16,7 @@
   users.groups.media = {};
 
   # Set up impermanence
-  environment.impermanence.directories = [
+  nixfiles.impermanence.directories = [
     "/var/lib/slskd"
   ];
 }
