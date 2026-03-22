@@ -65,7 +65,6 @@
           ./modules/security/sandbox
           ./modules/hardware/common.nix
           ./modules/console.nix
-          ./modules/services/openssh.nix
           ./modules/locale/en_GB.nix
           ./modules/codecs.nix
           ./modules/fonts.nix
@@ -116,7 +115,6 @@
           # ./modules/security/sandbox
           ./modules/security/common.nix
           ./modules/hardware/common.nix
-          ./modules/services/openssh.nix
           ./modules/locale/en_GB.nix
           ./modules/scripts/maintainance.nix
           ./modules/services/qbittorrent.nix

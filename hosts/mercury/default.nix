@@ -1,7 +1,4 @@
-# Hosts - Mercury
-
-
-{ preferences, config, lib, pkgs, ... }:
+{ config, lib, pkgs, ... }:
 
 {
   imports = [
@@ -17,13 +14,16 @@
     network = {
       hostName = builtins.baseNameOf ./.;
     };
+    services.openssh = {
+      enable = true;
+      ports = [ 31472 ];
+    };
   };
   
   # Auto-login the first tty console
   services.getty.autologinUser = "warden";
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.mutableUsers = false;
   users.users.warden = {
     isNormalUser = true;
     extraGroups = [ "wheel" ];

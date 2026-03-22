@@ -1,6 +1,4 @@
-{ preferences, config, pkgs, lib, ... }:
-
-with lib;
+{ config, pkgs, ... }:
 
 {
   imports = [
@@ -19,6 +17,10 @@ with lib;
       hostName = builtins.baseNameOf ./.;
     };
     sound.backend = "pipewire";
+    services.openssh = {
+      enable = true;
+      ports = [ 24942 ];
+    };
   };
   
   users.users.alex = {
@@ -92,8 +94,5 @@ with lib;
   prefs.hardware.graphics.gpuVendor = "amd";
   
   # services
-  services = {
-    getty.autologinUser = config.users.users.alex.name;
-    openssh.ports = mkForce [ 24942 ];
-  };  
+  services.getty.autologinUser = config.users.users.alex.name; 
 }
