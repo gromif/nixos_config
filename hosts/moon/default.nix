@@ -34,5 +34,5 @@
     yt-dlp
   ];
 
-  environment.impermanence.enable = lib.mkForce false;
+  nixfiles.impermanence.enable = lib.mkForce false;
 }

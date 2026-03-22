@@ -1,15 +1,12 @@
-# Impermanence
-
-
-{ preferences, config, lib, ... }:
+{ config, lib, ... }:
 
 with lib;
 
 let
-  cfg = config.environment.impermanence;
-  persistentStoragePath = preferences.system.persistentStoragePath;
-  inAliases = [ "environment" "impermanence" ];
-  toAliases = [ "environment" "persistence" persistentStoragePath ];
+  cfg = config.nixfiles.impermanence;
+  persistPath = "/nix/state";
+  inAliases = [ "nixfiles" "impermanence" ];
+  toAliases = [ "environment" "persistence" persistPath ];
   aliases = map (option:
     mkAliasOptionModule (inAliases ++ [ option ]) (toAliases ++ [ option ])
   ) [
@@ -24,14 +21,15 @@ let
 in
 {
   imports = aliases ++ [ ./scripts.nix  ];
-   
-  options.environment.impermanence = {
+  
+  options.nixfiles.impermanence = {
     enable = mkEnableOption "enable the Impermanence module";
   };
 
   config = {
-    environment.impermanence.enable = true; # Enable by default
-    environment.persistence."${persistentStoragePath}" = mkIf (cfg.enable) {
+    nixfiles.impermanence.enable = mkDefault true;
+    
+    environment.persistence."${persistPath}" = mkIf (cfg.enable) {
       directories = [
         "/home"
         "/etc/NetworkManager/system-connections" # Manual network configs
@@ -56,7 +54,7 @@ in
     
     # adjust `persist` mode at runtime
     systemd.tmpfiles.rules = [
-      "z ${persistentStoragePath} 0750 root root - -"
+      "z ${persistPath} 0750 root root - -"
     ];
   };
 }

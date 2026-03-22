@@ -38,7 +38,7 @@ in
 	};
 
 	# Persist data
-    environment.impermanence.directories = mkIf (impermanent) [
+    nixfiles.impermanence.directories = mkIf (impermanent) [
 	    "/root/.config/zsh"
 	  ];
 }

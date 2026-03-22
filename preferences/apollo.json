@@ -1,6 +1,5 @@
 {
   "system": {
-    "persistentStoragePath": "/nix/state",
     "home": {
       "stateVersion": "25.11"
     }

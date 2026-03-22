@@ -1,7 +1,4 @@
 {
-  "system": {
-    "persistentStoragePath": "/nix/state"
-  },
   "time": {
     "timeZone": "Europe/Berlin"
   }

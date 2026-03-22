@@ -3,7 +3,7 @@
 { inputs, config, pkgs, ... }:
 
 let
-  cfgImperm = config.environment.impermanence;
+  cfgImperm = config.nixfiles.impermanence;
   host = config.networking.hostName;
   ageKeyFilePath = "/root/.config/sops/age/keys.txt";
 

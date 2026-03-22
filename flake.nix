@@ -46,7 +46,6 @@
       ./nixfiles.nix
       ./secrets/shared
       ./modules/sops.nix
-      ./modules/impermanence
       ./modules/zsh.nix
       ./modules/utils/common.nix
       ./modules/utils/compression.nix
