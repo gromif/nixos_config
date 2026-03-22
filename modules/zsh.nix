@@ -6,7 +6,7 @@
 with lib;
 
 let
-  impermanent = config.environment.impermanence.enable or false;
+  impermanent = config.nixfiles.impermanence.enable or false;
 in
 {
 	users.defaultUserShell = pkgs.zsh;
