@@ -21,7 +21,7 @@
   };
 
   # Persist data
-  environment.impermanence.directories = [
+  nixfiles.impermanence.directories = [
     "/var/lib/qBittorrent"
   ];
 }
