@@ -6,7 +6,7 @@
 with lib;
 
 let
-  cfg_imperm = config.environment.impermanence;
+  cfg_imperm = config.nixfiles.impermanence;
   isImpermanent = cfg_imperm.enable;
 in
 {
