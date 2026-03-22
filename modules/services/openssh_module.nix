@@ -22,30 +22,36 @@ in
     };
   };
 
-  config = mkIf cfg.enable {
-    services.openssh = {
-      enable = true;
-      settings = {
-        PasswordAuthentication = false;
-        KbdInteractiveAuthentication = false;
-        PermitRootLogin = "prohibit-password"; # prohibit-password
-      };
-    };
+  config = mkIf cfg.enable (
+    mkMerge [
+      {
+        services.openssh = {
+          enable = true;
+          settings = {
+            PasswordAuthentication = false;
+            KbdInteractiveAuthentication = false;
+            PermitRootLogin = "prohibit-password"; # prohibit-password
+          };
+        };
+      }
 
-    services = mkIf cfg.enableEssentials {
-      fail2ban = {
-        enable = true;
-      };
-      endlessh = {
-        enable = true;
-        port = 22;
-        openFirewall = true;
-      };
-    };
+      mkIf cfg.enableEssentials {
+        services = {
+          fail2ban = {
+            enable = true;
+          };
+          endlessh = {
+            enable = true;
+            port = 22;
+            openFirewall = true;
+          }; 
+        };
 
-    # Persist data
-    nixfiles.impermanence.directories = mkIf config.services.fail2ban.enable [
-      "/var/lib/fail2ban"
-    ];
-  };
+        # Persist data
+        nixfiles.impermanence.directories = mkIf config.services.fail2ban.enable [
+          "/var/lib/fail2ban"
+        ];
+      }
+    ]
+  );
 }
