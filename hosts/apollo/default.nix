@@ -11,6 +11,8 @@ with lib;
     ./crypttab.nix
   ];
 
+  time.timeZone = "Europe/Berlin";
+
   nixfiles = {
     system = {
       stateVersion = "25.11";
@@ -95,8 +97,5 @@ with lib;
   services = {
     getty.autologinUser = config.users.users.alex.name;
     openssh.ports = mkForce [ 24942 ];
-  };
-  
-  # Common preferences
-  time.timeZone = preferences.time.timeZone;
+  };  
 }

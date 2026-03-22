@@ -8,6 +8,8 @@
     ./hardware-configuration.nix
   ];
 
+  time.timeZone = "Europe/Kyiv";
+  
   nixfiles = {
     system = {
       stateVersion = "25.05";
@@ -55,7 +57,4 @@
 
   # Hardware
   services.fstrim.enable = lib.mkDefault false; # Pointless on HDDs
-
-  # Common preferences
-  time.timeZone = preferences.time.timeZone;
 }

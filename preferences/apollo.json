@@ -4,9 +4,6 @@
       "stateVersion": "25.11"
     }
   },
-  "time": {
-    "timeZone": "Europe/Kyiv"
-  },
   "virtualisation": {
     "libvirtd": {
       "members": [ "alex" ]

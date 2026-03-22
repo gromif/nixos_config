@@ -108,11 +108,8 @@
           }
         ];
       };
-      mercury = let
-        preferences = builtins.fromJSON (builtins.readFile ./preferences/mercury.json);
-      in nixpkgs-stable.lib.nixosSystem {
+      mercury = nixpkgs-stable.lib.nixosSystem {
         inherit system;
-        specialArgs = { inherit preferences; };
         modules = sharedModules ++ [
           ./hosts/mercury
           ./secrets/mercury
@@ -127,11 +124,8 @@
           ./modules/services/slskd.nix
         ];
       };
-      moon = let
-        preferences = builtins.fromJSON (builtins.readFile ./preferences/moon.json);
-      in nixpkgs-stable.lib.nixosSystem {
+      moon = nixpkgs-stable.lib.nixosSystem {
         system = "aarch64-linux";
-        specialArgs = { inherit preferences; };
         modules = sharedModules ++ [
           nixos-avf.nixosModules.avf
           ./hosts/moon

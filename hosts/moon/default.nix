@@ -12,6 +12,9 @@
     # include nixos-avf modules
     # <nixos-avf/avf>
   ];
+  
+  time.timeZone = "Europe/Berlin";
+  
   nixfiles = {
     system = {
       type = "avf";
