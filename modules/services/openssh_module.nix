@@ -5,9 +5,9 @@ with lib;
 let
   cfg = config.nixfiles.services.openssh;
   aliases = [
-    mkAliasOptionModule
+    (mkAliasOptionModule
       [ "nixfiles" "services" "openssh" "ports" ]
-      [ "services" "openssh" "ports" ]
+      [ "services" "openssh" "ports" ])
   ];
 in
 {
