@@ -60,7 +60,6 @@
           ./hosts/apollo
           ./secrets/apollo
           ./modules/boot/systemd.nix
-          ./modules/kernel/modules/v4l2loopback.nix
           # ./modules/security/luks.nix
           ./modules/security/common.nix
           ./modules/security/sandbox

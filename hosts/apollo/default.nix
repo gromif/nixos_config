@@ -1,6 +1,3 @@
-# User - Alex
-
-
 { preferences, config, pkgs, lib, ... }:
 
 with lib;
@@ -17,6 +14,7 @@ with lib;
     system = {
       stateVersion = "25.11";
     };
+    boot.kernel.modules.v4l2loopback.enable = true;
     network = {
       hostName = builtins.baseNameOf ./.;
     };
