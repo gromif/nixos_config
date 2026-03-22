@@ -3,7 +3,7 @@
 with lib;
 
 {
-  options.nixfiles.boot.kernel.modules.v4l2loopback = {
+  options.nixfiles.boot.kernelModules.v4l2loopback = {
     enable = mkOption {
       type = types.bool;
       default = false;
@@ -11,7 +11,7 @@ with lib;
     };
   };
 
-  config = mkIf config.nixfiles.boot.kernel.modules.v4l2loopback.enable {
+  config = mkIf config.nixfiles.boot.kernelModules.v4l2loopback.enable {
     boot.extraModulePackages = with config.boot.kernelPackages; [ v4l2loopback ];
     boot.kernelModules = [ "v4l2loopback" ];
     boot.extraModprobeConfig = ''

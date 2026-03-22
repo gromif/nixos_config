@@ -12,7 +12,7 @@
     system = {
       stateVersion = "25.11";
     };
-    boot.kernel.modules.v4l2loopback.enable = true;
+    boot.kernelModules.v4l2loopback.enable = true;
     network = {
       hostName = builtins.baseNameOf ./.;
     };
