@@ -45,7 +45,6 @@
 
       ./nixfiles.nix
       ./secrets/shared
-      ./modules/sops.nix
       ./modules/zsh.nix
       ./modules/utils/common.nix
       ./modules/utils/compression.nix
@@ -60,7 +59,6 @@
         modules = sharedModules ++ [
           ./hosts/apollo
           ./secrets/apollo
-          ./modules/sops.nix
           ./modules/boot/systemd.nix
           ./modules/kernel/modules/v4l2loopback.nix
           # ./modules/security/luks.nix
@@ -118,7 +116,6 @@
         modules = sharedModules ++ [
           ./hosts/mercury
           ./secrets/mercury
-          ./modules/sops.nix
           ./modules/boot/grub2.nix
           # ./modules/security/sandbox
           ./modules/security/common.nix
