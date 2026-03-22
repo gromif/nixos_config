@@ -35,7 +35,7 @@ in
         };
       }
 
-      mkIf cfg.enableEssentials {
+     (mkIf cfg.enableEssentials {
         services = {
           fail2ban = {
             enable = true;
@@ -51,7 +51,7 @@ in
         nixfiles.impermanence.directories = mkIf config.services.fail2ban.enable [
           "/var/lib/fail2ban"
         ];
-      }
+      })
     ]
   );
 }
