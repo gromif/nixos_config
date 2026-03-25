@@ -5,7 +5,7 @@
 # NixOS-WSL specific options are documented on the NixOS-WSL repository:
 # https://github.com/nix-community/NixOS-WSL
 
-{ preferences, config, lib, pkgs, ... }:
+{ config, lib, pkgs, ... }:
 
 {
   imports = [
@@ -19,6 +19,9 @@
     system = {
       type = "avf";
       stateVersion = "25.11";
+    };
+    security = {
+      enableCommon = false;
     };
     network = {
       hostName = builtins.baseNameOf ./.;

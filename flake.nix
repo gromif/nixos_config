@@ -59,7 +59,6 @@
           ./hosts/apollo
           ./modules/boot/systemd.nix
           # ./modules/security/luks.nix
-          ./modules/security/common.nix
           ./modules/security/sandbox
           ./modules/hardware/common.nix
           ./modules/console.nix
@@ -103,7 +102,6 @@
           ./hosts/mercury
           ./modules/boot/grub2.nix
           # ./modules/security/sandbox
-          ./modules/security/common.nix
           ./modules/hardware/common.nix
           ./modules/scripts/maintainance.nix
           ./modules/services/qbittorrent.nix
