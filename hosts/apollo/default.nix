@@ -17,6 +17,16 @@
       hostName = builtins.baseNameOf ./.;
     };
     sound.backend = "pipewire";
+    de = {
+      enable = true;
+      gnome = {
+        enable = true;
+        service = {
+          random-background.enable = true;
+          theme-changer.enable = true;
+        };
+      };
+    };
     services.openssh = {
       enable = true;
       ports = [ 24942 ];

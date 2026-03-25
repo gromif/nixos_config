@@ -65,12 +65,6 @@
           ./modules/security/sandbox
           ./modules/hardware/common.nix
           ./modules/console.nix
-          ./modules/codecs.nix
-          ./modules/fonts.nix
-          ./modules/desktop/common.nix
-          ./modules/desktop/gnome/common.nix
-          ./modules/desktop/gnome/services/theme-changer.nix
-          ./modules/desktop/gnome/services/random-background.nix
           ./modules/mimetypes.nix
           ./modules/virt/libvirtd.nix
           ./modules/virt/docker.nix
