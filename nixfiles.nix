@@ -4,7 +4,10 @@ let
   modules =
     builtins.filter
       (f: lib.hasSuffix "_module.nix" f)
-      (lib.filesystem.listFilesRecursive ./modules);
+      (
+        (lib.filesystem.listFilesRecursive ./modules) ++
+        (lib.filesystem.listFilesRecursive ./secrets)
+      );
   aliases = [
     (lib.mkAliasOptionModule [ "nixfiles" "system" "stateVersion" ] [ "system" "stateVersion" ])
   ];

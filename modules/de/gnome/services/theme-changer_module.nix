@@ -3,7 +3,7 @@
 with lib;
 
 let
-  cfg = nixfiles.de.gnome.services.theme-changer;
+  cfg = config.nixfiles.de.gnome.services.theme-changer;
   themeChanger = pkgs.writeShellApplication {
   	  name = "theme-changer";
   	  runtimeInputs = with pkgs; [

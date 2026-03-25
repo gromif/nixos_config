@@ -44,7 +44,6 @@
       sops-nix-unstable.nixosModules.sops
 
       ./nixfiles.nix
-      ./secrets/shared
       ./modules/zsh.nix
       ./modules/utils/common.nix
       ./modules/utils/compression.nix
@@ -58,7 +57,6 @@
         specialArgs = { inherit preferences; };
         modules = sharedModules ++ [
           ./hosts/apollo
-          ./secrets/apollo
           ./modules/boot/systemd.nix
           # ./modules/security/luks.nix
           ./modules/security/common.nix
@@ -103,7 +101,6 @@
         inherit system;
         modules = sharedModules ++ [
           ./hosts/mercury
-          ./secrets/mercury
           ./modules/boot/grub2.nix
           # ./modules/security/sandbox
           ./modules/security/common.nix
@@ -118,7 +115,6 @@
         modules = sharedModules ++ [
           nixos-avf.nixosModules.avf
           ./hosts/moon
-          ./secrets/moon
 
           ./modules/scripts
         ];
