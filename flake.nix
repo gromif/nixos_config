@@ -70,7 +70,6 @@
           ./modules/services/wallpapers-optimiser.nix
           ./modules/services/screenshot-optimiser.nix
           ./modules/services/unarchiver.nix
-          ./modules/services/qbittorrent.nix
           ./modules/scripts
           ./modules/programs/android-studio.nix
           ./modules/programs/gapless.nix
