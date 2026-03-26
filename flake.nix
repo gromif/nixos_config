@@ -45,7 +45,6 @@
 
       ./nixfiles.nix
       ./modules/zsh.nix
-      ./modules/utils/common.nix
       ./modules/utils/compression.nix
     ];
   in {
