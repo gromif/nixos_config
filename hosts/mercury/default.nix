@@ -1,5 +1,7 @@
 { config, lib, pkgs, ... }:
 
+with lib;
+
 {
   imports = [
     ./hardware-configuration.nix
@@ -10,6 +12,10 @@
   nixfiles = {
     system = {
       stateVersion = "25.05";
+      nix = {
+        enableGC = mkForce false;
+        enableOptimise = mkForce false;
+      };
     };
     network = {
       hostName = builtins.baseNameOf ./.;
