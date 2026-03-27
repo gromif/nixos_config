@@ -62,5 +62,8 @@ with lib;
   };
 
   # Hardware
-  services.fstrim.enable = lib.mkDefault false; # Pointless on HDDs
+  services = {
+    fstrim.enable = lib.mkDefault false; # Pointless on HDDs
+    journald.storage = "volatile"; # Avoid unnecessary operations for HDDs
+  };
 }
