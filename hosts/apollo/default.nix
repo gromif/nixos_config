@@ -27,9 +27,15 @@
         };
       };
     };
+    virtualisation = {
+      docker = {
+        enable = true;
+        users = [ config.users.users.alex.name ];
+      };
+    }
     programs = {
       sets = {
-        medua = true;
+        media = true;
       };
     };
     services.openssh = {
