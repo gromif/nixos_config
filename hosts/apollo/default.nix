@@ -10,6 +10,7 @@
 
   nixfiles = {
     system = {
+      shell.console.optimalSettings = true;
       stateVersion = "25.11";
     };
     boot.kernelModules.v4l2loopback.enable = true;

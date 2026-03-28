@@ -24,6 +24,9 @@ in
       default = true;
       description = "Whether to make it default for all users";
     };
+    console = {
+      optimalSettings = mkEnableOption "optimal SystemD console settings";
+    };
     zsh = {
       
     };
@@ -38,6 +41,13 @@ in
     }
     (mkIf cfg.makeDefault {
       users.defaultUserShell = shellPkgs.${cfg.type};
+    })
+    (mkIf cfg.console.optimalSettings {
+      console = {
+        # earlySetup = true;
+        packages = with pkgs; [ terminus_font ];
+        font = "ter-128b.psf.gz";
+      };
     })
     (mkIf (cfg.type == "zsh") {
       environment.variables.ZDOTDIR = "$HOME/.config/zsh";

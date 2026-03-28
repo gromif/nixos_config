@@ -59,7 +59,6 @@
           # ./modules/security/luks.nix
           ./modules/security/sandbox
           ./modules/hardware/common.nix
-          ./modules/console.nix
           ./modules/mimetypes.nix
           ./modules/virt/libvirtd.nix
           ./modules/games/common.nix
