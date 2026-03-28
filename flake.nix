@@ -44,7 +44,6 @@
       sops-nix-unstable.nixosModules.sops
 
       ./nixfiles.nix
-      ./modules/zsh.nix
       ./modules/utils/compression.nix
     ];
   in {
