@@ -1,9 +1,9 @@
-{ config, preferences, ... }:
+{ config, ... }:
 
 {
   home = {
     homeDirectory = "/home/${config.home.username}";
-    stateVersion = preferences.system.home.stateVersion;
+    stateVersion = "25.11";
   };
   
   # Let Home Manager install and manage itself.

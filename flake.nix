@@ -48,11 +48,8 @@
     ];
   in {
     nixosConfigurations = {
-      apollo = let
-        preferences = builtins.fromJSON (builtins.readFile ./preferences/apollo.json);
-      in nixpkgs.lib.nixosSystem {
+      apollo = nixpkgs.lib.nixosSystem {
         inherit system;
-        specialArgs = { inherit preferences; };
         modules = sharedModules ++ [
           ./hosts/apollo
           ./modules/boot/systemd.nix
@@ -74,7 +71,6 @@
             home-manager = {
               useGlobalPkgs = true;
               useUserPackages = true;
-              extraSpecialArgs = { inherit preferences; }; 
               users.alex = { ... }: {
                 imports = [
                   ./hosts/apollo/home-manager/alex.nix
