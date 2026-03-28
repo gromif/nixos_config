@@ -60,7 +60,6 @@
           ./modules/security/sandbox
           ./modules/hardware/common.nix
           ./modules/mimetypes.nix
-          ./modules/virt/libvirtd.nix
           ./modules/games/common.nix
           ./modules/services/wallpapers-optimiser.nix
           ./modules/services/screenshot-optimiser.nix

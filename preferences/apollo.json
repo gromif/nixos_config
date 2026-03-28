@@ -3,13 +3,5 @@
     "home": {
       "stateVersion": "25.11"
     }
-  },
-  "virtualisation": {
-    "libvirtd": {
-      "members": [ "alex" ]
-    },
-    "docker": {
-      "members": [ "alex" ]
-    }
   }
 }

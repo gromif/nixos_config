@@ -29,6 +29,12 @@
       };
     };
     virtualisation = {
+      libvirtd = {
+        enable = true;
+        members = [
+          config.users.users.alex.name
+        ];
+      };
       docker = {
         enable = true;
         users = [ config.users.users.alex.name ];

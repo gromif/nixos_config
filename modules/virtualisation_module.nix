@@ -16,6 +16,14 @@ in
         description = "List of users to include in the docker group";
       };
     };
+    libvirtd = {
+      enable = mkEnableOption "libvirtd";
+      members = mkOption {
+        type = types.listOf types.str;
+        default = [];
+        description = "Include in the libvirtd group";
+      };
+    };
   };
 
   config = mkMerge [
@@ -36,6 +44,27 @@ in
       # Persist data
       nixfiles.impermanence.directories = mkIf (isImperm) [
         "/var/lib/docker"
+      ];
+    })
+    (mkIf cfg.libvirtd.enable {
+      # Virt Manager
+      programs.virt-manager.enable = true;
+
+      users.groups.libvirtd.members = cfg.libvirtd.members;
+
+      virtualisation = {
+        libvirtd.enable = true;
+        spiceUSBRedirection.enable = true;
+      };
+ 
+      # Other stuff
+      environment.systemPackages = with pkgs; [
+        virtiofsd
+      ];
+
+      # Persist data
+      nixfiles.impermanence.directories = mkIf isImperm [
+        "/var/lib/libvirt"
       ];
     })
   ];
