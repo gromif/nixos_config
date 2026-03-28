@@ -17,14 +17,14 @@
     device = "none";
     neededForBoot = true;
     fsType = "tmpfs";
-    options = [ "defaults" "size=25%" "mode=755" ];
+    options = [ "defaults" "size=25%" "mode=755" "noatime" ];
   };
 
   fileSystems."/nix" = {
     device = "/dev/disk/by-uuid/eb6025c9-5a77-4f67-9101-d69662fce63e";
     neededForBoot = true;
     fsType = "xfs";
-    options = [ "defaults" ];
+    options = [ "defaults" "noatime" ];
   };
 
   fileSystems."/mnt/drive_m" = {
