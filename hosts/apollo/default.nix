@@ -27,6 +27,11 @@
         };
       };
     };
+    programs = {
+      sets = {
+        medua = true;
+      };
+    };
     services.openssh = {
       enable = true;
       ports = [ 24942 ];

@@ -64,7 +64,6 @@
           ./modules/mimetypes.nix
           ./modules/virt/libvirtd.nix
           ./modules/virt/docker.nix
-          ./modules/utils/media.nix
           ./modules/games/common.nix
           ./modules/services/wallpapers-optimiser.nix
           ./modules/services/screenshot-optimiser.nix
