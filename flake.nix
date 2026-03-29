@@ -55,7 +55,6 @@
           ./modules/boot/systemd.nix
           # ./modules/security/luks.nix
           ./modules/security/sandbox
-          ./modules/hardware/common.nix
           ./modules/mimetypes.nix
           ./modules/games/common.nix
           ./modules/services/wallpapers-optimiser.nix
@@ -91,7 +90,6 @@
           ./hosts/mercury
           ./modules/boot/grub2.nix
           # ./modules/security/sandbox
-          ./modules/hardware/common.nix
           ./modules/scripts/maintainance.nix
           ./modules/services/qbittorrent.nix
           ./modules/services/slskd.nix

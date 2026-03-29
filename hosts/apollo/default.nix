@@ -18,6 +18,9 @@
       hostName = builtins.baseNameOf ./.;
     };
     sound.backend = "pipewire";
+    hardware = {
+      graphics.vendor = "amd";
+    };
     de = {
       enable = true;
       gnome = {
@@ -117,9 +120,6 @@
 
   # DE
   services.displayManager.autoLogin.user = config.users.users.alex.name;
-
-  # Hardware
-  prefs.hardware.graphics.gpuVendor = "amd";
   
   # services
   services.getty.autologinUser = config.users.users.alex.name; 

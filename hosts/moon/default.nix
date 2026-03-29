@@ -26,6 +26,9 @@
     network = {
       hostName = builtins.baseNameOf ./.;
     };
+    hardware = {
+      enableCommon = false;
+    };
   };
   
   users.users.root.password = "1111";
