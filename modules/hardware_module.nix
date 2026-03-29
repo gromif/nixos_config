@@ -7,7 +7,7 @@ with lib;
 
 let
   gpuVendors = [ "amd" "intel" "none" ];
-  cfg = config.nixfiles.hardware.graphics; 
+  cfg = config.nixfiles.hardware; 
 in
 {
   options.nixfiles.hardware = {
