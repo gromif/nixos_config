@@ -48,10 +48,6 @@
         media = true;
       };
     };
-    services.openssh = {
-      enable = true;
-      ports = [ 24942 ];
-    };
   };
   
   users.users.alex = {
@@ -62,15 +58,10 @@
     hashedPasswordFile = config.sops.secrets.user_root_passwordHash.path;
     extraGroups = [ "networkmanager" "wheel" "kvm" ];
     shell = pkgs.zsh;
-    openssh.authorizedKeys.keys = config.users.users.root.openssh.authorizedKeys.keys;
   };
   
   users.users.root = {
     hashedPasswordFile = config.sops.secrets.user_root_passwordHash.path;
-    openssh.authorizedKeys.keys = [
-      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPfs0HEb2cuq00UCYgXGJ3U9jaQ4gmNa7vpTw8DgCXV4 u0_a229@localhost"
-      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIItp6Vb/vq72smtPuMdL9Iwvp5wIDxJujYagHjeCoBAI u0_a284@localhost"
-    ];
   };
 
   users.users.alex.packages = with pkgs; [
