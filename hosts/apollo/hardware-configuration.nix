@@ -35,9 +35,12 @@
   fileSystems."/mnt/drive_a" = {
     device = "/dev/mapper/crypto-drive-a";
     fsType = "btrfs";
-    options = [ "nofail" "relatime"
+    options = [
+      "nofail" "relatime"
       "compress=zstd"
-       "noauto" "x-systemd.automount" ];
+      "x-gvfs-name=Drive%20A" "x-gvfs-show"
+      "noauto" "x-systemd.automount"
+    ];
   };
 
   fileSystems."/mnt/drive_f" = {
@@ -45,6 +48,7 @@
     fsType = "xfs";
     options = [
       "nofail" "relatime"
+      "x-gvfs-name=Drive%20F" "x-gvfs-show"
       "noauto" "x-systemd.automount"
     ];
   };

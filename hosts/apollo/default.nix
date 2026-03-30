@@ -25,7 +25,7 @@
       enable = true;
       gnome = {
         enable = true;
-        service = {
+        services = {
           random-background.enable = true;
           theme-changer.enable = true;
         };
@@ -35,17 +35,17 @@
       libvirtd = {
         enable = true;
         members = [
-          config.users.users.alex.name
+          "alex"
         ];
       };
       docker = {
         enable = true;
-        users = [ config.users.users.alex.name ];
+        users = [ "alex" ];
       };
-    }
+    };
     programs = {
       sets = {
-        media = true;
+        media.enable = true;
       };
     };
   };
@@ -87,7 +87,7 @@
     folio
     nicotine-plus
     smplayer
-    qbittorrent
+    # qbittorrent
     mpv
 
     # Desktop
@@ -108,10 +108,4 @@
   programs.firefox.enable = true; # Install firefox.
 
   xdg.mime.predefined.enable = true;
-
-  # DE
-  services.displayManager.autoLogin.user = config.users.users.alex.name;
-  
-  # services
-  services.getty.autologinUser = config.users.users.alex.name; 
 }

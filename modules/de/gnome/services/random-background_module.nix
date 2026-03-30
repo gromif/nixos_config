@@ -4,8 +4,8 @@ with lib;
 
 let
   cfg = config.nixfiles.de.gnome.services.random-background;
-  intervals = type.enum [ "1m" "5m" "15m" "30m" "45m" "1h" "3h" "6h" ];
-  wallpapersFolder = "~/Pictures/wallpapers";
+  intervals = types.enum [ "1m" "5m" "15m" "30m" "45m" "1h" "3h" "6h" ];
+  wallpapersFolder = "$HOME/Pictures/wallpapers";
   randomWallpaperPkg = pkgs.writeShellApplication {
   	  name = "random-wallpaper";
   	  text = ''
