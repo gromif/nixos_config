@@ -57,7 +57,6 @@
     createHome = true;
     hashedPasswordFile = config.sops.secrets.user_root_passwordHash.path;
     extraGroups = [ "networkmanager" "wheel" "kvm" ];
-    shell = pkgs.zsh;
   };
   
   users.users.root = {
