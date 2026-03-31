@@ -41,9 +41,8 @@ with lib;
       "luks/drive_a" = {};
       "luks/drive_m" = {};
       "luks/drive_f" = {};
-      "luks/usb1" = {};
-      "luks/sd1" = {};
-      "luks/sd2" = {};
+      "luks/usb_a" = {};
+      "luks/sd_a" = {};
     
       user_root_passwordHash = {
         neededForUsers = true;
