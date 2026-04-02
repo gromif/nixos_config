@@ -2,8 +2,55 @@
 
 with lib.hm.gvariant;
 
+let
+  dconfConfigs = map (c:
+    ./dconf + "/${c}"
+  ) (builtins.attrNames (builtins.readDir ./dconf));  
+in
 {
+  imports = dconfConfigs;
+  
   home.username = "alex";
+  
+  hmfiles = {
+    gnome = {
+      enable = true;
+    };
+    programs = {
+      mangohud.enable = true;
+    };
+    services = {
+      mpd.enable = true;
+      screenshots-optimiser.enable = true;
+      wallpapers-optimiser.enable = true;
+    }; 
+  };
+
+  home.packages = with pkgs; [
+    gnomeExtensions.blur-my-shell
+    gnomeExtensions.appindicator
+    gnomeExtensions.legacy-gtk3-theme-scheme-auto-switcher # adw-gtk3 auto-switcher
+    gnomeExtensions.caffeine
+    gnomeExtensions.light-style # Official Light mode support
+    gnomeExtensions.gsconnect
+    gnomeExtensions.control-monitor-brightness-and-volume-with-ddcutil
+  ];
+  
+  # Favourite applications
+  dconf.settings = {
+    "org/gnome/shell" = {
+      favorite-apps = [
+        "org.gnome.Nautilus.desktop"
+        "firefox.desktop"
+        "org.gnome.Console.desktop"
+        "io.github.htkhiem.Euphonica.desktop"
+        "android-studio.desktop"
+        "io.github.kukuruzka165.materialgram.desktop"
+        "com.usebottles.bottles.desktop"
+        "org.gnome.TextEditor.desktop"
+      ];
+    };
+  };
 
   # Start menu folders
   dconf.settings = {

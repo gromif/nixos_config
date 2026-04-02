@@ -17,16 +17,6 @@ with lib.hm.gvariant;
         gsconnect.extensionUuid
         control-monitor-brightness-and-volume-with-ddcutil.extensionUuid
       ];
-      favorite-apps = [
-        "org.gnome.Nautilus.desktop"
-        "firefox.desktop"
-        "org.gnome.Console.desktop"
-        "io.github.htkhiem.Euphonica.desktop"
-        "android-studio.desktop"
-        "io.github.kukuruzka165.materialgram.desktop"
-        "com.usebottles.bottles.desktop"
-        "org.gnome.TextEditor.desktop"
-      ];
     };
     "org/gnome/settings-daemon/plugins/media-keys" = {
       volume-step = 2;
@@ -34,10 +24,7 @@ with lib.hm.gvariant;
     # Mutter
     "org/gnome/mutter" = {
       center-new-windows = true;
-      experimental-features = [
-        "autoclose-xwayland"
-        "variable-refresh-rate" # VRR Support
-      ];
+      experimental-features = [ "autoclose-xwayland" ];
     };
 
     # Interface

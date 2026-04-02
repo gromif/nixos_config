@@ -46,6 +46,7 @@
       ./nixfiles.nix
       ./modules/utils/compression.nix
     ];
+    hmSharedModules = [ ./hmfiles.nix ];
   in {
     nixosConfigurations = {
       apollo = nixpkgs.lib.nixosSystem {
@@ -57,8 +58,6 @@
           ./modules/security/sandbox
           ./modules/mimetypes.nix
           ./modules/games/common.nix
-          ./modules/services/wallpapers-optimiser.nix
-          ./modules/services/screenshot-optimiser.nix
           ./modules/services/unarchiver.nix
           ./modules/scripts
           ./modules/programs/android-studio.nix
@@ -70,16 +69,9 @@
             home-manager = {
               useGlobalPkgs = true;
               useUserPackages = true;
-              users.alex = { ... }: {
-                imports = [
-                  ./hosts/apollo/home-manager/alex.nix
-                  ./modules/hm
-                  ./modules/hm/config/pipewire
-                  ./modules/hm/gnome/config_basic.nix
-                  ./modules/hm/programs/mangohud.nix
-                  ./modules/hm/services/mpd.nix
-                ];               
-              };
+              sharedModules = hmSharedModules;
+              users.alex = ./hosts/apollo/home-manager/alex;
+              users.nicklor = ./hosts/apollo/home-manager/nicklor;
             };
           }
         ];

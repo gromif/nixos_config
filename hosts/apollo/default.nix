@@ -59,6 +59,50 @@
     extraGroups = [ "networkmanager" "wheel" "kvm" ];
   };
   
+  users.users.nicklor = {
+    isNormalUser = true;
+    description = "nicklor";
+    home = "/home/nicklor";
+    createHome = true;
+    hashedPasswordFile = config.sops.secrets.user_nicklor_passwordHash.path;
+    extraGroups = [ "networkmanager" "wheel" "kvm" ];
+  };
+
+  users.users.nicklor.packages = with pkgs; [
+    # Terminal
+    yt-dlp
+
+    # Misc
+    blanket
+    # megasync
+
+    # Communication
+    telegram-desktop
+    vesktop
+
+    # Media
+    spotify
+    gimp3
+    inkscape
+    libreoffice-fresh
+    folio
+    smplayer
+    mpv
+
+    # Desktop
+    gnome-extension-manager
+    refine
+    gnome-tweaks
+    dconf-editor
+    papers
+
+    # Tools
+    identity
+    eartag
+    mission-center
+    eyedropper
+  ];
+
   users.users.root = {
     hashedPasswordFile = config.sops.secrets.user_root_passwordHash.path;
   };
