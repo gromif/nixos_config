@@ -128,7 +128,6 @@
     inkscape
     libreoffice-fresh
     folio
-    nicotine-plus
     smplayer
     # qbittorrent
     mpv
