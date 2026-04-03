@@ -19,6 +19,7 @@ in
     };
     services = {
       screenshots-optimiser.enable = true;
+      random-background.enable = true;
       wallpapers-optimiser.enable = true;
     };
   };

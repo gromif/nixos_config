@@ -22,6 +22,7 @@ in
     services = {
       mpd.enable = true;
       screenshots-optimiser.enable = true;
+      random-background.enable = true;
       wallpapers-optimiser.enable = true;
     }; 
   };

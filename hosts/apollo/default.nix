@@ -26,7 +26,6 @@
       gnome = {
         enable = true;
         services = {
-          random-background.enable = true;
           theme-changer.enable = true;
         };
       };

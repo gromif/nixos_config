@@ -3,20 +3,20 @@
 with lib;
 
 let
-  cfg = config.nixfiles.de.gnome.services.random-background;
+  cfg = config.hmfiles.services.random-background;
   intervals = types.enum [ "1m" "5m" "15m" "30m" "45m" "1h" "3h" "6h" ];
-  wallpapersFolder = "$HOME/Pictures/wallpapers";
+  wallpapersFolder = "${config.xdg.userDirs.pictures}/wallpapers";
   randomWallpaperPkg = pkgs.writeShellApplication {
-  	  name = "random-wallpaper";
-  	  text = ''
-  	    selectedWallpaper=$(find "${wallpapersFolder}" -type f | shuf -n 1)
-  	    
-  	    gsettings set org.gnome.desktop.background picture-uri "$selectedWallpaper"
-  	  '';
-  	};
+	  name = "random-wallpaper";
+	  text = ''
+	    selectedWallpaper=$(find "${wallpapersFolder}" -type f | shuf -n 1)
+	    
+	    gsettings set org.gnome.desktop.background picture-uri "$selectedWallpaper"
+	  '';
+  };
 in
 {
-  options.nixfiles.de.gnome.services.random-background = {
+  options.hmfiles.services.random-background = {
     enable = mkEnableOption "the Random-Background service";
     interval = mkOption {
       type = intervals;
@@ -31,24 +31,21 @@ in
   };
 
   config = mkIf cfg.enable {
-    # Install `randomWallpaperPkg` binary
-    environment.systemPackages = [ randomWallpaperPkg ];
+    home.packages = [ randomWallpaperPkg ];
 	
-  	# Set up automatic `randomWallpaperPkg`
   	systemd.user.services.random-wallpaper = {
-  	  description = "Set random wallpaper";
-  	  script = "${lib.getExe randomWallpaperPkg}";
+  	  Unit.Description = "Set random wallpaper";
+  	  Service.ExecStart = "${getExe randomWallpaperPkg}";
   	};
   
-    # Set up automatic `randomWallpaperPkg` timer
     systemd.user.timers.random-wallpaper = {
-      description = "Set random wallpaper [Timer]";
-      timerConfig = {
+      Unit.Description = "Set random wallpaper [Timer]";
+      Timer = {
         OnBootSec = "${cfg.initialInterval}";
         OnUnitActiveSec = "${cfg.interval}";
         Unit = "random-wallpaper.service";
       };
-      wantedBy = ["timers.target"];
+      Install.WantedBy = ["timers.target"];
     };
   };
 }
