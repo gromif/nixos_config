@@ -39,8 +39,8 @@ in
       };
       Unit = {
         Description = "Watches for any new wallpapers in ${cfg.dir}";
-        WantedBy = [ "paths.target" ];
       };
+      Install.WantedBy = [ "paths.target" ];
     };
   };
 }

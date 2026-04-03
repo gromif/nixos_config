@@ -30,7 +30,7 @@ in
   };
 
   config = mkIf cfg.enable {
-    home.packages = [ pkg ];
+    home.packages = [ pkg pkg_cleanup ];
     
     systemd.user.services."screenshots-optimiser" = {
       Service.ExecStart = "${getExe pkg}";
@@ -39,12 +39,12 @@ in
 
     systemd.user.paths."screenshots-optimiser" = {
       Path = {
-        PathExistsGlob = "${cfg.dir}/*.jpg";
+        PathExistsGlob = "${cfg.dir}/*.png";
       };
       Unit = {
         Description = "Watches for any new screenshots in ${cfg.dir}";
-        WantedBy = [ "paths.target" ];
       };
+      Install.WantedBy = [ "paths.target" ];
     };
 
     systemd.user.services."screenshots-cleanup" = {

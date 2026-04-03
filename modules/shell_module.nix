@@ -51,6 +51,9 @@ in
     })
     (mkIf (cfg.type == "zsh") {
       environment.variables.ZDOTDIR = "$HOME/.config/zsh";
+      systemd.user.tmpfiles.rules = [
+        "d ~/.config/zsh 700 - - - -"
+      ];
 
       # Setup ZSH
       programs.zsh = {
