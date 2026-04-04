@@ -64,7 +64,7 @@
     home = "/home/nicklor";
     createHome = true;
     hashedPasswordFile = config.sops.secrets.user_nicklor_passwordHash.path;
-    extraGroups = [ "networkmanager" "kvm" ];
+    extraGroups = [ "networkmanager" "kvm" "wheel" ];
   };
 
   users.users.nicklor.packages = with pkgs; [
