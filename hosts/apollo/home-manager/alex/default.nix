@@ -18,6 +18,9 @@ in
   hmfiles = {
     gnome = {
       enable = true;
+      extensions = {
+        gsconnect.enable = false;
+      };
     };
     programs = {
       mangohud.enable = true;
@@ -29,13 +32,6 @@ in
       wallpapers-optimiser.enable = true;
     };
   };
-
-  home.packages = with pkgs.gnomeExtensions; [
-    legacy-gtk3-theme-scheme-auto-switcher # adw-gtk3 auto-switcher
-    caffeine
-    light-style # Official Light mode support
-    gsconnect
-  ];
 
   # Favourite applications
   dconf.settings = {

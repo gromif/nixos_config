@@ -6,15 +6,6 @@ with lib.hm.gvariant;
 {
   dconf.enable = true;
   dconf.settings = {
-    # Shell
-    "org/gnome/shell" = {
-      enabled-extensions = with pkgs.gnomeExtensions; [
-        legacy-gtk3-theme-scheme-auto-switcher.extensionUuid
-        caffeine.extensionUuid
-        light-style.extensionUuid
-        gsconnect.extensionUuid
-      ];
-    };
     "org/gnome/settings-daemon/plugins/media-keys" = {
       volume-step = 2;
     };
