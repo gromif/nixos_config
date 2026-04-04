@@ -28,7 +28,6 @@ in
   };
 
   home.packages = with pkgs.gnomeExtensions; [
-    appindicator
     legacy-gtk3-theme-scheme-auto-switcher # adw-gtk3 auto-switcher
     caffeine
     light-style # Official Light mode support

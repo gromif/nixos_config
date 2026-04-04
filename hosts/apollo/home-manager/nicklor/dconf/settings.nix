@@ -9,7 +9,6 @@ with lib.hm.gvariant;
     # Shell
     "org/gnome/shell" = {
       enabled-extensions = with pkgs.gnomeExtensions; [
-        appindicator.extensionUuid
         legacy-gtk3-theme-scheme-auto-switcher.extensionUuid
         caffeine.extensionUuid
         light-style.extensionUuid
