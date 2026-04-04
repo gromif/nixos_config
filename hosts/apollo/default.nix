@@ -164,4 +164,8 @@
   programs.firefox.enable = true; # Install firefox.
 
   xdg.mime.predefined.enable = true;
+
+  boot.kernelParams = [
+    "video=HDMI-A-1:1920x1080@83"
+  ];
 }
