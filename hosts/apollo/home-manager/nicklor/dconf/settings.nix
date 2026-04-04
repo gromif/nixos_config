@@ -15,7 +15,6 @@ with lib.hm.gvariant;
         caffeine.extensionUuid
         light-style.extensionUuid
         gsconnect.extensionUuid
-        control-monitor-brightness-and-volume-with-ddcutil.extensionUuid
       ];
     };
     "org/gnome/settings-daemon/plugins/media-keys" = {

@@ -19,6 +19,13 @@
     };
     sound.backend = "pipewire";
     hardware = {
+      ddc = {
+        enable = true;
+        allowedUsers = [
+          "alex"
+          "nicklor"
+        ];
+      };
       graphics.vendor = "amd";
     };
     de = {
@@ -48,23 +55,31 @@
       };
     };
   };
-  
+
   users.users.alex = {
     isNormalUser = true;
     description = "Alex";
     home = "/home/alex";
     createHome = true;
     hashedPasswordFile = config.sops.secrets.user_root_passwordHash.path;
-    extraGroups = [ "networkmanager" "wheel" "kvm" ];
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+      "kvm"
+    ];
   };
-  
+
   users.users.nicklor = {
     isNormalUser = true;
     description = "nicklor";
     home = "/home/nicklor";
     createHome = true;
     hashedPasswordFile = config.sops.secrets.user_nicklor_passwordHash.path;
-    extraGroups = [ "networkmanager" "kvm" "wheel" ];
+    extraGroups = [
+      "networkmanager"
+      "kvm"
+      "wheel"
+    ];
   };
 
   users.users.nicklor.packages = with pkgs; [
@@ -121,7 +136,7 @@
     materialgram
     vesktop
     localsend
-    
+
     # Media
     gimp3
     inkscape
@@ -138,14 +153,14 @@
     openrgb-with-all-plugins
     dconf-editor
     papers
-    
+
     # Tools
     identity
     eartag
     mission-center
     eyedropper
   ];
-  
+
   programs.firefox.enable = true; # Install firefox.
 
   xdg.mime.predefined.enable = true;

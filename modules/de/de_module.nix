@@ -1,4 +1,9 @@
-{ config, pkgs, lib, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 
 with lib;
 
@@ -27,21 +32,24 @@ in
     gnome.enable = mkEnableOption "the GNOME desktop environment";
   };
 
-  config = mkIf cfg.enable(mkMerge [
+  config = mkIf cfg.enable (mkMerge [
     {
       nixfiles.de = {
         includeEssentials = mkDefault true;
       };
     }
     (mkIf cfg.includeEssentials {
-      environment.systemPackages = with pkgs; [
-        tela-icon-theme
-      ] ++ codecs;
+      environment.systemPackages =
+        with pkgs;
+        [
+          tela-icon-theme
+        ]
+        ++ codecs;
       fonts.packages = with pkgs; [
-      	inter
-      	monocraft
-      	#inter-nerdfont
-      	nerd-fonts.fira-code
+        inter
+        monocraft
+        #inter-nerdfont
+        nerd-fonts.fira-code
       ];
     })
 
@@ -72,12 +80,16 @@ in
           yelp
         ];
         # Fix for Nautilus media details page
-        sessionVariables.GST_PLUGIN_SYSTEM_PATH_1_0 = lib.makeSearchPathOutput "lib" "lib/gstreamer-1.0" (codecs);
+        sessionVariables.GST_PLUGIN_SYSTEM_PATH_1_0 = lib.makeSearchPathOutput "lib" "lib/gstreamer-1.0" (
+          codecs
+        );
       };
       # Enable numlock in gdm.
-      programs.dconf.profiles.gdm.databases = [{
-        settings."org/gnome/desktop/peripherals/keyboard".numlock-state = true;
-      }];
+      programs.dconf.profiles.gdm.databases = [
+        {
+          settings."org/gnome/desktop/peripherals/keyboard".numlock-state = true;
+        }
+      ];
     })
   ]);
 }
