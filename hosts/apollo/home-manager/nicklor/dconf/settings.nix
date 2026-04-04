@@ -9,7 +9,6 @@ with lib.hm.gvariant;
     # Shell
     "org/gnome/shell" = {
       enabled-extensions = with pkgs.gnomeExtensions; [
-        blur-my-shell.extensionUuid
         appindicator.extensionUuid
         legacy-gtk3-theme-scheme-auto-switcher.extensionUuid
         caffeine.extensionUuid
@@ -57,8 +56,5 @@ with lib.hm.gvariant;
       show-directory-item-counts = "always";
       sort-directories-first = true;
     };
-
-    # Extensions
-    "org/gnome/shell/extensions/blur-my-shell/panel".force-light-text = true;
   };
 }

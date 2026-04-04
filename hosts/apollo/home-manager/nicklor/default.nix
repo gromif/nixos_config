@@ -28,7 +28,6 @@ in
   };
 
   home.packages = with pkgs.gnomeExtensions; [
-    blur-my-shell
     appindicator
     legacy-gtk3-theme-scheme-auto-switcher # adw-gtk3 auto-switcher
     caffeine
