@@ -22,7 +22,7 @@ in
       EDITOR = "hx";
     };
 
-    systemd.tmpfiles.rules = [ "L+ %h/.config/helix/languages.toml - - - - ./helix_languages.toml" ];
+    systemd.tmpfiles.rules = [ "L+ %h/.config/helix/languages.toml - - - - ${./helix_languages.toml}" ];
 
     environment.systemPackages = with pkgs; [
       # base91 # Implementation of the base91 utility, providing efficient binary-to-text encoding with better space utilization than Base64
