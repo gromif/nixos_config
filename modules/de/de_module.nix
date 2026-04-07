@@ -60,6 +60,7 @@ in
       };
       environment = {
         systemPackages = with pkgs; [
+          zenity
           # Theming
           kdePackages.ocean-sound-theme
           adw-gtk3
