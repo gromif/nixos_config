@@ -3,10 +3,7 @@
 with lib;
 
 {
-  config = mkIf (
-    config.nixfiles.sops.enable &&
-    config.nixfiles.network.hostName == "apollo"
-  ) {
+  config = mkIf (config.nixfiles.sops.enable && config.nixfiles.network.hostName == "apollo") {
     sops.defaultSopsFile = ./secrets.yaml;
     sops.secrets = {
       "ssh/ed25519" = {
@@ -38,22 +35,23 @@ with lib;
         path = "/root/.ssh/id_ed25519.pub";
       };
 
-      "luks/drive_a" = {};
-      "luks/drive_m" = {};
-      "luks/drive_f" = {};
-      "luks/usb_a" = {};
-      "luks/sd_a" = {};
-    
+      "luks/drive_a" = { };
+      "luks/drive_m" = { };
+      "luks/drive_f" = { };
+      "luks/usb_a" = { };
+      "luks/sd_a" = { };
+      "luks/sd_b" = { };
+
       user_root_passwordHash = {
         neededForUsers = true;
         sopsFile = ./users.yaml;
       };
-      
+
       user_nicklor_passwordHash = {
         neededForUsers = true;
         sopsFile = ./users.yaml;
       };
-          
+
       usbguard-rules.sopsFile = ./usbguard.yaml;
     };
   };
