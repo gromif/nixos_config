@@ -1,4 +1,9 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 with lib;
 
@@ -12,7 +17,7 @@ in
       enable = mkEnableOption "Docker";
       users = mkOption {
         type = types.listOf types.str;
-        default = [];
+        default = [ ];
         description = "List of users to include in the docker group";
       };
     };
@@ -20,9 +25,12 @@ in
       enable = mkEnableOption "libvirtd";
       members = mkOption {
         type = types.listOf types.str;
-        default = [];
+        default = [ ];
         description = "Include in the libvirtd group";
       };
+    };
+    qemu = {
+      enable = mkEnableOption "qemu";
     };
   };
 
@@ -47,6 +55,7 @@ in
       ];
     })
     (mkIf cfg.libvirtd.enable {
+      nixfiles.virtualisation.qemu.enable = mkForce true;
       # Virt Manager
       programs.virt-manager.enable = true;
 
@@ -56,7 +65,7 @@ in
         libvirtd.enable = true;
         spiceUSBRedirection.enable = true;
       };
- 
+
       # Other stuff
       environment.systemPackages = with pkgs; [
         virtiofsd
@@ -66,6 +75,9 @@ in
       nixfiles.impermanence.directories = mkIf isImperm [
         "/var/lib/libvirt"
       ];
+    })
+    (mkIf cfg.qemu.enable {
+      environment.systemPackages = [ pkgs.qemu ];
     })
   ];
 }
