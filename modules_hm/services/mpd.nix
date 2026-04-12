@@ -1,4 +1,8 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  ...
+}:
 
 with lib;
 
@@ -17,8 +21,14 @@ in
       network.startWhenNeeded = true;
       extraConfig = ''
         audio_output {
+          type "alsa"
+          name "ALSA"
+          device      "hw:0,0"
+          mixer_type  "none"
+        }
+        audio_output {
           type "pipewire"
-          name "pipewire"
+          name "PipeWire"
         }
         audio_output {
           type      "fifo"
