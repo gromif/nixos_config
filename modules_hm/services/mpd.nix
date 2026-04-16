@@ -23,7 +23,7 @@ in
         audio_output {
           type "alsa"
           name "ALSA"
-          device      "hw:0,0"
+          device      "front:CARD=ZH3"
           mixer_type  "none"
         }
         audio_output {
