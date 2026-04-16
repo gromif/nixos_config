@@ -45,7 +45,7 @@ in
               size = "100%";
               content = {
                 type = "luks";
-                name = "NixOS (Encrypted)";
+                name = "crypted";
                 # disable settings.keyFile if you want to use interactive password entry
                 #passwordFile = "/tmp/secret.key"; # Interactive
                 settings = {
@@ -59,47 +59,44 @@ in
                     "${root}" = {
                       mountpoint = root;
                       mountOptions = [
-                        "force-compress=zstd"
+                        "compress=zstd:1"
                         "noatime"
                       ];
                     };
                     "/home/alex" = {
                       mountpoint = "${persist}/home/alex";
                       mountOptions = [
-                        "compress=zstd:1"
                         "noatime"
                       ];
                     };
                     "/home/nicklor" = {
                       mountpoint = "${persist}/home/nicklor";
                       mountOptions = [
-                        "compress=zstd:1"
+                        "noatime"
+                      ];
+                    };
+                    "/etc" = {
+                      mountpoint = "${persist}/etc";
+                      mountOptions = [
+                        "noatime"
+                      ];
+                    };
+                    "/root" = {
+                      mountpoint = "${persist}/root";
+                      mountOptions = [
+                        "noatime"
+                      ];
+                    };
+                    "/var" = {
+                      mountpoint = "${persist}/var";
+                      mountOptions = [
                         "noatime"
                       ];
                     };
                     "/var/log" = {
                       mountpoint = "${persist}/var/log";
                       mountOptions = [
-                        "force-compress=zstd:10"
                         "noatime"
-                      ];
-                    };
-                    "/home/shared" = {
-                      mountpoint = "${persist}/home/shared";
-                      mountOptions = [
-                        "compress=zstd:1"
-                        "relatime"
-                        "x-gvfs-show"
-                        "x-gvfs-name=Shared"
-                      ];
-                    };
-                    "/home/development" = {
-                      mountpoint = "${persist}/home/development";
-                      mountOptions = [
-                        "force-compress=zstd:5"
-                        "relatime"
-                        "x-gvfs-show"
-                        "x-gvfs-name=Development"
                       ];
                     };
                   };
