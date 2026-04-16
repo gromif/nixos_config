@@ -21,17 +21,53 @@
     };
     
   fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/0100-5517";
+    { device = "/dev/disk/by-uuid/12CE-A600";
       fsType = "vfat";
       options = [ "nodev" "nosuid" "noexec" "relatime" "umask=0077" ];
     };
-
+  
   fileSystems."/nix" =
-    { device = "/dev/disk/by-uuid/4f28fff8-caa5-471f-b52b-7daf1b255cff";
-      fsType = "xfs";
-      neededForBoot = true;
+    { device = "/dev/mapper/crypted";
+      fsType = "btrfs";
+      options = [ "subvol=nix" ];
+    };
+        
+  fileSystems."/nix/state/etc" =
+    { device = "/dev/mapper/crypted";
+      fsType = "btrfs";
+      options = [ "subvol=etc" ];
     };
 
+  fileSystems."/nix/state/home/alex" =
+    { device = "/dev/mapper/crypted";
+      fsType = "btrfs";
+      options = [ "subvol=home/alex" ];
+    };
+
+  fileSystems."/nix/state/home/nicklor" =
+    { device = "/dev/mapper/crypted";
+      fsType = "btrfs";
+      options = [ "subvol=home/nicklor" ];
+    };
+
+  fileSystems."/nix/state/root" =
+    { device = "/dev/mapper/crypted";
+      fsType = "btrfs";
+      options = [ "subvol=root" ];
+    };
+
+  fileSystems."/nix/state/var" =
+    { device = "/dev/mapper/crypted";
+      fsType = "btrfs";
+      options = [ "subvol=var" ];
+    };
+
+  fileSystems."/nix/state/var/log" =
+    { device = "/dev/mapper/crypted";
+      fsType = "btrfs";
+      options = [ "subvol=var/log" ];
+    };
+  
   fileSystems."/mnt/drive_a" = {
     device = "/dev/mapper/crypto-drive-a";
     fsType = "btrfs";
@@ -54,6 +90,8 @@
   };
 
   swapDevices = [ ];
+
+  boot.initrd.luks.devices."crypted".device = "/dev/disk/by-uuid/34019df5-2e72-4c07-aa50-6551dde347ec";
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
   # (the default) this is the recommended approach. When using systemd-networkd it's
