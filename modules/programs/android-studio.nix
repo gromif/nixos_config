@@ -1,6 +1,5 @@
 # Programs - Android Studio
 
-
 { config, pkgs, ... }:
 
 let
@@ -32,20 +31,20 @@ let
   ];
 in
 {
-  # Accept the license
-  nixpkgs.config.android_sdk.accept_license = true;
-  
-  # Set up the package
-  environment.systemPackages = with pkgs; [
-    (pkgs.android-studio.withSdk android.androidsdk)
-    # (pkgs.androidStudioPackages.canary.withSdk android.androidsdk)
-    android.androidsdk
-    android-tools
-  ];
-  
-  # Set up ANDROID_HOME variable (IDE uses it to find AndroidSDK)
-  environment.variables.ANDROID_HOME = "${android.androidsdk}/libexec/android-sdk";
-  
-  # Set up Tmpfiles rules
-  systemd.user.tmpfiles.rules = tmpFilesRules;
+  # # Accept the license
+  # nixpkgs.config.android_sdk.accept_license = true;
+
+  # # Set up the package
+  # environment.systemPackages = with pkgs; [
+  #   (pkgs.android-studio.withSdk android.androidsdk)
+  #   # (pkgs.androidStudioPackages.canary.withSdk android.androidsdk)
+  #   android.androidsdk
+  #   android-tools
+  # ];
+
+  # # Set up ANDROID_HOME variable (IDE uses it to find AndroidSDK)
+  # environment.variables.ANDROID_HOME = "${android.androidsdk}/libexec/android-sdk";
+
+  # # Set up Tmpfiles rules
+  # systemd.user.tmpfiles.rules = tmpFilesRules;
 }

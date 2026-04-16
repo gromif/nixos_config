@@ -1,7 +1,11 @@
 # Sandbox - android-studio
 
-
-{ config, pkgs, lib, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 
 with lib;
 
@@ -10,7 +14,7 @@ let
   pkg = pkgs."${pkg_name}";
   isInstalled = builtins.hasAttr pkg_name pkgs;
   home = "$HOME/.sandbox/${pkg_name}";
-  
+
   pkg-wrapper = pkgs.writeShellApplication {
     name = pkg_name;
     runtimeInputs = [ pkg ];
@@ -35,5 +39,5 @@ let
   };
 in
 {
-  environment.systemPackages = mkIf (isInstalled) [ pkg-wrapper ];
+  # environment.systemPackages = mkIf (isInstalled) [ pkg-wrapper ];
 }
