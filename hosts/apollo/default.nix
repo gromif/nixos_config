@@ -88,7 +88,6 @@
 
     # Misc
     blanket
-    # megasync
 
     # Communication
     telegram-desktop
@@ -135,7 +134,6 @@
     # Communication
     materialgram
     vesktop
-    localsend
 
     # Media
     gimp3
@@ -143,7 +141,6 @@
     libreoffice-fresh
     folio
     smplayer
-    # qbittorrent
     mpv
 
     # Desktop
