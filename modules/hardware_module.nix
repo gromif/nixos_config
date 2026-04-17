@@ -1,13 +1,16 @@
 # Hardware - Common
 
-
 { config, lib, ... }:
 
 with lib;
 
 let
-  gpuVendors = [ "amd" "intel" "none" ];
-  cfg = config.nixfiles.hardware; 
+  gpuVendors = [
+    "amd"
+    "intel"
+    "none"
+  ];
+  cfg = config.nixfiles.hardware;
 in
 {
   options.nixfiles.hardware = {
@@ -18,14 +21,29 @@ in
     };
     graphics = {
       vendor = mkOption {
-        type = types.enum [ "none" "amd" "intel" ];
+        type = types.enum [
+          "none"
+          "amd"
+          "intel"
+        ];
         description = "Automaticaly installs drivers for the selected GPU vendor";
         default = "none";
-      };      
+      };
+    };
+    rootfs = mkOption {
+      type = types.str;
+      default = "undefined";
+      description = "Automatically identified root file system";
     };
   };
 
   config = mkMerge [
+    ({
+      nixfiles.hardware.rootfs = mkForce (
+        (if config.nixfiles.impermanence.enable then config.fileSystems."/nix" else config.fileSystems."/")
+        .fsType
+      );
+    })
     (mkIf cfg.enableCommon {
       hardware = {
         enableRedistributableFirmware = true;
