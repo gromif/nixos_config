@@ -9,6 +9,7 @@ with lib;
 
 let
   cfg = config.nixfiles.virtualisation;
+  rootfs = config.nixfiles.hardware.rootfs;
   isImperm = config.nixfiles.impermanence.enable;
 in
 {
@@ -36,8 +37,9 @@ in
 
   config = mkMerge [
     (mkIf (cfg.docker.enable) {
-      virtualisation.docker = {
+      virtualisation.docker = mkForce {
         enable = true;
+        storageDriver = if (rootfs == "btrfs") then "btrfs" else null;
       };
 
       users.users = builtins.listToAttrs (
