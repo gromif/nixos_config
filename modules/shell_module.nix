@@ -1,4 +1,9 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 with lib;
 
@@ -15,7 +20,10 @@ in
 {
   options.nixfiles.system.shell = {
     type = mkOption {
-      type = types.enum [ "none" "zsh" ];
+      type = types.enum [
+        "none"
+        "zsh"
+      ];
       default = "zsh";
       description = "Whether to use customised shell variants";
     };
@@ -28,16 +36,16 @@ in
       optimalSettings = mkEnableOption "optimal SystemD console settings";
     };
     zsh = {
-      
+
     };
   };
 
   config = mkIf (cfg.type != "none") (mkMerge [
     {
       environment.shells = [ shellPkgs.${cfg.type} ];
-      
+
       # Persist data
-      nixfiles.impermanence.directories = mkIf (impermanent) (persistData.${cfg.type} or []);
+      nixfiles.impermanence.directories = mkIf (impermanent) (persistData.${cfg.type} or [ ]);
     }
     (mkIf cfg.makeDefault {
       users.defaultUserShell = shellPkgs.${cfg.type};
@@ -54,6 +62,9 @@ in
       systemd.user.tmpfiles.rules = [
         "d %h/.config/zsh 700 - - - -"
       ];
+      environment.systemPackages = with pkgs; [
+        zsh-powerlevel10k
+      ];
 
       # Setup ZSH
       programs.zsh = {
@@ -62,7 +73,8 @@ in
         autosuggestions.enable = true;
         syntaxHighlighting.enable = true;
 
-        shellAliases = { # List common aliases
+        shellAliases = {
+          # List common aliases
           ll = "ls -l";
           # edit = "sudo -e"; # sudo-rs: not yet implemented
         };
@@ -70,12 +82,14 @@ in
         histFile = "$HOME/.config/zsh/history"; # History file path
         histSize = 10000;
       };
-      programs.zsh.ohMyZsh = { # OhMyZsh setup
+      programs.zsh.ohMyZsh = {
+        # OhMyZsh setup
         enable = true;
         plugins = [
-          "git"  # also requires `programs.git.enable = true;`
+          "git" # also requires `programs.git.enable = true;`
         ];
-        theme = "robbyrussell"; # preferred shell theme
+        theme = "powerlevel10k";
+        custom = "${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k";
       };
     })
   ]);
