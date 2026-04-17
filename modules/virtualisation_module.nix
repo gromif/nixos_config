@@ -52,7 +52,7 @@ in
       );
 
       # Persist data
-      nixfiles.impermanence.directories = mkIf (isImperm) [
+      nixfiles.impermanence.directories = mkIf isImperm [
         "/var/lib/docker"
       ];
     })
