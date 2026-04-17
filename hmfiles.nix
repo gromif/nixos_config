@@ -23,7 +23,7 @@ with lib;
   config = mkIf config.hmfiles.enable {
     home = {
       homeDirectory = "/home/${config.home.username}";
-      stateVersion = "25.11";
+      stateVersion = "26.05";
     };
 
     # Let Home Manager install and manage itself.
