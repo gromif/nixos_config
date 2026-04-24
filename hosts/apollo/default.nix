@@ -50,6 +50,10 @@
       };
     };
     programs = {
+      android-studio = {
+        enable = true;
+        users = [ "alex" ];
+      };
       sets = {
         media.enable = true;
       };
