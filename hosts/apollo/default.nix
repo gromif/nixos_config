@@ -95,7 +95,6 @@
 
     # Communication
     telegram-desktop
-    vesktop
 
     # Media
     spotify
@@ -137,7 +136,6 @@
 
     # Communication
     materialgram
-    vesktop
 
     # Media
     gimp3
