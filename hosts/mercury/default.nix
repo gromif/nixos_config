@@ -1,14 +1,20 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 with lib;
 
 {
   imports = [
     ./hardware-configuration.nix
+    ./resilience.nix
   ];
 
   time.timeZone = "Europe/Kyiv";
-  
+
   nixfiles = {
     system = {
       stateVersion = "25.05";
@@ -18,14 +24,14 @@ with lib;
       };
     };
     network = {
-      hostName = builtins.baseNameOf ./.;
+      hostName = baseNameOf ./.;
     };
     services.openssh = {
       enable = true;
       ports = [ 31472 ];
     };
   };
-  
+
   # Auto-login the first tty console
   services.getty.autologinUser = "warden";
 
