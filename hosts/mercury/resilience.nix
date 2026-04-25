@@ -13,14 +13,17 @@
   };
 
   # Allow login during initrd, in case it hangs.
-  boot.initrd.network = {
-    enable = true;
-    ssh = {
+  boot.initrd = {
+    systemd.emergencyAccess = true;
+    network = {
       enable = true;
-      port = 12844;
-      authorizedKeys = config.users.users.root.openssh.authorizedKeys.keys;
-      # Use a fixed host key. The same one as for the main host, thanks.
-      hostKeys = [ "/etc/initrd/ssh_private_key" ];
+      ssh = {
+        enable = true;
+        port = 12844;
+        authorizedKeys = config.users.users.root.openssh.authorizedKeys.keys;
+        # Use a fixed host key. The same one as for the main host, thanks.
+        hostKeys = [ "/etc/initrd/ssh_private_key" ];
+      };
     };
   };
 }
