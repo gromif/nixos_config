@@ -18,9 +18,14 @@ in
 
   # Allow login during initrd, in case it hangs.
   boot.initrd = {
-    systemd.emergencyAccess = true;
-    network = {
+    systemd = {
       enable = true;
+      network.enable = true;
+      emergencyAccess = true;
+    };
+    availableKernelModules = [ "e1000e" ];
+    network = {
+      # enable = true;
       ssh = {
         enable = true;
         port = 12844;
