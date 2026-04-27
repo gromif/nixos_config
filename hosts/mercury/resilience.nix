@@ -1,7 +1,7 @@
 { config, ... }:
 
 let
-  keyPath = "/etc/initrd/ssh_private_key";
+  keyPath = config.sops.secrets."ssh/initrd".path;
 in
 {
   # Run SSHD even in emergency mode.

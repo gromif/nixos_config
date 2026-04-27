@@ -22,13 +22,11 @@ with lib;
         sopsFile = ./ssh.yaml;
         path = "/etc/ssh/ssh_host_rsa_key.pub";
       };
-      "ssh/initrd_prv" = {
+      "ssh/initrd" = {
         sopsFile = ./ssh.yaml;
-        path = "/etc/initrd/ssh_private_key";
       };
       "ssh/initrd_pub" = {
         sopsFile = ./ssh.yaml;
-        path = "/etc/initrd/ssh_public_key";
       };
       "users/root/hashedPassword" = {
         sopsFile = ./users.yaml;
