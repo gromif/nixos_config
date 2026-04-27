@@ -1,4 +1,8 @@
 { config, ... }:
+
+let
+  keyPath = "/etc/initrd/ssh_private_key";
+in
 {
   # Run SSHD even in emergency mode.
   systemd.services = {
@@ -22,8 +26,11 @@
         port = 12844;
         authorizedKeys = config.users.users.root.openssh.authorizedKeys.keys;
         # Use a fixed host key. The same one as for the main host, thanks.
-        hostKeys = [ "/etc/initrd/ssh_private_key" ];
+        hostKeys = [ keyPath ];
       };
+    };
+    secrets = {
+      "${keyPath}" = keyPath;
     };
   };
 }
