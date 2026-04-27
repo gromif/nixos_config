@@ -26,11 +26,11 @@ in
         port = 12844;
         authorizedKeys = config.users.users.root.openssh.authorizedKeys.keys;
         # Use a fixed host key. The same one as for the main host, thanks.
-        hostKeys = [ "/etc/ssh/initrd" ];
+        hostKeys = [ keyPath ];
       };
     };
     secrets = {
-      "${keyPath}" = "/etc/ssh/initrd";
+      "${keyPath}" = null;
     };
   };
 }
