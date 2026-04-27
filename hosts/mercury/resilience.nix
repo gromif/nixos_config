@@ -29,8 +29,5 @@ in
         hostKeys = [ keyPath ];
       };
     };
-    secrets = {
-      "${keyPath}" = null;
-    };
   };
 }
