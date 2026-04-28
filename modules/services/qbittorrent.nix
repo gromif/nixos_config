@@ -1,6 +1,5 @@
 # Services - qbittorrent
 
-
 { ... }:
 
 {
@@ -17,7 +16,7 @@
     };
     openFirewall = true;
     torrentingPort = 47540;
-    group = "users";
+    group = "media";
   };
 
   # Persist data
