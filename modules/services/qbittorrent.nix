@@ -1,7 +1,11 @@
 # Services - qbittorrent
 
-{ ... }:
+{ config, ... }:
 
+let
+  dataDir = "/var/lib/qBittorrent";
+  cfg = config.services.qbittorrent;
+in
 {
   services.qbittorrent = {
     enable = true;
@@ -21,6 +25,11 @@
 
   # Persist data
   nixfiles.impermanence.directories = [
-    "/var/lib/qBittorrent"
+    dataDir
+  ];
+
+  # Correct permissions
+  systemd.tmpfiles = [
+    "Z ${dataDir}/qBittorrent 2750 ${cfg.user} ${cfg.group}"
   ];
 }
