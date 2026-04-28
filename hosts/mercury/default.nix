@@ -62,6 +62,7 @@ with lib;
   services.slskd = {
     settings = {
       shares.directories = [
+        "/home/warden/Music"
         "/mnt/drive_m"
         "/var/lib/qBittorrent/qBittorrent/downloads"
       ];
