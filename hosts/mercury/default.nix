@@ -63,6 +63,7 @@ with lib;
     settings = {
       shares.directories = [
         "/mnt/drive_m"
+        "/var/lib/qBittorrent/qBittorrent/downloads"
       ];
     };
   };
