@@ -29,7 +29,7 @@ in
   ];
 
   # Correct permissions
-  systemd.tmpfiles = [
+  systemd.tmpfiles.rules = [
     "Z ${dataDir}/qBittorrent 2750 ${cfg.user} ${cfg.group}"
   ];
 }
