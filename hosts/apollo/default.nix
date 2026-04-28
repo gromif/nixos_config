@@ -92,6 +92,7 @@
 
     # Misc
     blanket
+    ryubing
 
     # Communication
     telegram-desktop
