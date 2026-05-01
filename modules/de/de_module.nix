@@ -81,9 +81,7 @@ in
           yelp
         ];
         # Fix for Nautilus media details page
-        sessionVariables.GST_PLUGIN_SYSTEM_PATH_1_0 = lib.makeSearchPathOutput "lib" "lib/gstreamer-1.0" (
-          codecs
-        );
+        variables.GST_PLUGIN_SYSTEM_PATH_1_0 = lib.makeSearchPathOutput "lib" "lib/gstreamer-1.0" (codecs);
       };
       # Enable numlock in gdm.
       programs.dconf.profiles.gdm.databases = [
