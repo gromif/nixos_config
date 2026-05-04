@@ -30,41 +30,59 @@ let
     abiVersions = [ "x86_64" ];
     includeEmulator = true;
   };
-  tmpFilesRules = map (f: "R \"%h/${f}\" - - - - -") [
-    ".cache/Google/*/tmp/"
-    ".java"
-    ".local/share/kotlin"
-    ".m2"
-    ".gradle/daemon/"
-    ".gradle/.tmp/"
-    ".skiko"
+  pkgAppData = (if (cfg.sandbox && cfgSandbox.enable) then "%h/.bwrapper/android-studio" else "%h");
+  tmpFilesRules = map (f: "R \"${pkgAppData}/${f}\" - - - - -") [
+    "cache/Google/*/tmp/"
+    "local/share/kotlin"
+    "gradle/daemon/"
+    "gradle/.tmp/"
   ];
-
-  pkg_name = "android-studio";
   pkg = (pkgs.android-studio.withSdk android.androidsdk);
-  home = "$HOME/.sandbox/${pkg_name}";
-
-  pkg-wrapper = pkgs.writeShellApplication {
-    name = pkg_name;
-    runtimeInputs = [ pkg ];
-    text = ''
-      mkdir -p "${home}/Projects/Android" &> /dev/null
-      mkdir -p "${home}/.ssh" &> /dev/null
-      bwrap \
-      --unshare-ipc --unshare-pid --unshare-cgroup-try \
-      --die-with-parent \
-      --new-session \
-      --ro-bind /nix/store /nix/store \
-      --dev-bind /dev /dev \
-      --ro-bind /etc /etc \
-      --tmpfs /tmp \
-      --proc /proc \
-      --ro-bind /sys /sys \
-      --bind /run /run \
-      --bind "${home}" ~ \
-      --ro-bind ~/.ssh ~/.ssh \
-      --bind ~/Projects/Android ~/Projects/Android -- ${getExe pkg} "$@"
-    '';
+  pkg-wrapped = pkgs.mkBwrapper {
+    imports = [ pkgs.bwrapperPresets.desktop ];
+    app = {
+      package = (pkgs.android-studio.withSdk android.androidsdk);
+      id = "com.google.AndroidStudio";
+    };
+    fhsenv.opts = {
+      unshareUser = true;
+      unshareUts = true;
+      unshareCgroup = true;
+    };
+    sockets = {
+      x11 = false;
+      pulseaudio = false;
+    };
+    mounts = {
+      read = [
+        "$HOME/.ssh"
+      ];
+      readWrite = [
+        "$HOME/Projects"
+      ];
+      sandbox = [
+        {
+          name = "android";
+          path = "$HOME/.android";
+        }
+        {
+          name = "m2";
+          path = "$HOME/.m2";
+        }
+        {
+          name = "java";
+          path = "$HOME/.java";
+        }
+        {
+          name = "skiko";
+          path = "$HOME/.skiko";
+        }
+        {
+          name = "gradle";
+          path = "$HOME/.gradle";
+        }
+      ];
+    };
   };
 in
 {
@@ -79,7 +97,7 @@ in
 
   config = mkMerge [
     ({
-      cfg.sandbox = mkDefault true;
+      nixfiles.programs.android-studio.sandbox = mkDefault true;
     })
     (mkIf cfg.enable {
       # Accept the license
@@ -95,15 +113,14 @@ in
       users.users = builtins.listToAttrs (
         map (u: {
           name = u;
-          value =
-            with pkgs;
-            [
-              pkg
+          value = {
+            packages = with pkgs; [
+              (if (cfg.sandbox && cfgSandbox.enable) then pkg-wrapped else pkg)
               # (pkgs.androidStudioPackages.canary.withSdk android.androidsdk)
               android.androidsdk
               android-tools
-            ]
-            ++ optional (cfg.sandbox && cfgSandbox.enable) pkg-wrapper;
+            ];
+          };
         }) cfg.users
       );
     })
