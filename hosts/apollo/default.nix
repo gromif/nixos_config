@@ -55,9 +55,22 @@
         enable = true;
         users = [ "alex" ];
       };
+      megasync = {
+        enable = true;
+        users = [ "alex" ];
+      };
       sets = {
         media.enable = true;
       };
+    };
+    games = {
+      prism-launcher = {
+        enable = true;
+        users = [ "alex" ];
+      };
+    };
+    security = {
+      sandbox.enable = true;
     };
   };
 
