@@ -4,7 +4,8 @@
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-25.11";
     impermanence.url = "github:nix-community/impermanence";
-    
+    nix-bwrapper.url = "https://flakehub.com/f/Naxdy/nix-bwrapper/*";
+
     home-manager-unstable = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -13,7 +14,7 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs-stable";
     };
-    
+
     sops-nix-unstable = {
       url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -28,74 +29,81 @@
       inputs.nixpkgs.follows = "nixpkgs-stable";
     };
   };
-  outputs = inputs@{ self,
-    nixpkgs, nixpkgs-stable,
-    impermanence,
-    sops-nix-stable,
-    sops-nix-unstable,
-    home-manager-stable,
-    home-manager-unstable,
-    nixos-avf
-  }:
-  let
-    system = "x86_64-linux";
-    sharedModules = [
-      impermanence.nixosModules.impermanence
-      sops-nix-unstable.nixosModules.sops
+  outputs =
+    inputs@{
+      self,
+      nixpkgs,
+      nixpkgs-stable,
+      impermanence,
+      sops-nix-stable,
+      sops-nix-unstable,
+      home-manager-stable,
+      home-manager-unstable,
+      nix-bwrapper,
+      nixos-avf,
+    }:
+    let
+      system = "x86_64-linux";
+      sharedModules = [
+        impermanence.nixosModules.impermanence
+        sops-nix-unstable.nixosModules.sops
+        nix-bwrapper.nixosModules.default
 
-      ./nixfiles.nix
-      ./modules/utils/compression.nix
-    ];
-    hmSharedModules = [ ./hmfiles.nix ];
-  in {
-    nixosConfigurations = {
-      apollo = nixpkgs.lib.nixosSystem {
-        inherit system;
-        modules = sharedModules ++ [
-          ./hosts/apollo
-          ./modules/boot/systemd.nix
-          # ./modules/security/luks.nix
-          ./modules/security/sandbox
-          ./modules/mimetypes.nix
-          ./modules/games/common.nix
-          ./modules/services/unarchiver.nix
-          ./modules/scripts
-          ./modules/programs/android-studio.nix
-          ./modules/programs/gapless.nix
-          ./modules/programs/euphonica.nix
-          ./modules/programs/bottles.nix
-          ./modules/programs/redroid.nix
-          home-manager-unstable.nixosModules.home-manager {
-            home-manager = {
-              useGlobalPkgs = true;
-              useUserPackages = true;
-              sharedModules = hmSharedModules;
-              users.alex = ./hosts/apollo/home-manager/alex;
-              users.nicklor = ./hosts/apollo/home-manager/nicklor;
-            };
-          }
-        ];
-      };
-      mercury = nixpkgs-stable.lib.nixosSystem {
-        inherit system;
-        modules = sharedModules ++ [
-          ./hosts/mercury
-          ./modules/boot/grub2.nix
-          # ./modules/security/sandbox
-          ./modules/scripts/maintainance.nix
-          ./modules/services/qbittorrent.nix
-          ./modules/services/slskd.nix
-        ];
-      };
-      moon = nixpkgs-stable.lib.nixosSystem {
-        system = "aarch64-linux";
-        modules = sharedModules ++ [
-          nixos-avf.nixosModules.avf
-          ./hosts/moon
+        ./nixfiles.nix
+        ./modules/utils/compression.nix
+      ];
+      hmSharedModules = [ ./hmfiles.nix ];
+    in
+    {
+      nixosConfigurations = {
+        apollo = nixpkgs.lib.nixosSystem {
+          inherit system;
+          modules = sharedModules ++ [
+            ./hosts/apollo
+            ./modules/boot/systemd.nix
+            # ./modules/security/luks.nix
+            ./modules/security/sandbox
+            ./modules/mimetypes.nix
+            ./modules/games/common.nix
+            ./modules/services/unarchiver.nix
+            ./modules/scripts
+            ./modules/programs/android-studio.nix
+            ./modules/programs/gapless.nix
+            ./modules/programs/euphonica.nix
+            ./modules/programs/bottles.nix
+            ./modules/programs/redroid.nix
+            home-manager-unstable.nixosModules.home-manager
+            {
+              home-manager = {
+                useGlobalPkgs = true;
+                useUserPackages = true;
+                sharedModules = hmSharedModules;
+                users.alex = ./hosts/apollo/home-manager/alex;
+                users.nicklor = ./hosts/apollo/home-manager/nicklor;
+              };
+            }
+          ];
+        };
+        mercury = nixpkgs-stable.lib.nixosSystem {
+          inherit system;
+          modules = sharedModules ++ [
+            ./hosts/mercury
+            ./modules/boot/grub2.nix
+            # ./modules/security/sandbox
+            ./modules/scripts/maintainance.nix
+            ./modules/services/qbittorrent.nix
+            ./modules/services/slskd.nix
+          ];
+        };
+        moon = nixpkgs-stable.lib.nixosSystem {
+          system = "aarch64-linux";
+          modules = sharedModules ++ [
+            nixos-avf.nixosModules.avf
+            ./hosts/moon
 
-          ./modules/scripts
-        ];
+            ./modules/scripts
+          ];
+        };
       };
     };
-  };
 }
