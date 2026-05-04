@@ -56,5 +56,12 @@ in
         enable32Bit = true;
       };
     })
+    (mkIf (cfg.graphics.vendor == "amd") {
+      hardware.amdgpu.overdrive = {
+        enable = true;
+        ppfeaturemask = "0xffffffff";
+      };
+      services.lact.enable = true;
+    })
   ];
 }
