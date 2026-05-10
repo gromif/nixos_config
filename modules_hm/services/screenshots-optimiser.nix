@@ -1,4 +1,9 @@
-{ config, pkgs, lib, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 
 with lib;
 
@@ -6,16 +11,22 @@ let
   cfg = config.hmfiles.services.screenshots-optimiser;
   pkg = pkgs.writeShellApplication {
     name = "optimise-screenshots";
-    runtimeInputs = with pkgs; [ parallel libjxl ];
+    runtimeInputs = with pkgs; [
+      parallel
+      libjxl
+    ];
     text = ''
       cd ${cfg.dir}
 
-      parallel 'cjxl -q 80 {} {.}.jxl && rm {}' ::: *.png
+      parallel 'cjxl -q 60 {} {.}.jxl && rm {}' ::: *.png
     '';
   };
   pkg_cleanup = pkgs.writeShellApplication {
     name = "cleanup-screenshots";
-    runtimeInputs = with pkgs; [ parallel libjxl ];
+    runtimeInputs = with pkgs; [
+      parallel
+      libjxl
+    ];
     text = ''find "${cfg.dir}" -type f -mtime +90 -delete'';
   };
 in
@@ -30,8 +41,11 @@ in
   };
 
   config = mkIf cfg.enable {
-    home.packages = [ pkg pkg_cleanup ];
-    
+    home.packages = [
+      pkg
+      pkg_cleanup
+    ];
+
     systemd.user.services."screenshots-optimiser" = {
       Service.ExecStart = "${getExe pkg}";
       Unit.Description = "Convert PNG screenshots to JXL";
