@@ -47,6 +47,7 @@ with lib;
     hashedPasswordFile = config.sops.secrets."users/root/hashedPassword".path;
     # Set up SSH allowed public keys per/user
     openssh.authorizedKeys.keys = [
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILlwUoUDRQM98RN6d2aVBvsVl0RhP4lUUBacfbPfbxfP nicklor@apollo" # Nicklor / Apollo
       # M
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAdbc4rd6oLhikNKR4/Agp1VUVWsnWoR0v0POAdU/rkx u0_a1731@localhost"
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILCHwV0zA22QHV1DLpaoJusNjg7xO+COQ2QOZ7EBkMSI alexander.kobrys@proton.me"
