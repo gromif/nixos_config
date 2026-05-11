@@ -8,6 +8,7 @@ with lib;
       "ssh/endpoint" = {
         format = "binary";
         sopsFile = ./ssh/endpoint_uk.bin;
+        mode = "0744";
       };
       "ssh/extraConfig" = {
         format = "binary";
