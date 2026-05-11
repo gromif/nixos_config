@@ -147,6 +147,7 @@
     # Misc
     freetube
     blanket
+    memorado
     # megasync
 
     # Communication
