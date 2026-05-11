@@ -53,6 +53,24 @@ with lib;
       };
 
       usbguard-rules.sopsFile = ./usbguard.yaml;
+
+      # User-specific secrets
+      # Nicklor
+
+      "nicklor/ssh/id_ed25519" = {
+        sopsFile = ./ssh_nicklor.yaml;
+        path = "${config.users.users.nicklor.home}/.ssh/id_ed25519";
+        owner = "nicklor";
+        group = "users";
+        mode = "0700";
+      };
+      "nicklor/ssh/id_ed25519_pub" = {
+        sopsFile = ./ssh_nicklor.yaml;
+        path = "${config.users.users.nicklor.home}/.ssh/id_ed25519.pub";
+        owner = "nicklor";
+        group = "users";
+        mode = "0700";
+      };
     };
   };
 }
