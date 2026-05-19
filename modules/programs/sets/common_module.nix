@@ -53,6 +53,7 @@ in
       ++ optionals (cfg.fs-specific.btrfs) [
         btrfs-progs
         compsize
+        duperemove
       ];
 
     programs.htop = {
