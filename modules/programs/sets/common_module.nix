@@ -46,6 +46,7 @@ in
         usbutils # Tools for working with USB devices, such as lsusb
         util-linux # Set of system utilities for Linux
         parallel
+        pciutils # Collection of programs for inspecting and manipulating configuration of PCI devices
         psmisc # Set of small useful utilities that use the proc filesystem (such as fuser, killall and pstree)
         pwgen # Password generator which creates passwords which can be easily memorized by a human
         stress-ng
