@@ -54,9 +54,27 @@ with lib;
 
       usbguard-rules.sopsFile = ./usbguard.yaml;
 
+      #
       # User-specific secrets
-      # Nicklor
+      #
 
+      # Alex
+      "ssh/alex/id_ed25519" = {
+        sopsFile = ./ssh.yaml;
+        path = "${config.users.users.alex.home}/.ssh/id_ed25519";
+        owner = "alex";
+        group = "users";
+        mode = "0700";
+      };
+      "ssh/alex/id_ed25519_pub" = {
+        sopsFile = ./ssh.yaml;
+        path = "${config.users.users.alex.home}/.ssh/id_ed25519.pub";
+        owner = "alex";
+        group = "users";
+        mode = "0700";
+      };
+
+      # Nicklor
       "nicklor/ssh/id_ed25519" = {
         sopsFile = ./ssh_nicklor.yaml;
         path = "${config.users.users.nicklor.home}/.ssh/id_ed25519";
