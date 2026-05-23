@@ -1,4 +1,4 @@
-{ config, ... }:
+{ config, lib, ... }:
 
 {
   imports = [
@@ -50,6 +50,12 @@
         users = [ "alex" ];
       };
     };
+    users = lib.mkAfter (
+      with config.nixfiles.user;
+      [
+        alex.id
+      ]
+    );
     programs = {
       appimage.enable = true;
       android-studio = {
@@ -78,18 +84,6 @@
   users.users = {
     root = {
       hashedPasswordFile = config.sops.secrets.user_root_passwordHash.path;
-    };
-    alex = {
-      isNormalUser = true;
-      description = "Alex";
-      home = "/home/alex";
-      createHome = true;
-      hashedPasswordFile = config.sops.secrets.user_root_passwordHash.path;
-      extraGroups = [
-        "networkmanager"
-        "wheel"
-        "kvm"
-      ];
     };
     nicklor = {
       isNormalUser = true;

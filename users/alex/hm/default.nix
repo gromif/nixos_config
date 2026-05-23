@@ -13,8 +13,6 @@ in
 {
   imports = dconfConfigs;
 
-  home.username = "alex";
-
   hmfiles = {
     gnome = {
       enable = true;
