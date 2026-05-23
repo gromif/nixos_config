@@ -1,19 +1,18 @@
 { config, lib, ... }:
 
 let
+  lsr = lib.filesystem.listFilesRecursive;
   modules =
-    builtins.filter
-      (f: lib.hasSuffix "_module.nix" f)
-      (
-        (lib.filesystem.listFilesRecursive ./modules) ++
-        (lib.filesystem.listFilesRecursive ./secrets)
-      );
+    builtins.filter (f: lib.hasSuffix "_module.nix" f) ((lsr ./modules) ++ (lsr ./secrets))
+    ++ (lsr ./users);
   aliases = [
     (lib.mkAliasOptionModule [ "nixfiles" "system" "stateVersion" ] [ "system" "stateVersion" ])
   ];
-in with lib; {
+in
+with lib;
+{
   imports = modules ++ aliases;
-  
+
   options.nixfiles = {
     enable = mkOption {
       type = types.bool;
@@ -22,7 +21,10 @@ in with lib; {
     };
     system = {
       type = mkOption {
-        type = types.enum [ "linux" "avf" ];
+        type = types.enum [
+          "linux"
+          "avf"
+        ];
         default = "linux";
         description = ''
           Target system type.
@@ -33,6 +35,6 @@ in with lib; {
   };
 
   config = mkIf config.nixfiles.enable {
-    
+
   };
 }
