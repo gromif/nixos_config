@@ -75,34 +75,30 @@
     };
   };
 
-  users.users.alex = {
-    isNormalUser = true;
-    description = "Alex";
-    home = "/home/alex";
-    createHome = true;
-    hashedPasswordFile = config.sops.secrets.user_root_passwordHash.path;
-    extraGroups = [
-      "networkmanager"
-      "wheel"
-      "kvm"
-    ];
-  };
-
-  users.users.nicklor = {
-    isNormalUser = true;
-    description = "nicklor";
-    home = "/home/nicklor";
-    createHome = true;
-    hashedPasswordFile = config.sops.secrets.user_nicklor_passwordHash.path;
-    extraGroups = [
-      "networkmanager"
-      "kvm"
-      "wheel"
-    ];
-  };
-
-  users.users.root = {
-    hashedPasswordFile = config.sops.secrets.user_root_passwordHash.path;
+  users.users = {
+    root = {
+      hashedPasswordFile = config.sops.secrets.user_root_passwordHash.path;
+    };
+    alex = {
+      isNormalUser = true;
+      description = "Alex";
+      home = "/home/alex";
+      createHome = true;
+      hashedPasswordFile = config.sops.secrets.user_root_passwordHash.path;
+      extraGroups = [
+        "networkmanager"
+        "wheel"
+        "kvm"
+      ];
+    };
+    nicklor = {
+      isNormalUser = true;
+      description = "nicklor";
+      home = "/home/nicklor";
+      createHome = true;
+      hashedPasswordFile = config.sops.secrets.user_nicklor_passwordHash.path;
+      extraGroups = [ "networkmanager" ];
+    };
   };
 
   programs.firefox.enable = true; # Install firefox.
