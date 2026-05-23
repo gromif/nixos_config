@@ -81,7 +81,7 @@ in
         map (u: {
           name = u;
           value = {
-            packages = [ (if (cfg.sandbox && cfgSandbox.enable) then pkg-wrapped else pkg) ];
+            packages = [ (if (cfg.sandbox && cfgSandbox.enable) then pkg else pkg) ];
           };
         }) cfg.users
       );
