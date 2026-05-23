@@ -53,6 +53,7 @@
     users = lib.mkAfter (
       with config.nixfiles.user;
       [
+        root.id
         alex.id
         nicklor.id
       ]
@@ -79,12 +80,6 @@
     };
     security = {
       sandbox.enable = true;
-    };
-  };
-
-  users.users = {
-    root = {
-      hashedPasswordFile = config.sops.secrets.user_root_passwordHash.path;
     };
   };
 
