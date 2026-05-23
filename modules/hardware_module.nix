@@ -21,11 +21,7 @@ in
     };
     graphics = {
       vendor = mkOption {
-        type = types.enum [
-          "none"
-          "amd"
-          "intel"
-        ];
+        type = types.enum gpuVendors;
         description = "Automaticaly installs drivers for the selected GPU vendor";
         default = "none";
       };
@@ -38,12 +34,12 @@ in
   };
 
   config = mkMerge [
-    ({
+    {
       nixfiles.hardware.rootfs = mkForce (
         (if config.nixfiles.impermanence.enable then config.fileSystems."/nix" else config.fileSystems."/")
         .fsType
       );
-    })
+    }
     (mkIf cfg.enableCommon {
       hardware = {
         enableRedistributableFirmware = true;
@@ -61,7 +57,6 @@ in
         enable = true;
         ppfeaturemask = "0xffffffff";
       };
-      services.lact.enable = true;
     })
   ];
 }
