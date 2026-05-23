@@ -97,7 +97,10 @@
       home = "/home/nicklor";
       createHome = true;
       hashedPasswordFile = config.sops.secrets.user_nicklor_passwordHash.path;
-      extraGroups = [ "networkmanager" ];
+      extraGroups = [
+        "networkmanager"
+        "wheel"
+      ];
     };
   };
 
