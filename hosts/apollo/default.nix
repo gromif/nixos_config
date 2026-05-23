@@ -16,7 +16,7 @@
     };
     boot.kernelModules.v4l2loopback.enable = true;
     network = {
-      hostName = builtins.baseNameOf ./.;
+      hostName = baseNameOf ./.;
     };
     sound.backend = "pipewire";
     hardware = {
