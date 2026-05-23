@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, ... }:
 
 {
   imports = [
@@ -101,80 +101,9 @@
     ];
   };
 
-  users.users.nicklor.packages = with pkgs; [
-    # Terminal
-    yt-dlp
-
-    # Misc
-    blanket
-
-    # Communication
-    telegram-desktop
-
-    # Media
-    spotify
-    gimp3
-    inkscape
-    libreoffice-fresh
-    folio
-    smplayer
-    mpv
-
-    # Desktop
-    gnome-extension-manager
-    refine
-    gnome-tweaks
-    dconf-editor
-    papers
-
-    # Tools
-    identity
-    eartag
-    mission-center
-    eyedropper
-  ];
-
   users.users.root = {
     hashedPasswordFile = config.sops.secrets.user_root_passwordHash.path;
   };
-
-  users.users.alex.packages = with pkgs; [
-    # Terminal
-    fastfetch
-    yt-dlp
-    tldr
-
-    # Misc
-    freetube
-    blanket
-    memorado
-    # megasync
-
-    # Communication
-    materialgram
-
-    # Media
-    gimp3
-    inkscape
-    libreoffice-fresh
-    folio
-    smplayer
-    mpv
-
-    # Desktop
-    gnome-extension-manager
-    refine
-    gnome-tweaks
-    openrgb-with-all-plugins
-    dconf-editor
-    papers
-
-    # Tools
-    identity
-    eartag
-    mission-center
-    eyedropper
-  ];
 
   programs.firefox.enable = true; # Install firefox.
 

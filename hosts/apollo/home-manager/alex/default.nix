@@ -33,6 +33,44 @@ in
     };
   };
 
+  home.packages = with pkgs; [
+    # Terminal
+    fastfetch
+    yt-dlp
+    tldr
+
+    # Misc
+    freetube
+    blanket
+    memorado
+    # megasync
+
+    # Communication
+    materialgram
+
+    # Media
+    gimp3
+    inkscape
+    libreoffice-fresh
+    folio
+    smplayer
+    mpv
+
+    # Desktop
+    gnome-extension-manager
+    refine
+    gnome-tweaks
+    openrgb-with-all-plugins
+    dconf-editor
+    papers
+
+    # Tools
+    identity
+    eartag
+    mission-center
+    eyedropper
+  ];
+
   # Favourite applications
   dconf.settings = {
     "org/gnome/shell" = {

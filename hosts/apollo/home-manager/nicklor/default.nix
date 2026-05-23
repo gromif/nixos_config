@@ -32,6 +32,39 @@ in
 
   home.username = "nicklor";
 
+  home.packages = with pkgs; [
+    # Terminal
+    yt-dlp
+
+    # Misc
+    blanket
+
+    # Communication
+    telegram-desktop
+
+    # Media
+    spotify
+    gimp3
+    inkscape
+    libreoffice-fresh
+    folio
+    smplayer
+    mpv
+
+    # Desktop
+    gnome-extension-manager
+    refine
+    gnome-tweaks
+    dconf-editor
+    papers
+
+    # Tools
+    identity
+    eartag
+    mission-center
+    eyedropper
+  ];
+
   # Favourite applications
   dconf.settings = {
     "org/gnome/shell" = {
