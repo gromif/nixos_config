@@ -54,6 +54,7 @@
       with config.nixfiles.user;
       [
         alex.id
+        nicklor.id
       ]
     );
     programs = {
@@ -84,17 +85,6 @@
   users.users = {
     root = {
       hashedPasswordFile = config.sops.secrets.user_root_passwordHash.path;
-    };
-    nicklor = {
-      isNormalUser = true;
-      description = "nicklor";
-      home = "/home/nicklor";
-      createHome = true;
-      hashedPasswordFile = config.sops.secrets.user_nicklor_passwordHash.path;
-      extraGroups = [
-        "networkmanager"
-        "wheel"
-      ];
     };
   };
 

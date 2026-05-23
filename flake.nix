@@ -78,7 +78,6 @@
                 useGlobalPkgs = true;
                 useUserPackages = true;
                 sharedModules = hmSharedModules;
-                users.nicklor = ./hosts/apollo/home-manager/nicklor;
               };
             }
           ];
