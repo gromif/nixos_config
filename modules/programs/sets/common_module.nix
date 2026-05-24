@@ -69,5 +69,8 @@ in
         column_meter_modes_1 = "1 2 1 2 2 2 2 2 2";
       };
     };
+
+    # Shut Parallel down
+    environment.etc."parallel/will-cite".text = "";
   };
 }
