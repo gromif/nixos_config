@@ -49,7 +49,6 @@
         ./nixfiles.nix
         ./modules/utils/compression.nix
       ];
-      hmSharedModules = [ ./hmfiles.nix ];
     in
     {
       nixosConfigurations = {
@@ -64,13 +63,6 @@
             ./modules/scripts
             ./modules/programs/redroid.nix
             home-manager-unstable.nixosModules.home-manager
-            {
-              home-manager = {
-                useGlobalPkgs = true;
-                useUserPackages = true;
-                sharedModules = hmSharedModules;
-              };
-            }
           ];
         };
         mercury = nixpkgs-stable.lib.nixosSystem {

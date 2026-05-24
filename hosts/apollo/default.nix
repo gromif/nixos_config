@@ -11,6 +11,7 @@
 
   nixfiles = {
     system = {
+      home-manager = true;
       shell.console.optimalSettings = true;
       stateVersion = "25.11";
     };

@@ -1,6 +1,9 @@
 { config, lib, ... }:
 
+with lib;
+
 let
+  cfg = config.nixfiles;
   lsr = lib.filesystem.listFilesRecursive;
   modules = builtins.filter (f: lib.hasSuffix "_module.nix" f) (
     (lsr ./modules) ++ (lsr ./secrets) ++ (lsr ./users)
@@ -9,7 +12,6 @@ let
     (lib.mkAliasOptionModule [ "nixfiles" "system" "stateVersion" ] [ "system" "stateVersion" ])
   ];
 in
-with lib;
 {
   imports = modules ++ aliases;
 
@@ -20,6 +22,7 @@ with lib;
       description = "Whether to enable the Nixfiles custom configuration.";
     };
     system = {
+      home-manager = mkEnableOption "Home-Manager support";
       type = mkOption {
         type = types.enum [
           "linux"
@@ -34,7 +37,13 @@ with lib;
     };
   };
 
-  config = mkIf config.nixfiles.enable {
-
-  };
+  config = mkMerge [
+    (mkIf cfg.system.home-manager {
+      home-manager = {
+        useGlobalPkgs = true;
+        useUserPackages = true;
+        sharedModules = [ ./hmfiles.nix ];
+      };
+    })
+  ];
 }
