@@ -45,9 +45,7 @@
       sharedModules = [
         impermanence.nixosModules.impermanence
         sops-nix-unstable.nixosModules.sops
-
         ./nixfiles.nix
-        ./modules/utils/compression.nix
       ];
     in
     {
