@@ -25,6 +25,7 @@ in
       bottles.enable = true;
       euphonica.enable = true;
       mangohud.enable = true;
+      megasync.enable = true;
       gapless.enable = true;
     };
     services = {

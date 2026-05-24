@@ -64,10 +64,6 @@
     );
     programs = {
       appimage.enable = true;
-      megasync = {
-        enable = true;
-        users = [ "alex" ];
-      };
       sets = {
         media.enable = true;
       };
