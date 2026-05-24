@@ -75,9 +75,6 @@
         users = [ "alex" ];
       };
     };
-    security = {
-      sandbox.enable = true;
-    };
   };
 
   programs.firefox.enable = true; # Install firefox.

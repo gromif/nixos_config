@@ -57,7 +57,6 @@
           modules = sharedModules ++ [
             ./hosts/apollo
             ./modules/boot/systemd.nix
-            ./modules/security/sandbox
             ./modules/mimetypes.nix
             ./modules/services/unarchiver.nix
             ./modules/scripts
@@ -70,7 +69,6 @@
           modules = sharedModules ++ [
             ./hosts/mercury
             ./modules/boot/grub2.nix
-            # ./modules/security/sandbox
             ./modules/scripts/maintainance.nix
             ./modules/services/qbittorrent.nix
             ./modules/services/slskd.nix
