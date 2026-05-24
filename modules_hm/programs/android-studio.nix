@@ -39,10 +39,6 @@ in
 {
   options.hmfiles.programs.android-studio = {
     enable = mkEnableOption "Android Studio IDE";
-    users = mkOption {
-      type = types.listOf types.str;
-      description = "User-profile list to include the package";
-    };
   };
 
   config = mkMerge [

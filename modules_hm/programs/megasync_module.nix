@@ -20,10 +20,6 @@ in
 {
   options.hmfiles.programs.megasync = {
     enable = mkEnableOption "MegaSync";
-    users = mkOption {
-      type = types.listOf types.str;
-      description = "User-profile list to include the package";
-    };
   };
 
   config = mkMerge [
