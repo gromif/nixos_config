@@ -22,6 +22,7 @@ in
     };
     programs = {
       bottles.enable = true;
+      euphonica.enable = true;
       mangohud.enable = true;
       gapless.enable = true;
     };

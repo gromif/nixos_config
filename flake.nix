@@ -66,7 +66,6 @@
             ./modules/services/unarchiver.nix
             ./modules/scripts
             ./modules/programs/android-studio.nix
-            ./modules/programs/euphonica.nix
             ./modules/programs/redroid.nix
             home-manager-unstable.nixosModules.home-manager
             {
