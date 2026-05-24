@@ -67,7 +67,6 @@
             ./modules/services/unarchiver.nix
             ./modules/scripts
             ./modules/programs/android-studio.nix
-            ./modules/programs/gapless.nix
             ./modules/programs/euphonica.nix
             ./modules/programs/bottles.nix
             ./modules/programs/redroid.nix

@@ -22,6 +22,7 @@ in
     };
     programs = {
       mangohud.enable = true;
+      gapless.enable = true;
     };
     services = {
       screenshots-optimiser.enable = true;

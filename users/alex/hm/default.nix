@@ -22,6 +22,7 @@ in
     };
     programs = {
       mangohud.enable = true;
+      gapless.enable = true;
     };
     services = {
       mpd.enable = true;
