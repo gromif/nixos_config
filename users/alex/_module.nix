@@ -35,5 +35,8 @@ in
       imports = [ ./hm ];
       home.username = id;
     };
+
+    # Accept Android Studio's license
+    nixpkgs.config.android_sdk.accept_license = true;
   };
 }

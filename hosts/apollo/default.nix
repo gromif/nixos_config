@@ -64,10 +64,6 @@
     );
     programs = {
       appimage.enable = true;
-      android-studio = {
-        enable = true;
-        users = [ "alex" ];
-      };
       megasync = {
         enable = true;
         users = [ "alex" ];

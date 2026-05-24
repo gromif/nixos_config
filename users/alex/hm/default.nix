@@ -21,6 +21,7 @@ in
       };
     };
     programs = {
+      android-studio.enable = true;
       bottles.enable = true;
       euphonica.enable = true;
       mangohud.enable = true;
