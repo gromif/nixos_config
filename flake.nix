@@ -4,7 +4,6 @@
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-25.11";
     impermanence.url = "github:nix-community/impermanence";
-    nix-bwrapper.url = "https://flakehub.com/f/Naxdy/nix-bwrapper/*";
 
     home-manager-unstable = {
       url = "github:nix-community/home-manager";
@@ -39,7 +38,6 @@
       sops-nix-unstable,
       home-manager-stable,
       home-manager-unstable,
-      nix-bwrapper,
       nixos-avf,
     }:
     let
@@ -47,7 +45,6 @@
       sharedModules = [
         impermanence.nixosModules.impermanence
         sops-nix-unstable.nixosModules.sops
-        nix-bwrapper.nixosModules.default
 
         ./nixfiles.nix
         ./modules/utils/compression.nix
