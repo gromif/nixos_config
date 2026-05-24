@@ -61,7 +61,6 @@
           modules = sharedModules ++ [
             ./hosts/apollo
             ./modules/boot/systemd.nix
-            # ./modules/security/luks.nix
             ./modules/security/sandbox
             ./modules/mimetypes.nix
             ./modules/services/unarchiver.nix
