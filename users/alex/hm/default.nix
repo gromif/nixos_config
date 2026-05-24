@@ -21,6 +21,7 @@ in
       };
     };
     programs = {
+      bottles.enable = true;
       mangohud.enable = true;
       gapless.enable = true;
     };
