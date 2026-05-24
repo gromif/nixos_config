@@ -64,7 +64,6 @@
             # ./modules/security/luks.nix
             ./modules/security/sandbox
             ./modules/mimetypes.nix
-            ./modules/games/common.nix
             ./modules/services/unarchiver.nix
             ./modules/scripts
             ./modules/programs/android-studio.nix

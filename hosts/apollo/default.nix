@@ -53,6 +53,7 @@
         users = [ "alex" ];
       };
     };
+    gaming.enable = true;
     users = lib.mkAfter (
       with config.nixfiles.user;
       [
