@@ -27,6 +27,7 @@ in
       mangohud.enable = true;
       megasync.enable = true;
       gapless.enable = true;
+      redroid.enable = true;
     };
     services = {
       mpd.enable = true;

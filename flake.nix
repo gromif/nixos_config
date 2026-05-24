@@ -60,7 +60,6 @@
             ./modules/mimetypes.nix
             ./modules/services/unarchiver.nix
             ./modules/scripts
-            ./modules/programs/redroid.nix
             home-manager-unstable.nixosModules.home-manager
           ];
         };
