@@ -50,6 +50,7 @@ in
         psmisc # Set of small useful utilities that use the proc filesystem (such as fuser, killall and pstree)
         pwgen # Password generator which creates passwords which can be easily memorized by a human
         stress-ng
+        tree # Command to produce a depth indented directory listing
       ]
       ++ optionals (cfg.fs-specific.btrfs) [
         btrfs-progs
