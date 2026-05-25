@@ -55,7 +55,6 @@
           modules = sharedModules ++ [
             ./hosts/apollo
             ./modules/boot/systemd.nix
-            ./modules/mimetypes.nix
             ./modules/services/unarchiver.nix
             ./modules/scripts
             home-manager-unstable.nixosModules.home-manager
