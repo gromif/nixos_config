@@ -46,6 +46,9 @@
       virsh nodedev-detach pci_0000_03_00_0 >> $LOG
       virsh nodedev-detach pci_0000_03_00_1 >> $LOG
 
+      echo "Setting up hugepages" >> $LOG
+      echo 12288 > /proc/sys/vm/nr_hugepages # 24GiB
+      
       sleep 2s
 
       # Load VFIO Kernel Module
@@ -56,6 +59,9 @@
       
       # Unload VFIO Kernel Module
       while ! $MODPROBE -r vfio-pci >> $LOG; do sleep 1; done
+
+      echo "Removing hugepages" >> $LOG
+      echo 0 > /proc/sys/vm/nr_hugepages
 
       sleep 2s
 
