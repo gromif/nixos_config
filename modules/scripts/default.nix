@@ -1,6 +1,5 @@
 # System - Scripts
 
-
 { pkgs, ... }:
 
 let
@@ -15,19 +14,19 @@ let
       echo "$dir"
     '';
   };
-  
+
   audioList = builtins.attrNames (builtins.readDir ./audio);
   audio = map (c: ./audio + "/${c}") audioList;
 in
 {
-	imports = [
-		./maintainance.nix
-		./ssh.nix
-  ] ++ audio;
-  
+  imports = [
+    ./ssh.nix
+  ]
+  ++ audio;
+
   environment.systemPackages = with pkgs; [
     parallel
-    
+
     scriptsMkOutput
   ];
 }

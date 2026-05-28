@@ -65,7 +65,6 @@
           modules = sharedModules ++ [
             ./hosts/mercury
             ./modules/boot/grub2.nix
-            ./modules/scripts/maintainance.nix
             ./modules/services/qbittorrent.nix
             ./modules/services/slskd.nix
           ];
