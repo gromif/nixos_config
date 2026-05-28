@@ -18,16 +18,14 @@ let
     name = "nsi";
     inherit runtimeInputs;
     text = ''
-      nix-search-tv print | fzf --preview 'nix-search-tv preview {}' +s -e \                                                                                   ─╯
-        --header="np | hm" --header-border=rounded
+      nix-search-tv print | fzf --preview 'nix-search-tv preview {}' +s -e --header="np | hm" --header-border=rounded
     '';
   };
   ns = pkgs.writeShellApplication {
     inherit name;
     inherit runtimeInputs;
     text = ''
-      nix-search-tv print | fzf --preview 'nix-search-tv preview {}' +s \                                                                                   ─╯
-        --header="np | hm" --header-border=rounded
+      nix-search-tv print | fzf --preview 'nix-search-tv preview {}' +s -e --header="np | hm" --header-border=rounded
     '';
   };
 in
