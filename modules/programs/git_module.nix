@@ -4,11 +4,18 @@ with lib;
 
 let
   cfg = config.nixfiles.programs.git;
-  fromAlias = [ "programs" "git" ];
-  toAlias = [ "nixfiles" "programs" "git" ];
-  aliases = map (option:
-    lib.mkAliasOptionModule (toAlias ++ [ option ]) (fromAlias ++ [ option ])
-  ) [ "config" ];
+  fromAlias = [
+    "programs"
+    "git"
+  ];
+  toAlias = [
+    "nixfiles"
+    "programs"
+    "git"
+  ];
+  aliases = map (option: lib.mkAliasOptionModule (toAlias ++ [ option ]) (fromAlias ++ [ option ])) [
+    "config"
+  ];
 in
 {
   imports = aliases;
@@ -31,6 +38,7 @@ in
         submodule = {
           recurse = mkDefault true;
         };
+        safe.directory = "/etc/nixos";
       };
     };
   };
