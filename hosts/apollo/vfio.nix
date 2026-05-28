@@ -1,5 +1,6 @@
 {
   pkgs,
+  lib,
   ...
 }:
 
@@ -22,63 +23,87 @@
     VM_NAME="$1"
     OPERATION="$2"
     SUB_OPERATION="$3"
-    SYSTEMCTL=${pkgs.systemd}/bin/systemctl
-    MODPROBE=${pkgs.kmod}/bin/modprobe
-    LOG=/nix/state/vm.log
+    TAG="win10"
+    LOG="logger -t $TAG"
 
-    export PATH=$PATH:${pkgs.libvirt}/bin
+    export PATH=$PATH:${
+      lib.makeBinPath (
+        with pkgs;
+        [
+          util-linux
+          coreutils-full
+          systemd
+          kmod
+          libvirt
+        ]
+      )
+    }
+
+    $LOG "VM=$VM_NAME OP=$OPERATION STATE=$STATE"
 
     if [ "$VM_NAME" != "win10" ]; then
       exit 0
     fi
 
     if [ "$OPERATION" == "prepare" ] && [ "$SUB_OPERATION" == "begin" ]; then
-      echo "Stopping systemd services..." > $LOG
-      $SYSTEMCTL stop lactd.service display-manager.service user@1000.service >> $LOG
+      $LOG "Shutting down systemd services.."
+      result=$(systemctl stop lactd.service display-manager.service user@1000.service)
+      $LOG "$result"
       sleep 3s
-      
+
       # Unload GPU modules
-      while ! $MODPROBE -r amdgpu; do sleep 1; done
+      while ! modprobe -r amdgpu; do sleep 1; done
 
-      echo "virsh unloading..." >> $LOG
-      
+      $LOG "Virsh unloading..."
+
       # Unbind the GPU from display driver
-      virsh nodedev-detach pci_0000_03_00_0 >> $LOG
-      virsh nodedev-detach pci_0000_03_00_1 >> $LOG
+      $LOG "Detaching video.."
+      virsh_video=$(virsh nodedev-detach pci_0000_03_00_0)
+      $LOG "Detaching video result: $virsh_video"
 
-      echo "Setting up hugepages" >> $LOG
-      echo 12288 > /proc/sys/vm/nr_hugepages # 24GiB
+      $LOG "Detaching audio.."
+      virsh_audio=$(virsh nodedev-detach pci_0000_03_00_1)
+      $LOG "Detaching audio result: $virsh_audio"
+
+      $LOG "Setting up hugepages"
+      hugepages=$(echo 12288 | tee /proc/sys/vm/nr_hugepages) # 24GiB
+      $LOG "Setting up hugepages result: $hugepages"
       
       sleep 2s
 
       # Load VFIO Kernel Module
-      echo "loading vfio..."
-      $MODPROBE vfio-pci >> $LOG
+      $LOG "Loading VFIO.."
+      vfio_load=$(modprobe vfio-pci)
+      $LOG "Loading result: $vfio_load"
+      $LOG "Finished!"
     elif [ "$OPERATION" == "release" ] && [ "$SUB_OPERATION" == "end" ]; then
-      echo "trying to restore the GPU state" >> $LOG
-      
-      # Unload VFIO Kernel Module
-      while ! $MODPROBE -r vfio-pci >> $LOG; do sleep 1; done
+      $LOG "Unloading VFIO.."
+      while ! modprobe -r vfio-pci; do sleep 1; done
 
-      echo "Removing hugepages" >> $LOG
-      echo 0 > /proc/sys/vm/nr_hugepages
-
-      sleep 2s
-
-      echo "virsh rebind" >> $LOG
-      # Bind the GPU to display driver
-      virsh nodedev-reattach pci_0000_03_00_0 >> $LOG 
-      virsh nodedev-reattach pci_0000_03_00_1 >> $LOG
-
-      echo "modprobe amdgpu"
-      # Load GPU Modules
-      $MODPROBE amdgpu >> $LOG
+      $LOG "Removing hugepages.."
+      hugepages=$(echo 0 | tee /proc/sys/vm/nr_hugepages)
+      $LOG "Removing hugepages result: $hugepages"
 
       sleep 2s
 
-      echo "reviving systemd services" >> $LOG
-      # Start Services
-      $SYSTEMCTL start lactd.service display-manager.service >> $LOG
+      $LOG "Trying to rebind the GPU via Virsh.."
+      $LOG "Reattaching video.."
+      virsh_video=$(virsh nodedev-reattach pci_0000_03_00_0)
+      $LOG "Reattaching video result: $virsh_video"
+
+      $LOG "Reattaching audio.."
+      virsh_audio=$(virsh nodedev-reattach pci_0000_03_00_1)
+      $LOG "Reattaching audio result: $virsh_audio"
+
+      $LOG "Loading amdgpu.."
+      load_amdgpu=$(modprobe amdgpu)
+      $LOG "Loading amdgpu result: $load_amdgpu"
+
+      sleep 2s
+
+      $LOG "Reviving systemd services.."
+      reviving=$(systemctl start lactd.service display-manager.service)
+      $LOG "Finished with: $reviving"
     fi
   '';
 }
