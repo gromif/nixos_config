@@ -64,6 +64,7 @@ in
         "d %h/.config/zsh 700 - - - -"
       ];
       environment.systemPackages = with pkgs; [
+        fastfetch
         zsh-powerlevel10k
       ];
 
@@ -84,6 +85,7 @@ in
         histSize = 10000;
 
         interactiveShellInit = ''
+          fastfetch
           # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.config/zsh/.zshrc.
           # Initialization code that may require console input (password prompts, [y/n]
           # confirmations, etc.) must go above this block; everything else may go below.
