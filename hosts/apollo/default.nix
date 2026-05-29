@@ -49,10 +49,6 @@
           "alex"
         ];
       };
-      docker = {
-        enable = true;
-        users = [ "alex" ];
-      };
     };
     gaming.enable = true;
     users = lib.mkAfter (
