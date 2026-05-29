@@ -1,13 +1,18 @@
-# System - Scripts - Audio - Remove - Silence
-#
-
-{ pkgs, lib, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 
 let
   mainScriptName = "aud-walk-remove_silence";
   mainScriptPkg = pkgs.writeShellApplication {
     name = mainScriptName;
-    runtimeInputs = with pkgs; [ parallel scriptPkg ];
+    runtimeInputs = with pkgs; [
+      parallel
+      scriptPkg
+    ];
     text = ''
       find "$(pwd)" -type f \
         -name "*.flac" \
@@ -19,7 +24,10 @@ let
   scriptName = "aud-remove_silence";
   scriptPkg = pkgs.writeShellApplication {
     name = scriptName;
-    runtimeInputs = with pkgs; [ ffmpeg glib ];
+    runtimeInputs = with pkgs; [
+      ffmpeg
+      glib
+    ];
     text = ''
       file="$1"
       base=$(basename "$file")
@@ -29,7 +37,7 @@ let
       bit_depth=$(ffprobe -v error -select_streams a:0 \
         -show_entries stream=bits_per_raw_sample \
         -of default=noprint_wrappers=1:nokey=1 "$file" || true)
-      
+
       # Default if empty or unset
       if [ -z "$bit_depth" ]; then
         bit_depth=16
@@ -51,6 +59,10 @@ let
   };
 in
 {
-  environment.systemPackages = with pkgs; [ scriptPkg mainScriptPkg ];
+  config = lib.mkIf config.hmfiles.programs.scripts.group.audio {
+    home.packages = [
+      scriptPkg
+      mainScriptPkg
+    ];
+  };
 }
-

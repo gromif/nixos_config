@@ -56,7 +56,6 @@
             ./hosts/apollo
             ./modules/boot/systemd.nix
             ./modules/services/unarchiver.nix
-            ./modules/scripts
             home-manager-unstable.nixosModules.home-manager
           ];
         };
@@ -74,8 +73,6 @@
           modules = sharedModules ++ [
             nixos-avf.nixosModules.avf
             ./hosts/moon
-
-            ./modules/scripts
           ];
         };
       };

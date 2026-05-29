@@ -1,10 +1,15 @@
-# System - Scripts - Audio - Flac - Tags - Cleanup
-#
-
-{ pkgs, lib, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 
 let
-  runtimes = with pkgs; [ parallel flac ];
+  runtimes = with pkgs; [
+    parallel
+    flac
+  ];
   whitelist = [
     "ALBUM"
     "ALBUMARTIST"
@@ -31,17 +36,19 @@ let
   ];
   tagsList = whitelist ++ (map (t: lib.strings.toLower t) whitelist);
   args = lib.strings.concatStrings (map (i: "=${i}") tagsList);
-  
+
   scriptName = "flac-tags_cleanup";
   scriptPkg = pkgs.writeShellApplication {
-  	  name = scriptName;
-  	  runtimeInputs = runtimes;
-  	  text = ''
-  	    find "$(pwd)" -type f -name "*.flac" \
-  	      | parallel "metaflac --preserve-modtime --remove-all-tags-except${args} {}"
-  	  '';
-  	};
+    name = scriptName;
+    runtimeInputs = runtimes;
+    text = ''
+      	    find "$(pwd)" -type f -name "*.flac" \
+      	      | parallel "metaflac --preserve-modtime --remove-all-tags-except${args} {}"
+      	  '';
+  };
 in
 {
-	environment.systemPackages = with pkgs; [ scriptPkg ];
+  config = lib.mkIf config.hmfiles.programs.scripts.group.audio {
+    home.packages = [ scriptPkg ];
+  };
 }

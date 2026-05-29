@@ -28,6 +28,9 @@ in
       megasync.enable = true;
       gapless.enable = true;
       redroid.enable = true;
+      scripts = {
+        group.audio = true;
+      };
     };
     services = {
       mpd.enable = true;
