@@ -45,6 +45,7 @@
       sharedModules = [
         impermanence.nixosModules.impermanence
         sops-nix-unstable.nixosModules.sops
+        home-manager-unstable.nixosModules.home-manager
         ./nixfiles.nix
       ];
     in
@@ -56,7 +57,6 @@
             ./hosts/apollo
             ./modules/boot/systemd.nix
             ./modules/services/unarchiver.nix
-            home-manager-unstable.nixosModules.home-manager
           ];
         };
         mercury = nixpkgs-stable.lib.nixosSystem {
