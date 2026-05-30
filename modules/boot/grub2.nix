@@ -1,6 +1,5 @@
 # Boot - grub2
 
-
 { config, lib, ... }:
 
 with lib;
@@ -12,11 +11,11 @@ in
 {
   # Use the GRUB 2 boot loader.
   boot.loader = {
-    timeout = 10;
+    timeout = 0;
     grub = {
       enable = true;
       device = mkIf (!isImpermanent) "/dev/sda";
-      mirroredBoots = mkIf (isImpermanent) [
+      mirroredBoots = mkIf isImpermanent [
         {
           path = "${cfg_imperm.persistentStoragePath}/boot";
           devices = [ "/dev/sda" ];
