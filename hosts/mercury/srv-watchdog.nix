@@ -18,7 +18,7 @@ in
     path = with pkgs; [
       systemd
       gnugrep
-      iproute
+      iproute2
     ];
     script = ''
       if ! ss -tn state established | grep ":31472"; then
