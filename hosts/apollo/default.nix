@@ -60,14 +60,14 @@
       ]
     );
     programs = {
-      appimage.enable = true;
+      # appimage.enable = true;
       sets = {
         media.enable = true;
       };
     };
     games = {
       prism-launcher = {
-        enable = true;
+        # enable = true;
         users = [ "alex" ];
       };
     };
