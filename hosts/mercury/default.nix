@@ -11,6 +11,7 @@ with lib;
   imports = [
     ./hardware-configuration.nix
     ./resilience.nix
+    ./srv-watchdog.nix
   ];
 
   time.timeZone = "Europe/Kyiv";
