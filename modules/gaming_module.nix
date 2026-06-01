@@ -22,6 +22,7 @@ in
     environment.variables = {
       WINENTSYNC = 1;
       PROTON_USE_NTSYNC = 1;
+      PROTON_ENABLE_WAYLAND = 1;
     };
 
     # Set up Steam

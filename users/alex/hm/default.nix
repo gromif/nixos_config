@@ -42,7 +42,6 @@ in
 
   home.packages = with pkgs; [
     # Terminal
-    fastfetch
     yt-dlp
     tldr
 
