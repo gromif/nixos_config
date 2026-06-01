@@ -33,6 +33,7 @@ in
         extraEnv = {
           ENABLE_LSFG = mkIf (cfg.enableLSFG) true;
           MANGOHUD = true;
+          PROTON_ENABLE_WAYLAND = 1;
         };
       };
       extraPackages =
