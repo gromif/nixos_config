@@ -52,7 +52,7 @@ in
     # megasync
 
     # Communication
-    materialgram
+    telegram-desktop
 
     # Media
     gimp3
@@ -86,7 +86,7 @@ in
         "org.gnome.Console.desktop"
         "io.github.htkhiem.Euphonica.desktop"
         "android-studio.desktop"
-        "io.github.kukuruzka165.materialgram.desktop"
+        "org.telegram.desktop.desktop"
         "com.usebottles.bottles.desktop"
         "org.gnome.TextEditor.desktop"
       ];
