@@ -68,7 +68,7 @@
     };
     games = {
       prism-launcher = {
-        # enable = true;
+        enable = true;
         users = [ "alex" ];
       };
     };
