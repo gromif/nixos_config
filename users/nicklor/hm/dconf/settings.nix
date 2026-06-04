@@ -17,7 +17,7 @@ with lib.hm.gvariant;
     # Interface
     "org/gnome/desktop/interface" = {
       gtk-theme = "adw-gtk3";
-      icon-theme = "Tela-blue";
+      icon-theme = "Tela-green";
       clock-format = "12h";
       font-antialiasing = "rgba";
     };
