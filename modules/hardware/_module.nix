@@ -55,7 +55,7 @@ in
     (mkIf (cfg.graphics.vendor == "amd") {
       hardware.amdgpu.overdrive = {
         enable = true;
-        ppfeaturemask = "0xffffffff";
+        # ppfeaturemask = "0xffffffff";
       };
     })
   ];
