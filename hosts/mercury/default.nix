@@ -23,6 +23,7 @@ with lib;
         enableGC = mkForce false;
         enableOptimise = mkForce false;
       };
+      shell.zsh.autoFastfetch = false;
     };
     network = {
       hostName = baseNameOf ./.;
