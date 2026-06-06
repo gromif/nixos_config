@@ -101,7 +101,7 @@
         {
             "type": "disk",
             "key": "{$9}├   NixOS     ",
-            "folders": ["/"],
+            "folders": ["/nix"],
             "percent": {
                 "type": 3, // 3 = show number + bar + percentage
                 "green": 30, // <30% is green
@@ -229,7 +229,7 @@
         {
             "key": "{$8}├   OS Age    ",
             "type": "disk",
-            "folders": "/",
+            "folders": "/nix",
             "format": "{create-time:10} ({days} days)"
         },
         {
