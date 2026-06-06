@@ -37,7 +37,11 @@ in
       optimalSettings = mkEnableOption "optimal SystemD console settings";
     };
     zsh = {
-
+      autoFastfetch = mkOption {
+        type = types.bool;
+        default = true;
+        description = "Whether to call fastfetch automatically on login";
+      };
     };
   };
 
@@ -63,10 +67,12 @@ in
       systemd.user.tmpfiles.rules = [
         "d %h/.config/zsh 700 - - - -"
       ];
-      environment.systemPackages = with pkgs; [
-        fastfetch
-        zsh-powerlevel10k
-      ];
+      environment.systemPackages =
+        with pkgs;
+        [
+          zsh-powerlevel10k
+        ]
+        ++ optionals cfg.zsh.autoFastfetch [ pkgs.fastfetch ];
 
       # Setup ZSH
       programs.zsh = {
@@ -85,7 +91,7 @@ in
         histSize = 10000;
 
         interactiveShellInit = ''
-          fastfetch
+          ${if cfg.zsh.autoFastfetch then "fastfetch" else ""}
           # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.config/zsh/.zshrc.
           # Initialization code that may require console input (password prompts, [y/n]
           # confirmations, etc.) must go above this block; everything else may go below.
