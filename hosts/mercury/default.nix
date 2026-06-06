@@ -78,7 +78,6 @@ with lib;
   };
 
   # Optimisations
-  networking.firewall.enable = false;
   boot.kernelParams = [ "mitigations=off" ];
   systemd = {
     oomd.enable = false;
