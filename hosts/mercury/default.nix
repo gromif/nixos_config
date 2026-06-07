@@ -76,8 +76,4 @@ with lib;
     fstrim.enable = lib.mkDefault false; # Pointless on HDDs
     journald.storage = "volatile"; # Avoid unnecessary operations for HDDs
   };
-
-  # Optimisations
-  networking.firewall.enable = false;
-  boot.kernelParams = [ "mitigations=off" ];
 }
