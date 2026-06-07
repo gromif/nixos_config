@@ -26,6 +26,7 @@ with lib;
       shell.zsh.autoFastfetch = false;
     };
     network = {
+      enable = false;
       hostName = baseNameOf ./.;
     };
     services.openssh = {
@@ -84,5 +85,17 @@ with lib;
     services = {
       qbittorrent.wantedBy = [ ];
     };
+    network = {
+      enable = true;
+      networks."10-lan" = {
+        matchConfig.Name = "enp0s25";
+        networkConfig.DHCP = "yes";
+      };
+    };
+  };
+
+  networking = {
+    useDHCP = false;
+    useNetworkd = true;
   };
 }
