@@ -11,6 +11,8 @@
     "vfio_iommu_type1"
   ];
 
+  boot.extraModprobeConfig = "options vfio-pci disable_idle_d3=1";
+
   # Enable IOMMU for AMD. Crucially, do NOT add 'vfio-pci.ids=...' here for single GPU passthrough.
   boot.kernelParams = [
     # "vfio-pci.ids=1002:7550,1002:ab40"
