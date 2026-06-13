@@ -60,7 +60,7 @@
       ]
     );
     programs = {
-      # appimage.enable = true;
+      appimage.enable = true;
       fastfetch.preset = "nixos_1";
       sets = {
         media.enable = true;
