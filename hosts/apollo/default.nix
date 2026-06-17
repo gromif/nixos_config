@@ -49,6 +49,8 @@
           "alex"
         ];
       };
+      podman.enable = true;
+      distrobox.enable = true;
     };
     gaming.enable = true;
     users = lib.mkAfter (
@@ -63,6 +65,7 @@
       appimage.enable = true;
       fastfetch.preset = "nixos_1";
       sets = {
+        common.group.desktop = true;
         media.enable = true;
       };
     };

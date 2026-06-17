@@ -32,6 +32,11 @@ with lib;
       enable = true;
       ports = [ 31472 ];
     };
+    programs = {
+      sets = {
+        common.group.server = true;
+      };
+    };
   };
 
   # Auto-login the first tty console

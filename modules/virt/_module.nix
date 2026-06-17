@@ -22,6 +22,12 @@ in
         description = "List of users to include in the docker group";
       };
     };
+    podman = {
+      enable = mkEnableOption "Podman";
+    };
+    distrobox = {
+      enable = mkEnableOption "Dsitrobox";
+    };
     libvirtd = {
       enable = mkEnableOption "libvirtd";
       members = mkOption {
@@ -55,6 +61,15 @@ in
       nixfiles.impermanence.directories = mkIf isImperm [
         "/var/lib/docker"
       ];
+    })
+    (mkIf (cfg.podman.enable) {
+      virtualisation.podman = {
+        enable = true;
+        dockerCompat = true;
+      };
+    })
+    (mkIf (cfg.distrobox.enable) {
+      environment.systemPackages = [ pkgs.distrobox ];
     })
     (mkIf cfg.libvirtd.enable {
       nixfiles.virtualisation.qemu.enable = mkForce true;

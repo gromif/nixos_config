@@ -20,12 +20,20 @@ in
     fs-specific = {
       btrfs = mkEnableOption "btrfs common utils";
     };
+    group = {
+      basic = mkEnableOption "basic common packages";
+      server = mkEnableOption "server common packages";
+      desktop = mkEnableOption "desktop common packages";
+    };
   };
 
   config = mkIf cfg.enable {
-    nixfiles.programs.sets.common.fs-specific.btrfs = mkDefault (
-      config.nixfiles.hardware.rootfs == "btrfs"
-    );
+    nixfiles.programs.sets.common = {
+      group = {
+        basic = mkDefault true;
+      };
+      fs-specific.btrfs = mkDefault (config.nixfiles.hardware.rootfs == "btrfs");
+    };
 
     environment.variables = {
       EDITOR = "hx";
@@ -36,22 +44,25 @@ in
     environment.systemPackages =
       with pkgs;
       [
-        btop
-        # base91 # Implementation of the base91 utility, providing efficient binary-to-text encoding with better space utilization than Base64
-        ddcutil
-        e2fsprogs # Tools for creating and checking ext2/ext3/ext4 filesystems
         helix # Post-modern modal text editor
         nixd # Nix language server
         nixfmt # Optional: formatter
+      ]
+      ++ optionals (cfg.group.basic) [
+        btop
         ncdu
-        usbutils # Tools for working with USB devices, such as lsusb
-        util-linux # Set of system utilities for Linux
+        usbutils
+        util-linux
+        tree # Command to produce a depth indented directory listing
         parallel
-        pciutils # Collection of programs for inspecting and manipulating configuration of PCI devices
         psmisc # Set of small useful utilities that use the proc filesystem (such as fuser, killall and pstree)
+      ]
+      ++ optionals (cfg.group.server) [ ]
+      ++ optionals (cfg.group.desktop) [
+        ddcutil
+        pciutils # Collection of programs for inspecting and manipulating configuration of PCI devices
         pwgen # Password generator which creates passwords which can be easily memorized by a human
         stress-ng
-        tree # Command to produce a depth indented directory listing
       ]
       ++ optionals (cfg.fs-specific.btrfs) [
         btrfs-progs
