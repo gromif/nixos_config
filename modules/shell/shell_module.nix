@@ -57,7 +57,7 @@ in
     })
     (mkIf cfg.console.optimalSettings {
       console = {
-        # earlySetup = true;
+        earlySetup = true;
         packages = with pkgs; [ terminus_font ];
         font = "ter-128b.psf.gz";
       };
