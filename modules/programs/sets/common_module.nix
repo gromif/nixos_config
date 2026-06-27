@@ -13,6 +13,13 @@ let
   pkgs_sound = with pkgs; [
     alsa-utils
   ];
+
+  pkgs_compression = with pkgs; [
+    dwarfs
+    p7zip
+    unrar
+    unzip
+  ];
 in
 {
   options.nixfiles.programs.sets.common = {
@@ -70,6 +77,7 @@ in
           stress-ng
         ]
         ++ pkgs_sound
+        ++ pkgs_compression
       )
       ++ optionals (cfg.fs-specific.btrfs) [
         btrfs-progs
