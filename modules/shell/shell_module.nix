@@ -39,7 +39,7 @@ in
     zsh = {
       autoFastfetch = mkOption {
         type = types.bool;
-        default = true;
+        default = config.nixfiles.programs.fastfetch.enable;
         description = "Whether to call fastfetch automatically on login";
       };
     };

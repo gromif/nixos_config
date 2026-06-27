@@ -63,7 +63,10 @@
     );
     programs = {
       appimage.enable = true;
-      fastfetch.preset = "nixos_1";
+      fastfetch = {
+        enable = true;
+        preset = "nixos_1";
+      };
       sets = {
         common.group.desktop = true;
         media.enable = true;

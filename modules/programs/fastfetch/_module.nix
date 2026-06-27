@@ -15,7 +15,7 @@ in
   options.nixfiles.programs."${name}" = {
     enable = mkOption {
       type = types.bool;
-      default = true;
+      default = false;
       description = "Whether to enable the ${name} package";
     };
     preset = mkOption {
