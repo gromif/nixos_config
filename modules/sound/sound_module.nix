@@ -1,24 +1,26 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  ...
+}:
 
 let
   cfg = config.nixfiles.sound;
-in with lib;
+in
+with lib;
 {
   options.nixfiles.sound = {
     backend = mkOption {
-      type = types.enum [ "none" "pipewire" ];
+      type = types.enum [
+        "none"
+        "pipewire"
+      ];
       default = "none";
       description = "Sound backend to use.";
     };
   };
 
   config = mkMerge [
-    {
-      environment.systemPackages = with pkgs; [
-        alsa-utils
-      ];
-    }
-
     (mkIf (cfg.backend == "pipewire") {
       # Enable sound with pipewire.
       security.rtkit.enable = true;
@@ -33,7 +35,7 @@ in with lib;
         # use the example session manager (no others are packaged yet so this is enabled by default,
         # no need to redefine it in your config for now)
         #media-session.enable = true;
-      };      
+      };
     })
   ];
 }

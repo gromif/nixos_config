@@ -9,6 +9,10 @@ with lib;
 
 let
   cfg = config.nixfiles.programs.sets.common;
+
+  pkgs_sound = with pkgs; [
+    alsa-utils
+  ];
 in
 {
   options.nixfiles.programs.sets.common = {
@@ -58,12 +62,15 @@ in
         psmisc # Set of small useful utilities that use the proc filesystem (such as fuser, killall and pstree)
       ]
       ++ optionals (cfg.group.server) [ ]
-      ++ optionals (cfg.group.desktop) [
-        ddcutil
-        pciutils # Collection of programs for inspecting and manipulating configuration of PCI devices
-        pwgen # Password generator which creates passwords which can be easily memorized by a human
-        stress-ng
-      ]
+      ++ optionals (cfg.group.desktop) (
+        [
+          ddcutil
+          pciutils # Collection of programs for inspecting and manipulating configuration of PCI devices
+          pwgen # Password generator which creates passwords which can be easily memorized by a human
+          stress-ng
+        ]
+        ++ pkgs_sound
+      )
       ++ optionals (cfg.fs-specific.btrfs) [
         btrfs-progs
         compsize
