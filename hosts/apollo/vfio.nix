@@ -67,11 +67,11 @@
       virsh_audio=$(virsh nodedev-detach pci_0000_03_00_1)
       $LOG "Detaching audio result: $virsh_audio"
 
-      $LOG "Setting up hugepages"
-      hugepages=$(echo 12288 | tee /proc/sys/vm/nr_hugepages) # 24GiB
-      $LOG "Setting up hugepages result: $hugepages"
+      # $LOG "Setting up hugepages"
+      # hugepages=$(echo 12288 | tee /proc/sys/vm/nr_hugepages) # 24GiB
+      # $LOG "Setting up hugepages result: $hugepages"
       
-      sleep 2s
+      # sleep 2s
 
       # Load VFIO Kernel Module
       $LOG "Loading VFIO.."
@@ -82,11 +82,11 @@
       $LOG "Unloading VFIO.."
       while ! modprobe -r vfio-pci; do sleep 1; done
 
-      $LOG "Removing hugepages.."
-      hugepages=$(echo 0 | tee /proc/sys/vm/nr_hugepages)
-      $LOG "Removing hugepages result: $hugepages"
+      # $LOG "Removing hugepages.."
+      # hugepages=$(echo 0 | tee /proc/sys/vm/nr_hugepages)
+      # $LOG "Removing hugepages result: $hugepages"
 
-      sleep 2s
+      # sleep 2s
 
       $LOG "Trying to rebind the GPU via Virsh.."
       $LOG "Reattaching video.."
