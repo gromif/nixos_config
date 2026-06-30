@@ -5,6 +5,7 @@
     ./hardware-configuration.nix
     ./crypttab.nix
     ./vfio.nix
+    ./srv.nix
   ];
 
   time.timeZone = "Europe/Berlin";
