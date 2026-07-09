@@ -14,10 +14,6 @@ with lib;
       "emergency.target"
       "rescue.target"
     ];
-    dhcpcd.wantedBy = [
-      "emergency.target"
-      "rescue.target"
-    ];
   };
 
   # Allow login during initrd, in case it hangs.
