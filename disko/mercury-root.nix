@@ -23,7 +23,7 @@ in
         type = "disk";
         inherit device;
         content = {
-          type = "mbr";
+          type = "msdos";
           partitions = {
             boot = {
               size = "1G";
