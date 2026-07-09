@@ -1,8 +1,12 @@
-{ config, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 
-let
-  keyPath = config.sops.secrets."ssh/initrd".path;
-in
+with lib;
+
 {
   # Run SSHD even in emergency mode.
   systemd.services = {
@@ -20,7 +24,17 @@ in
   boot.initrd = {
     systemd = {
       enable = true;
-      network.enable = true;
+      users.root.shell = "/bin/zsh";
+      extraBin = {
+        zsh = "${getExe pkgs.zsh}";
+      };
+      network = {
+        enable = true;
+        networks."10-wired" = {
+          matchConfig.Type = "ether";
+          networkConfig.DHCP = "yes";
+        };
+      };
       emergencyAccess = true;
     };
     availableKernelModules = [ "e1000e" ];
@@ -31,7 +45,7 @@ in
         port = 12844;
         authorizedKeys = config.users.users.root.openssh.authorizedKeys.keys;
         # Use a fixed host key. The same one as for the main host, thanks.
-        hostKeys = [ keyPath ];
+        hostKeys = [ config.sops.secrets."ssh/initrd".path ];
       };
     };
   };
