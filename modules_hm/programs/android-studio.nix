@@ -43,8 +43,28 @@ in
 
   config = mkMerge [
     (mkIf cfg.enable {
-      # Set up ANDROID_HOME variable (IDE uses it to find AndroidSDK)
-      home.sessionVariables.ANDROID_HOME = "${android.androidsdk}/libexec/android-sdk";
+      systemd.user.sessionVariables = {
+        # Set up ANDROID_HOME variable (IDE uses it to find AndroidSDK)
+        ANDROID_HOME = "${android.androidsdk}/libexec/android-sdk";
+
+        # Gradle
+        GRADLE_USER_HOME = "${config.xdg.dataHome}/gradle";
+
+        # Android SDK/user config
+        ANDROID_USER_HOME = "${config.xdg.dataHome}/android";
+
+        # Kotlin
+        KOTLIN_HOME = "${config.xdg.dataHome}/kotlin";
+
+        # Maven
+        MAVEN_USER_HOME = "${config.xdg.dataHome}/maven";
+
+        # Skiko / Compose Desktop
+        SKIKO_CACHE_DIR = "${config.xdg.cacheHome}/skiko";
+
+        # Java
+        _JAVA_OPTIONS = "-Djava.util.prefs.userRoot=${config.xdg.configHome}/java";
+      };
 
       # Set up Tmpfiles rules
       systemd.user.tmpfiles.rules = tmpFilesRules;
