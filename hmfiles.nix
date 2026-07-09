@@ -24,6 +24,11 @@ with lib;
     home = {
       homeDirectory = "/home/${config.home.username}";
       stateVersion = "26.05";
+      activation = {
+        removeBrokenLinks = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+          rm -rf $HOME/.nix-defexpr $HOME/.nix-profile
+        '';
+      };
     };
 
     # Let Home Manager install and manage itself.
