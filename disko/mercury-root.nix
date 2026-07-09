@@ -23,20 +23,35 @@ in
         type = "disk";
         inherit device;
         content = {
-          type = "msdos";
+          type = "gpt";
           partitions = {
             boot = {
+              size = "1M";
+              type = "EF02"; # for grub MBR
+              priority = 1;
+            };
+            ESP = {
+              label = "ESP";
+              name = "ESP";
               size = "1G";
-              type = "83";
-              bootable = true;
+              type = "EF00";
               content = {
                 type = "filesystem";
-                format = "ext4";
+                format = "vfat";
                 mountpoint = "/boot";
+                mountOptions = [
+                  "nodev"
+                  "nosuid"
+                  "noexec"
+                  "relatime"
+                  "umask=0077"
+                ];
               };
+              priority = 2;
             };
             root = {
               size = "100%";
+              priority = 3;
               content = {
                 type = "btrfs";
                 extraArgs = [ "-f" ];
