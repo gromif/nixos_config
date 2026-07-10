@@ -55,11 +55,8 @@ with lib;
     # Set up SSH allowed public keys per/user
     openssh.authorizedKeys.keys = [
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILlwUoUDRQM98RN6d2aVBvsVl0RhP4lUUBacfbPfbxfP nicklor@apollo" # Nicklor / Apollo
-      # M
-      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAdbc4rd6oLhikNKR4/Agp1VUVWsnWoR0v0POAdU/rkx u0_a1731@localhost"
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAkstoRvU2rtFcd0kGwI4WKCM+CZYzuk8krRpoz9DC/9 root@mercury" # Mercury Root Account Key
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILCHwV0zA22QHV1DLpaoJusNjg7xO+COQ2QOZ7EBkMSI alexander.kobrys@proton.me"
-      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPfs0HEb2cuq00UCYgXGJ3U9jaQ4gmNa7vpTw8DgCXV4 u0_a229@localhost"
-      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIItp6Vb/vq72smtPuMdL9Iwvp5wIDxJujYagHjeCoBAI u0_a284@localhost"
     ];
     packages = with pkgs; [
       tcpdump
