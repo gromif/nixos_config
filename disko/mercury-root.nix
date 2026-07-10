@@ -63,11 +63,6 @@ in
                       "noatime"
                     ];
                   };
-                  "${persist}" = { };
-                  "${persist}/home" = { };
-                  "${persist}/var" = { };
-                  "${persist}/root" = { };
-                  "${persist}/etc" = { };
                 };
               };
             };
