@@ -37,14 +37,13 @@ in
               type = "EF00";
               content = {
                 type = "filesystem";
-                format = "vfat";
+                format = "ext4";
                 mountpoint = "/boot";
                 mountOptions = [
                   "nodev"
                   "nosuid"
                   "noexec"
                   "relatime"
-                  "umask=0077"
                 ];
               };
               priority = 2;
@@ -64,12 +63,7 @@ in
                       "noatime"
                     ];
                   };
-                  "${persist}" = {
-                    mountpoint = persist;
-                    mountOptions = [
-                      "noatime"
-                    ];
-                  };
+                  "${persist}" = { };
                   "${persist}/home" = { };
                   "${persist}/var" = { };
                   "${persist}/root" = { };

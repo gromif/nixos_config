@@ -2,11 +2,11 @@
 
 { config, lib, ... }:
 
-with lib;
+# with lib;
 
 let
-  cfg_imperm = config.nixfiles.impermanence;
-  isImpermanent = cfg_imperm.enable;
+  # cfg_imperm = config.nixfiles.impermanence;
+  # isImpermanent = cfg_imperm.enable;
 in
 {
   # Use the GRUB 2 boot loader.
@@ -14,13 +14,13 @@ in
     timeout = 0;
     grub = {
       enable = true;
-      device = mkIf (!isImpermanent) "/dev/sda";
-      mirroredBoots = mkIf isImpermanent [
-        {
-          path = "${cfg_imperm.persistentStoragePath}/boot";
-          devices = [ "/dev/sda" ];
-        }
-      ];
+      device = "/dev/sda";
+      # mirroredBoots = mkIf isImpermanent [
+      #   {
+      #     path = "${cfg_imperm.persistentStoragePath}/boot";
+      #     devices = [ "/dev/sda" ];
+      #   }
+      # ];
     };
   };
 }
