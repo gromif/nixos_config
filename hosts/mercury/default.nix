@@ -10,7 +10,6 @@ with lib;
 {
   imports = [
     ./hardware-configuration.nix
-    ./resilience.nix
     ./srv-watchdog.nix
   ];
 

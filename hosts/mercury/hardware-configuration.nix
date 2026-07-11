@@ -39,13 +39,13 @@
   };
 
   fileSystems."/boot" = {
-    device = "/dev/disk/by-uuid/83bd8de1-ee9f-4192-8f71-61b2c3de88aa";
+    device = "/dev/disk/by-uuid/75ea3b4c-1175-4bd5-adef-311cfee9431c";
     fsType = "ext4";
     neededForBoot = true;
   };
 
   fileSystems."/nix" = {
-    device = "/dev/disk/by-uuid/e69263d7-92b1-41dc-8675-e427c3f314ba";
+    device = "/dev/disk/by-uuid/f49a4214-5394-4634-a4fa-3ebe782d8cb0";
     fsType = "btrfs";
     neededForBoot = true;
     options = [
