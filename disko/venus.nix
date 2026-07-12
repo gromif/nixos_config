@@ -58,7 +58,6 @@ in
                     mountpoint = root;
                     mountOptions = [
                       "compress=zstd"
-                      "autodefrag"
                       "noatime"
                     ];
                   };
