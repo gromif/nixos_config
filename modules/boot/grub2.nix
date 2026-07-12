@@ -14,7 +14,7 @@ in
     timeout = 0;
     grub = {
       enable = true;
-      device = "/dev/sda";
+      # device = "/dev/sda"; # Must be changed by a host configuration
       # mirroredBoots = mkIf isImpermanent [
       #   {
       #     path = "${cfg_imperm.persistentStoragePath}/boot";
