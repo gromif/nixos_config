@@ -38,6 +38,9 @@ with lib;
     };
   };
 
+  # Specify custom bootloader device
+  boot.loader.grub.device = "/dev/disk/by-id/usb-Kingston_DataTraveler_3.0_E0D55E696FA619B1A863100D-0:0";
+
   # Auto-login the first tty console
   services.getty.autologinUser = "warden";
 

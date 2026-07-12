@@ -38,6 +38,9 @@ with lib;
     };
   };
 
+  # Specify custom bootloader device
+  boot.loader.grub.device = "/dev/disk/by-id/wwn-0x5000cca329d13f56";
+
   # Auto-login the first tty console
   services.getty.autologinUser = "warden";
 
