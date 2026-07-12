@@ -10,8 +10,9 @@ with lib;
 let
   cfg = config.nixfiles.games.prism-launcher;
 
-  pkgAppData = (if (cfg.sandbox && cfgSandbox.enable) then "%h/.bwrapper/megasync" else "%h");
-  tmpFilesRules = map (f: "R \"${pkgAppData}/${f}\" - - - - -") [
+  tmpFilesRules = map (f: "R \"%h/.local/share/PrismLauncher/${f}\" - - - - -") [
+    "logs/*"
+    "instances/*/minecraft/logs/*"
   ];
   pkg = pkgs.prismlauncher;
 in
