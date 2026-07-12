@@ -21,8 +21,6 @@ let
     gst_all_1.gst-plugins-ugly
     # Plugins to reuse ffmpeg to play almost every video format
     gst_all_1.gst-libav
-    # Support the Video Audio (Hardware) Acceleration API
-    gst_all_1.gst-vaapi
   ];
 in
 {
