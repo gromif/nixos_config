@@ -35,6 +35,7 @@ in
       nixfiles.de = {
         includeEssentials = mkDefault true;
       };
+      services.speechd.enable = mkForce false; # We don't need it
     }
     (mkIf cfg.includeEssentials {
       environment.systemPackages =
