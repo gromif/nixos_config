@@ -68,6 +68,15 @@
             ./modules/services/slskd.nix
           ];
         };
+        venus = nixpkgs-stable.lib.nixosSystem {
+          inherit system;
+          modules = sharedModules ++ [
+            ./hosts/venus
+            ./modules/boot/grub2.nix
+            ./modules/services/qbittorrent.nix
+            ./modules/services/slskd.nix
+          ];
+        };
         moon = nixpkgs-stable.lib.nixosSystem {
           system = "aarch64-linux";
           modules = sharedModules ++ [
