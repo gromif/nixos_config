@@ -57,6 +57,6 @@ in
     ];
 
     # Set up Tmpfiles rules
-    systemd.user.tmpfiles.rules = rules ++ extraRules;
+    # systemd.user.tmpfiles.rules = rules ++ extraRules;
   };
 }
