@@ -39,13 +39,13 @@
   };
 
   fileSystems."/boot" = {
-    device = "/dev/disk/by-uuid/2d4f58c0-8ffa-4a9f-b1c0-589deabf31db";
+    device = "/dev/disk/by-id/usb-Kingston_DataTraveler_3.0_E0D55E696FA619B1A863100D-0:0-part2";
     fsType = "ext4";
     neededForBoot = true;
   };
 
   fileSystems."/nix" = {
-    device = "/dev/disk/by-uuid/12e598fe-db98-411b-b2e6-d55f68dd2c26";
+    device = "/dev/disk/by-id/usb-Kingston_DataTraveler_3.0_E0D55E696FA619B1A863100D-0:0-part3";
     fsType = "btrfs";
     neededForBoot = true;
     options = [
@@ -57,7 +57,7 @@
   };
 
   fileSystems."/mnt/drive_m" = {
-    device = "/dev/disk/by-uuid/2ce60b58-9fe4-44ab-a96d-8be33658da8e";
+    device = "/dev/disk/by-id/ata-WDC_WD10SDZW-11UMGS0_WD-WXH1A67DNDCH-part1";
     fsType = "xfs";
     options = [
       "nofail"

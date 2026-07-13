@@ -1,5 +1,5 @@
 let
-  device = "/dev/sdb";
+  device = "/dev/disk/by-id/usb-Kingston_DataTraveler_3.0_E0D55E696FA619B1A863100D-0:0";
   root = "/nix";
 in
 {
