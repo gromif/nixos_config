@@ -27,7 +27,8 @@ in
           partitions = [
             {
               name = "boot";
-              size = "512M";
+              start = "1M";
+              end = "512M";
               bootable = true; # CRITICAL: BIOS needs this flag
               content = {
                 type = "filesystem";
@@ -43,7 +44,8 @@ in
             }
             {
               name = "root";
-              size = "10G";
+              start = "512M";
+              end = "10G";
               content = {
                 type = "btrfs";
                 extraArgs = [ "-f" ];
@@ -60,7 +62,8 @@ in
             }
             {
               name = "usb";
-              size = "100%";
+              start = "10G";
+              end = "100%";
               content = {
                 type = "btrfs";
                 extraArgs = [ "-f" ];
