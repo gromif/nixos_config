@@ -39,13 +39,13 @@
   };
 
   fileSystems."/boot" = {
-    device = "/dev/disk/by-id/usb-Kingston_DataTraveler_3.0_E0D55E696FA619B1A863100D-0:0-part2";
+    device = "/dev/disk/by-id/usb-Kingston_DataTraveler_3.0_E0D55E696FA619B1A863100D-0:0-part1";
     fsType = "ext4";
     neededForBoot = true;
   };
 
   fileSystems."/nix" = {
-    device = "/dev/disk/by-id/usb-Kingston_DataTraveler_3.0_E0D55E696FA619B1A863100D-0:0-part3";
+    device = "/dev/disk/by-id/usb-Kingston_DataTraveler_3.0_E0D55E696FA619B1A863100D-0:0-part2";
     fsType = "btrfs";
     neededForBoot = true;
     options = [
