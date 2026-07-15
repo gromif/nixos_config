@@ -3,27 +3,24 @@
 with lib;
 
 {
-  config = mkIf (
-    config.nixfiles.sops.enable &&
-    config.nixfiles.network.hostName == "moon"
-  ){
+  config = mkIf (config.nixfiles.sops.enable && config.nixfiles.network.hostName == "moon") {
     sops.defaultSopsFile = ./secrets.yaml;
     sops.secrets = {
-      "ssh/root/id_ed25519" = {
+      "ssh/root/private" = {
         sopsFile = ./ssh.yaml;
         path = "/root/.ssh/id_ed25519";
       };
-      "ssh/root/id_ed25519_pub" = {
+      "ssh/root/public" = {
         sopsFile = ./ssh.yaml;
         path = "/root/.ssh/id_ed25519.pub";
       };
-      "ssh/root/id_ed25519_uk" = {
+      "ssh/root/mercury/private" = {
         sopsFile = ./ssh.yaml;
-        path = "/root/.ssh/id_ed25519_uk";
+        path = "/root/.ssh/mercury";
       };
-      "ssh/root/id_ed25519_uk_pub" = {
+      "ssh/root/mercury/public" = {
         sopsFile = ./ssh.yaml;
-        path = "/root/.ssh/id_ed25519_uk.pub";
+        path = "/root/.ssh/mercury.pub";
       };
     };
   };

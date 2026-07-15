@@ -24,7 +24,7 @@
     };
 
     nixos-avf = {
-      url = "github:nix-community/nixos-avf";
+      url = "github:yvt/nixos-avf/android-17";
       inputs.nixpkgs.follows = "nixpkgs-stable";
     };
   };
