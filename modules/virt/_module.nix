@@ -98,6 +98,11 @@ in
       nixfiles.impermanence.directories = mkIf isImperm [
         "/var/lib/libvirt"
       ];
+
+      # Restrict access to /dev/kvm
+      services.udev.extraRules = ''
+        KERNEL=="kvm", GROUP="kvm", MODE="0660"
+      '';
     })
     (mkIf cfg.qemu.enable {
       environment.systemPackages = [ pkgs.qemu ];
