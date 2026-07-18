@@ -26,7 +26,7 @@ in
     services.lact = {
       enable = cfg.enable;
       settings = {
-        version = 5;
+        version = 6;
         daemon = {
           log_level = "info";
           admin_group = "wheel";
