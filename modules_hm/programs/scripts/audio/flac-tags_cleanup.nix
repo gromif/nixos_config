@@ -17,6 +17,7 @@ let
     "AUTHOR"
     "BPM"
     "COMPOSER"
+    "Composer"
     "COMPILATION"
     "DATE"
     "DISCNUMBER"
@@ -25,7 +26,10 @@ let
     "ISRC"
     "LENGTH"
     "LYRICS"
+    "PERFORMER"
+    "Performer"
     "RATING"
+    "RELEASE_DATE"
     "REPLAYGAIN_TRACK_PEAK"
     "REPLAYGAIN_TRACK_GAIN"
     "REPLAYGAIN_ALBUM_GAIN"
@@ -33,6 +37,8 @@ let
     "TBPM"
     "TRACKNUMBER"
     "TRACKTOTAL"
+    "VGMDB"
+    "vGMDB"
   ];
   tagsList = whitelist ++ (map (t: lib.strings.toLower t) whitelist);
   args = lib.strings.concatStrings (map (i: "=${i}") tagsList);
@@ -44,7 +50,7 @@ let
     text = ''
       	    find "$(pwd)" -type f -name "*.flac" \
       	      | parallel "metaflac --preserve-modtime --remove-all-tags-except${args} {}"
-      	  '';
+    '';
   };
 in
 {
