@@ -65,7 +65,6 @@ in
         usbutils
         util-linux
         tree # Command to produce a depth indented directory listing
-        parallel
         psmisc # Set of small useful utilities that use the proc filesystem (such as fuser, killall and pstree)
       ]
       ++ optionals (cfg.group.server) [ ]
@@ -84,8 +83,5 @@ in
         compsize
         duperemove
       ];
-
-    # Shut Parallel down
-    environment.etc."parallel/will-cite".text = "";
   };
 }

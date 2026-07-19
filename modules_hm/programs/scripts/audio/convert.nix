@@ -7,12 +7,11 @@
 
 let
   sharedRuntimes = with pkgs; [
-    parallel
     ffmpeg
     glib
   ];
-  _ffmpeg = "ffmpeg -hide_banner -y -i {}";
-  _trash = "gio trash -f {}";
+  _ffmpeg = "ffmpeg -hide_banner -y -i $1";
+  _trash = "gio trash -f $f";
   pattern = "*.*";
 
   packages = [
@@ -20,13 +19,25 @@ let
     (pkgs.writeShellApplication {
       name = "aud-to-wav";
       runtimeInputs = sharedRuntimes;
-      text = ''parallel "${_ffmpeg} -- {.}.wav && ${_trash}" ::: ${pattern}'';
+      text = ''
+        find "$(pwd)" -type f -name "${pattern}" -exec sh -c '
+          f="$1"
+          
+          ${_ffmpeg} -- "''${f%.*}.wav" && ${_trash}
+        ' sh {} \;
+      '';
     })
     # FLAC
     (pkgs.writeShellApplication {
       name = "aud-to-flac";
       runtimeInputs = sharedRuntimes;
-      text = ''parallel "${_ffmpeg} -compression_level 12 -- {.}.flac && ${_trash}" ::: ${pattern}'';
+      text = ''
+        find "$(pwd)" -type f -name "${pattern}" -exec sh -c '
+          f="$1"
+
+          ${_ffmpeg} -compression_level 12 -- "''${f%.*}.flac" && ${_trash}
+        ' sh {} \;
+      '';
     })
   ];
 
@@ -47,18 +58,18 @@ let
       (pkgs.writeShellApplication {
         name = "aud-to-opus_${b}";
         runtimeInputs = sharedRuntimes;
-        text = ''parallel "${_ffmpeg} -vn -c:a ${codec} -b:a ${b}k -vbr on -- {.}.${type} && ${_trash}" ::: ${pattern}'';
+        text = ''
+          find "$(pwd)" -type f -name "${pattern}" -exec sh -c '
+            f="$1"
+
+            ${_ffmpeg} -vn -c:a ${codec} -b:a ${b}k -vbr on -- "''${f%.*}.${type}" && ${_trash}
+          ' sh {} \;
+        '';
       })
     ) bitrate;
 in
 {
   config = lib.mkIf config.hmfiles.programs.scripts.group.audio {
-    home.packages =
-      with pkgs;
-      [
-        ffmpeg
-      ]
-      ++ packages
-      ++ opus_packages;
+    home.packages = packages ++ opus_packages;
   };
 }

@@ -6,24 +6,21 @@
 }:
 
 let
-  mainScriptName = "aud-walk-remove_silence";
-  mainScriptPkg = pkgs.writeShellApplication {
-    name = mainScriptName;
-    runtimeInputs = with pkgs; [
-      parallel
-      scriptPkg
-    ];
+  findPkgName = "aud-walk-remove_silence";
+  findPkg = pkgs.writeShellApplication {
+    name = findPkgName;
+    runtimeInputs = [ pkg ];
     text = ''
       find "$(pwd)" -type f \
-        -name "*.flac" \
+        \(-name "*.flac" \
         -o -name "*.wav" \
-        -o -name "*.alac" \
-      | parallel --will-cite 'aud-remove_silence {}'
+        -o -name "*.alac" \) \
+        -exec aud-remove_silence {} \;
     '';
   };
-  scriptName = "aud-remove_silence";
-  scriptPkg = pkgs.writeShellApplication {
-    name = scriptName;
+  pkgName = "aud-remove_silence";
+  pkg = pkgs.writeShellApplication {
+    name = pkgName;
     runtimeInputs = with pkgs; [
       ffmpeg
       glib
@@ -61,8 +58,8 @@ in
 {
   config = lib.mkIf config.hmfiles.programs.scripts.group.audio {
     home.packages = [
-      scriptPkg
-      mainScriptPkg
+      pkg
+      findPkg
     ];
   };
 }

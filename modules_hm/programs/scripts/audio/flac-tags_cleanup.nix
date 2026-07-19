@@ -6,10 +6,6 @@
 }:
 
 let
-  runtimes = with pkgs; [
-    parallel
-    flac
-  ];
   whitelist = [
     "ALBUM"
     "ALBUMARTIST"
@@ -46,10 +42,10 @@ let
   scriptName = "flac-tags_cleanup";
   scriptPkg = pkgs.writeShellApplication {
     name = scriptName;
-    runtimeInputs = runtimes;
+    runtimeInputs = with pkgs; [ flac ];
     text = ''
-      	    find "$(pwd)" -type f -name "*.flac" \
-      	      | parallel "metaflac --preserve-modtime --remove-all-tags-except${args} {}"
+      find "$(pwd)" -type f -name "*.flac" \
+        -exec metaflac --preserve-modtime --remove-all-tags-except${args} {} \;
     '';
   };
 in

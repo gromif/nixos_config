@@ -6,54 +6,52 @@
 }:
 
 let
-  runtimes = with pkgs; [
-    parallel
-    glib
-    sox
-  ];
   bits = [
     16
     24
     32
   ];
 
-  walkScriptName = "aud-walk-resample";
-  scriptName = "aud-resample";
+  findPkgName = "aud-walk-resample";
+  pkgName = "aud-resample";
 
-  mainScriptPackages = map (
+  findPkgs = map (
     b:
     pkgs.writeShellApplication {
-      name = "${walkScriptName}_${toString b}";
-      runtimeInputs = with pkgs; [ parallel ] ++ scriptPackages;
+      name = "${findPkgName}_${toString b}";
+      runtimeInputs = packages;
       text = ''
         find "$(pwd)" -type f \
-          -name "*.flac" \
+          \(-name "*.flac" \
           -o -name "*.wav" \
-          -o -name "*.alac" \
-        | parallel '${scriptName}_${toString b} {}'
+          -o -name "*.alac" \) \
+          -exec ${pkgName}_${toString b} {} \;
       '';
     }
   ) bits;
 
-  scriptPackages = map (
+  packages = map (
     b:
     (pkgs.writeShellApplication {
-      name = "${scriptName}_${toString b}";
-      runtimeInputs = runtimes;
+      name = "${pkgName}_${toString b}";
+      runtimeInputs = with pkgs; [
+        glib
+        sox
+      ];
       text = ''
-            filePath="$1"
-            tempFile="''${filePath}.old"
-            
-            mv "$filePath" "$tempFile"
+        filePath="$1"
+        tempFile="''${filePath}.old"
 
-        	    (sox "$tempFile" -G -b ${toString b} "$filePath" && gio trash "$tempFile") ||
-        	      mv -f "$tempFile" "$filePath"
-        	  '';
+        mv "$filePath" "$tempFile"
+
+        (sox "$tempFile" -G -b ${toString b} "$filePath" && gio trash "$tempFile") ||
+          mv -f "$tempFile" "$filePath"
+      '';
     })
   ) bits;
 in
 {
   config = lib.mkIf config.hmfiles.programs.scripts.group.audio {
-    home.packages = mainScriptPackages ++ scriptPackages;
+    home.packages = findPkgs ++ packages;
   };
 }

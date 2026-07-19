@@ -6,33 +6,25 @@
 }:
 
 let
-  runtimes = with pkgs; [
-    parallel
-    sox
-  ];
+  findPkgName = "aud-walk-spectre";
+  pkgName = "aud-spectre";
 
-  walkScriptName = "aud-walk-spectre";
-  scriptName = "aud-spectre";
-
-  mainScriptPackage = pkgs.writeShellApplication {
-    name = walkScriptName;
-    runtimeInputs = with pkgs; [
-      parallel
-      scriptPackage
-    ];
+  findPkg = pkgs.writeShellApplication {
+    name = findPkgName;
+    runtimeInputs = [ pkg ];
     text = ''
       find "$(pwd)" -type f \
-        -name "*.flac" \
+        \(-name "*.flac" \
         -o -name "*.wav" \
         -o -name "*.alac" \
-        -o -name "*.opus" \
-      | parallel '${scriptName} {}'
+        -o -name "*.opus" \) \
+        -exec ${pkgName} {} \;
     '';
   };
 
-  scriptPackage = pkgs.writeShellApplication {
-    name = scriptName;
-    runtimeInputs = runtimes;
+  pkg = pkgs.writeShellApplication {
+    name = pkgName;
+    runtimeInputs = with pkgs; [ sox ];
     text = ''
       filePath="$1"
       outputFile="''${filePath}.png"
@@ -44,8 +36,8 @@ in
 {
   config = lib.mkIf config.hmfiles.programs.scripts.group.audio {
     home.packages = [
-      mainScriptPackage
-      scriptPackage
+      pkg
+      findPkg
     ];
   };
 }

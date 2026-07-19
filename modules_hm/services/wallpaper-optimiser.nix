@@ -1,4 +1,9 @@
-{ config, pkgs, lib, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 
 with lib;
 
@@ -6,11 +11,17 @@ let
   cfg = config.hmfiles.services.wallpapers-optimiser;
   pkg = pkgs.writeShellApplication {
     name = "optimise-wallpapers";
-    runtimeInputs = with pkgs; [ parallel libjxl ];
+    runtimeInputs = with pkgs; [ libjxl ];
     text = ''
       cd ${cfg.dir}
 
-      parallel '([ ! -f {.}.jxl ] && cjxl --allow_jpeg_reconstruction 0 {} {.}.jxl && rm {}) || rm {}' ::: *.jpg
+      find "$(pwd)" -type f -name "*.jpg" \
+        -exec sh -c '
+          f="$1"
+          f_jxl="$(basename $f .jpg).jxl"
+          
+          ([ ! -f "$f_jxl" ] && cjxl --allow_jpeg_reconstruction 0 "$f" "$f_jxl" && rm "$f") || rm "$f"          
+        ' sh {} \;
     '';
   };
 in
@@ -25,7 +36,7 @@ in
   };
 
   config = mkIf cfg.enable {
-    home.packages = [ pkg  ];
+    home.packages = [ pkg ];
     # Set up the 'wallpapers-optimiser' service
     systemd.user.services."wallpapers-optimiser" = {
       Service.ExecStart = "${getExe pkg}";

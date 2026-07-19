@@ -6,38 +6,30 @@
 }:
 
 let
-  runtimes = with pkgs; [
-    parallel
-    flac
-  ];
-
-  mainScriptName = "aud-walk-remove_cover";
-  mainScriptPkg = pkgs.writeShellApplication {
-    name = mainScriptName;
-    runtimeInputs = with pkgs; [
-      parallel
-      scriptPkg
-    ];
+  findPkgName = "aud-walk-remove_cover";
+  findPkg = pkgs.writeShellApplication {
+    name = findPkgName;
+    runtimeInputs = [ pkg ];
     text = ''
       find "$(pwd)" -type f -name "*.flac" \
-      | parallel --will-cite '${scriptName} {}'
+      -exec ${pkgName} {} \;
     '';
   };
 
-  scriptName = "aud-remove_cover";
-  scriptPkg = pkgs.writeShellApplication {
-    name = scriptName;
-    runtimeInputs = runtimes;
+  pkgName = "aud-remove_cover";
+  pkg = pkgs.writeShellApplication {
+    name = pkgName;
+    runtimeInputs = with pkgs; [ flac ];
     text = ''
-      	    metaflac --preserve-modtime --remove --block-type=PICTURE "$1"
-      	  '';
+      metaflac --preserve-modtime --remove --block-type=PICTURE "$1"
+    '';
   };
 in
 {
   config = lib.mkIf config.hmfiles.programs.scripts.group.audio {
     home.packages = [
-      scriptPkg
-      mainScriptPkg
+      pkg
+      findPkg
     ];
   };
 }

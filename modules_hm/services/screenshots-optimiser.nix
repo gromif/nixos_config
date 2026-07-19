@@ -11,22 +11,21 @@ let
   cfg = config.hmfiles.services.screenshots-optimiser;
   pkg = pkgs.writeShellApplication {
     name = "optimise-screenshots";
-    runtimeInputs = with pkgs; [
-      parallel
-      libjxl
-    ];
+    runtimeInputs = with pkgs; [ libjxl ];
     text = ''
       cd ${cfg.dir}
 
-      parallel 'cjxl -q 60 {} {.}.jxl && rm {}' ::: *.png
+      find "${cfg.dir}" -name "*.png" -exec sh -c '
+        f="$1"
+
+        cjxl -q 60 "$f" "''${f%.png}.jxl"
+      ' sh {} \; \
+      -delete
     '';
   };
   pkg_cleanup = pkgs.writeShellApplication {
     name = "cleanup-screenshots";
-    runtimeInputs = with pkgs; [
-      parallel
-      libjxl
-    ];
+    runtimeInputs = with pkgs; [ libjxl ];
     text = ''find "${cfg.dir}" -type f -mtime +90 -delete'';
   };
 in
