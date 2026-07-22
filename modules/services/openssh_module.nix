@@ -28,7 +28,6 @@ in
           X11Forwarding = false;
           AllowAgentForwarding = false;
           AllowTcpForwarding = true;
-          UseDNS = false;
           PasswordAuthentication = false;
           KbdInteractiveAuthentication = false;
           PermitRootLogin = "prohibit-password"; # prohibit-password
