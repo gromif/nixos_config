@@ -50,7 +50,10 @@ in
       environment.shells = [ shellPkgs.${cfg.type} ];
 
       # Persist data
-      nixfiles.impermanence.directories = mkIf (impermanent) (persistData.${cfg.type} or [ ]);
+      nixfiles.impermanence.directories = mkIf impermanent (persistData.${cfg.type} or [ ]);
+
+      # Create shell's data dir
+      systemd.user.tmpfiles.rules = [ "d ${shellPkgs.${cfg.type}} - - - -" ];
     }
     (mkIf cfg.makeDefault {
       users.defaultUserShell = shellPkgs.${cfg.type};
