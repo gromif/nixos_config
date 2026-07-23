@@ -57,10 +57,8 @@ let
           pkg
         ];
         text = ''
-          value=$1
-
           find . -type f -name "*.flac" |
-            parallel '${pkgName} {} "$value"'
+            parallel "${pkgName} {} $1"
         '';
       })
     ]
