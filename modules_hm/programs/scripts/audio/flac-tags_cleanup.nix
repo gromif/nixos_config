@@ -44,8 +44,8 @@ let
     name = scriptName;
     runtimeInputs = with pkgs; [ flac ];
     text = ''
-      find "$(pwd)" -type f -name "*.flac" \
-        -exec metaflac --preserve-modtime --remove-all-tags-except${args} {} \;
+      find "$(pwd)" -type f -name "*.flac" |
+        parallel 'metaflac --preserve-modtime --remove-all-tags-except${args} {}'
     '';
   };
 in

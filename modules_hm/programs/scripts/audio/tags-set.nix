@@ -52,12 +52,15 @@ let
       pkg
       (pkgs.writeShellApplication {
         name = walkPkgName;
-        runtimeInputs = [ pkg ];
+        runtimeInputs = with pkgs; [
+          parallel
+          pkg
+        ];
         text = ''
           value=$1
 
-          find . -type f -name "*.flac" \
-            -exec ${pkgName} {} "$value" \;
+          find . -type f -name "*.flac" |
+            parallel '${pkgName} {} "$value"'
         '';
       })
     ]

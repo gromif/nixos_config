@@ -11,8 +11,8 @@ let
     name = findPkgName;
     runtimeInputs = [ pkg ];
     text = ''
-      find "$(pwd)" -type f -name "*.flac" \
-      -exec ${pkgName} {} \;
+      find "$(pwd)" -type f -name "*.flac" |
+        parallel '${pkgName} {}'
     '';
   };
 

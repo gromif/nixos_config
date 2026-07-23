@@ -11,14 +11,16 @@ let
 
   findPkg = pkgs.writeShellApplication {
     name = findPkgName;
-    runtimeInputs = [ pkg ];
+    runtimeInputs = with pkgs; [
+      parallel
+      pkg
+    ];
     text = ''
       find "$(pwd)" -type f \
-        \(-name "*.flac" \
+        -name "*.flac" \
         -o -name "*.wav" \
         -o -name "*.alac" \
-        -o -name "*.opus" \) \
-        -exec ${pkgName} {} \;
+        -o -name "*.opus" | parallel '${pkgName} {}'
     '';
   };
 

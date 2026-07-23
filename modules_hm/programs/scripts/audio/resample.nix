@@ -22,10 +22,10 @@ let
       runtimeInputs = packages;
       text = ''
         find "$(pwd)" -type f \
-          \(-name "*.flac" \
+          -name "*.flac" \
           -o -name "*.wav" \
-          -o -name "*.alac" \) \
-          -exec ${pkgName}_${toString b} {} \;
+          -o -name "*.alac" |
+          parallel '${pkgName}_${toString b} {}'
       '';
     }
   ) bits;

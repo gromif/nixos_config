@@ -12,10 +12,9 @@ let
     runtimeInputs = [ pkg ];
     text = ''
       find "$(pwd)" -type f \
-        \(-name "*.flac" \
+        -name "*.flac" \
         -o -name "*.wav" \
-        -o -name "*.alac" \) \
-        -exec aud-remove_silence {} \;
+        -o -name "*.alac" | parallel '${pkgName} {}'
     '';
   };
   pkgName = "aud-remove_silence";
