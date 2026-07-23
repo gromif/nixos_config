@@ -50,7 +50,10 @@ in
       EDITOR = "hx";
     };
 
-    systemd.tmpfiles.rules = [ "L+ %h/.config/helix/languages.toml - - - - ${./helix_languages.toml}" ];
+    systemd.tmpfiles.rules = [
+      "L+ %h/.config/helix/languages.toml - - - - ${./helix_languages.toml}"
+      "f /tmp/parallel/will-cite 755" # Shut Parallel
+    ];
 
     environment.systemPackages =
       with pkgs;
@@ -65,6 +68,7 @@ in
         usbutils
         util-linux
         tree # Command to produce a depth indented directory listing
+        parallel
         psmisc # Set of small useful utilities that use the proc filesystem (such as fuser, killall and pstree)
       ]
       ++ optionals (cfg.group.server) [ ]
@@ -83,5 +87,7 @@ in
         compsize
         duperemove
       ];
+
+    environment.variables.PARALLEL_HOME = "/tmp/parallel";
   };
 }
