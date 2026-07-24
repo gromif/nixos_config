@@ -64,6 +64,7 @@
     );
     programs = {
       appimage.enable = true;
+      direnv.enable = true;
       fastfetch = {
         enable = true;
         preset = "nixos_1";
