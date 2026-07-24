@@ -26,7 +26,7 @@ in
       hashedPasswordFile = config.sops.secrets.user_nicklor_passwordHash.path;
       extraGroups = [
         "networkmanager"
-        "wheel"
+        "nix"
       ];
     };
 
