@@ -88,5 +88,6 @@
 
   boot.kernelParams = [
     "video=HDMI-A-1:1920x1080@83"
+    "clearcpuid=umip" # Trade-off: Hypervisor via Proton
   ];
 }
