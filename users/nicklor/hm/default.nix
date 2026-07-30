@@ -61,6 +61,7 @@ in
     papers
 
     # Tools
+    lutris
     identity
     eartag
     mission-center

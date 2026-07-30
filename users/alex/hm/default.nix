@@ -21,7 +21,6 @@ in
       };
     };
     programs = {
-      android-studio.enable = true;
       bottles.enable = true;
       euphonica.enable = true;
       mangohud.enable = true;
@@ -71,6 +70,7 @@ in
     papers
 
     # Tools
+    lutris
     identity
     eartag
     mission-center
@@ -85,7 +85,6 @@ in
         "firefox.desktop"
         "org.gnome.Console.desktop"
         "io.github.htkhiem.Euphonica.desktop"
-        "android-studio.desktop"
         "org.telegram.desktop.desktop"
         "com.usebottles.bottles.desktop"
         "org.gnome.TextEditor.desktop"
