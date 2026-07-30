@@ -5,6 +5,7 @@ keys:
   - &mercury_root age16uv00hxnmkf2pqkldezs8ym3f2nrm6s0x7xhkpnxvu329c6srscsqr4jj3
   - &moon_root age13vrgu0hz08c9792qwhsm07sdsp0wenvjjf03z6csecswxsddyqds5f0agk
   - &venus_root age1ldgwrdexcm4tqhruyxat2e72nss77a77uz55wwsgfecfkvdly52svfgjtz
+  - &group_projects age1h2g3955zy0ky72g5t3kuy6mggp0g9eft9mummzuvd7tn25njs4uqqs08c0
 creation_rules:
   - path_regex: secrets/shared/.*
     key_groups:
@@ -29,3 +30,10 @@ creation_rules:
     key_groups:
     - age:
       - *venus_root
+  # ===============================
+  #             GROUPS
+  # ===============================
+  - path_regex: secrets/group-projects/.*
+    key_groups:
+    - age:
+      - *group_projects
