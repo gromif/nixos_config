@@ -16,7 +16,13 @@ in
         format = "binary";
         sopsFile = ./.astra-crypt.enc;
         group = config.users.groups.users.name;
-        mode = "750";
+        mode = "440";
+      };
+      "${secretsPrefix}/system-tools-android" = {
+        format = "binary";
+        sopsFile = ./.system-tools-android.enc;
+        group = config.users.groups.users.name;
+        mode = "440";
       };
     };
   };
