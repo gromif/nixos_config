@@ -41,7 +41,7 @@ in
           pkgSetup = pkgs.writeShellApplication {
             name = "direnv-setup";
             text = ''
-              echo "use nix" | tee "$(pwd)/.envrc" 1> /dev/null
+              echo "use flake" | tee "$(pwd)/.envrc" 1> /dev/null
             '';
           };
         in
