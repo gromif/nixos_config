@@ -31,7 +31,7 @@ creation_rules:
     - age:
       - *venus_root
   # ===============================
-  #             GROUPS
+  #            GROUPS
   # ===============================
   - path_regex: secrets/group-projects/.*
     key_groups:
