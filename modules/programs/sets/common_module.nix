@@ -51,7 +51,8 @@ in
     };
 
     systemd.tmpfiles.rules = [
-      "L+ %h/.config/helix/languages.toml - - - - ${./helix_languages.toml}"
+      "L+ %h/.config/helix/config.toml - - - - ${./helix/config.toml}"
+      "L+ %h/.config/helix/languages.toml - - - - ${./helix/languages.toml}"
       "f /tmp/parallel/will-cite 755" # Shut Parallel
     ];
 
