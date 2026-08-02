@@ -82,7 +82,15 @@
     };
   };
 
-  programs.firefox.enable = true; # Install firefox.
+  programs.firefox = {
+    enable = true; # Install firefox.
+    policies = {
+      # Disable WebRTC globally
+      MediaPeerConnection = {
+        enabled = false;
+      };
+    };
+  };
 
   xdg.mime.predefined.enable = true;
 
