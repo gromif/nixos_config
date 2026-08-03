@@ -20,37 +20,38 @@ with lib;
     };
   };
 
-  config = mkMerge [
-    (mkIf (config.nixfiles.security.enableCommon) {
-      # Restrict Nix pm for users outside of the @nix group
-      nix.settings.allowed-users = [ "@nix" ];
-      users.groups.nix = { };
+  config =
+    let
+      elevationMethod = config.nixfiles.security.superuser;
+    in
+    mkMerge [
+      (mkIf (config.nixfiles.security.enableCommon) {
+        # Restrict Nix pm for users outside of the @nix group
+        nix.settings.allowed-users = [ "@nix" ];
+        users.groups.nix = { };
 
-      security = {
-        protectKernelImage = true; # Prevent replacing the running kernel
-      };
-    })
-    (
-      let
-        method = config.nixfiles.security.superuser;
-      in
-      {
         security = {
-          sudo.enable = mkForce (method == "sudo");
-
-          sudo-rs = {
-            enable = mkForce (method == "sudo-rs");
-            execWheelOnly = true;
-          };
-
-          run0 = {
-            enable = mkForce (method == "run0");
-            persistentAuth = {
-              enable = true;
-            };
+          protectKernelImage = true; # Prevent replacing the running kernel
+        };
+      })
+      (mkIf (elevationMethod == "sudo") {
+        security = {
+          sudo.enable = mkForce true;
+        };
+      })
+      (mkIf (elevationMethod == "sudo-rs") {
+        security.sudo-rs = {
+          enable = mkForce true;
+          execWheelOnly = true;
+        };
+      })
+      (optional (elevationMethod == "run0") {
+        security.run0 = {
+          enable = true;
+          persistentAuth = {
+            enable = true;
           };
         };
-      }
-    )
-  ];
+      })
+    ];
 }

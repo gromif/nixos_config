@@ -5,16 +5,21 @@
 # NixOS-WSL specific options are documented on the NixOS-WSL repository:
 # https://github.com/nix-community/NixOS-WSL
 
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 {
   imports = [
     # include nixos-avf modules
     # <nixos-avf/avf>
   ];
-  
+
   time.timeZone = "Europe/Berlin";
-  
+
   nixfiles = {
     system = {
       type = "avf";
@@ -22,6 +27,7 @@
     };
     security = {
       enableCommon = false;
+      superuser = "sudo-rs";
     };
     network = {
       hostName = builtins.baseNameOf ./.;
@@ -30,7 +36,7 @@
       enableCommon = false;
     };
   };
-  
+
   users.users.root.password = "1111";
   users.users.droid = {
     createHome = true;
