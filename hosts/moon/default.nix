@@ -27,7 +27,7 @@
     };
     security = {
       enableCommon = false;
-      superuser = "sudo-rs";
+      elevation = "sudo-rs";
     };
     network = {
       hostName = builtins.baseNameOf ./.;
