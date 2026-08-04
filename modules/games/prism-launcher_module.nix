@@ -26,7 +26,7 @@ in
   };
 
   config = mkMerge [
-    ({
+    {
       nixpkgs.overlays = [
         (final: prev: {
           prismlauncher-unwrapped = prev.prismlauncher-unwrapped.overrideAttrs {
@@ -40,10 +40,19 @@ in
           };
         })
       ];
-    })
+    }
     (mkIf cfg.enable {
+      # enable transparent hugepages with deferred defragmentaion
+      boot.kernel.sysfs = {
+        kernel.mm.transparent_hugepage = {
+          enabled = "madvise";
+          defrag = "defer";
+          shmem_enabled = "advise";
+        };
+      };
+
       environment.systemPackages = with pkgs; [
-        temurin-bin-21
+        temurin-bin-25
       ];
 
       # Set up Tmpfiles rules
@@ -61,3 +70,6 @@ in
     })
   ];
 }
+
+# Optimised JVM flags (18GiB):
+# -XX:+UseZGC -XX:+UseStringDeduplication -XX:+UseCompactObjectHeaders -XX:+AlwaysPreTouch -XX:TrimNativeHeapInterval=5000 -XX:+UseTransparentHugePages
