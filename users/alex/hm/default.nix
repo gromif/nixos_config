@@ -17,6 +17,7 @@ in
     gnome = {
       enable = true;
       extensions = {
+        appindicator.enable = false;
         gsconnect.enable = false;
       };
     };
