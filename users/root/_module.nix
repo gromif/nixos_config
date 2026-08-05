@@ -19,7 +19,7 @@ in
   };
   config = mkIf (elem id users) {
     users.users."${id}" = {
-      hashedPasswordFile = config.sops.secrets.user_root_passwordHash.path;
+      hashedPassword = "!";
     };
   };
 }
