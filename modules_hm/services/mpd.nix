@@ -29,6 +29,7 @@ in
         audio_output {
           type "pipewire"
           name "PipeWire"
+          dsd  "yes"
         }
         audio_output {
           type      "fifo"
