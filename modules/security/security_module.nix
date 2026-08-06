@@ -9,15 +9,6 @@ with lib;
       default = true;
       description = "common security settings";
     };
-    elevation = mkOption {
-      type = types.enum [
-        "default"
-        "sudo-rs"
-        "run0"
-      ];
-      default = "run0";
-      description = "Which SU auth-agent to use";
-    };
   };
 
   config = mkIf (config.nixfiles.security.enableCommon) {
