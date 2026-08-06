@@ -53,7 +53,7 @@ in
     })
     (mkIf cfg.surround-71 {
       xdg.configFile = {
-        "pipewire/pipewire.conf.d/10-sink-virtual-surround-7.1-hesuvi.conf" = {
+        "pipewire/filter-chain.conf.d/10-sink-virtual-surround-7.1-hesuvi.conf" = {
           force = true;
           executable = true;
           text = ''
@@ -167,7 +167,7 @@ in
     })
     (mkIf cfg.surround-51 {
       xdg.configFile = {
-        "pipewire/pipewire.conf.d/10-sink-virtual-surround-5.1-kemar.conf" = {
+        "pipewire/filter-chain.conf.d/10-sink-virtual-surround-5.1-kemar.conf" = {
           force = true;
           executable = true;
           text = ''
