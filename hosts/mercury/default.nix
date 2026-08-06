@@ -31,6 +31,9 @@ with lib;
       enable = true;
       ports = [ 31472 ];
     };
+    security = {
+      elevation = "sudo-rs";
+    };
     programs = {
       sets = {
         common.group.server = true;

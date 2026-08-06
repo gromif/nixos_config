@@ -4,6 +4,9 @@ with lib;
 
 {
   config = mkIf (config.nixfiles.security.elevation == "run0") {
+    # Remove nasty background
+    environment.sessionVariables.SYSTEMD_TINT_BACKGROUND = 0;
+
     security = {
       run0 = {
         enable = true;
