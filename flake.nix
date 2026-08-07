@@ -62,8 +62,8 @@
         mercury = nixpkgs-stable.lib.nixosSystem {
           inherit system;
           modules = sharedModules ++ [
-            nixpkgs-stable.nixosModules.profiles.minimal
-            nixpkgs-stable.nixosModules.profiles.headless
+            "${nixpkgs-stable}/nixos/modules/profiles/minimal.nix"
+            "${nixpkgs-stable}/nixos/modules/profiles/headless.nix"
 
             ./hosts/mercury
             ./modules/boot/grub2.nix
