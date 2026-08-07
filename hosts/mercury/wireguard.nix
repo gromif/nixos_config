@@ -25,13 +25,13 @@ in
     interfaces.wg0 = {
       ips = [
         "10.10.0.1/24"
-        "fd10:10:10::2/64"
+        "fd10:10:10::1/64"
       ];
       listenPort = port;
       privateKeyFile = config.sops.secrets."network/wireguard/key".path;
       peers = [
         {
-          publicKey = "nTQRqnjdegIjCLKUZcLVojNDW5/YbMXNdBRut4+RqXk=";
+          publicKeyFile = config.sops.secrets."network/wireguard/peers/alex".path;
           allowedIPs = [
             "10.10.0.2/32"
             "fd10:10:10::2/128"
