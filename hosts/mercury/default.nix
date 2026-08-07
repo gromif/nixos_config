@@ -11,6 +11,7 @@ with lib;
   imports = [
     ./hardware-configuration.nix
     ./srv-watchdog.nix
+    ./wireguard.nix
   ];
 
   time.timeZone = "Europe/Kyiv";
