@@ -28,7 +28,7 @@ in
         "fd10:10:10::1/64"
       ];
       listenPort = port;
-      privateKey = "T4VLoZHZVQj3Prk+gFo18veJ8K5o4oSmqkaAYnAcvTk=";
+      privateKeyFile = config.sops.secrets."network/wireguard/key".path;
       peers = [
         {
           publicKeyFile = config.sops.secrets."network/wireguard/peers/alex".path;

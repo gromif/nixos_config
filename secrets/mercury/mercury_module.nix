@@ -14,6 +14,10 @@ with lib;
         sopsFile = ./network/wireguard/.public;
         format = "binary";
       };
+      "network/wireguard/peers/alex" = {
+        sopsFile = ./network/wireguard/peers/.alex;
+        format = "binary";
+      };
       "ssh/ed25519" = {
         sopsFile = ./ssh.yaml;
         path = "/etc/ssh/ssh_host_ed25519_key";
