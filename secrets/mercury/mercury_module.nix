@@ -6,6 +6,14 @@ with lib;
   config = mkIf (config.nixfiles.sops.enable && config.nixfiles.network.hostName == "mercury") {
     sops.defaultSopsFile = ./secrets.yaml;
     sops.secrets = {
+      "network/wireguard/key" = {
+        sopsFile = ./network/wireguard/.private;
+        format = "binary";
+      };
+      "network/wireguard/key.pub" = {
+        sopsFile = ./network/wireguard/.public;
+        format = "binary";
+      };
       "ssh/ed25519" = {
         sopsFile = ./ssh.yaml;
         path = "/etc/ssh/ssh_host_ed25519_key";
