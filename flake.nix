@@ -62,6 +62,9 @@
         mercury = nixpkgs-stable.lib.nixosSystem {
           inherit system;
           modules = sharedModules ++ [
+            nixpkgs-stable.nixosModules.profiles.minimal
+            nixpkgs-stable.nixosModules.profiles.headless
+
             ./hosts/mercury
             ./modules/boot/grub2.nix
             ./modules/services/qbittorrent.nix
