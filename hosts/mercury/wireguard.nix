@@ -31,7 +31,7 @@ in
       privateKeyFile = config.sops.secrets."network/wireguard/key".path;
       peers = [
         {
-          publicKeyFile = config.sops.secrets."network/wireguard/peers/alex".path;
+          publicKey = "T4VLoZHZVQj3Prk+gFo18veJ8K5o4oSmqkaAYnAcvTk=";
           allowedIPs = [
             "10.10.0.2/32"
             "fd10:10:10::2/128"
