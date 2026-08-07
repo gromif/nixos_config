@@ -37,6 +37,13 @@ in
             "fd10:10:10::2/128"
           ];
         }
+        {
+          publicKey = "pABYs7dIc3WvM3XKmAVmlI4IJmjqJ1tdJoCOy5SiGEw=";
+          allowedIPs = [
+            "10.10.0.2/32"
+            "fd10:10:10::2/128"
+          ];
+        }
       ];
     };
   };
