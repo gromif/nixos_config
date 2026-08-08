@@ -12,6 +12,7 @@ with lib;
     ./hardware-configuration.nix
     ./srv-watchdog.nix
     ./wireguard.nix
+    ./resilience.nix
   ];
 
   time.timeZone = "Europe/Kyiv";
