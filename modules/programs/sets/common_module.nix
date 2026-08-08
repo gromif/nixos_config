@@ -65,20 +65,27 @@ in
       ]
       ++ optionals (cfg.group.basic) [
         btop
+        dmidecode # Tool that reads information about your system's hardware from the BIOS according to the SMBIOS/DMI standard
         ncdu
         usbutils
         util-linux
         tree # Command to produce a depth indented directory listing
         parallel
         psmisc # Set of small useful utilities that use the proc filesystem (such as fuser, killall and pstree)
+        smartmontools # Tools for monitoring the health of hard drives
       ]
-      ++ optionals (cfg.group.server) [ ]
+      ++ optionals (cfg.group.server) [
+        memtester # Userspace utility for testing the memory subsystem for faults
+        mtr # Network diagnostics tool
+        speedtest-cli # Command line interface for testing internet bandwidth using speedtest.net
+      ]
       ++ optionals (cfg.group.desktop) (
         [
           ddcutil
           pciutils # Collection of programs for inspecting and manipulating configuration of PCI devices
           pwgen # Password generator which creates passwords which can be easily memorized by a human
           stress-ng
+          wineWow64Packages.waylandFull
         ]
         ++ pkgs_sound
         ++ pkgs_compression
