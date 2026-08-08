@@ -21,7 +21,7 @@ in
       iproute2
     ];
     script = ''
-      if ! ss -lunp | grep ":17238"; then
+      if ! ss -tn state established | grep ":31472"; then
         echo "No SSH sessions found, powering off."
         sleep 30s
         systemctl poweroff
