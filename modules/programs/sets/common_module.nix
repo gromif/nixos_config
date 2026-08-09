@@ -70,6 +70,7 @@ in
         usbutils
         util-linux
         tree # Command to produce a depth indented directory listing
+        rsync # Fast incremental file transfer utility
         parallel
         psmisc # Set of small useful utilities that use the proc filesystem (such as fuser, killall and pstree)
         smartmontools # Tools for monitoring the health of hard drives
