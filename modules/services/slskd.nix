@@ -11,12 +11,16 @@ in
     enable = true;
     domain = null;
     environmentFile = config.sops.secrets."services/slskd_env".path;
+    openFirewall = true;
     settings = {
+      web.port = 9054;
       soulseek.description = "";
     };
     group = "media";
   };
   users.groups.media = { };
+
+  networking.firewall.allowedTCPPorts = [ config.services.slskd.settings.web.port ];
 
   # Set up impermanence
   nixfiles.impermanence.directories = [
