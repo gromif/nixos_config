@@ -16,7 +16,7 @@ with lib;
         mode = "0755";
       };
       "services/slskd_env" = lib.mkIf config.services.slskd.enable {
-        sopsFile = ./slskd.yaml;
+        sopsFile = ./.slskd.yaml;
         owner = config.services.slskd.user;
         group = config.services.slskd.group;
       };
