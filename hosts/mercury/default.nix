@@ -31,6 +31,7 @@ with lib;
     };
     services.openssh = {
       enable = true;
+      enableEssentials = false;
       ports = [ 31472 ];
     };
     programs = {
