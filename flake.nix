@@ -56,7 +56,6 @@
           modules = sharedModules ++ [
             ./hosts/apollo
             ./modules/boot/systemd.nix
-            ./modules/services/unarchiver.nix
           ];
         };
         mercury = nixpkgs-stable.lib.nixosSystem {
