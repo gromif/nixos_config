@@ -5,9 +5,11 @@ with lib;
 let
   cfg = config.nixfiles;
   lsr = lib.filesystem.listFilesRecursive;
-  modules = builtins.filter (f: lib.hasSuffix "_module.nix" f) (
-    (lsr ./modules) ++ (lsr ./secrets) ++ (lsr ./users)
-  );
+  modules =
+    builtins.filter (f: lib.hasSuffix "_module.nix" f) (
+      (lsr ./modules) ++ (lsr ./secrets) ++ (lsr ./users)
+    )
+    ++ builtins.filter (f: hasSuffix "secrets.nix" f) ((lsr ./secrets));
   aliases = [
     (lib.mkAliasOptionModule [ "nixfiles" "system" "stateVersion" ] [ "system" "stateVersion" ])
   ];

@@ -7,12 +7,12 @@ with lib;
     sops.secrets = {
       "ssh/endpoint" = {
         format = "binary";
-        sopsFile = ./ssh/endpoint_uk.bin;
+        sopsFile = ./ssh/.endpoint_uk;
         mode = "0744";
       };
       "ssh/extraConfig" = {
         format = "binary";
-        sopsFile = ./ssh/ssh_config.bin;
+        sopsFile = ./ssh/.config;
         mode = "0755";
       };
       "services/slskd_env" = lib.mkIf config.services.slskd.enable {
