@@ -56,6 +56,13 @@ with lib;
       #
 
       # Alex
+      "ssh/alex/known_hosts" = {
+        sopsFile = ./ssh/.known_hosts;
+        format = "binary";
+        owner = "alex";
+        mode = "0400";
+        path = "${config.users.users.alex.home}/.ssh/known_hosts";
+      };
       "ssh/alex/general/.key" = {
         sopsFile = ./ssh/alex/.private;
         format = "binary";
