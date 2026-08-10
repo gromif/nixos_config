@@ -16,7 +16,7 @@ with lib;
         ];
       };
     };
-    sops.defaultSopsFile = ./secrets.yaml;
+    sops.defaultSopsFile = ./.secrets.yaml;
     sops.secrets = {
       "ssh/root/known_hosts" = {
         sopsFile = ./ssh/root/.known_hosts;
