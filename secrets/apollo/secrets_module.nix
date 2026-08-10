@@ -4,6 +4,18 @@ with lib;
 
 {
   config = mkIf (config.nixfiles.sops.enable && config.nixfiles.network.hostName == "apollo") {
+    nixfiles.services.sshAgent = {
+      enable = true;
+      userKeys = {
+        alex = with config; [
+          sops.secrets."ssh/alex/general/.key".path
+          sops.secrets."ssh/alex/mercury/.key".path
+        ];
+        nicklor = with config; [
+          sops.secrets."ssh/nicklor/mercury/.key".path
+        ];
+      };
+    };
     sops.defaultSopsFile = ./secrets.yaml;
     sops.secrets = {
       "ssh/root/known_hosts" = {
@@ -44,27 +56,26 @@ with lib;
       #
 
       # Alex
-      "ssh/alex/key" = {
+      "ssh/alex/general/.key" = {
         sopsFile = ./ssh/alex/.private;
         format = "binary";
-        path = "${config.users.users.alex.home}/.ssh/id_ed25519";
         owner = "alex";
-        mode = "0700";
+        mode = "0400";
       };
-      "ssh/alex/key.pub" = {
+      "ssh/alex/general/.key.pub" = {
         sopsFile = ./ssh/alex/.public;
         format = "binary";
-        path = "${config.users.users.alex.home}/.ssh/id_ed25519.pub";
         owner = "alex";
-        mode = "0700";
+        mode = "0400";
       };
-      "ssh/alex/mercury/key" = {
+      # Agent
+      "ssh/alex/mercury/.key" = {
         sopsFile = ./ssh/alex/mercury/.private;
         format = "binary";
         owner = "alex";
         mode = "0400";
       };
-      "ssh/alex/mercury/key.pub" = {
+      "ssh/alex/mercury/.key.pub" = {
         sopsFile = ./ssh/alex/mercury/.public;
         format = "binary";
         owner = "alex";
@@ -72,19 +83,18 @@ with lib;
       };
 
       # Nicklor
-      "ssh/nicklor/mercury/private" = {
+      # Agent
+      "ssh/nicklor/mercury/.key" = {
         sopsFile = ./ssh/nicklor/mercury/.private;
         format = "binary";
-        path = "${config.users.users.nicklor.home}/.ssh/mercury";
         owner = "nicklor";
-        mode = "0700";
+        mode = "0400";
       };
-      "ssh/nicklor/mercury/public" = {
+      "ssh/nicklor/mercury/.key.pub" = {
         sopsFile = ./ssh/nicklor/mercury/.public;
         format = "binary";
-        path = "${config.users.users.nicklor.home}/.ssh/mercury.pub";
         owner = "nicklor";
-        mode = "0700";
+        mode = "0400";
       };
     };
   };
