@@ -64,6 +64,7 @@ in
         nixfmt # Optional: formatter
       ]
       ++ optionals (cfg.group.basic) [
+        binutils # Tools for manipulating binaries (linker, assembler, etc.)
         btop
         dmidecode # Tool that reads information about your system's hardware from the BIOS according to the SMBIOS/DMI standard
         file
