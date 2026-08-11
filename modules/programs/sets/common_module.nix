@@ -66,6 +66,7 @@ in
       ++ optionals (cfg.group.basic) [
         btop
         dmidecode # Tool that reads information about your system's hardware from the BIOS according to the SMBIOS/DMI standard
+        file
         ncdu
         usbutils
         util-linux
