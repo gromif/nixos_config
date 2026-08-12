@@ -3,13 +3,14 @@
 let
   cfg = config.nixfiles.network;
   aliases = [
-    (lib.mkAliasOptionModule [ "nixfiles" "network" "hostName"] [ "networking" "hostName"])
+    (lib.mkAliasOptionModule [ "nixfiles" "network" "hostName" ] [ "networking" "hostName" ])
   ];
   isAvf = config.nixfiles.system.type == "avf";
-in with lib;
+in
+with lib;
 {
   imports = aliases;
-  
+
   options.nixfiles.network = {
     enable = mkOption {
       type = types.bool;
@@ -26,8 +27,15 @@ in with lib;
     };
   };
 
-  config = mkIf cfg.enable {  
-    networking.networkmanager.enable = mkIf (!isAvf) true;
+  config = mkIf cfg.enable {
+    networking.networkmanager = {
+      enable = mkIf (!isAvf) true;
+      wifi = {
+        macAddress = "random";
+        powersave = true;
+        scanRandMacAddress = true;
+      };
+    };
     # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant
 
     boot = mkIf cfg.useBBR {
@@ -37,7 +45,7 @@ in with lib;
         "net.ipv4.tcp_congestion_control" = "bbr";
       };
     };
-  
+
     # Disable NetworkManager-wait-online service
     systemd.services.NetworkManager-wait-online.enable = false;
   };
