@@ -6,7 +6,7 @@ with lib.hm.gvariant;
 {
   dconf.settings = {
     "org/gnome/settings-daemon/plugins/media-keys" = {
-      volume-step = 2;
+      volume-step = 5;
     };
     # Mutter
     "org/gnome/mutter" = {
