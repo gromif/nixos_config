@@ -51,10 +51,6 @@ in
         };
       };
 
-      environment.systemPackages = with pkgs; [
-        temurin-bin-25
-      ];
-
       # Set up Tmpfiles rules
       systemd.user.tmpfiles.rules = tmpFilesRules;
 
@@ -63,7 +59,13 @@ in
         map (u: {
           name = u;
           value = {
-            packages = [ pkg ];
+            packages = [
+              (pkg.override {
+                jdks = with pkgs; [
+                  temurin-bin-25
+                ];
+              })
+            ];
           };
         }) cfg.users
       );
