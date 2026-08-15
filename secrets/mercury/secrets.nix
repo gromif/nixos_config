@@ -9,6 +9,8 @@ with lib;
       "network/wireguard/key" = {
         sopsFile = ./network/wireguard/.private;
         format = "binary";
+        owner = "systemd-network";
+        group = "systemd-network";
       };
       "ssh/ed25519" = {
         sopsFile = ./.ssh.yaml;
