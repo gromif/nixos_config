@@ -29,7 +29,7 @@ in
   };
 
   systemd.services = {
-    wireguard-wg0.onFailure = [ "${recoveryServiceName}.service" ];
+    systemd-networkd.onFailure = [ "${recoveryServiceName}.service" ];
     sshd.onFailure = [ "${recoveryServiceName}.service" ];
     "${recoveryServiceName}" = {
       description = "Recovery service for Mercury";
