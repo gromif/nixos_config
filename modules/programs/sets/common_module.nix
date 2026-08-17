@@ -86,6 +86,7 @@ in
         [
           ddcutil
           pciutils # Collection of programs for inspecting and manipulating configuration of PCI devices
+          poppler-utils # PDF rendering library
           pwgen # Password generator which creates passwords which can be easily memorized by a human
           stress-ng
           wineWow64Packages.waylandFull
