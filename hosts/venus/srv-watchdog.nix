@@ -17,17 +17,13 @@ in
 
     path = with pkgs; [
       systemd
-      wireguard-tools
+      gnugrep
+      iproute2
     ];
     script = ''
-      before=$(wg show wg0 transfer | awk '{rx += $2; tx += $3} END {print rx + tx}')
-      sleep 10
-      after=$(wg show wg0 transfer | awk '{rx += $2; tx += $3} END {print rx + tx}')
-
-      if [ "$after" -gt "$before" ]; then
-        echo "WireGuard traffic detected"
-      else
-        echo "No WireGuard traffic. Shutting down..."
+      if ! ss -tn state established | grep ":31472"; then
+        echo "No SSH sessions found, powering off."
+        sleep 30s
         systemctl poweroff
       fi
     '';
