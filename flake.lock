@@ -1,5 +1,21 @@
 {
   "nodes": {
+    "dwarfs-pr": {
+      "locked": {
+        "lastModified": 1785968442,
+        "narHash": "sha256-4E3ZmjPLxAmjZ40DXqNM21rckEm3BWQAhtJtpQfyoJs=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "05311a357fdaaefbe6a8f68d161dbf620e9606e3",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "pull/549694/head",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "home-manager": {
       "inputs": {
         "nixpkgs": [
@@ -151,6 +167,7 @@
     },
     "root": {
       "inputs": {
+        "dwarfs-pr": "dwarfs-pr",
         "home-manager-stable": "home-manager-stable",
         "home-manager-unstable": "home-manager-unstable",
         "impermanence": "impermanence",
