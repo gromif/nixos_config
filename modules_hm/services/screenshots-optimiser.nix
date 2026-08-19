@@ -67,7 +67,7 @@ in
     systemd.user.timers."screenshots-cleanup-weekly" = {
       Timer = {
         OnCalendar = "weekly";
-        Unit = "screenshots-optimiser.service";
+        Unit = "screenshots-cleanup.service";
         Persistent = true;
       };
       Unit.Description = "A weekly timer for removing old screenshots";
