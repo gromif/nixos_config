@@ -9,7 +9,7 @@ let
 in
 {
   systemd.services."${name}" = {
-    description = "Power off if no SSH users are logged in";
+    description = "Power off if no Wireguard traffic is detected";
 
     serviceConfig = {
       Type = "oneshot";
