@@ -17,6 +17,7 @@ in
 
     path = with pkgs; [
       systemd
+      gawk
       wireguard-tools
     ];
     script = ''
