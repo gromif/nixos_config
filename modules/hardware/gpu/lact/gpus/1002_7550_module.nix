@@ -21,6 +21,7 @@ in
           performance_level = "auto";
           max_memory_clock = 1350;
           voltage_offset = -100;
+          power_cap = 374;
         };
       };
       profiles = {
@@ -34,6 +35,7 @@ in
               performance_level = "auto";
               max_memory_clock = 1350;
               voltage_offset = -100;
+              power_cap = 374;
             };
           };
         };

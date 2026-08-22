@@ -19,7 +19,7 @@ with lib.hm.gvariant;
       gtk-theme = "adw-gtk3";
       icon-theme = "Tela-green";
       clock-format = "12h";
-      font-antialiasing = "rgba";
+      font-antialiasing = "grayscale";
     };
     # Peripherals
     "org/gnome/desktop/peripherals/keyboard" = {

@@ -51,7 +51,7 @@ in
         cpu_load_color = load_colors;
 
         # Limit
-        fps_limit = [ 90 ];
+        fps_limit = [ 200 ];
         show_fps_limit = true;
 
         # Other
