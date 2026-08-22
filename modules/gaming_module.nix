@@ -39,6 +39,7 @@ in
       extraPackages =
         with pkgs;
         [
+          adwaita-icon-theme
           mangohud
         ]
         ++ (if cfg.enableLSFG then (with pkgs; [ lsfg-vk ]) else [ ]);
