@@ -49,7 +49,7 @@ in
     spotify
     gimp3
     inkscape
-    libreoffice-fresh
+    libreoffice
     folio
     smplayer
     mpv
