@@ -53,7 +53,10 @@
       podman.enable = true;
       distrobox.enable = true;
     };
-    gaming.enable = true;
+    gaming = {
+      enable = true;
+      enableLSFG = true;
+    };
     users = lib.mkAfter (
       with config.nixfiles.user;
       [
