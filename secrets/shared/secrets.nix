@@ -20,13 +20,6 @@ with lib;
         owner = config.services.slskd.user;
         group = config.services.slskd.group;
       };
-      ".lossless_scaling.dll" = mkIf config.nixfiles.gaming.enableLSFG {
-        sopsFile = ./.lossless_scaling.dll;
-        format = "binary";
-        path = "/opt/LosslessScaling.dll";
-        group = config.users.groups.users.name;
-        mode = "0750";
-      };
     };
   };
 }
