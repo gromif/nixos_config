@@ -25,6 +25,18 @@ in
         mpd-visualizer-pcm-source = "fifo";
       };
 
+      "${root}/metaprovider/musicbrainz" = {
+        enabled = true;
+        download-artist-avatar = true;
+      };
+
+      "${root}/metaprovider/lrclib".enable = true;
+
+      "${root}/metaprovider/lastfm" = {
+        enable = true;
+        api-key = "ff842c90bce93bb9f218a279ac80640f";
+      };
+
       "${root}/player" = {
         visualizer-fft-samples = mkUint32 4096;
         visualizer-fps = mkUint32 30;
@@ -46,7 +58,7 @@ in
 
       "${root}/ui" = {
         bg-opacity = 0.36;
-        max-columns = mkInt32 9;
+        max-columns = mkUint32 9;
         use-album-art-as-bg = true;
         use-visualizer = true;
         visualizer-blend-mode = mkUint32 6;
