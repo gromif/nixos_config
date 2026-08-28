@@ -4,7 +4,6 @@
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-26.05";
     impermanence.url = "github:nix-community/impermanence";
-    dwarfs-pr.url = "github:NixOS/nixpkgs?ref=pull/549694/head";
 
     home-manager-unstable = {
       url = "github:nix-community/home-manager";
@@ -35,7 +34,6 @@
       nixpkgs,
       nixpkgs-stable,
       impermanence,
-      dwarfs-pr,
       sops-nix-stable,
       sops-nix-unstable,
       home-manager-stable,
@@ -58,17 +56,6 @@
           modules = sharedModules ++ [
             ./hosts/apollo
             ./modules/boot/systemd.nix
-
-            {
-              nixpkgs.overlays = [
-                (self: super: {
-                  dwarfs =
-                    (import dwarfs-pr {
-                      inherit system;
-                    }).dwarfs;
-                })
-              ];
-            }
           ];
         };
         mercury = nixpkgs-stable.lib.nixosSystem {
