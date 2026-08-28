@@ -33,7 +33,10 @@ in
       };
     };
     services = {
-      mpd.enable = true;
+      mpd = {
+        enable = true;
+        musicDirectory = "/mnt/drive_a/Music";
+      };
       screenshots-optimiser.enable = true;
       random-background.enable = true;
       wallpapers-optimiser.enable = true;
