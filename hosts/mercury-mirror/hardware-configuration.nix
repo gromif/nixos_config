@@ -9,6 +9,8 @@
   ...
 }:
 
+with lib;
+
 {
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
@@ -26,7 +28,7 @@
   boot.kernelModules = [ "kvm-intel" ];
   boot.extraModulePackages = [ ];
 
-  fileSystems."/" = {
+  fileSystems."/" = mkForce {
     device = "none";
     neededForBoot = true;
     fsType = "tmpfs";
@@ -38,13 +40,13 @@
     ];
   };
 
-  fileSystems."/boot" = {
+  fileSystems."/boot" = mkForce {
     device = "/dev/disk/by-id/usb-Kingston_DataTraveler_3.0_E0D55E696FA619B1A863100D-0:0-part1";
     fsType = "ext4";
     neededForBoot = true;
   };
 
-  fileSystems."/nix" = {
+  fileSystems."/nix" = mkForce {
     device = "/dev/disk/by-id/usb-Kingston_DataTraveler_3.0_E0D55E696FA619B1A863100D-0:0-part2";
     fsType = "btrfs";
     neededForBoot = true;
@@ -56,7 +58,7 @@
     ];
   };
 
-  fileSystems."/mnt/drive_m" = {
+  fileSystems."/mnt/drive_m" = mkForce {
     device = "/dev/disk/by-id/ata-WDC_WD10SDZW-11UMGS0_WD-WXH1A67DNDCH-part1";
     fsType = "xfs";
     options = [
