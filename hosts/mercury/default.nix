@@ -29,6 +29,10 @@ with lib;
     network = {
       hostName = baseNameOf ./.;
     };
+    users = [
+      "mercury_root"
+      "mercury_warden"
+    ];
     services.openssh = {
       enable = true;
       enableEssentials = false;
@@ -46,27 +50,6 @@ with lib;
 
   # Auto-login the first tty console
   services.getty.autologinUser = "warden";
-
-  # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.warden = {
-    isNormalUser = true;
-    extraGroups = [ "wheel" ];
-    hashedPasswordFile = config.sops.secrets."users/warden/hashedPassword".path;
-    # Set up SSH allowed public keys per/user
-    openssh.authorizedKeys.keys = config.users.users.root.openssh.authorizedKeys.keys;
-  };
-  users.users.root = {
-    hashedPasswordFile = config.sops.secrets."users/root/hashedPassword".path;
-    # Set up SSH allowed public keys per/user
-    openssh.authorizedKeys.keys = [
-      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILlwUoUDRQM98RN6d2aVBvsVl0RhP4lUUBacfbPfbxfP nicklor@apollo" # Nicklor / Apollo
-      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAkstoRvU2rtFcd0kGwI4WKCM+CZYzuk8krRpoz9DC/9 root@mercury" # Alex / Apollo
-      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILI0hK6R1bUOrz7buYHHRlEvHbIlRUf3MNXNxZjjMjYo moon@mercury" # Root / Moon
-    ];
-    packages = with pkgs; [
-      tcpdump
-    ];
-  };
 
   # Services
   services.slskd = {

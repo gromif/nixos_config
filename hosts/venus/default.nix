@@ -27,6 +27,10 @@ with lib;
     network = {
       hostName = baseNameOf ./.;
     };
+    users = [
+      "mercury_root"
+      "mercury_warden"
+    ];
     services.openssh = {
       enable = true;
       ports = [ 4447 ];
@@ -43,25 +47,6 @@ with lib;
 
   # Auto-login the first tty console
   services.getty.autologinUser = "warden";
-
-  # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.warden = {
-    isNormalUser = true;
-    extraGroups = [ "wheel" ];
-    hashedPasswordFile = config.sops.secrets."users/warden/hashedPassword".path;
-    # Set up SSH allowed public keys per/user
-    openssh.authorizedKeys.keys = config.users.users.root.openssh.authorizedKeys.keys;
-  };
-  users.users.root = {
-    hashedPasswordFile = config.sops.secrets."users/root/hashedPassword".path;
-    # Set up SSH allowed public keys per/user
-    openssh.authorizedKeys.keys = [
-      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAkstoRvU2rtFcd0kGwI4WKCM+CZYzuk8krRpoz9DC/9 root@mercury" # Alex / Apollo
-    ];
-    packages = with pkgs; [
-      tcpdump
-    ];
-  };
 
   # Hardware
   services = {
