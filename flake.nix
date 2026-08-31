@@ -50,6 +50,15 @@
         home-manager-unstable.nixosModules.home-manager
         ./nixfiles.nix
       ];
+      mercuryModules = sharedModules ++ [
+        "${nixpkgs-stable}/nixos/modules/profiles/minimal.nix"
+        "${nixpkgs-stable}/nixos/modules/profiles/headless.nix"
+
+        ./hosts/mercury
+        ./modules/boot/grub2.nix
+        ./modules/services/qbittorrent.nix
+        ./modules/services/slskd.nix
+      ];
     in
     {
       nixosConfigurations = {
@@ -73,24 +82,11 @@
         };
         mercury = nixpkgs-stable.lib.nixosSystem {
           inherit system;
-          modules = sharedModules ++ [
-            "${nixpkgs-stable}/nixos/modules/profiles/minimal.nix"
-            "${nixpkgs-stable}/nixos/modules/profiles/headless.nix"
-
-            ./hosts/mercury
-            ./modules/boot/grub2.nix
-            ./modules/services/qbittorrent.nix
-            ./modules/services/slskd.nix
-          ];
+          modules = mercuryModules;
         };
-        venus = nixpkgs-stable.lib.nixosSystem {
+        mercury-mirror = nixpkgs-stable.lib.nixosSystem {
           inherit system;
-          modules = sharedModules ++ [
-            ./hosts/venus
-            ./modules/boot/grub2.nix
-            ./modules/services/qbittorrent.nix
-            ./modules/services/slskd.nix
-          ];
+          modules = mercuryModules ++ [ ./hosts/mercury-mirror ];
         };
         moon = nixpkgs-stable.lib.nixosSystem {
           system = "aarch64-linux";
