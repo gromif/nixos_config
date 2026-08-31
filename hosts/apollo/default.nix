@@ -1,4 +1,9 @@
-{ config, lib, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 {
   imports = [
@@ -11,72 +16,23 @@
   time.timeZone = "Europe/Berlin";
 
   nixfiles = {
+    preset = "desktop";
     system = {
       home-manager = true;
-      shell.console.optimalSettings = true;
       stateVersion = "25.11";
     };
-    boot.kernelModules.v4l2loopback.enable = true;
-    network = {
-      hostName = baseNameOf ./.;
-    };
-    sound.backend = "pipewire";
+    network.hostName = baseNameOf ./.;
     hardware = {
-      ddc = {
-        enable = true;
-        allowedUsers = [
-          "alex"
-          "nicklor"
-        ];
-      };
       graphics = {
         vendor = "amd";
         lact.profile = "MANAGED";
       };
     };
-    de = {
-      enable = true;
-      gnome = {
-        enable = true;
-        services = {
-          theme-changer.enable = true;
-        };
-      };
-    };
-    virtualisation = {
-      libvirtd = {
-        enable = true;
-        members = [
-          "alex"
-        ];
-      };
-      podman.enable = true;
-      distrobox.enable = true;
-    };
-    gaming = {
-      enable = true;
-      enableLSFG = true;
-    };
-    users = lib.mkAfter (
-      with config.nixfiles.user;
-      [
-        root.id
-        alex.id
-        nicklor.id
-      ]
-    );
-    programs = {
-      appimage.enable = true;
-      direnv.enable = true;
-      fastfetch = {
-        enable = true;
-        preset = "nixos_1";
-      };
-      sets = {
-        common.group.desktop = true;
-        media.enable = true;
-      };
-    };
+    users = with config.nixfiles.user; [
+      root.id
+      alex.id
+      nicklor.id
+    ];
     games = {
       prism-launcher = {
         enable = true;
@@ -85,21 +41,7 @@
     };
   };
 
-  programs.firefox = {
-    enable = true; # Install firefox.
-    policies = {
-      # Disable WebRTC globally
-      MediaPeerConnection = {
-        enabled = false;
-      };
-    };
-  };
-
   xdg.mime.predefined.enable = true;
-
-  boot.kernelParams = [
-    "clearcpuid=umip" # Trade-off: Hypervisor via Proton
-  ];
 
   services.snapper = {
     persistentTimer = true;
