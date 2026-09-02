@@ -68,6 +68,7 @@ in
       ];
       files = [
         "/etc/machine-id"
+        "/var/lib/NetworkManager/NetworkManager.state"
         {
           file = "/var/keys/secret_file";
           parentDirectory = {
