@@ -30,7 +30,10 @@ in
       system = {
         shell.console.optimalSettings = true;
       };
-      boot.kernelModules.v4l2loopback.enable = true;
+      boot = {
+        kernelModules.v4l2loopback.enable = true;
+        plymouth.enable = true;
+      };
       sound.backend = "pipewire";
       hardware = {
         ddc = {
