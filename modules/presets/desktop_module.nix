@@ -32,7 +32,7 @@ in
       };
       boot = {
         kernelModules.v4l2loopback.enable = true;
-        plymouth.enable = true;
+        plymouth.enable = false;
       };
       sound.backend = "pipewire";
       hardware = {
