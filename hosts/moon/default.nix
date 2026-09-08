@@ -30,24 +30,17 @@
       elevation = "sudo-rs";
     };
     network = {
-      hostName = builtins.baseNameOf ./.;
+      hostName = baseNameOf ./.;
     };
     hardware = {
       enableCommon = false;
     };
+    users = with config.nixfiles.user; [
+      avf_droid.id
+    ];
   };
 
   users.users.root.password = "1111";
-  users.users.droid = {
-    createHome = true;
-  };
-  # Change default user
-  # avf.defaultUser = "droid";
-
-  environment.systemPackages = with pkgs; [
-    helix
-    yt-dlp
-  ];
 
   nixfiles.impermanence.enable = lib.mkForce false;
 }
