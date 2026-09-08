@@ -6,9 +6,7 @@
 # https://github.com/nix-community/NixOS-WSL
 
 {
-  config,
   lib,
-  pkgs,
   ...
 }:
 
@@ -35,8 +33,8 @@
     hardware = {
       enableCommon = false;
     };
-    users = with config.nixfiles.user; [
-      avf_droid.id
+    users = [
+      "avf_droid"
     ];
   };
 
