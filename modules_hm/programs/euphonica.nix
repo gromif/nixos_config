@@ -25,6 +25,11 @@ in
         mpd-visualizer-pcm-source = "fifo";
       };
 
+      "${root}/library" = {
+        max-image-resolution = mkUint32 2048;
+        optimize-embedded-cover-loading = false;
+      };
+
       "${root}/metaprovider/musicbrainz" = {
         enabled = true;
         download-artist-avatar = true;
@@ -60,6 +65,7 @@ in
         bg-opacity = 0.36;
         max-columns = mkUint32 9;
         use-album-art-as-bg = true;
+        use-hires-for-album-cells = true;
         use-visualizer = true;
         visualizer-blend-mode = mkUint32 6;
         visualizer-gradient-height = 0.10000000000000002;
