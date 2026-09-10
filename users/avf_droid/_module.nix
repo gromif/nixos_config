@@ -12,17 +12,21 @@ let
   id = "avf_droid";
 in
 {
-  config = mkIf (elem id users) {
-    # Change the default AVF user
-    avf.defaultUser = mkForce "droid";
+  config = mkIf (elem id users) (mkMerge [
+    (optionalAttrs (options ? avf) {
+      # Change the default AVF user
+      avf = {
+        defaultUser = "droid";
+      };
 
-    users.users.droid = {
-      isNormalUser = true;
-      createHome = true;
-      extraGroups = [ "wheel" ];
-      packages = with pkgs; [
-        yt-dlp
-      ];
-    };
-  };
+      users.users.droid = {
+        isNormalUser = true;
+        createHome = true;
+        extraGroups = [ "wheel" ];
+        packages = with pkgs; [
+          yt-dlp
+        ];
+      };
+    })
+  ]);
 }
