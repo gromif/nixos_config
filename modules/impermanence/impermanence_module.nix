@@ -68,7 +68,6 @@ in
       ];
       files = [
         "/etc/machine-id"
-        "/var/lib/NetworkManager/NetworkManager.state"
         {
           file = "/var/keys/secret_file";
           parentDirectory = {
@@ -79,8 +78,15 @@ in
     };
 
     # adjust `persist` mode at runtime
-    systemd.tmpfiles.rules = [
-      "z ${persistPath} 0750 root root - -"
-    ];
+    boot.initrd.systemd.tmpfiles.settings."10-impermanence" = {
+      "${persistPath}".z.mode = "0750";
+      "${persistPath}/var/lib/NetworkManager/NetworkManager.state".f.mode = "0644";
+    };
+
+    fileSystems = genAttrs [ "/var/lib/NetworkManager/NetworkManager.state" ] (p: {
+      device = "${persistPath}${p}";
+      fsType = "none";
+      options = [ "bind" ];
+    });
   };
 }
