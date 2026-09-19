@@ -28,10 +28,10 @@
         lact.profile = "MANAGED";
       };
     };
-    users = with config.nixfiles.user; [
-      root.id
-      alex.id
-      nicklor.id
+    users = [
+      "root"
+      "alex"
+      "nicklor"
     ];
     games = {
       prism-launcher = {
