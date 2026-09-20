@@ -60,6 +60,10 @@ in
       gaming = {
         enable = true;
         enableLSFG = true;
+        hypervisor = {
+          enable = true;
+          type = "runtime-parameter";
+        };
       };
       programs = {
         appimage.enable = true;
