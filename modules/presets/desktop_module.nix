@@ -70,7 +70,10 @@ in
         direnv.enable = true;
         fastfetch = {
           enable = true;
-          preset = "nixos_1";
+          colourful = {
+            enable = true;
+            enableWrapper = true;
+          };
         };
         sets = {
           common.group.desktop = true;

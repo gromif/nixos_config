@@ -18,10 +18,14 @@ in
       default = false;
       description = "Whether to enable the ${name} package";
     };
-    preset = mkOption {
-      type = types.str;
-      default = "none";
-      description = "Which preset to load";
+    colourful = {
+      enable = mkEnableOption "colourful Fastfetch profiles";
+      installPath = mkOption {
+        type = types.str;
+        default = "fastfetch/colourful";
+        description = "Where to install the profiles under /etc";
+      };
+      enableWrapper = mkEnableOption "colourful Fastfetch wrapper";
     };
   };
 
@@ -29,19 +33,20 @@ in
     {
       environment.systemPackages = [ pkgs."${name}" ];
     }
+    (mkIf cfg.colourful.enable {
+      environment.systemPackages =
+        [ ]
+        ++ optional (cfg.colourful.enableWrapper) (
+          pkgs.writeShellApplication {
+            name = "${name}-colourful";
+            runtimeInputs = [ pkgs.fastfetch ];
+            text = ''
+              preset=$(find "/etc/${cfg.colourful.installPath}" -type l | shuf | head -n1)
 
-    (mkIf (cfg.preset == "nixos_1") {
-      environment.etc = {
-        "fastfetch/config.jsonc".source = ./nixos_1/config.jsonc;
-        "fastfetch/logo.txt".source = ./nixos_1/logo.txt;
-      };
-    })
-
-    (mkIf (cfg.preset == "nixos_2") {
-      environment.etc = {
-        "fastfetch/config.jsonc".source = ./nixos_2/config.jsonc;
-        "fastfetch/logo.txt".source = ./nixos_2/logo.txt;
-      };
+              fastfetch --config "$preset"
+            '';
+          }
+        );
     })
   ]);
 }

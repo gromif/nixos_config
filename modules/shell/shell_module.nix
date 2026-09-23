@@ -94,7 +94,7 @@ in
         histSize = 10000;
 
         interactiveShellInit = ''
-          ${if cfg.zsh.autoFastfetch then "fastfetch" else ""}
+          ${if cfg.zsh.autoFastfetch then "fastfetch-colourful" else ""}
           # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.config/zsh/.zshrc.
           # Initialization code that may require console input (password prompts, [y/n]
           # confirmations, etc.) must go above this block; everything else may go below.
