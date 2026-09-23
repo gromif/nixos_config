@@ -87,7 +87,7 @@ in
       favorite-apps = [
         "org.gnome.Nautilus.desktop"
         "firefox.desktop"
-        "org.gnome.Console.desktop"
+        "com.mitchellh.ghostty.desktop"
         "io.github.htkhiem.Euphonica.desktop"
         "org.telegram.desktop.desktop"
         "com.usebottles.bottles.desktop"
@@ -133,6 +133,7 @@ in
         "page.tesk.Refine.desktop"
         "io.github.ilya_zlobintsev.LACT.desktop"
         "ca.desrt.dconf-editor.desktop"
+        "org.gnome.Console.desktop"
         "org.gnome.Extensions.desktop"
         "qt5ct.desktop"
         "qt6ct.desktop"
