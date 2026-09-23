@@ -44,14 +44,38 @@ in
           tela-icon-theme
         ]
         ++ codecs;
-      fonts.packages = with pkgs; [
-        noto-fonts-color-emoji
-        inter
-        monocraft
-        #inter-nerdfont
-        # nerd-fonts.fira-code
-        nerd-fonts
-      ];
+      fonts.packages =
+        with pkgs;
+        [
+          noto-fonts-color-emoji
+          inter
+          monocraft
+        ]
+        ++ (with pkgs.nerd-fonts; [
+          _0xproto
+          adwaita-mono
+          caskaydia-cove
+          caskaydia-mono
+          dejavu-sans-mono
+          departure-mono
+          droid-sans-mono
+          fantasque-sans-mono
+          fira-code
+          fira-mono
+          googlesanscode
+          hack
+          jetbrains-mono
+          liberation
+          martian-mono
+          roboto-mono
+          sauce-code-pro
+          shure-tech-mono
+          space-mono
+          symbols-only
+          ubuntu
+          ubuntu-mono
+          ubuntu-sans
+        ]);
     })
 
     (mkIf cfg.gnome.enable {
@@ -61,6 +85,7 @@ in
       };
       environment = {
         systemPackages = with pkgs; [
+          ghostty
           zenity
           # Theming
           kdePackages.ocean-sound-theme
