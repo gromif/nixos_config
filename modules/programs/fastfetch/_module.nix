@@ -48,5 +48,51 @@ in
           }
         );
     })
+    (mkIf cfg.colourful.enable (
+      let
+        themes = attrNames (readDir ./themes);
+        outputDir = cfg.colourful.installPath;
+        config_modules = readFile ./config_modules.jsonc;
+      in
+      {
+        environment.etc = listToAttrs (
+          map (theme: {
+            name = "${outputDir}/${theme}.jsonc";
+            value.text = ''
+              {
+                  "logo": {
+                      "type": "kitty-direct",
+                      "source": "${./themes/${theme}/.logo.png}",
+                      "padding": {
+                          "top": 1,
+                          "left": 2
+                      },
+                      "height": 13,
+                      "width": 32
+                  },
+                  "display": {
+                      "separator": " ",
+                      "constants": [
+                          ${readFile ./themes/${theme}/constants.jsonc}
+                          "┌──────",   // {$11},
+                          "───────",   // {$12},
+                          "────────┐",   // {$13},
+                       ],
+                      "percent": {
+                          "type": 9,         // 1=number, 2=bar, 3=both, 9=colored number
+                          "color": {
+                              ${readFile ./themes/${theme}/percent_colors.jsonc}
+                          }
+                      }
+                  },
+                  "modules": [
+                      ${config_modules}
+                  ]
+              }
+            '';
+          }) themes
+        );
+      }
+    ))
   ]);
 }
