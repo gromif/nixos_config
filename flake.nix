@@ -42,6 +42,7 @@
     }:
     let
       system = "x86_64-linux";
+      specialArgs = { inherit inputs; };
       sharedModules = [
         impermanence.nixosModules.impermanence
         sops-nix-unstable.nixosModules.sops
@@ -62,6 +63,7 @@
       nixosConfigurations = {
         apollo = nixpkgs.lib.nixosSystem {
           inherit system;
+          inherit specialArgs;
           modules = sharedModules ++ [
             ./hosts/apollo
             ./modules/boot/systemd.nix
