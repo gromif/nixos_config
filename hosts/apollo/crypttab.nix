@@ -19,6 +19,9 @@
       crypto-sd-a UUID=3055b8b1-b7bd-46e5-87f8-5178a35dfd7d ${
         config.sops.secrets."luks/sd_a".path
       } nofail,noauto
+      crypto-usb-GFD-8GB UUID=32738ff9-d6d1-496d-8304-364ad0b49a16 ${
+        config.sops.secrets."luks/usb_GFD_8GB".path
+      } nofail,noauto
       crypto-sd-b UUID=11f510a7-076c-40cc-81a6-87fcd3cc1294 ${
         config.sops.secrets."luks/sd_b".path
       } nofail,noauto
