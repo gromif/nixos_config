@@ -41,6 +41,10 @@ in
       random-background.enable = true;
       wallpapers-optimiser.enable = true;
     };
+    sound.pipewire.filters.systemd = {
+      enable = true;
+      integration = "gnome";
+    };
   };
 
   home.packages = with pkgs; [

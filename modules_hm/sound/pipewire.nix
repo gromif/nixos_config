@@ -3,12 +3,12 @@
 with lib;
 
 let
-  cfg = config.nixfiles.hm.sound.pipewire;
+  cfg = config.hmfiles.sound.pipewire;
   path = ../sound/pipewire;
   hrtfFile = "${config.home.homeDirectory}/.config/pipewire/hrtf.wav";
 in
 {
-  options.nixfiles.hm.sound.pipewire = {
+  options.hmfiles.sound.pipewire = {
     enable = mkOption {
       type = types.bool;
       default = true;
