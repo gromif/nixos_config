@@ -73,6 +73,13 @@ in
           "fd10:10:10::3/128"
         ];
       }
+      {
+        PublicKey = "gjJmCweHLgMddQGj2YS2TloAvBdxbADZdC53g28oNCE="; # Pixel 10
+        AllowedIPs = [
+          "10.10.0.4/32"
+          "fd10:10:10::4/128"
+        ];
+      }
     ];
   };
 
