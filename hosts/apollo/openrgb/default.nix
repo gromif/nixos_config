@@ -36,15 +36,20 @@ in
     ]; # Install additional scripts
   };
 
-  systemd.tmpfiles.settings."openrgb-profiles" = builtins.listToAttrs (
-    map (p: {
-      name = "/var/lib/OpenRGB/profiles/${p}";
-      value."L+" = {
-        mode = "0755";
-        argument = "${./profiles/${p}}";
-      };
-    }) _profilesInRepo
-  );
+  systemd.tmpfiles.settings = {
+    "openrgb-configuration"."/var/lib/OpenRGB/Configuration.json"."L+".argument = "${
+      ./Configuration.json
+    }";
+    "openrgb-profiles" = builtins.listToAttrs (
+      map (p: {
+        name = "/var/lib/OpenRGB/profiles/${p}";
+        value."L+" = {
+          mode = "0755";
+          argument = "${./profiles/${p}}";
+        };
+      }) _profilesInRepo
+    );
+  };
 
   powerManagement.powerDownCommands = ''
     ${getExe rgb-load} off
