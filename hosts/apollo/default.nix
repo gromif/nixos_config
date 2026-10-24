@@ -11,6 +11,8 @@
     ./crypttab.nix
     ./vfio.nix
     ./srv.nix
+
+    ./openrgb
   ];
 
   time.timeZone = "Europe/Berlin";
