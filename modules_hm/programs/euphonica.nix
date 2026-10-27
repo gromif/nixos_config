@@ -20,9 +20,7 @@ in
     home.packages = [ pkgs.euphonica ];
     dconf.settings = with lib.gvariant; {
       "${root}/client" = {
-        mpd-fifo-format = "44100:16:2";
-        mpd-fifo-path = "/tmp/mpd.fifo";
-        mpd-visualizer-pcm-source = "fifo";
+        mpd-visualizer-pcm-source = "pipewire";
       };
 
       "${root}/library" = {
@@ -43,7 +41,7 @@ in
       };
 
       "${root}/player" = {
-        visualizer-fft-samples = mkUint32 4096;
+        visualizer-fft-samples = mkUint32 2048;
         visualizer-fps = mkUint32 30;
         visualizer-spectrum-bins = mkUint32 10;
         visualizer-spectrum-curr-step-weight = 0.20000000000000007;
