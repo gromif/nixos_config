@@ -67,9 +67,10 @@ in
         use-album-art-as-bg = true;
         use-hires-for-album-cells = true;
         use-visualizer = true;
+        visualizer-use-cairo = false;
         visualizer-blend-mode = mkUint32 6;
         visualizer-gradient-height = 0.10000000000000002;
-        visualizer-scale = 4.0;
+        visualizer-scale = 10.0;
         visualizer-stroke-width = 0.0;
         visualizer-top-opacity = 0.8999999999999999;
         visualizer-use-splines = true;
