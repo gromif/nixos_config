@@ -49,7 +49,7 @@
 
     if [ "$OPERATION" == "prepare" ] && [ "$SUB_OPERATION" == "begin" ]; then
       $LOG "Shutting down systemd services.."
-      result=$(systemctl stop lactd.service display-manager.service user@1000.service)
+      result=$(systemctl stop openrgb.service lactd.service display-manager.service user@1000.service)
       $LOG "$result"
       sleep 3s
 
