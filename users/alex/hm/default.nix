@@ -47,6 +47,22 @@ in
     };
   };
 
+  programs = {
+    kitty = {
+      enable = true;
+      enableGitIntegration = true;
+      font = {
+        name = "0xProto Nerd Font";
+        size = 14;
+      };
+      autoThemeFiles = {
+        light = "GitHub_Light";
+        dark = "OneDark";
+        noPreference = "OneDark";
+      };
+    };
+  };
+
   home.packages = with pkgs; [
     # Terminal
     yt-dlp
@@ -91,7 +107,7 @@ in
       favorite-apps = [
         "org.gnome.Nautilus.desktop"
         "firefox.desktop"
-        "com.mitchellh.ghostty.desktop"
+        "kitty.desktop"
         "io.github.htkhiem.Euphonica.desktop"
         "org.telegram.desktop.desktop"
         "com.usebottles.bottles.desktop"

@@ -85,7 +85,6 @@ in
       };
       environment = {
         systemPackages = with pkgs; [
-          ghostty
           zenity
           # Theming
           kdePackages.ocean-sound-theme
