@@ -87,6 +87,11 @@ in
         shellAliases = {
           # List common aliases
           ll = "ls -l";
+          nswitch = "nixos-rebuild switch";
+          nboot = "nixos-rebuild boot";
+          ntest = "nixos-rebuild test";
+          ndry = "nixos-rebuild dry-build";
+          nbuild = "nixos-rebuild build";
           # edit = "sudo -e"; # sudo-rs: not yet implemented
         };
 
