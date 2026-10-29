@@ -42,7 +42,7 @@ in
 
   config = mkIf cfg.enable {
     sops = {
-      useSystemdActivation = config.boot.initrd.systemd.enable;
+      useSystemdActivation = mkForce true;
 
       # defaultSopsFile = "../secrets.yaml"; To be overrided by a host config
       defaultSopsFormat = "yaml";
