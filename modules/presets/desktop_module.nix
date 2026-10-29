@@ -31,7 +31,7 @@ in
         shell.console.optimalSettings = true;
       };
       boot = {
-        kernelModules.v4l2loopback.enable = true;
+        # kernelModules.v4l2loopback.enable = true;
         plymouth.enable = false;
       };
       sound.backend = "pipewire";
