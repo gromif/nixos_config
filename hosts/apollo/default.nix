@@ -16,7 +16,6 @@
   ];
 
   time.timeZone = "Europe/Berlin";
-
   nixfiles = {
     preset = "desktop";
     system = {
@@ -41,6 +40,7 @@
         users = [ "alex" ];
       };
     };
+    virtualisation.libvirtd.members = [ "alex" ];
   };
 
   xdg.mime.predefined.enable = true;
