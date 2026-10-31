@@ -67,6 +67,7 @@ in
         helix # Post-modern modal text editor
         nixd # Nix language server
         nixfmt # Optional: formatter
+        kitty.terminfo
       ]
       ++ optionals (cfg.group.basic) [
         binutils # Tools for manipulating binaries (linker, assembler, etc.)
