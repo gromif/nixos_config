@@ -8,12 +8,15 @@
 with lib;
 
 let
-  cfg = config.nixfiles.preset;
-
-  normalUsers = lists.remove "root" config.nixfiles.users;
+  _presetName = "Desktop";
+  _enableOptionName = "enable${_presetName}";
+  _state = config.nixfiles.preset.${_enableOptionName};
+  normalUsers = filter (item: !strings.hasSuffix "root" item) config.nixfiles.users;
 in
 {
-  config = mkIf (cfg == "desktop") {
+  options.nixfiles.preset.${_enableOptionName} = mkEnableOption "'${_presetName}' preset";
+
+  config = mkIf _state {
     environment.systemPackages =
       with pkgs;
       [

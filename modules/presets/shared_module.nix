@@ -8,10 +8,14 @@
 with lib;
 
 let
-  cfg = config.nixfiles.preset;
+  _presetName = "Shared";
+  _enableOptionName = "enable${_presetName}";
+  _state = config.nixfiles.preset.${_enableOptionName};
 in
 {
-  config = mkIf (cfg != "none") {
+  options.nixfiles.preset.${_enableOptionName} = mkEnableOption "'${_presetName}' preset";
+
+  config = mkIf _state {
     programs.firefox.policies = {
       # Disable WebRTC globally
       MediaPeerConnection = {

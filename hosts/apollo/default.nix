@@ -17,7 +17,10 @@
 
   time.timeZone = "Europe/Berlin";
   nixfiles = {
-    preset = "desktop";
+    preset = {
+      enableShared = true;
+      enableDesktop = true;
+    };
     system = {
       home-manager = true;
       stateVersion = "25.11";
