@@ -11,9 +11,9 @@ with lib;
           sops.secrets."ssh/alex/general/.key".path
           sops.secrets."ssh/alex/mercury/.key".path
         ];
-        nicklor = with config; [
-          sops.secrets."ssh/nicklor/mercury/.key".path
-        ];
+        # nicklor = with config; [
+        #   sops.secrets."ssh/nicklor/mercury/.key".path
+        # ];
       };
     };
     sops.defaultSopsFile = ./.secrets.yaml;
@@ -43,11 +43,6 @@ with lib;
       "luks/sd_b" = { };
 
       user_root_passwordHash = {
-        neededForUsers = true;
-        sopsFile = ./.users.yaml;
-      };
-
-      user_nicklor_passwordHash = {
         neededForUsers = true;
         sopsFile = ./.users.yaml;
       };
@@ -87,21 +82,6 @@ with lib;
         sopsFile = ./ssh/alex/mercury/.public;
         format = "binary";
         owner = "alex";
-        mode = "0400";
-      };
-
-      # Nicklor
-      # Agent
-      "ssh/nicklor/mercury/.key" = {
-        sopsFile = ./ssh/nicklor/mercury/.private;
-        format = "binary";
-        owner = "nicklor";
-        mode = "0400";
-      };
-      "ssh/nicklor/mercury/.key.pub" = {
-        sopsFile = ./ssh/nicklor/mercury/.public;
-        format = "binary";
-        owner = "nicklor";
         mode = "0400";
       };
     };

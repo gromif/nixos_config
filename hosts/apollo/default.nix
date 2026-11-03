@@ -32,7 +32,6 @@
     users = [
       "root"
       "alex"
-      "nicklor"
     ];
     games = {
       prism-launcher = {
