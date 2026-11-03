@@ -9,40 +9,37 @@ with lib;
 
 let
   _pkg = pkgs.openrgb; # The main OpenRGB package
+  _pkgData = "/root/.config/OpenRGB";
   _defaultProfile = "white";
   _profilesInRepo = builtins.attrNames (builtins.readDir ./profiles);
 
   # Set up common commands
-  rgb-load = pkgs.writeShellApplication {
+  _rgb-load = pkgs.writeShellApplication {
     name = "rgb-load";
     runtimeInputs = [ _pkg ];
     text = ''
       echo "The target profile is $1"
-      openrgb --very-verbose --nodetect --loglevel 0 -p "$1" &> /dev/null
+      openrgb --very-verbose --nodetect --noautoconnect --loglevel 0 -p "$1" &> /dev/null
     '';
   };
 in
 {
   hardware.i2c.enable = true;
-  services.hardware.openrgb = {
-    enable = true;
-    package = _pkg;
-    motherboard = "amd";
-    startupProfile = _defaultProfile;
-  };
-  environment = {
-    systemPackages = [
-      rgb-load
-    ]; # Install additional scripts
-  };
+  services.udev.packages = [ _pkg ];
+  boot.kernelModules = [
+    "i2c-dev"
+    "i2c-piix4"
+  ];
+  environment.systemPackages = with pkgs; [
+    _rgb-load
+    _pkg
+  ]; # Install additional scripts
 
   systemd.tmpfiles.settings = {
-    "openrgb-configuration"."/var/lib/OpenRGB/Configuration.json"."L+".argument = "${
-      ./Configuration.json
-    }";
+    "openrgb-configuration"."${_pkgData}/Configuration.json"."L+".argument = "${./Configuration.json}";
     "openrgb-profiles" = builtins.listToAttrs (
       map (p: {
-        name = "/var/lib/OpenRGB/profiles/${p}";
+        name = "${_pkgData}/profiles/${p}";
         value."L+" = {
           mode = "0755";
           argument = "${./profiles/${p}}";
@@ -52,18 +49,17 @@ in
   };
 
   powerManagement.powerDownCommands = ''
-    ${getExe rgb-load} off
+    ${getExe _rgb-load} off
   '';
 
   systemd.services."openrgb-onResume" = {
     after = [ "sleep.target" ];
-    path = [ rgb-load ];
+    path = [ _rgb-load ];
     script = "rgb-load ${_defaultProfile}";
     serviceConfig = {
       Type = "oneshot";
-      WorkingDirectory = config.systemd.services.openrgb.serviceConfig.WorkingDirectory;
+      WorkingDirectory = _pkgData;
     };
-    bindsTo = [ "openrgb.service" ];
     wantedBy = [ "sleep.target" ];
   };
 }
