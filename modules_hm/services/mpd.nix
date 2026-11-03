@@ -40,6 +40,7 @@ in
       # musicDirectory = config.xdg.userDirs.music;
       network.startWhenNeeded = true;
       extraConfig = ''
+        # log_file                "~/.cache/mpd.log"
         ${optionalString cfg.alsa.enable ''
           audio_output {
             type "alsa"
@@ -53,12 +54,12 @@ in
           name "PipeWire"
           dsd  "yes"
         }
-        audio_output {
-          type      "fifo"
-          name      "visualiser"
-          path      "/tmp/mpd.fifo"
-          format    "44100:16:2"
-        }
+        # audio_output {
+        #   type      "fifo"
+        #   name      "visualiser"
+        #   path      "/tmp/mpd.fifo"
+        #   format    "44100:16:2"
+        # }
       '';
     };
   };
