@@ -41,7 +41,7 @@ in
       enableGitIntegration = true;
       font = {
         name = "0xProto Nerd Font";
-        size = 14;
+        size = 11;
       };
       autoThemeFiles = {
         light = "GitHub_Light";

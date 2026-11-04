@@ -4,7 +4,6 @@
 {
   config,
   lib,
-  pkgs,
   modulesPath,
   ...
 }:
@@ -27,9 +26,36 @@
   boot.extraModulePackages = [ ];
 
   fileSystems."/" = {
+    device = "none";
+    fsType = "tmpfs";
+    neededForBoot = true;
+    options = [
+      "defaults"
+      "size=25%"
+      "mode=755"
+    ];
+  };
+
+  fileSystems."/boot" = {
+    device = "/dev/disk/by-uuid/3F75-C448";
+    fsType = "vfat";
+    options = [
+      "nodev"
+      "nosuid"
+      "noexec"
+      "relatime"
+      "umask=0077"
+    ];
+  };
+
+  fileSystems."/nix" = {
     device = "/dev/mapper/luks-683a0bc9-46d3-46d4-9395-6f2d8ee487b6";
     fsType = "btrfs";
-    options = [ "compress=zstd:3" ];
+    neededForBoot = true;
+    options = [
+      "subvol=nix"
+      "compress=zstd:3"
+    ];
   };
 
   boot.initrd.luks.devices."luks-683a0bc9-46d3-46d4-9395-6f2d8ee487b6".device =
@@ -38,21 +64,9 @@
   fileSystems."/home" = {
     device = "/dev/mapper/luks-683a0bc9-46d3-46d4-9395-6f2d8ee487b6";
     fsType = "btrfs";
-    options = [ "subvol=home" ];
-  };
-
-  fileSystems."/nix" = {
-    device = "/dev/mapper/luks-683a0bc9-46d3-46d4-9395-6f2d8ee487b6";
-    fsType = "btrfs";
-    options = [ "subvol=nix" ];
-  };
-
-  fileSystems."/boot" = {
-    device = "/dev/disk/by-uuid/3F75-C448";
-    fsType = "vfat";
     options = [
-      "fmask=0077"
-      "dmask=0077"
+      "subvol=nix"
+      "compress=zstd:3"
     ];
   };
 
