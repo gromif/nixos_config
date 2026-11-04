@@ -8,7 +8,7 @@ with lib;
 
 let
   users = config.nixfiles.users;
-  id = "nicklor";
+  id = baseNameOf ./.;
 in
 {
   options.nixfiles.user."${id}" = {

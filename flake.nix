@@ -69,6 +69,14 @@
             ./modules/boot/systemd.nix
           ];
         };
+        saturn = nixpkgs.lib.nixosSystem {
+          inherit system;
+          inherit specialArgs;
+          modules = sharedModules ++ [
+            ./hosts/saturn
+            ./modules/boot/systemd.nix
+          ];
+        };
         mercury = nixpkgs-stable.lib.nixosSystem {
           inherit system;
           modules = mercuryModules;
