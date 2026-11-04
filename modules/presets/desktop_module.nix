@@ -8,15 +8,26 @@
 with lib;
 
 let
-  _presetName = "Desktop";
-  _enableOptionName = "enable${_presetName}";
-  _state = config.nixfiles.preset.${_enableOptionName};
-  normalUsers = filter (item: !strings.hasSuffix "root" item) config.nixfiles.users;
+  _presetName = "desktop";
+  _nixfiles = config.nixfiles;
+  _cfg = _nixfiles.preset.${_presetName};
+  _normalUsers = filter (item: !strings.hasSuffix "root" item) config.nixfiles.users;
+  _pkgs-sound = with pkgs; [
+    alsa-utils
+  ];
+  _pkgs-compression = with pkgs; [
+    dwarfs
+    p7zip
+    unrar
+    unzip
+  ];
 in
 {
-  options.nixfiles.preset.${_enableOptionName} = mkEnableOption "'${_presetName}' preset";
+  options.nixfiles.preset.${_presetName} = {
+    enable = mkEnableOption "'${_presetName}' preset";
+  };
 
-  config = mkIf _state {
+  config = mkIf _cfg.enable {
     environment.systemPackages =
       with pkgs;
       [
@@ -27,8 +38,8 @@ in
         stress-ng
         wineWow64Packages.waylandFull
       ]
-      # SOUND
-      ++ [ alsa-utils ];
+      ++ _pkgs-sound
+      ++ _pkgs-compression;
     nixfiles = {
       system = {
         shell.console.optimalSettings = true;
@@ -41,7 +52,7 @@ in
       hardware = {
         ddc = {
           enable = true;
-          allowedUsers = normalUsers;
+          allowedUsers = _normalUsers;
         };
       };
       de = {
@@ -79,7 +90,6 @@ in
           };
         };
         sets = {
-          common.group.desktop = true;
           media.enable = true;
         };
       };

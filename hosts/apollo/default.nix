@@ -18,8 +18,8 @@
   time.timeZone = "Europe/Berlin";
   nixfiles = {
     preset = {
-      enableShared = true;
-      enableDesktop = true;
+      shared.enable = true;
+      desktop.enable = true;
     };
     system = {
       home-manager = true;

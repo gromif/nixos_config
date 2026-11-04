@@ -23,6 +23,9 @@
       type = "avf";
       stateVersion = "25.11";
     };
+    preset = {
+      shared.enable = true;
+    };
     security = {
       enableCommon = false;
       elevation = "sudo-rs";

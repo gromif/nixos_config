@@ -26,6 +26,10 @@ with lib;
       };
       shell.zsh.autoFastfetch = false;
     };
+    preset = {
+      shared.enable = true;
+      server.enable = true;
+    };
     network = {
       hostName = baseNameOf ./.;
     };
@@ -37,11 +41,6 @@ with lib;
       enable = true;
       enableEssentials = false;
       ports = [ 31472 ];
-    };
-    programs = {
-      sets = {
-        common.group.server = true;
-      };
     };
   };
 
