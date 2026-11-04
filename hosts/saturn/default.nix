@@ -25,7 +25,7 @@
     hardware = {
       graphics = {
         vendor = "amd";
-        # lact.profile = "MANAGED";
+        lact.profile = "MANAGED";
       };
     };
     users = [
