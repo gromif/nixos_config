@@ -8,7 +8,7 @@ with lib;
 
 let
   users = config.nixfiles.users;
-  id = baseNameOf ./.;
+  id = "nicklor";
 in
 {
   options.nixfiles.user."${id}" = {
@@ -17,7 +17,7 @@ in
       default = id;
     };
   };
-  config = mkIf (elem id users) {
+  config = mkIf (elem (baseNameOf ./.) users) {
     users.users."${id}" = {
       isNormalUser = true;
       description = id;
