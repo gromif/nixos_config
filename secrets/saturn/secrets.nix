@@ -21,6 +21,11 @@ with lib;
         sopsFile = ./.users.yaml;
       };
 
+      user_nicklor_passwordHash = {
+        neededForUsers = true;
+        sopsFile = ./.users.yaml;
+      };
+
       #
       # User-specific secrets
       #
