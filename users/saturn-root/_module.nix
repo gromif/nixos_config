@@ -13,7 +13,7 @@ in
 {
   config = mkIf (elem id users) {
     users.users.root = {
-      hashedPasswordFile = config.sops.secrets."users/root/hashedPassword".path;
+      hashedPasswordFile = config.sops.secrets.user_root_passwordHash.path;
     };
   };
 }
