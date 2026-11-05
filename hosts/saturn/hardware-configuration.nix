@@ -54,7 +54,7 @@
     neededForBoot = true;
     options = [
       "subvol=nix"
-      "compress=zstd:3"
+      "compress=zstd:1"
     ];
   };
 
@@ -66,7 +66,7 @@
     fsType = "btrfs";
     options = [
       "subvol=nix"
-      "compress=zstd:3"
+      "compress=zstd:1"
     ];
   };
 
