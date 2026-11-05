@@ -79,6 +79,7 @@
           inherit system;
           inherit specialArgs;
           modules = sharedModules ++ [
+            lanzaboote.nixosModules.lanzaboote
             ./hosts/saturn
             ./modules/boot/systemd.nix
           ];

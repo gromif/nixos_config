@@ -18,7 +18,10 @@
       desktop.enable = true;
     };
     boot = {
-      lanzaboote.enable = true;
+      lanzaboote = {
+        enable = true;
+        settings.timeout = 10;
+      };
     };
     system = {
       home-manager = true;
