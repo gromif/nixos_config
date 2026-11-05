@@ -25,8 +25,10 @@ in
       createHome = true;
       hashedPasswordFile = config.sops.secrets.user_nicklor_passwordHash.path;
       extraGroups = [
+        "wheel"
         "networkmanager"
         "nix"
+        "kvm"
       ];
     };
 
