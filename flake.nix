@@ -4,6 +4,10 @@
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-26.05";
     impermanence.url = "github:nix-community/impermanence";
+    lanzaboote = {
+      url = "github:nix-community/lanzaboote/v1.2.0";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     home-manager-unstable = {
       url = "github:nix-community/home-manager";
@@ -33,6 +37,7 @@
       self,
       nixpkgs,
       nixpkgs-stable,
+      lanzaboote,
       impermanence,
       sops-nix-stable,
       sops-nix-unstable,
@@ -65,6 +70,7 @@
           inherit system;
           inherit specialArgs;
           modules = sharedModules ++ [
+            lanzaboote.nixosModules.lanzaboote
             ./hosts/apollo
             ./modules/boot/systemd.nix
           ];

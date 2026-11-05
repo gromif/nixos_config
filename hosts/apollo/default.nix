@@ -21,6 +21,9 @@
       shared.enable = true;
       desktop.enable = true;
     };
+    boot = {
+      lanzaboote.enable = true;
+    };
     system = {
       home-manager = true;
       stateVersion = "25.11";
