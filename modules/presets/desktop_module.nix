@@ -48,6 +48,7 @@ in
         # kernelModules.v4l2loopback.enable = true;
         plymouth.enable = false;
       };
+      network.networkmanager.useSecureDNS = true;
       sound.backend = "pipewire";
       hardware = {
         ddc = {

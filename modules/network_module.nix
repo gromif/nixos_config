@@ -17,6 +17,9 @@ with lib;
       default = true;
       description = "Whether to enable the network module.";
     };
+    networkmanager = {
+      useSecureDNS = mkEnableOption "Dismail Secure DNS";
+    };
     useBBR = mkOption {
       type = types.bool;
       default = true;
@@ -27,26 +30,41 @@ with lib;
     };
   };
 
-  config = mkIf cfg.enable {
-    networking.networkmanager = {
-      enable = mkIf (!isAvf) true;
-      wifi = {
-        macAddress = "random";
-        powersave = true;
-        scanRandMacAddress = true;
+  config = mkIf cfg.enable (mkMerge [
+    {
+      networking.networkmanager = {
+        enable = mkIf (!isAvf) true;
+        wifi = {
+          macAddress = "random";
+          powersave = true;
+          scanRandMacAddress = true;
+        };
       };
-    };
-    # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant
-
-    boot = mkIf cfg.useBBR {
-      kernelModules = [ "tcp_bbr" ];
-      kernel.sysctl = {
-        "net.core.default_qdisc" = "fq";
-        "net.ipv4.tcp_congestion_control" = "bbr";
+      # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant
+      #
+      # Disable NetworkManager-wait-online service
+      systemd.services.NetworkManager-wait-online.enable = false;
+    }
+    (mkIf cfg.useBBR {
+      boot = {
+        kernelModules = [ "tcp_bbr" ];
+        kernel.sysctl = {
+          "net.core.default_qdisc" = "fq";
+          "net.ipv4.tcp_congestion_control" = "bbr";
+        };
       };
-    };
-
-    # Disable NetworkManager-wait-online service
-    systemd.services.NetworkManager-wait-online.enable = false;
-  };
+    })
+    (mkIf cfg.networkmanager.useSecureDNS {
+      networking.networkmanager = {
+        insertNameservers = [
+          "159.69.114.157"
+          "116.203.32.217"
+          "2a01:4f8:1c1b:44aa::32:217"
+          "2a01:4f8:1c1b:44aa::1"
+          "2a01:4f8:c17:739a::2"
+        ];
+        dns = "none";
+      };
+    })
+  ]);
 }
