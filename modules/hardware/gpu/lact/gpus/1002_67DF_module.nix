@@ -21,11 +21,11 @@ in
               performance_level = "auto";
 
               gpu_vf_curve = {
-                "7".voltage = 1010;
+                "7".voltage = 1150;
               };
 
               mem_vf_curve = {
-                "2".voltage = 930;
+                "2".voltage = 960;
               };
             };
           };
