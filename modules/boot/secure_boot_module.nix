@@ -30,7 +30,7 @@ in
       users.users.root.packages = with pkgs; [ sbctl ];
       boot = {
         loader.systemd-boot.enable = mkForce false;
-        lanzaboote = {
+        lanzaboote = optionalAttrs _cfg.enable {
           enable = true;
           pkiBundle = "/var/lib/sbctl";
         };
