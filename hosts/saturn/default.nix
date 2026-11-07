@@ -1,13 +1,11 @@
 {
-  config,
-  lib,
-  pkgs,
   ...
 }:
 
 {
   imports = [
     ./hardware-configuration.nix
+    ./lanzaboote.nix
     ./crypttab.nix
   ];
 
@@ -16,12 +14,6 @@
     preset = {
       shared.enable = true;
       desktop.enable = true;
-    };
-    boot = {
-      lanzaboote = {
-        enable = true;
-        settings.timeout = 10;
-      };
     };
     system = {
       home-manager = true;

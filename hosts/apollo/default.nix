@@ -8,6 +8,7 @@
 {
   imports = [
     ./hardware-configuration.nix
+    ./lanzaboote.nix
     ./crypttab.nix
     ./vfio.nix
 
@@ -19,9 +20,6 @@
     preset = {
       shared.enable = true;
       desktop.enable = true;
-    };
-    boot = {
-      lanzaboote.enable = true;
     };
     system = {
       home-manager = true;
