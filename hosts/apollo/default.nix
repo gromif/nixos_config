@@ -10,7 +10,6 @@
     ./hardware-configuration.nix
     ./crypttab.nix
     ./vfio.nix
-    ./srv.nix
 
     ./openrgb
   ];
