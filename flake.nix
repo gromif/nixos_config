@@ -31,6 +31,10 @@
       url = "github:yvt/nixos-avf/android-17";
       inputs.nixpkgs.follows = "nixpkgs-stable";
     };
+    nixvim = {
+      url = "github:nix-community/nixvim";
+      # If using a stable channel you can use `url = "github:nix-community/nixvim/nixos-<version>"`
+    };
   };
   outputs =
     inputs@{
@@ -44,6 +48,7 @@
       home-manager-stable,
       home-manager-unstable,
       nixos-avf,
+      nixvim,
     }:
     let
       system = "x86_64-linux";
@@ -71,6 +76,7 @@
           inherit specialArgs;
           modules = sharedModules ++ [
             lanzaboote.nixosModules.lanzaboote
+            nixvim.nixosModules.nixvim
             ./hosts/apollo
             ./modules/boot/systemd.nix
           ];
