@@ -45,7 +45,10 @@ in
         shell.console.optimalSettings = true;
       };
       boot = {
-        # kernelModules.v4l2loopback.enable = true;
+        kernelModules = {
+          # v4l2loopback.enable = true;
+          # nullfsvfs.enable = true;
+        };
         plymouth.enable = false;
       };
       network.networkmanager.useSecureDNS = true;
