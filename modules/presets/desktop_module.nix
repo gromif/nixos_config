@@ -16,7 +16,7 @@ let
     alsa-utils
   ];
   _pkgs-compression = with pkgs; [
-    dwarfs
+    # dwarfs
     p7zip
     unrar
     unzip

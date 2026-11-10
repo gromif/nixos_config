@@ -11,7 +11,14 @@ let
   _pkgs = pkgs.gnomeExtensions;
   _exts = {
     appindicator = { };
-    blur-my-shell."org/gnome/shell/extensions/blur-my-shell/panel".force-light-text = true;
+    blur-my-shell = {
+      "org/gnome/shell/extensions/blur-my-shell/panel" = {
+        force-light-text = true;
+        style-panel = 0;
+      };
+      "org/gnome/shell/extensions/blur-my-shell/appfolder".style-dialogs = 4;
+      "org/gnome/shell/extensions/blur-my-shell/dash-to-dock".style-dash-to-dock = 0;
+    };
     brightness-control-using-ddcutil."org/gnome/shell/extensions/display-brightness-ddcutil" = {
       ddcutil-binary-path = "${getExe pkgs.ddcutil}";
       button-location = 1;
