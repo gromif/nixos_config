@@ -1,8 +1,7 @@
-{
-  config,
-  lib,
-  pkgs,
-  ...
+{ config
+, lib
+, pkgs
+, ...
 }:
 
 with lib.hm.gvariant;
@@ -53,7 +52,7 @@ in
       enableGitIntegration = true;
       font = {
         name = "0xProto Nerd Font";
-        size = 14;
+        size = 12;
       };
       autoThemeFiles = {
         light = "GitHub_Light";
