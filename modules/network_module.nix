@@ -1,4 +1,10 @@
-{ config, lib, ... }:
+{
+  inputs,
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 
 let
   cfg = config.nixfiles.network;
@@ -6,6 +12,9 @@ let
     (lib.mkAliasOptionModule [ "nixfiles" "network" "hostName" ] [ "networking" "hostName" ])
   ];
   isAvf = config.nixfiles.system.type == "avf";
+  blocklist = pkgs.writeText "blocklist.txt" ''
+    ${builtins.readFile inputs.hagezi_pro}    
+  '';
 in
 with lib;
 {
@@ -56,14 +65,21 @@ with lib;
     })
     (mkIf cfg.networkmanager.useSecureDNS {
       networking.networkmanager = {
-        insertNameservers = [
-          "159.69.114.157"
-          "116.203.32.217"
-          "2a01:4f8:1c1b:44aa::32:217"
-          "2a01:4f8:1c1b:44aa::1"
-          "2a01:4f8:c17:739a::2"
-        ];
         dns = "none";
+      };
+      services.dnscrypt-proxy = {
+        enable = true;
+        # defaults from
+        # https://github.com/DNSCrypt/dnscrypt-proxy/blob/master/dnscrypt-proxy/example-dnscrypt-proxy.toml
+        upstreamDefaults = true;
+        settings = {
+          ipv6_servers = true;
+          block_ipv6 = false;
+          require_dnssec = true;
+          require_nolog = false;
+          require_nofilter = true;
+          blocked_names.blocked_names_file = blocklist;
+        };
       };
     })
   ]);
