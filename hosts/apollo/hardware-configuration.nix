@@ -70,12 +70,6 @@
     options = [ "subvol=home/alex" ];
   };
 
-  fileSystems."/nix/state/home/nicklor" = {
-    device = "/dev/mapper/crypted";
-    fsType = "btrfs";
-    options = [ "subvol=home/nicklor" ];
-  };
-
   fileSystems."/nix/state/root" = {
     device = "/dev/mapper/crypted";
     fsType = "btrfs";
