@@ -102,19 +102,6 @@
     ];
   };
 
-  fileSystems."/mnt/drive_f" = {
-    device = "/dev/mapper/crypto-drive-f";
-    fsType = "xfs";
-    options = [
-      "nofail"
-      "relatime"
-      "x-gvfs-name=Drive%20F"
-      "x-gvfs-show"
-      "noauto"
-      "x-systemd.automount"
-    ];
-  };
-
   swapDevices = [ ];
 
   boot.initrd.luks.devices."crypted".device =

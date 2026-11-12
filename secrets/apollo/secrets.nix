@@ -11,9 +11,6 @@ with lib;
           sops.secrets."ssh/alex/general/.key".path
           sops.secrets."ssh/alex/mercury/.key".path
         ];
-        # nicklor = with config; [
-        #   sops.secrets."ssh/nicklor/mercury/.key".path
-        # ];
       };
     };
     sops.defaultSopsFile = ./.secrets.yaml;
