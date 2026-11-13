@@ -36,5 +36,5 @@
   xdg.mime.predefined.enable = true;
 
   # Display OC
-  boot.kernelParams = [ "video=HDMI-A-1:1920x1080@84" ];
+  boot.kernelParams = [ "video=HDMI-A-1:1920x1080@83" ];
 }
