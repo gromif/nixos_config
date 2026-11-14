@@ -35,6 +35,7 @@ with lib;
       "luks/drive_m" = { };
       "luks/drive_f" = { };
       "luks/usb_a" = { };
+      "luks/usb_apacer_red" = { };
       "luks/usb_GFD_8GB" = { };
       "luks/sd_a" = { };
       "luks/sd_b" = { };

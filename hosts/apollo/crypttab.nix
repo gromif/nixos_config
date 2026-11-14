@@ -16,6 +16,9 @@
       crypto-usb-a UUID=280aceb1-9123-460b-9535-1260dbfed1fc ${
         config.sops.secrets."luks/usb_a".path
       } nofail,noauto
+      crypto-usb-apacer_red UUID=0b6777b6-2853-42cf-962b-cc355e0a6000 ${
+        config.sops.secrets."luks/usb_apacer_red".path
+      } nofail,noauto
       crypto-sd-a UUID=3055b8b1-b7bd-46e5-87f8-5178a35dfd7d ${
         config.sops.secrets."luks/sd_a".path
       } nofail,noauto
