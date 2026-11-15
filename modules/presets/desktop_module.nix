@@ -1,7 +1,8 @@
-{ config
-, lib
-, pkgs
-, ...
+{
+  config,
+  lib,
+  pkgs,
+  ...
 }:
 
 with lib;
@@ -13,6 +14,7 @@ let
   _normalUsers = filter (item: !strings.hasSuffix "root" item) config.nixfiles.users;
   _pkgs-sound = with pkgs; [
     alsa-utils
+    wavpack
   ];
   _pkgs-compression = with pkgs; [
     dwarfs
