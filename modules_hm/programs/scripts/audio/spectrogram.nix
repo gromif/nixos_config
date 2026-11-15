@@ -16,13 +16,7 @@ let
       pkg
     ];
     text = ''
-      find "$(pwd)" -type f \
-        -name "*.flac" \
-        -o -name "*.wav" \
-        -o -name "*.alac" \
-        -o -name "*.mp3" \
-        -o -name "*.m4a" \
-        -o -name "*.opus" | parallel '${pkgName} {}'
+      find "$(pwd)" -type f | parallel '${pkgName} {}'
     '';
   };
 

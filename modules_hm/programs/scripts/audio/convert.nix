@@ -9,10 +9,9 @@ let
   sharedRuntimes = with pkgs; [
     parallel
     ffmpeg
-    glib
   ];
   _ffmpeg = "ffmpeg -hide_banner -y -i {}";
-  _trash = "gio trash -f {}";
+  _trash = "mv {} {}.old";
   pattern = "*.*";
 
   packages = [
@@ -20,13 +19,24 @@ let
     (pkgs.writeShellApplication {
       name = "aud-to-wav";
       runtimeInputs = sharedRuntimes;
-      text = ''parallel "${_ffmpeg} -- {.}.wav && ${_trash}" ::: ${pattern}'';
+      text = ''find . -type f | parallel "${_ffmpeg} -- {.}.wav && touch -r {} {.}.wav && ${_trash}"'';
+    })
+    (pkgs.writeShellApplication {
+      name = "aud-flac-to-wav";
+      runtimeInputs = sharedRuntimes ++ [ pkgs.flac ];
+      text = ''find . -type f | parallel "flac -d {} && ${_trash}"'';
     })
     # FLAC
     (pkgs.writeShellApplication {
       name = "aud-to-flac";
       runtimeInputs = sharedRuntimes;
       text = ''parallel "${_ffmpeg} -compression_level 12 -- {.}.flac && ${_trash}" ::: ${pattern}'';
+    })
+    # WavPack
+    (pkgs.writeShellApplication {
+      name = "aud-to-wavpack";
+      runtimeInputs = sharedRuntimes ++ [ pkgs.wavpack ];
+      text = ''find . -type f | parallel "wavpack -tmvhh --import-id3 --threads=12 {} && ${_trash}"'';
     })
   ];
 
