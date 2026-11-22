@@ -11,14 +11,82 @@ let
   _pkgs = pkgs.gnomeExtensions;
   _exts = {
     appindicator = { };
-    blur-my-shell = {
-      "org/gnome/shell/extensions/blur-my-shell/panel" = {
-        force-light-text = true;
-        style-panel = 0;
+    blur-my-shell =
+      let
+        root = "org/gnome/shell/extensions/blur-my-shell";
+      in
+      {
+        "${root}/appfolder" = {
+          blur-behind-folders = true;
+          pipeline = "pipeline_default";
+          pipeline-dark = "pipeline_default";
+          pipeline-light = "pipeline_default_light";
+        };
+
+        "${root}/applications" = {
+          pipeline = "pipeline_default";
+          pipeline-dark = "pipeline_default";
+          pipeline-light = "pipeline_default_light";
+        };
+
+        "${root}/dash-to-dock" = {
+          override-background = true;
+          pipeline = "pipeline_default_light";
+          pipeline-auto-mode = true;
+          pipeline-dark = "pipeline_default";
+          pipeline-light = "pipeline_default_light";
+          style-dash-to-dock = 3;
+        };
+
+        "${root}/lockscreen" = {
+          pipeline = "pipeline_default";
+          pipeline-dark = "pipeline_default";
+          pipeline-light = "pipeline_default_light";
+        };
+
+        "${root}/overview" = {
+          pipeline = "pipeline_default";
+          pipeline-auto-mode = true;
+          pipeline-dark = "pipeline_default";
+          pipeline-light = "pipeline_default_light";
+          style-components = 4;
+        };
+
+        "${root}/panel" = {
+          match-theme-in-overview = false;
+          override-background = true;
+          override-background-dynamically = false;
+          pipeline = "pipeline_default";
+          pipeline-auto-mode = false;
+          pipeline-dark = "pipeline_default";
+          pipeline-light = "pipeline_default_light";
+          style-panel = 4;
+          unblur-in-overview = false;
+        };
+
+        "${root}/popup" = {
+          pipeline = "pipeline_default";
+          pipeline-auto-mode = false;
+          pipeline-dark = "pipeline_default";
+          pipeline-light = "pipeline_default_light";
+          preserve-shell-theme = false;
+          static-blur = false;
+          style-popup = 3;
+        };
+
+        "${root}/screenshot" = {
+          pipeline = "pipeline_default";
+          pipeline-dark = "pipeline_default";
+          pipeline-light = "pipeline_default_light";
+        };
+
+        "${root}/window-list" = {
+          blur = false;
+          pipeline = "pipeline_default";
+          pipeline-dark = "pipeline_default";
+          pipeline-light = "pipeline_default_light";
+        };
       };
-      "org/gnome/shell/extensions/blur-my-shell/appfolder".style-dialogs = 4;
-      "org/gnome/shell/extensions/blur-my-shell/dash-to-dock".style-dash-to-dock = 0;
-    };
     brightness-control-using-ddcutil."org/gnome/shell/extensions/display-brightness-ddcutil" = {
       ddcutil-binary-path = "${getExe pkgs.ddcutil}";
       button-location = 1;
