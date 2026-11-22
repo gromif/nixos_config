@@ -78,7 +78,7 @@ with lib;
           require_dnssec = true;
           require_nolog = false;
           require_nofilter = true;
-          blocked_names.blocked_names_file = hagezi_pro;
+          blocked_names.blocked_names_file = blocklist;
         };
       };
     })
