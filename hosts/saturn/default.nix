@@ -19,6 +19,7 @@
       home-manager = true;
       stateVersion = "25.11";
     };
+    support.config-update.enable = true;
     network.hostName = baseNameOf ./.;
     hardware = {
       graphics = {
