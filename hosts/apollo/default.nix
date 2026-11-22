@@ -25,6 +25,9 @@
       home-manager = true;
       stateVersion = "25.11";
     };
+    support = {
+      hagezi-update.enable = true;
+    };
     network.hostName = baseNameOf ./.;
     hardware = {
       graphics = {
