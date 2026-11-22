@@ -34,6 +34,7 @@
     };
     users = [
       "root"
+      "trusted"
       "alex"
     ];
     games = {
