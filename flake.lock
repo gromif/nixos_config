@@ -34,7 +34,7 @@
     "hagezi_pro": {
       "flake": false,
       "locked": {
-        "narHash": "sha256-Bwgdduy9T5Hg8rGMXnSHa8g+aiiLERMrnSP7hYTKXjA=",
+        "narHash": "sha256-XGJCRUp01OFkhvNmjfes4pU/ehoxCiUWl1CWUtpJaqk=",
         "type": "file",
         "url": "https://cdn.jsdelivr.net/gh/hagezi/dns-blocklists@latest/wildcard/pro-onlydomains.txt"
       },
