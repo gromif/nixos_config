@@ -30,12 +30,12 @@ in
       nixpkgs.overlays = [
         (final: prev: {
           prismlauncher-unwrapped = prev.prismlauncher-unwrapped.overrideAttrs {
-            version = "11.0.3";
+            version = "11.1.1";
             src = prev.fetchFromGitHub {
               owner = "Diegiwg";
               repo = "PrismLauncher-Cracked";
-              tag = "11.0.3";
-              hash = "sha256-pFIDOP03I76r14bXoKL7tEEaLlGFJ10MqMgGR4D/mvE=";
+              tag = "11.1.1";
+              hash = "sha256-sf7jDftikgpu3++Og2M7sFyYgHEk6c5MCIwWj0pF0CE=";
             };
           };
         })
