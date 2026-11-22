@@ -18,9 +18,9 @@ let
     text = ''
       cd /etc/nixos
 
+      git fetch origin main
       OLD_HEAD=$(git rev-parse HEAD)
       git reset --hard origin/main
-      git pull
       NEW_HEAD=$(git rev-parse HEAD)
 
       if [[ "$OLD_HEAD" == "$NEW_HEAD" ]]; then
