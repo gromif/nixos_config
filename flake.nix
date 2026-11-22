@@ -31,10 +31,6 @@
       url = "github:yvt/nixos-avf/android-17";
       inputs.nixpkgs.follows = "nixpkgs-stable";
     };
-    hagezi_pro = {
-      url = "https://cdn.jsdelivr.net/gh/hagezi/dns-blocklists@latest/wildcard/pro-onlydomains.txt";
-      flake = false;
-    };
   };
   outputs =
     inputs@{
@@ -48,11 +44,13 @@
       home-manager-stable,
       home-manager-unstable,
       nixos-avf,
-      hagezi_pro,
     }:
     let
       system = "x86_64-linux";
-      specialArgs = { inherit inputs; };
+      specialArgs = {
+        inherit inputs;
+        hagezi_pro = ./misc/hagezi_pro;
+      };
       sharedModules = [
         impermanence.nixosModules.impermanence
         sops-nix-unstable.nixosModules.sops

@@ -1,5 +1,5 @@
 {
-  inputs,
+  hagezi_pro,
   config,
   pkgs,
   lib,
@@ -13,7 +13,7 @@ let
   ];
   isAvf = config.nixfiles.system.type == "avf";
   blocklist = pkgs.writeText "blocklist.txt" ''
-    ${builtins.readFile inputs.hagezi_pro}    
+    ${builtins.readFile hagezi_pro}    
   '';
 in
 with lib;
@@ -78,7 +78,7 @@ with lib;
           require_dnssec = true;
           require_nolog = false;
           require_nofilter = true;
-          blocked_names.blocked_names_file = blocklist;
+          blocked_names.blocked_names_file = hagezi_pro;
         };
       };
     })
