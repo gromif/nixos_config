@@ -14,6 +14,8 @@ let
     name = _serviceName;
     runtimeInputs = with pkgs; [
       git
+      nixos-rebuild-ng
+      hostname
     ];
     text = ''
       cd /etc/nixos
