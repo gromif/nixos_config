@@ -67,7 +67,7 @@ in
         "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0" = {
           binding = "<Control><Super>p";
           command = "${getExe toggleScript}";
-          name = "Toggle Pipewire Filters";
+          name = "Pipewire — Toggle Filters";
         };
       };
     })

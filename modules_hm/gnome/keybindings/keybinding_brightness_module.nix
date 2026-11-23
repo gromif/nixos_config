@@ -38,12 +38,12 @@ in
       "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/${_name}_positive" = {
         binding = "<Alt><Super>Page_Up";
         command = "${getExe toggleScript} +";
-        name = "Increase Brightness";
+        name = "Brightness — Increase";
       };
       "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/${_name}_negative" = {
         binding = "<Alt><Super>Page_Down";
         command = "${getExe toggleScript} -";
-        name = "Decrease Brightness";
+        name = "Brightness — Decrease";
       };
     };
   };
