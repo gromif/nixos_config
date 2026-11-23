@@ -16,6 +16,9 @@ in
   hmfiles = {
     gnome = {
       enable = true;
+      keybindings = {
+        change-brightness.enable = true;
+      };
       extensions = {
         appindicator.enable = false;
         gsconnect.enable = false;
