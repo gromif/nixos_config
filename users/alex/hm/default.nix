@@ -16,6 +16,9 @@ in
   hmfiles = {
     gnome = {
       enable = true;
+      appfolders = {
+        ARTCRAFT.enable = true;
+      };
       keybindings = {
         change-brightness.enable = true;
       };
@@ -25,6 +28,7 @@ in
       };
     };
     programs = {
+      artcraft-suite.enable = true;
       bottles.enable = true;
       euphonica.enable = true;
       mangohud.enable = true;
