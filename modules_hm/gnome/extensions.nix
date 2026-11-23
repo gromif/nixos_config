@@ -39,6 +39,10 @@ let
           unblur-in-overview = true;
         };
 
+        "${root}/dash-to-panel" = {
+          blur-original-panel = false;
+        };
+
         "${root}/lockscreen" = {
           pipeline = "pipeline_default";
           pipeline-dark = "pipeline_default";
@@ -47,22 +51,22 @@ let
 
         "${root}/overview" = {
           pipeline = "pipeline_default";
-          pipeline-auto-mode = true;
+          pipeline-auto-mode = false;
           pipeline-dark = "pipeline_default";
-          pipeline-light = "pipeline_classic_light_background";
+          pipeline-light = "pipeline_default";
           style-components = 2;
         };
 
         "${root}/panel" = {
-          force-light-text = false;
-          match-theme-in-overview = true;
+          force-light-text = true;
+          match-theme-in-overview = false;
           override-background = true;
           override-background-dynamically = false;
           pipeline = "pipeline_default";
           pipeline-auto-mode = false;
           pipeline-dark = "pipeline_default";
-          pipeline-light = "pipeline_default_light";
-          style-panel = 4;
+          pipeline-light = "pipeline_default";
+          style-panel = 0;
           unblur-in-overview = false;
         };
 
