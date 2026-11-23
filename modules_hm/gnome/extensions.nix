@@ -35,7 +35,8 @@ let
           pipeline-auto-mode = true;
           pipeline-dark = "pipeline_default";
           pipeline-light = "pipeline_default_light";
-          style-dash-to-dock = 3;
+          style-dash-to-dock = 0;
+          unblur-in-overview = true;
         };
 
         "${root}/lockscreen" = {
@@ -48,12 +49,13 @@ let
           pipeline = "pipeline_default";
           pipeline-auto-mode = true;
           pipeline-dark = "pipeline_default";
-          pipeline-light = "pipeline_default_light";
-          style-components = 4;
+          pipeline-light = "pipeline_classic_light_background";
+          style-components = 2;
         };
 
         "${root}/panel" = {
-          match-theme-in-overview = false;
+          force-light-text = false;
+          match-theme-in-overview = true;
           override-background = true;
           override-background-dynamically = false;
           pipeline = "pipeline_default";
