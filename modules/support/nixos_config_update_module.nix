@@ -45,6 +45,13 @@ in
       serviceConfig = {
         Type = "oneshot";
         ExecStart = "${getExe _script}";
+
+        Restart = "on-failure";
+        RestartSec = "15min";
+        TimeoutStartSec = "5min";
+
+        StartLimitIntervalSec = "1h";
+        StartLimitBurst = 12;
       };
     };
 
