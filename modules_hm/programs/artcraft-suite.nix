@@ -22,6 +22,7 @@ in
       vectorcraft
       lightcraft
       filmcraft
+      pdfcraft
       wordcraft
       deckcraft
       gridcraft
