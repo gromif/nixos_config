@@ -37,5 +37,51 @@ in
         current_profile = cfg.profile;
       };
     };
+
+    # Hardening
+    systemd.services.lactd.serviceConfig = {
+      # --- Identity / privilege ---
+      KeyringMode = "private";
+      NoNewPrivileges = true;
+      CapabilityBoundingSet = [
+        "CAP_DAC_OVERRIDE"
+        "CAP_CHOWN"
+      ];
+      RestrictSUIDSGID = true;
+
+      # --- Process / kernel isolation ---
+      LockPersonality = true;
+      MemoryDenyWriteExecute = true; # see warning below
+      ProtectClock = true;
+      ProtectControlGroups = true;
+      ProtectHostname = true;
+      ProtectKernelLogs = true;
+      ProtectKernelModules = true;
+      ProtectProc = "invisible";
+      RestrictNamespaces = true;
+      RestrictRealtime = true;
+      SystemCallArchitectures = "native";
+      SystemCallFilter = [ "@system-service" ];
+
+      # --- Filesystem / mount namespace ---
+      PrivateTmp = true;
+      ProtectHome = "tmpfs"; # allows /root/.cache shader cache inside tmpfs
+      ProtectSystem = "strict";
+      ReadWritePaths = [ "/etc/lact" ];
+
+      # --- Devices ---
+      PrivateDevices = false; # required, otherwise DRM char device is hidden
+      DeviceAllow = [ "char-drm" ];
+
+      # --- IPC ---
+      RemoveIPC = true;
+
+      # --- Network ---
+      PrivateNetwork = true;
+      RestrictAddressFamilies = [
+        "AF_UNIX"
+        "AF_NETLINK"
+      ]; # AF_LOCAL dropped, see note
+    };
   };
 }
