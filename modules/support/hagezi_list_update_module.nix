@@ -39,6 +39,32 @@ in
       serviceConfig = {
         Type = "oneshot";
         ExecStart = "${getExe _script}";
+
+        # Explicitly allow writes to the NixOS configuration directory
+        ReadWritePaths = [
+          "/etc/nixos"
+          "/nix/store" # May be needed for build outputs (see note below)
+        ];
+        ProtectProc = "invisible";
+        PrivateUsers = true;
+        ProtectKernelTunables = true;
+        ProtectKernelModules = true;
+        ProtectControlGroups = true;
+        ProtectClock = true;
+        ProtectKernelLogs = true;
+        ProtectHostname = "private";
+        RestrictAddressFamilies = [
+          "AF_INET"
+          "AF_INET6"
+          "AF_UNIX"
+        ];
+        RestrictSUIDSGID = true;
+        PrivateTmp = true;
+        PrivateDevices = true;
+        LockPersonality = true;
+        SystemCallArchitectures = "native";
+        NoNewPrivileges = true;
+        CapabilityBoundingSet = [ "" ];
       };
     };
 
