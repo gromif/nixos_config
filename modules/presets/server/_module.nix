@@ -29,6 +29,7 @@ in
           memtester # Userspace utility for testing the memory subsystem for faults
           mtr # Network diagnostics tool
           speedtest-cli # Command line interface for testing internet bandwidth using speedtest.net
+          lm_sensors
         ];
       };
     })

@@ -37,6 +37,7 @@ in
         poppler-utils # PDF rendering library
         pwgen # Password generator which creates passwords which can be easily memorized by a human
         stress-ng
+        lm_sensors
         wineWow64Packages.waylandFull
       ]
       ++ _pkgs-sound
