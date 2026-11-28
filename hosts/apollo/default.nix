@@ -15,6 +15,13 @@
     ./openrgb
   ];
 
+  boot = {
+    kernelModules = [ "it87" ];
+    extraModulePackages = with config.boot.kernelPackages; [
+      it87
+    ];
+  };
+
   time.timeZone = "Europe/Berlin";
   nixfiles = {
     preset = {
